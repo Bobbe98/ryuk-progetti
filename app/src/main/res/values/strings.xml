@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Ryuk Automation</string>
+    <string name="accessibility_service_description">Permette a Ryuk Automation di rilevare l\'app in primo piano (per il trigger "App avviata") e di bloccare lo schermo (per l\'azione "Blocca schermo").</string>
+</resources>
