@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Compendio D&amp;D 5e</string>
+    <string name="title_activity_main">Compendio D&amp;D 5e</string>
+    <string name="package_name">it.ryukprogetti.dnd5e</string>
+    <string name="custom_url_scheme">it.ryukprogetti.dnd5e</string>
+</resources>

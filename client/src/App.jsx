@@ -9,6 +9,7 @@ import ItemDetailPage from './pages/ItemDetailPage';
 import ItemFormPage from './pages/ItemFormPage';
 import EncounterGeneratorPage from './pages/EncounterGeneratorPage';
 import ShopGeneratorPage from './pages/ShopGeneratorPage';
+import SettingsPage from './pages/SettingsPage';
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
         <Route path="/oggetti/:id/modifica" element={<ItemFormPage editMode />} />
         <Route path="/incontri" element={<EncounterGeneratorPage />} />
         <Route path="/negozi" element={<ShopGeneratorPage />} />
+        <Route path="/impostazioni" element={<SettingsPage />} />
       </Routes>
     </div>
   );

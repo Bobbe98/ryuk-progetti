@@ -63,7 +63,33 @@ cd ../server && npm start
 
 Se `client/dist` esiste, il server Express lo serve direttamente (SPA su un'unica porta, nessun proxy necessario).
 
+## App Android
+
+L'app è disponibile anche come app Android nativa: è un wrapper (Capacitor) che incorpora l'interfaccia React in una WebView e si collega al **server Node esistente** via rete — il server va quindi eseguito ed essere raggiungibile dal telefono (stessa rete locale, oppure pubblicato online).
+
+**Configurazione dell'indirizzo del server**: l'app non ha un indirizzo fisso integrato. Alla prima apertura vai su **Impostazioni** (in fondo al menu), inserisci l'indirizzo del server (es. `http://192.168.1.10:4000` se il server gira sul tuo PC nella stessa rete Wi-Fi del telefono) e premi "Testa connessione" per verificare, poi "Salva". L'indirizzo resta salvato sul telefono, anche dopo aver chiuso l'app.
+
+> Nota: l'app accetta traffico HTTP non cifrato (`usesCleartextTraffic`) per permettere di collegarsi a un server locale senza certificato HTTPS. Se in futuro pubblichi il server con HTTPS, basta usare quell'indirizzo nelle Impostazioni.
+
+### Generare/ricompilare l'APK
+
+Il progetto Android nativo è in `client/android/` (generato con [Capacitor](https://capacitorjs.com/)). Per ricompilarlo dopo eventuali modifiche al frontend:
+
+```bash
+cd client
+npm install
+npm run build        # genera client/dist
+npx cap sync android  # copia la build nel progetto Android
+cd android
+./gradlew assembleDebug
+```
+
+L'APK di debug viene generato in `client/android/app/build/outputs/apk/debug/app-debug.apk` ed è installabile direttamente su un telefono Android (serve "Origini sconosciute"/"Installa app esterne" abilitato, essendo una build di debug non firmata per il Play Store).
+
+Richiede Android SDK (platform 34, build-tools 34.0.0) e JDK 17+; in alternativa è possibile aprire `client/android` con Android Studio e usare Build > Build APK.
+
 ## Note
 
 - Il database è un singolo file SQLite in `server/data/app.db`; per re-inizializzare i dati SRD da zero è sufficiente eliminare il file e riavviare il server.
 - Tutte le rotte API sono sotto `/api/{creatures,items,encounters,shops,meta}`.
+- Per consentire le chiamate dall'app Android (o da qualsiasi client su rete diversa da `localhost`), il server deve essere avviato su un'interfaccia raggiungibile dalla rete (di default Express ascolta su tutte le interfacce); assicurati che eventuali firewall non blocchino la porta `4000`.

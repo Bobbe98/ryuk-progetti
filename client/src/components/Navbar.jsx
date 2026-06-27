@@ -5,6 +5,7 @@ const links = [
   { to: '/oggetti', label: 'Oggetti' },
   { to: '/incontri', label: 'Incontri' },
   { to: '/negozi', label: 'Negozi' },
+  { to: '/impostazioni', label: 'Impostazioni' },
 ];
 
 export default function Navbar() {

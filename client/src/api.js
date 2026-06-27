@@ -1,7 +1,7 @@
-const BASE = '/api';
+import { getApiBase } from './serverConfig';
 
 async function request(path, options = {}) {
-  const res = await fetch(`${BASE}${path}`, {
+  const res = await fetch(`${getApiBase()}${path}`, {
     headers: { 'Content-Type': 'application/json' },
     ...options,
   });
