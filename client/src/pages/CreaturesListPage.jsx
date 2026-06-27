@@ -12,6 +12,7 @@ export default function CreaturesListPage() {
   const [page, setPage] = useState(1);
   const [data, setData] = useState({ results: [], total: 0 });
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     api.meta().then(setMeta).catch(() => {});
@@ -19,8 +20,9 @@ export default function CreaturesListPage() {
 
   const load = useCallback(() => {
     setLoading(true);
+    setError(null);
     const params = Object.fromEntries(Object.entries({ ...filters, page, pageSize: PAGE_SIZE }).filter(([, v]) => v !== ''));
-    api.creatures(params).then(setData).finally(() => setLoading(false));
+    api.creatures(params).then(setData).catch((e) => setError(e.message)).finally(() => setLoading(false));
   }, [filters, page]);
 
   useEffect(() => { load(); }, [load]);
@@ -74,6 +76,8 @@ export default function CreaturesListPage() {
 
       {loading ? (
         <p className="text-zinc-400">Caricamento...</p>
+      ) : error ? (
+        <p className="text-red-400">Errore nel caricamento del bestiario: {error}. Verifica l'indirizzo del server in Impostazioni.</p>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {data.results.map((c) => (
