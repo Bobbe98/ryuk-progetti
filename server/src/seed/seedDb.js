@@ -10,6 +10,7 @@ import {
   ALIGNMENT_IT, SKILL_IT, ABILITY_IT, SUBTYPE_IT,
   translateLanguages, translateDamageList, translateConditionList, translateSenses, translateSpeed,
 } from './translate.js';
+import { HOMEBREW_CREATURES, HOMEBREW_ITEMS } from './homebrew.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SRD_DIR = path.join(__dirname, '..', '..', 'data', 'srd');
@@ -283,10 +284,123 @@ function seedEquipment() {
   console.log(`Seeded ${equipment.length} mundane equipment items (SRD).`);
 }
 
+function seedHomebrewCreatures() {
+  const insert = db.prepare(`
+    INSERT INTO creatures (
+      id, source, name, size, type, subtype, alignment, ac, ac_detail, hp, hit_dice, speed,
+      str, dex, con, intl, wis, cha, saving_throws, skills, damage_vulnerabilities,
+      damage_resistances, damage_immunities, condition_immunities, senses, languages,
+      cr, xp, proficiency_bonus, traits, actions, legendary_actions, reactions,
+      environments, image_url, description
+    ) VALUES (
+      @id, 'homebrew', @name, @size, @type, @subtype, @alignment, @ac, @ac_detail, @hp, @hit_dice, @speed,
+      @str, @dex, @con, @intl, @wis, @cha, @saving_throws, @skills, @damage_vulnerabilities,
+      @damage_resistances, @damage_immunities, @condition_immunities, @senses, @languages,
+      @cr, @xp, @proficiency_bonus, @traits, @actions, @legendary_actions, @reactions,
+      @environments, @image_url, @description
+    )
+    ON CONFLICT(id) DO UPDATE SET
+      name=excluded.name, size=excluded.size, type=excluded.type, subtype=excluded.subtype,
+      alignment=excluded.alignment, ac=excluded.ac, ac_detail=excluded.ac_detail, hp=excluded.hp,
+      hit_dice=excluded.hit_dice, speed=excluded.speed, str=excluded.str, dex=excluded.dex,
+      con=excluded.con, intl=excluded.intl, wis=excluded.wis, cha=excluded.cha,
+      saving_throws=excluded.saving_throws, skills=excluded.skills,
+      damage_vulnerabilities=excluded.damage_vulnerabilities, damage_resistances=excluded.damage_resistances,
+      damage_immunities=excluded.damage_immunities, condition_immunities=excluded.condition_immunities,
+      senses=excluded.senses, languages=excluded.languages, cr=excluded.cr, xp=excluded.xp,
+      proficiency_bonus=excluded.proficiency_bonus, traits=excluded.traits, actions=excluded.actions,
+      legendary_actions=excluded.legendary_actions, reactions=excluded.reactions,
+      environments=excluded.environments, image_url=excluded.image_url, description=excluded.description
+  `);
+
+  const tx = db.transaction((list) => {
+    for (const c of list) {
+      insert.run({
+        id: c.id,
+        name: c.name,
+        size: c.size,
+        type: c.type,
+        subtype: c.subtype,
+        alignment: c.alignment,
+        ac: c.ac,
+        ac_detail: JSON.stringify([]),
+        hp: c.hp,
+        hit_dice: c.hit_dice,
+        speed: JSON.stringify(c.speed || {}),
+        str: c.str, dex: c.dex, con: c.con, intl: c.intl, wis: c.wis, cha: c.cha,
+        saving_throws: JSON.stringify(c.saving_throws || {}),
+        skills: JSON.stringify(c.skills || {}),
+        damage_vulnerabilities: JSON.stringify(c.damage_vulnerabilities || []),
+        damage_resistances: JSON.stringify(c.damage_resistances || []),
+        damage_immunities: JSON.stringify(c.damage_immunities || []),
+        condition_immunities: JSON.stringify(c.condition_immunities || []),
+        senses: JSON.stringify(c.senses || {}),
+        languages: c.languages || '',
+        cr: c.cr,
+        xp: c.xp,
+        proficiency_bonus: c.proficiency_bonus,
+        traits: JSON.stringify(c.traits || []),
+        actions: JSON.stringify(c.actions || []),
+        legendary_actions: JSON.stringify(c.legendary_actions || []),
+        reactions: JSON.stringify(c.reactions || []),
+        environments: JSON.stringify(c.environments || []),
+        image_url: c.image_url ?? null,
+        description: c.description,
+      });
+    }
+  });
+  tx(HOMEBREW_CREATURES);
+  console.log(`Seeded ${HOMEBREW_CREATURES.length} homebrew creatures.`);
+}
+
+function seedHomebrewItems() {
+  const insert = db.prepare(`
+    INSERT INTO items (
+      id, source, name, category, rarity, rarity_rank, cost_gp, attunement, weight,
+      description, properties, crafting_materials, crafting_procedure, image_url
+    ) VALUES (
+      @id, 'homebrew', @name, @category, @rarity, @rarity_rank, @cost_gp, @attunement, @weight,
+      @description, @properties, @crafting_materials, @crafting_procedure, @image_url
+    )
+    ON CONFLICT(id) DO UPDATE SET
+      name=excluded.name, category=excluded.category, rarity=excluded.rarity,
+      rarity_rank=excluded.rarity_rank, cost_gp=excluded.cost_gp, attunement=excluded.attunement,
+      weight=excluded.weight, description=excluded.description, properties=excluded.properties,
+      crafting_materials=excluded.crafting_materials, crafting_procedure=excluded.crafting_procedure,
+      image_url=excluded.image_url
+  `);
+
+  const tx = db.transaction((list) => {
+    for (const it of list) {
+      const rarityKey = it.rarity || 'varies';
+      const { crafting_materials, crafting_procedure } = generateCrafting(it.category, rarityKey, it.name);
+      insert.run({
+        id: it.id,
+        name: it.name,
+        category: it.category,
+        rarity: rarityKey,
+        rarity_rank: RARITY_RANK[rarityKey],
+        cost_gp: priceForRarity(rarityKey, it.id),
+        attunement: it.attunement ? 1 : 0,
+        weight: it.weight ?? null,
+        description: it.description,
+        properties: JSON.stringify({}),
+        crafting_materials: JSON.stringify(crafting_materials),
+        crafting_procedure,
+        image_url: it.image_url ?? null,
+      });
+    }
+  });
+  tx(HOMEBREW_ITEMS);
+  console.log(`Seeded ${HOMEBREW_ITEMS.length} homebrew items.`);
+}
+
 function main() {
   seedMonsters();
   seedMagicItems();
   seedEquipment();
+  seedHomebrewCreatures();
+  seedHomebrewItems();
   console.log('Seeding complete.');
 }
 
