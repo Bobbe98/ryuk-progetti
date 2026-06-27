@@ -41,7 +41,7 @@ export default function CreatureDetailPage() {
       <Link to="/creature" className="text-sm text-amber-400">&larr; Torna al bestiario</Link>
 
       <div className="mt-4 flex flex-col gap-6 sm:flex-row">
-        <EntityImage src={creature.image_url} name={creature.name} className="h-56 w-56 flex-shrink-0 rounded-lg object-cover" />
+        <EntityImage src={creature.image_url} name={creature.name} kind={creature.type} className="h-56 w-56 flex-shrink-0 rounded-lg object-cover" />
         <div className="flex-1">
           <h1 className="text-3xl font-bold text-amber-300">{creature.name}</h1>
           <p className="italic text-zinc-400">

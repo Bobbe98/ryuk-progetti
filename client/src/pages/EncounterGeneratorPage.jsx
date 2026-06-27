@@ -94,7 +94,7 @@ export default function EncounterGeneratorPage() {
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
             {result.creatures.map((c) => (
               <Link key={c.id} to={`/creature/${c.id}`} className="group overflow-hidden rounded-lg border border-white/10 bg-white/5 hover:border-amber-500/50">
-                <EntityImage src={c.image_url} name={c.name} className="h-28 w-full object-cover" />
+                <EntityImage src={c.image_url} name={c.name} kind={c.type} className="h-28 w-full object-cover" />
                 <div className="p-2">
                   <p className="truncate text-sm font-medium group-hover:text-amber-300">{c.name}</p>
                   <p className="text-xs text-zinc-400">GS {cr(c.cr)} · {TYPE_LABELS[c.type] || c.type}</p>

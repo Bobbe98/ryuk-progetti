@@ -73,7 +73,7 @@ export default function ItemsListPage() {
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {data.results.map((it) => (
             <Link key={it.id} to={`/oggetti/${it.id}`} className="group overflow-hidden rounded-lg border border-white/10 bg-white/5 transition hover:border-amber-500/50">
-              <EntityImage src={it.image_url} name={it.name} className="h-28 w-full object-cover" />
+              <EntityImage src={it.image_url} name={it.name} kind={it.category} className="h-28 w-full object-cover" />
               <div className="p-2">
                 <p className="truncate text-sm font-medium group-hover:text-amber-300">{it.name}</p>
                 <p className="text-xs text-zinc-400">{Math.round(it.cost_gp)} mo</p>

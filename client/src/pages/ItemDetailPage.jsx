@@ -29,7 +29,7 @@ export default function ItemDetailPage() {
       <Link to="/oggetti" className="text-sm text-amber-400">&larr; Torna agli oggetti</Link>
 
       <div className="mt-4 flex flex-col gap-6 sm:flex-row">
-        <EntityImage src={item.image_url} name={item.name} className="h-56 w-56 flex-shrink-0 rounded-lg object-cover" />
+        <EntityImage src={item.image_url} name={item.name} kind={item.category} className="h-56 w-56 flex-shrink-0 rounded-lg object-cover" />
         <div className="flex-1">
           <h1 className="text-3xl font-bold text-amber-300">{item.name}</h1>
           <p className="mt-1 text-zinc-400">{CATEGORY_LABELS[item.category] || item.category}</p>

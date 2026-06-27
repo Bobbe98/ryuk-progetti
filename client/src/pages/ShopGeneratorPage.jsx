@@ -76,7 +76,7 @@ export default function ShopGeneratorPage() {
                   <tr key={it.id} className="border-t border-white/5 hover:bg-white/5">
                     <td className="px-3 py-2">
                       <Link to={`/oggetti/${it.id}`} className="flex items-center gap-2 text-amber-300 hover:underline">
-                        <EntityImage src={it.image_url} name={it.name} className="h-8 w-8 flex-shrink-0 rounded object-cover" />
+                        <EntityImage src={it.image_url} name={it.name} kind={it.category} className="h-8 w-8 flex-shrink-0 rounded object-cover" />
                         {it.name}
                       </Link>
                     </td>
