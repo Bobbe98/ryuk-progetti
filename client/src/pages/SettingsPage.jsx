@@ -1,10 +1,26 @@
 import { useState } from 'react';
+import { Capacitor } from '@capacitor/core';
 import { getServerUrl, setServerUrl, getApiBase } from '../serverConfig';
+import SRD_CREATURES from '../data/creatures.json';
+import SRD_ITEMS from '../data/items.json';
 
 export default function SettingsPage() {
   const [url, setUrl] = useState(getServerUrl());
   const [status, setStatus] = useState(null);
   const [testing, setTesting] = useState(false);
+
+  if (Capacitor.isNativePlatform()) {
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-8">
+        <h1 className="text-2xl font-bold text-amber-300">Impostazioni</h1>
+        <p className="mt-4 rounded bg-emerald-900/40 px-3 py-2 text-sm text-emerald-300">
+          Questa app funziona completamente offline: {SRD_CREATURES.length} creature e {SRD_ITEMS.length} oggetti SRD
+          sono incorporati nell'APK, e le creature/oggetti homebrew che crei vengono salvati direttamente sul telefono.
+          Non è richiesto nessun server.
+        </p>
+      </div>
+    );
+  }
 
   function save() {
     setServerUrl(url);

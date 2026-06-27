@@ -65,20 +65,21 @@ Se `client/dist` esiste, il server Express lo serve direttamente (SPA su un'unic
 
 ## App Android
 
-L'app è disponibile anche come app Android nativa: è un wrapper (Capacitor) che incorpora l'interfaccia React in una WebView e si collega al **server Node esistente** via rete — il server va quindi eseguito ed essere raggiungibile dal telefono (stessa rete locale, oppure pubblicato online).
+L'app è disponibile anche come app Android nativa: è un wrapper (Capacitor) che incorpora l'interfaccia React in una WebView e funziona **completamente offline**, senza bisogno del server Node. I 334 creature e 578 oggetti SRD sono incorporati direttamente nell'APK (`client/src/data/creatures.json` e `items.json`, esportati dal database del server con `node server/scripts/dumpOfflineData.mjs`), e tutta la logica di filtri/ordinamento/generazione incontri/generazione negozi è replicata lato client in `client/src/local/`. Le creature e gli oggetti homebrew creati nell'app vengono salvati sul telefono stesso (`localStorage`), non sul server.
 
-**Configurazione dell'indirizzo del server**: l'app non ha un indirizzo fisso integrato. Alla prima apertura vai su **Impostazioni** (in fondo al menu), inserisci l'indirizzo del server (es. `http://192.168.1.10:4000` se il server gira sul tuo PC nella stessa rete Wi-Fi del telefono) e premi "Testa connessione" per verificare, poi "Salva". L'indirizzo resta salvato sul telefono, anche dopo aver chiuso l'app.
+Il rilevamento della piattaforma (`Capacitor.isNativePlatform()` in `client/src/api.js`) decide automaticamente la modalità: sull'APK Android viene usato il motore offline (`client/src/local/localApi.js`), mentre l'app web (browser, sviluppo o self-hosting) continua a usare le chiamate di rete al server Node configurabile da **Impostazioni**, come prima.
 
-> Nota: l'app accetta traffico HTTP non cifrato (`usesCleartextTraffic`) per permettere di collegarsi a un server locale senza certificato HTTPS. Se in futuro pubblichi il server con HTTPS, basta usare quell'indirizzo nelle Impostazioni.
+> Nota: poiché l'APK non contatta alcun server, la pagina Impostazioni su Android mostra solo un messaggio informativo (nessun indirizzo server da configurare). Il permesso `android.permission.INTERNET` e `usesCleartextTraffic` restano nel manifest solo per compatibilità futura, non sono più strettamente necessari con questa modalità.
 
 ### Generare/ricompilare l'APK
 
 Il progetto Android nativo è in `client/android/` (generato con [Capacitor](https://capacitorjs.com/)). Per ricompilarlo dopo eventuali modifiche al frontend:
 
 ```bash
-cd client
+cd server && node scripts/dumpOfflineData.mjs   # rigenera client/src/data/*.json se i dati SRD sono cambiati
+cd ../client
 npm install
-npm run build        # genera client/dist
+npm run build        # genera client/dist (incorpora i dati SRD nel bundle JS)
 npx cap sync android  # copia la build nel progetto Android
 cd android
 ./gradlew assembleDebug
