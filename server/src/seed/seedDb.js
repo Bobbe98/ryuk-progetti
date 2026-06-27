@@ -5,13 +5,32 @@ import db from '../db/index.js';
 import { inferEnvironments } from './environments.js';
 import { generateCrafting } from './crafting.js';
 import { priceForRarity, RARITY_KEY_MAP, RARITY_RANK } from './pricing.js';
+import { translateAttackAction } from './translateActions.js';
+import {
+  ALIGNMENT_IT, SKILL_IT, ABILITY_IT, SUBTYPE_IT,
+  translateLanguages, translateDamageList, translateConditionList, translateSenses, translateSpeed,
+} from './translate.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const SRD_DIR = path.join(__dirname, '..', '..', 'data', 'srd');
+const TRANSLATIONS_DIR = path.join(__dirname, 'translations');
 
 function readJson(file) {
   return JSON.parse(fs.readFileSync(path.join(SRD_DIR, file), 'utf-8'));
 }
+
+function readTranslations(file) {
+  return JSON.parse(fs.readFileSync(path.join(TRANSLATIONS_DIR, file), 'utf-8'));
+}
+
+const CREATURE_NAMES_IT = readTranslations('creature-names.json');
+const ITEM_NAMES_IT = readTranslations('item-names.json');
+const TRAITS_IT = readTranslations('traits.json');
+const LEGENDARY_REACTIONS_IT = readTranslations('legendary-reactions.json');
+const ACTIONS_FREEFORM_IT = readTranslations('actions-freeform.json');
+const ACTION_RIDERS_IT = readTranslations('action-riders.json');
+const ITEM_DESCRIPTIONS_IT = readTranslations('item-descriptions.json');
+const WEAPON_ACTION_NAMES_IT = readTranslations('weapon-action-names.json');
 
 const SIZE_IT = { Tiny: 'Minuscola', Small: 'Piccola', Medium: 'Media', Large: 'Grande', Huge: 'Enorme', Gargantuan: 'Mastodontica' };
 const TYPE_IT = {
@@ -19,19 +38,12 @@ const TYPE_IT = {
   dragon: 'drago', elemental: 'elementale', fey: 'fata', fiend: 'demone/diavolo', giant: 'gigante',
   humanoid: 'umanoide', monstrosity: 'mostruosità', ooze: 'melma', plant: 'pianta', undead: 'non-morto',
 };
-const ALIGN_IT = {
-  'lawful good': 'legale buono', 'neutral good': 'neutrale buono', 'chaotic good': 'caotico buono',
-  'lawful neutral': 'legale neutrale', neutral: 'neutrale', 'chaotic neutral': 'caotico neutrale',
-  'lawful evil': 'legale malvagio', 'neutral evil': 'neutrale malvagio', 'chaotic evil': 'caotico malvagio',
-  unaligned: 'non allineato', 'any alignment': 'qualsiasi allineamento',
-};
 
-function buildMonsterDescription(m) {
+function buildMonsterDescription(m, nameIt, alignmentIt, subtypeIt) {
   const size = SIZE_IT[m.size] || m.size;
   const type = TYPE_IT[m.type] || m.type;
-  const align = ALIGN_IT[(m.alignment || '').toLowerCase()] || m.alignment || 'allineamento variabile';
-  const sub = m.subtype ? ` (${m.subtype})` : '';
-  return `${m.name} è una creatura di taglia ${size}, di tipo ${type}${sub}, di allineamento ${align}. Grado di Sfida ${m.challenge_rating}.`;
+  const sub = subtypeIt ? ` (${subtypeIt})` : '';
+  return `${nameIt} è una creatura di taglia ${size}, di tipo ${type}${sub}, di allineamento ${alignmentIt}. Grado di Sfida ${m.challenge_rating}.`;
 }
 
 function extractProficiencies(m, prefix) {
@@ -43,6 +55,37 @@ function extractProficiencies(m, prefix) {
     }
   }
   return out;
+}
+
+function translateLabeledMap(obj, dict) {
+  const out = {};
+  for (const [k, v] of Object.entries(obj || {})) out[dict[k] || k] = v;
+  return out;
+}
+
+function translateAbilityList(list, dict, monsterIndex, kind) {
+  return (list || []).map((t, i) => {
+    const tr = dict[`srd-${monsterIndex}::${kind}::${i}`];
+    return tr ? { ...t, name: tr.name, desc: tr.desc } : t;
+  });
+}
+
+function translateActions(actions, monsterIndex) {
+  return (actions || []).map((a, i) => {
+    const key = `srd-${monsterIndex}::action::${i}`;
+    const parsed = translateAttackAction(a.desc);
+    if (parsed) {
+      const name = WEAPON_ACTION_NAMES_IT[a.name] || a.name;
+      let desc = parsed.opening;
+      if (parsed.riderEn) {
+        const riderIt = ACTION_RIDERS_IT[key];
+        if (riderIt) desc += ` ${riderIt}`;
+      }
+      return { ...a, name, desc };
+    }
+    const tr = ACTIONS_FREEFORM_IT[key];
+    return tr ? { ...a, name: tr.name, desc: tr.desc } : a;
+  });
 }
 
 function seedMonsters() {
@@ -77,38 +120,41 @@ function seedMonsters() {
 
   const tx = db.transaction((list) => {
     for (const m of list) {
+      const nameIt = CREATURE_NAMES_IT[`srd-${m.index}`] || m.name;
+      const alignmentIt = ALIGNMENT_IT[(m.alignment || '').toLowerCase()] || m.alignment || 'allineamento variabile';
+      const subtypeIt = m.subtype ? (SUBTYPE_IT[m.subtype] || m.subtype) : null;
       insert.run({
         id: `srd-${m.index}`,
-        name: m.name,
+        name: nameIt,
         size: m.size,
         type: m.type,
-        subtype: m.subtype || null,
-        alignment: m.alignment,
+        subtype: subtypeIt,
+        alignment: alignmentIt,
         ac: m.armor_class?.[0]?.value ?? null,
         ac_detail: JSON.stringify(m.armor_class || []),
         hp: m.hit_points,
         hit_dice: m.hit_points_roll || m.hit_dice,
-        speed: JSON.stringify(m.speed || {}),
+        speed: JSON.stringify(translateSpeed(m.speed)),
         str: m.strength, dex: m.dexterity, con: m.constitution,
         intl: m.intelligence, wis: m.wisdom, cha: m.charisma,
-        saving_throws: JSON.stringify(extractProficiencies(m, 'saving-throw-')),
-        skills: JSON.stringify(extractProficiencies(m, 'skill-')),
-        damage_vulnerabilities: JSON.stringify(m.damage_vulnerabilities || []),
-        damage_resistances: JSON.stringify(m.damage_resistances || []),
-        damage_immunities: JSON.stringify(m.damage_immunities || []),
-        condition_immunities: JSON.stringify((m.condition_immunities || []).map((c) => c.name)),
-        senses: JSON.stringify(m.senses || {}),
-        languages: m.languages || '',
+        saving_throws: JSON.stringify(translateLabeledMap(extractProficiencies(m, 'saving-throw-'), ABILITY_IT)),
+        skills: JSON.stringify(translateLabeledMap(extractProficiencies(m, 'skill-'), SKILL_IT)),
+        damage_vulnerabilities: JSON.stringify(translateDamageList(m.damage_vulnerabilities)),
+        damage_resistances: JSON.stringify(translateDamageList(m.damage_resistances)),
+        damage_immunities: JSON.stringify(translateDamageList(m.damage_immunities)),
+        condition_immunities: JSON.stringify(translateConditionList((m.condition_immunities || []).map((c) => c.name))),
+        senses: JSON.stringify(translateSenses(m.senses)),
+        languages: translateLanguages(m.languages),
         cr: m.challenge_rating,
         xp: m.xp,
         proficiency_bonus: m.proficiency_bonus,
-        traits: JSON.stringify(m.special_abilities || []),
-        actions: JSON.stringify(m.actions || []),
-        legendary_actions: JSON.stringify(m.legendary_actions || []),
-        reactions: JSON.stringify(m.reactions || []),
+        traits: JSON.stringify(translateAbilityList(m.special_abilities, TRAITS_IT, m.index, 'trait')),
+        actions: JSON.stringify(translateActions(m.actions, m.index)),
+        legendary_actions: JSON.stringify(translateAbilityList(m.legendary_actions, LEGENDARY_REACTIONS_IT, m.index, 'legendary')),
+        reactions: JSON.stringify(translateAbilityList(m.reactions, LEGENDARY_REACTIONS_IT, m.index, 'reaction')),
         environments: JSON.stringify(inferEnvironments(m)),
         image_url: m.image ? `https://www.dnd5eapi.co${m.image}` : null,
-        description: buildMonsterDescription(m),
+        description: buildMonsterDescription(m, nameIt, alignmentIt, subtypeIt),
       });
     }
   });
@@ -142,20 +188,22 @@ function seedMagicItems() {
 
   const tx = db.transaction((list) => {
     for (const it of list) {
+      const key = `srd-item-${it.index}`;
       const rarityKey = RARITY_KEY_MAP[it.rarity?.name] || 'varies';
       const category = it.equipment_category?.name || 'Wondrous Items';
-      const desc = describeMagicItem(it);
-      const { crafting_materials, crafting_procedure } = generateCrafting(category, rarityKey, it.name);
+      const descEn = describeMagicItem(it);
+      const nameIt = ITEM_NAMES_IT[key] || it.name;
+      const { crafting_materials, crafting_procedure } = generateCrafting(category, rarityKey, nameIt);
       insert.run({
-        id: `srd-item-${it.index}`,
-        name: it.name,
+        id: key,
+        name: nameIt,
         category,
         rarity: rarityKey,
         rarity_rank: RARITY_RANK[rarityKey],
         cost_gp: priceForRarity(rarityKey, it.index),
-        attunement: /requires attunement/i.test(desc) ? 1 : 0,
+        attunement: /requires attunement/i.test(descEn) ? 1 : 0,
         weight: null,
-        description: desc,
+        description: ITEM_DESCRIPTIONS_IT[key] || descEn,
         properties: JSON.stringify({ variant: it.variant, variants: (it.variants || []).map((v) => v.name) }),
         crafting_materials: JSON.stringify(crafting_materials),
         crafting_procedure,
@@ -214,15 +262,17 @@ function seedEquipment() {
 
   const tx = db.transaction((list) => {
     for (const eq of list) {
+      const key = `srd-equip-${eq.index}`;
       const category = eq.equipment_category?.name || 'Adventuring Gear';
-      const { crafting_materials, crafting_procedure } = generateCrafting(category, 'common', eq.name);
+      const nameIt = ITEM_NAMES_IT[key] || eq.name;
+      const { crafting_materials, crafting_procedure } = generateCrafting(category, 'common', nameIt);
       insert.run({
-        id: `srd-equip-${eq.index}`,
-        name: eq.name,
+        id: key,
+        name: nameIt,
         category,
         cost_gp: gpValue(eq.cost),
         weight: eq.weight ?? null,
-        description: describeEquipment(eq),
+        description: ITEM_DESCRIPTIONS_IT[key] || describeEquipment(eq),
         properties: JSON.stringify({ weapon_category: eq.weapon_category, armor_category: eq.armor_category, properties: (eq.properties || []).map((p) => p.name) }),
         crafting_materials: JSON.stringify(crafting_materials),
         crafting_procedure,

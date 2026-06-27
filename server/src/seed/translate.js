@@ -71,7 +71,7 @@ export const LANGUAGE_IT = {
 };
 
 const FT_TO_M_TABLE = { 5: 1.5, 10: 3, 15: 4.5, 20: 6, 25: 7.5, 30: 9, 40: 12, 50: 15, 60: 18, 80: 24, 90: 27, 100: 30, 120: 36, 150: 45 };
-function ftToMLang(ft) {
+export function ftToM(ft) {
   const n = Number(ft);
   const m = FT_TO_M_TABLE[n] ?? Math.round(n * 0.3048 * 2) / 2;
   return Number.isInteger(m) ? String(m) : String(m).replace('.', ',');
@@ -101,7 +101,7 @@ function translateLanguageToken(tok) {
   if (!t) return '';
   const tele = t.match(/^telepathy (\d+) ft\.(?: \(works only with creatures that understand Abyssal\))?$/i);
   if (tele) {
-    const m = ftToMLang(tele[1]);
+    const m = ftToM(tele[1]);
     return /Abyssal/i.test(t)
       ? `telepatia ${m} m (funziona solo con creature che comprendono l'Abissale)`
       : `telepatia ${m} m`;
@@ -109,10 +109,10 @@ function translateLanguageToken(tok) {
   for (const [re, repl] of LANG_PHRASE_IT) {
     if (re.test(t)) return t.replace(re, repl);
   }
-  const m1 = t.match(/^understands (.+?) but can't speak( it)?$/i) || t.match(/^understands (.+?) but doesn't speak it$/i);
-  if (m1) return `comprende ${LANGUAGE_IT[m1[1]] || m1[1]} ma non può parlare`;
   const m2 = t.match(/^understands (.+?) and (.+?) but can't speak$/i);
   if (m2) return `comprende ${LANGUAGE_IT[m2[1]] || m2[1]} e ${LANGUAGE_IT[m2[2]] || m2[2]} ma non può parlare`;
+  const m1 = t.match(/^understands (.+?) but can't speak( it)?$/i) || t.match(/^understands (.+?) but doesn't speak it$/i);
+  if (m1) return `comprende ${LANGUAGE_IT[m1[1]] || m1[1]} ma non può parlare`;
   const m3 = t.match(/^understands (.+)$/i);
   if (m3) return `comprende ${LANGUAGE_IT[m3[1]] || m3[1]}`;
   const m4 = t.match(/^and (.+) but can't speak$/i);
@@ -132,6 +132,46 @@ export function translateLanguages(raw) {
 export function translateDamageList(list) {
   return (list || []).map((d) => DAMAGE_PHRASE_IT[d] || DAMAGE_TYPE_IT[d.toLowerCase()] || d);
 }
+
+export function translateConditionList(list) {
+  return (list || []).map((c) => CONDITION_IT[c] || c);
+}
+
+function translateSenseValue(v) {
+  if (typeof v !== 'string') return v;
+  const m = v.match(/^(\d+) ft\.$/);
+  return m ? `${ftToM(m[1])} m` : v;
+}
+
+export function translateSenses(senses) {
+  const out = {};
+  for (const [k, v] of Object.entries(senses || {})) {
+    out[SENSE_IT[k] || k] = translateSenseValue(v);
+  }
+  return out;
+}
+
+export const SPEED_IT = { walk: 'camminare', swim: 'nuotare', fly: 'volare', climb: 'scalare', burrow: 'scavare' };
+
+export function translateSpeed(speed) {
+  const out = {};
+  for (const [k, v] of Object.entries(speed || {})) {
+    if (k === 'hover') { out[k] = v; continue; }
+    out[SPEED_IT[k] || k] = translateSenseValue(v);
+  }
+  return out;
+}
+
+export const SUBTYPE_IT = {
+  'any race': 'qualsiasi razza', demon: 'demone', devil: 'diavolo', goblinoid: 'goblinoide',
+  gnome: 'gnomo', shapechanger: 'metamorfo', elf: 'elfo', dwarf: 'nano', gnoll: 'gnoll',
+  grimlock: 'grimlock', human: 'umano', kobold: 'kobold', titan: 'titano', lizardfolk: 'lucertolide',
+  merfolk: 'tritone', orc: 'orco', sahuagin: 'sahuagin',
+};
+
+export const ABILITY_FULL_IT = {
+  STR: 'Forza', DEX: 'Destrezza', CON: 'Costituzione', INT: 'Intelligenza', WIS: 'Saggezza', CHA: 'Carisma',
+};
 
 export const WEAPON_CATEGORY_IT = { Martial: 'marziale', Simple: 'semplice' };
 export const ARMOR_CATEGORY_IT = { Medium: 'media', Heavy: 'pesante', Light: 'leggera', Shield: 'scudo' };

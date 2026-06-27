@@ -1,0 +1,446 @@
+{
+ "srd-aboleth::legendary::0": {
+  "name": "Individuazione",
+  "desc": "L'aboleth effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-aboleth::legendary::1": {
+  "name": "Colpo di Coda",
+  "desc": "L'aboleth esegue un attacco di coda."
+ },
+ "srd-aboleth::legendary::2": {
+  "name": "Prosciugamento Psichico (Costa 2 Azioni)",
+  "desc": "Una creatura affascinata dall'aboleth subisce 10 (3d6) danni psichici, e l'aboleth recupera punti ferita pari al danno subito dalla creatura."
+ },
+ "srd-adult-black-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-black-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-black-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 19 o subire 13 (2d6 + 6) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-adult-blue-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-blue-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-blue-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 20 o subire 14 (2d6 + 7) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-adult-brass-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-brass-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-brass-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 19 o subire 13 (2d6 + 6) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-adult-bronze-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-bronze-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-bronze-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 20 o subire 14 (2d6 + 7) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-adult-copper-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-copper-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-copper-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 19 o subire 13 (2d6 + 6) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-adult-gold-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-gold-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-gold-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 22 o subire 15 (2d6 + 8) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-adult-green-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-green-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-green-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 19 o subire 13 (2d6 + 6) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-adult-red-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-red-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-red-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 22 o subire 15 (2d6 + 8) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-adult-silver-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-silver-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-silver-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 22 o subire 15 (2d6 + 8) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-adult-white-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-adult-white-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-adult-white-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 3 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 19 o subire 13 (2d6 + 6) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-black-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-black-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-black-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 23 o subire 15 (2d6 + 8) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-blue-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-blue-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-blue-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 24 o subire 16 (2d6 + 9) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-brass-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-brass-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-brass-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 22 o subire 15 (2d6 + 8) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-bronze-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-bronze-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-bronze-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 24 o subire 16 (2d6 + 9) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-copper-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-copper-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-copper-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 23 o subire 15 (2d6 + 8) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-gold-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-gold-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-gold-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 25 o subire 17 (2d6 + 10) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-green-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-green-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-green-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 23 o subire 15 (2d6 + 8) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-red-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-red-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-red-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 25 o subire 17 (2d6 + 10) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-silver-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-silver-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-silver-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 25 o subire 17 (2d6 + 10) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-ancient-white-dragon::legendary::0": {
+  "name": "Individuazione",
+  "desc": "Il drago effettua una prova di Saggezza (Percezione)."
+ },
+ "srd-ancient-white-dragon::legendary::1": {
+  "name": "Attacco di Coda",
+  "desc": "Il drago esegue un attacco di coda."
+ },
+ "srd-ancient-white-dragon::legendary::2": {
+  "name": "Attacco d'Ali (Costa 2 Azioni)",
+  "desc": "Il drago batte le ali. Ogni creatura entro 4,5 metri dal drago deve superare un tiro di salvezza su Destrezza con CD 22 o subire 15 (2d6 + 8) danni contundenti e cadere prona. Il drago può poi volare per una distanza pari a metà della sua velocità di volo."
+ },
+ "srd-androsphinx::legendary::0": {
+  "name": "Attacco con gli Artigli",
+  "desc": "La sfinge esegue un attacco con gli artigli."
+ },
+ "srd-androsphinx::legendary::1": {
+  "name": "Teletrasporto (Costa 2 Azioni)",
+  "desc": "La sfinge si teletrasporta magicamente, insieme a qualsiasi equipaggiamento che indossa o porta con sé, fino a 36 metri in uno spazio libero che riesce a vedere."
+ },
+ "srd-androsphinx::legendary::2": {
+  "name": "Lancio di un Incantesimo (Costa 3 Azioni)",
+  "desc": "La sfinge lancia un incantesimo dal suo elenco di incantesimi preparati, utilizzando uno slot incantesimo come normale."
+ },
+ "srd-gynosphinx::legendary::0": {
+  "name": "Attacco con gli Artigli",
+  "desc": "La sfinge esegue un attacco con gli artigli."
+ },
+ "srd-gynosphinx::legendary::1": {
+  "name": "Teletrasporto (Costa 2 Azioni)",
+  "desc": "La sfinge si teletrasporta magicamente, insieme a qualsiasi equipaggiamento che indossa o porta con sé, fino a 36 metri in uno spazio libero che riesce a vedere."
+ },
+ "srd-gynosphinx::legendary::2": {
+  "name": "Lancio di un Incantesimo (Costa 3 Azioni)",
+  "desc": "La sfinge lancia un incantesimo dal suo elenco di incantesimi preparati, utilizzando uno slot incantesimo come normale."
+ },
+ "srd-kraken::legendary::0": {
+  "name": "Attacco con i Tentacoli o Lancio",
+  "desc": "Il kraken esegue un attacco con i tentacoli oppure usa Lancio."
+ },
+ "srd-kraken::legendary::1": {
+  "name": "Tempesta di Fulmini (Costa 2 Azioni)",
+  "desc": "Il kraken usa Tempesta di Fulmini."
+ },
+ "srd-kraken::legendary::2": {
+  "name": "Nube d'Inchiostro (Costa 3 Azioni)",
+  "desc": "Mentre è sott'acqua, il kraken emette una nube d'inchiostro in un raggio di 18 metri. La nube si diffonde attorno agli angoli e quell'area è fortemente oscurata per le creature diverse dal kraken. Ogni creatura diversa dal kraken che termina il proprio turno in quell'area deve superare un tiro di salvezza su Costituzione con CD 23, subendo 16 (3d10) danni da veleno in caso di fallimento, o la metà di tale danno in caso di successo. Una forte corrente disperde la nube, che altrimenti svanisce al termine del prossimo turno del kraken."
+ },
+ "srd-lich::legendary::0": {
+  "name": "Trucchetto",
+  "desc": "Il lich lancia un trucchetto."
+ },
+ "srd-lich::legendary::1": {
+  "name": "Tocco Paralizzante (Costa 2 Azioni)",
+  "desc": "Il lich usa il suo Tocco Paralizzante."
+ },
+ "srd-lich::legendary::2": {
+  "name": "Sguardo Terrificante (Costa 2 Azioni)",
+  "desc": "Il lich fissa il suo sguardo su una creatura che riesce a vedere entro 3 metri da esso. Il bersaglio deve superare un tiro di salvezza su Saggezza con CD 18 contro questa magia o diventare spaventato per 1 minuto. Il bersaglio spaventato può ripetere il tiro di salvezza al termine di ognuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza del bersaglio ha successo o l'effetto termina, il bersaglio è immune allo sguardo del lich per le successive 24 ore."
+ },
+ "srd-lich::legendary::3": {
+  "name": "Interruzione della Vita (Costa 3 Azioni)",
+  "desc": "Ogni creatura vivente entro 6 metri dal lich deve effettuare un tiro di salvezza su Costituzione con CD 18 contro questa magia, subendo 21 (6d6) danni necrotici in caso di fallimento, o la metà di tale danno in caso di successo."
+ },
+ "srd-mummy-lord::legendary::0": {
+  "name": "Attacco",
+  "desc": "Il signore delle mummie esegue un attacco con il suo pugno marcescente oppure usa Sguardo Terribile."
+ },
+ "srd-mummy-lord::legendary::1": {
+  "name": "Polvere Accecante",
+  "desc": "Polvere e sabbia accecanti si agitano magicamente attorno al signore delle mummie. Ogni creatura entro 1,5 metri dal signore delle mummie deve superare un tiro di salvezza su Costituzione con CD 16 o essere accecata fino al termine del proprio prossimo turno."
+ },
+ "srd-mummy-lord::legendary::2": {
+  "name": "Parola Blasfema (Costa 2 Azioni)",
+  "desc": "Il signore delle mummie pronuncia una parola blasfema. Ogni creatura non non-morta entro 3 metri dal signore delle mummie che riesce a sentire l'espressione magica deve superare un tiro di salvezza su Costituzione con CD 16 o essere stordita fino al termine del prossimo turno del signore delle mummie."
+ },
+ "srd-mummy-lord::legendary::3": {
+  "name": "Incanalare Energia Negativa (Costa 2 Azioni)",
+  "desc": "Il signore delle mummie scatena magicamente energia negativa. Le creature entro 18 metri dal signore delle mummie, incluse quelle dietro barriere e dietro angoli, non possono recuperare punti ferita fino al termine del prossimo turno del signore delle mummie."
+ },
+ "srd-mummy-lord::legendary::4": {
+  "name": "Turbine di Sabbia (Costa 2 Azioni)",
+  "desc": "Il signore delle mummie si trasforma magicamente in un turbine di sabbia, si sposta fino a 18 metri e ritorna alla sua forma normale. Mentre è in forma di turbine, il signore delle mummie è immune a tutti i danni e non può essere afferrato, pietrificato, atterrato, trattenuto o stordito. L'equipaggiamento indossato o portato dal signore delle mummie resta in suo possesso."
+ },
+ "srd-solar::legendary::0": {
+  "name": "Teletrasporto",
+  "desc": "Il solare si teletrasporta magicamente, insieme a qualsiasi equipaggiamento che indossa o porta con sé, fino a 36 metri in uno spazio libero che riesce a vedere."
+ },
+ "srd-solar::legendary::1": {
+  "name": "Scoppio Infuocato (Costa 2 Azioni)",
+  "desc": "Il solare emette energia magica divina. Ogni creatura a sua scelta in un raggio di 3 metri deve effettuare un tiro di salvezza su Destrezza con CD 23, subendo 14 (4d6) danni da fuoco più 14 (4d6) danni radianti in caso di fallimento, o la metà di tale danno in caso di successo."
+ },
+ "srd-solar::legendary::2": {
+  "name": "Sguardo Accecante (Costa 3 Azioni)",
+  "desc": "Il solare prende di mira una creatura che riesce a vedere entro 9 metri da esso. Se il bersaglio può vederlo, deve superare un tiro di salvezza su Costituzione con CD 15 o essere accecato finché una magia come l'incantesimo ristorazione minore non rimuove la cecità."
+ },
+ "srd-tarrasque::legendary::0": {
+  "name": "Attacco",
+  "desc": "Il tarasco esegue un attacco con gli artigli o un attacco di coda."
+ },
+ "srd-tarrasque::legendary::1": {
+  "name": "Spostamento",
+  "desc": "Il tarasco si sposta per una distanza pari a metà della sua velocità."
+ },
+ "srd-tarrasque::legendary::2": {
+  "name": "Morso (Costa 2 Azioni)",
+  "desc": "Il tarasco esegue un attacco con il morso oppure usa Ingoiare."
+ },
+ "srd-unicorn::legendary::0": {
+  "name": "Zoccoli",
+  "desc": "L'unicorno esegue un attacco con gli zoccoli."
+ },
+ "srd-unicorn::legendary::1": {
+  "name": "Scudo Scintillante (Costa 2 Azioni)",
+  "desc": "L'unicorno crea un campo magico scintillante attorno a sé o a un'altra creatura che riesce a vedere entro 18 metri da esso. Il bersaglio ottiene un bonus di +2 alla CA fino al termine del prossimo turno dell'unicorno."
+ },
+ "srd-unicorn::legendary::2": {
+  "name": "Autoguarigione (Costa 3 Azioni)",
+  "desc": "L'unicorno recupera magicamente 11 (2d8 + 2) punti ferita."
+ },
+ "srd-vampire-bat::legendary::0": {
+  "name": "Spostamento",
+  "desc": "Il vampiro si sposta fino alla sua velocità senza provocare attacchi di opportunità."
+ },
+ "srd-vampire-bat::legendary::1": {
+  "name": "Attacco Senz'Armi",
+  "desc": "Il vampiro esegue un attacco senz'armi."
+ },
+ "srd-vampire-bat::legendary::2": {
+  "name": "Morso (Costa 2 Azioni)",
+  "desc": "Il vampiro esegue un attacco con il morso."
+ },
+ "srd-vampire-mist::legendary::0": {
+  "name": "Spostamento",
+  "desc": "Il vampiro si sposta fino alla sua velocità senza provocare attacchi di opportunità."
+ },
+ "srd-vampire-mist::legendary::1": {
+  "name": "Attacco Senz'Armi",
+  "desc": "Il vampiro esegue un attacco senz'armi."
+ },
+ "srd-vampire-mist::legendary::2": {
+  "name": "Morso (Costa 2 Azioni)",
+  "desc": "Il vampiro esegue un attacco con il morso."
+ },
+ "srd-vampire-vampire::legendary::0": {
+  "name": "Spostamento",
+  "desc": "Il vampiro si sposta fino alla sua velocità senza provocare attacchi di opportunità."
+ },
+ "srd-vampire-vampire::legendary::1": {
+  "name": "Attacco Senz'Armi",
+  "desc": "Il vampiro esegue un attacco senz'armi."
+ },
+ "srd-vampire-vampire::legendary::2": {
+  "name": "Morso (Costa 2 Azioni)",
+  "desc": "Il vampiro esegue un attacco con il morso."
+ },
+ "srd-bandit-captain::reaction::0": {
+  "name": "Parata",
+  "desc": "Il capitano aggiunge 2 alla propria CA contro un attacco in mischia che lo colpirebbe. Per farlo, il capitano deve vedere l'attaccante ed essere impugnando un'arma da mischia."
+ },
+ "srd-black-pudding::reaction::0": {
+  "name": "Divisione",
+  "desc": "Quando una melma di taglia Media o superiore subisce danni da fulmine o da taglio, si divide in due nuove melme se possiede almeno 10 punti ferita. Ogni nuova melma ha punti ferita pari alla metà di quelli della melma originale, arrotondati per difetto. Le nuove melme sono di una taglia inferiore rispetto alla melma originale."
+ },
+ "srd-chain-devil::reaction::0": {
+  "name": "Maschera Inquietante",
+  "desc": "Quando una creatura che il diavolo riesce a vedere inizia il proprio turno entro 9 metri dal diavolo, il diavolo può creare l'illusione di assomigliare a uno dei cari estinti o degli acerrimi nemici della creatura. Se la creatura riesce a vedere il diavolo, deve superare un tiro di salvezza su Saggezza con CD 14 o essere spaventata fino al termine del proprio turno."
+ },
+ "srd-erinyes::reaction::0": {
+  "name": "Parata",
+  "desc": "L'erinni aggiunge 4 alla propria CA contro un attacco in mischia che la colpirebbe. Per farlo, l'erinni deve vedere l'attaccante ed essere impugnando un'arma da mischia."
+ },
+ "srd-gladiator::reaction::0": {
+  "name": "Parata",
+  "desc": "Il gladiatore aggiunge 3 alla propria CA contro un attacco in mischia che lo colpirebbe. Per farlo, il gladiatore deve vedere l'attaccante ed essere impugnando un'arma da mischia."
+ },
+ "srd-knight::reaction::0": {
+  "name": "Parata",
+  "desc": "Il cavaliere aggiunge 2 alla propria CA contro un attacco in mischia che lo colpirebbe. Per farlo, il cavaliere deve vedere l'attaccante ed essere impugnando un'arma da mischia."
+ },
+ "srd-marilith::reaction::0": {
+  "name": "Parata",
+  "desc": "La marilith aggiunge 5 alla propria CA contro un attacco in mischia che la colpirebbe. Per farlo, la marilith deve vedere l'attaccante ed essere impugnando un'arma da mischia."
+ },
+ "srd-noble::reaction::0": {
+  "name": "Parata",
+  "desc": "Il nobile aggiunge 2 alla propria CA contro un attacco in mischia che lo colpirebbe. Per farlo, il nobile deve vedere l'attaccante ed essere impugnando un'arma da mischia."
+ },
+ "srd-ochre-jelly::reaction::0": {
+  "name": "Divisione",
+  "desc": "Quando una gelatina di taglia Media o superiore subisce danni da fulmine o da taglio, si divide in due nuove gelatine se possiede almeno 10 punti ferita. Ogni nuova gelatina ha punti ferita pari alla metà di quelli della gelatina originale, arrotondati per difetto. Le nuove gelatine sono di una taglia inferiore rispetto alla gelatina originale."
+ },
+ "srd-shield-guardian::reaction::0": {
+  "name": "Scudo",
+  "desc": "Quando una creatura esegue un attacco contro chi porta l'amuleto del guardiano, il guardiano concede un bonus di +2 alla CA del portatore se il guardiano si trova entro 1,5 metri da esso."
+ },
+ "srd-shrieker::reaction::0": {
+  "name": "Strillo",
+  "desc": "Quando una luce intensa o una creatura si trova entro 9 metri dallo strillone, esso emette uno strillo udibile entro 90 metri da esso. Lo strillone continua a strillare finché il disturbo non si allontana dal raggio d'azione e per 1d4 dei turni successivi dello strillone."
+ },
+ "srd-stone-giant::reaction::0": {
+  "name": "Presa al Volo",
+  "desc": "Se una roccia o un oggetto simile viene lanciato contro il gigante, il gigante può, con un tiro di salvezza su Destrezza con CD 10 superato con successo, afferrare il missile e non subire danni contundenti da esso."
+ }
+}

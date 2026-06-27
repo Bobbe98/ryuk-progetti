@@ -1,0 +1,1346 @@
+{
+ "srd-aboleth::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'aboleth esegue tre attacchi con i tentacoli."
+ },
+ "srd-aboleth::action::3": {
+  "name": "Soggiogare",
+  "desc": "L'aboleth prende di mira una creatura che può vedere entro 9 m da esso. Il bersaglio deve superare un tiro di salvezza su Saggezza con CD 14 o essere magicamente affascinato dall'aboleth finché questo non muore o finché non si trova su un piano di esistenza diverso da quello del bersaglio. Il bersaglio affascinato è sotto il controllo dell'aboleth e non può effettuare reazioni, e l'aboleth e il bersaglio possono comunicare telepaticamente tra loro a qualsiasi distanza.\nOgni volta che il bersaglio affascinato subisce danni, può ripetere il tiro di salvezza. Se ha successo, l'effetto termina. Non più di una volta ogni 24 ore, il bersaglio può inoltre ripetere il tiro di salvezza quando si trova ad almeno 1,6 km di distanza dall'aboleth."
+ },
+ "srd-adult-black-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-black-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 16 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-black-dragon::action::5": {
+  "name": "Soffio Acido",
+  "desc": "Il drago esala acido in una linea lunga 18 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 18, subendo 54 (12d8) danni da acido in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-adult-blue-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-blue-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 17 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-blue-dragon::action::5": {
+  "name": "Soffio Fulminante",
+  "desc": "Il drago esala fulmini in una linea lunga 27 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 19, subendo 66 (12d10) danni da fulmine in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-adult-brass-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-brass-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 16 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-brass-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio di Fuoco. Il drago esala fuoco in una linea lunga 18 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 18, subendo 45 (13d6) danni da fuoco in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Soporifero. Il drago esala gas soporifero in un cono di 18 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 18 o cadere priva di sensi per 10 minuti. Questo effetto termina su una creatura se questa subisce danni o se qualcuno usa un'azione per svegliarla."
+ },
+ "srd-adult-bronze-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-bronze-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 17 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-bronze-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Fulminante. Il drago esala fulmini in una linea lunga 27 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 19, subendo 66 (12d10) danni da fulmine in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Repulsivo. Il drago esala energia repulsiva in un cono di 9 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Forza con CD 19. In caso di fallimento, la creatura viene spinta a 18 m di distanza dal drago."
+ },
+ "srd-adult-copper-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-copper-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 16 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-copper-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Acido. Il drago esala acido in una linea lunga 18 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 18, subendo 54 (12d8) danni da acido in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Rallentante. Il drago esala gas in un cono di 18 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 18. In caso di fallimento, la creatura non può usare reazioni, la sua velocità è dimezzata e non può effettuare più di un attacco nel proprio turno. Inoltre, la creatura può usare nel proprio turno o un'azione o un'azione bonus, ma non entrambe. Questi effetti durano 1 minuto. La creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé con un tiro riuscito."
+ },
+ "srd-adult-gold-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-gold-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 21 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-gold-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio di Fuoco. Il drago esala fuoco in un cono di 18 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza con CD 21, subendo 66 (12d10) danni da fuoco in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Debilitante. Il drago esala gas in un cono di 18 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Forza con CD 21 o avere svantaggio ai tiri per colpire basati sulla Forza, alle prove di Forza e ai tiri di salvezza su Forza per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-adult-green-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-green-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 16 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-green-dragon::action::5": {
+  "name": "Soffio Velenoso",
+  "desc": "Il drago esala gas velenoso in un cono di 18 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 18, subendo 56 (16d6) danni da veleno in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-adult-red-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-red-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 19 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-red-dragon::action::5": {
+  "name": "Soffio di Fuoco",
+  "desc": "Il drago esala fuoco in un cono di 18 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza con CD 21, subendo 63 (18d6) danni da fuoco in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-adult-silver-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-silver-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 18 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-silver-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio di Freddo. Il drago esala una raffica gelida in un cono di 18 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 20, subendo 58 (13d8) danni da freddo in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Paralizzante. Il drago esala gas paralizzante in un cono di 18 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 20 o essere Paralizzata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-adult-white-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-adult-white-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 14 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-adult-white-dragon::action::5": {
+  "name": "Soffio di Freddo",
+  "desc": "Il drago esala una raffica gelida in un cono di 18 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 19, subendo 54 (12d8) danni da freddo in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-air-elemental::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'elementale esegue due attacchi con lo schianto."
+ },
+ "srd-air-elemental::action::2": {
+  "name": "Turbine",
+  "desc": "Ogni creatura nello spazio dell'elementale deve effettuare un tiro di salvezza su Forza con CD 13. In caso di fallimento, il bersaglio subisce 15 (3d8 + 2) danni contundenti e viene scaraventato fino a 6 m di distanza dall'elementale in una direzione casuale, finendo Prono. Se un bersaglio scaraventato colpisce un oggetto, come un muro o un pavimento, subisce 3 (1d6) danni contundenti per ogni 3 m percorsi durante il lancio. Se il bersaglio viene scaraventato contro un'altra creatura, quest'ultima deve superare un tiro di salvezza su Destrezza con CD 13 o subire lo stesso danno e finire Prona.\nSe il tiro di salvezza ha successo, il bersaglio subisce metà del danno contundente e non viene scaraventato via né finisce Prono."
+ },
+ "srd-ancient-black-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-black-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 19 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-black-dragon::action::5": {
+  "name": "Soffio Acido",
+  "desc": "Il drago esala acido in una linea lunga 27 m e larga 3 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 22, subendo 67 (15d8) danni da acido in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-ancient-blue-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-blue-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 20 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-blue-dragon::action::5": {
+  "name": "Soffio Fulminante",
+  "desc": "Il drago esala fulmini in una linea lunga 36 m e larga 3 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 23, subendo 88 (16d10) danni da fulmine in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-ancient-brass-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-brass-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 18 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-brass-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio:\nSoffio di Fuoco. Il drago esala fuoco in una linea lunga 27 m e larga 3 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 21, subendo 56 (16d6) danni da fuoco in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Soporifero. Il drago esala gas soporifero in un cono di 27 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 21 o cadere priva di sensi per 10 minuti. Questo effetto termina su una creatura se questa subisce danni o se qualcuno usa un'azione per svegliarla."
+ },
+ "srd-ancient-brass-dragon::action::6": {
+  "name": "Cambiare Forma",
+  "desc": "Il drago si trasforma magicamente in un umanoide o in una belva con grado di sfida non superiore al proprio, oppure torna alla sua vera forma. Ritorna alla sua vera forma se muore. Qualsiasi equipaggiamento che indossa o porta con sé viene assorbito o sostenuto dalla nuova forma (a scelta del drago).\nNella nuova forma, il drago mantiene il proprio allineamento, i punti ferita, i Dadi Vita, la capacità di parlare, le competenze, la Resistenza Leggendaria, le azioni di covo e i punteggi di Intelligenza, Saggezza e Carisma, oltre a questa azione. Le sue statistiche e capacità sono altrimenti sostituite da quelle della nuova forma, eccetto eventuali caratteristiche di classe o azioni leggendarie di quella forma."
+ },
+ "srd-ancient-bronze-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-bronze-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 20 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-bronze-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Fulminante. Il drago esala fulmini in una linea lunga 36 m e larga 3 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 23, subendo 88 (16d10) danni da fulmine in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Repulsivo. Il drago esala energia repulsiva in un cono di 9 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Forza con CD 23. In caso di fallimento, la creatura viene spinta a 18 m di distanza dal drago."
+ },
+ "srd-ancient-bronze-dragon::action::6": {
+  "name": "Cambiare Forma",
+  "desc": "Il drago si trasforma magicamente in un umanoide o in una belva con grado di sfida non superiore al proprio, oppure torna alla sua vera forma. Ritorna alla sua vera forma se muore. Qualsiasi equipaggiamento che indossa o porta con sé viene assorbito o sostenuto dalla nuova forma (a scelta del drago).\nNella nuova forma, il drago mantiene il proprio allineamento, i punti ferita, i Dadi Vita, la capacità di parlare, le competenze, la Resistenza Leggendaria, le azioni di covo e i punteggi di Intelligenza, Saggezza e Carisma, oltre a questa azione. Le sue statistiche e capacità sono altrimenti sostituite da quelle della nuova forma, eccetto eventuali caratteristiche di classe o azioni leggendarie di quella forma."
+ },
+ "srd-ancient-copper-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-copper-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 19 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-copper-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Acido. Il drago esala acido in una linea lunga 27 m e larga 3 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 22, subendo 63 (14d8) danni da acido in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Rallentante. Il drago esala gas in un cono di 27 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 22. In caso di fallimento, la creatura non può usare reazioni, la sua velocità è dimezzata e non può effettuare più di un attacco nel proprio turno. Inoltre, la creatura può usare nel proprio turno o un'azione o un'azione bonus, ma non entrambe. Questi effetti durano 1 minuto. La creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé con un tiro riuscito."
+ },
+ "srd-ancient-copper-dragon::action::6": {
+  "name": "Cambiare Forma",
+  "desc": "Il drago si trasforma magicamente in un umanoide o in una belva con grado di sfida non superiore al proprio, oppure torna alla sua vera forma. Ritorna alla sua vera forma se muore. Qualsiasi equipaggiamento che indossa o porta con sé viene assorbito o sostenuto dalla nuova forma (a scelta del drago).\nNella nuova forma, il drago mantiene il proprio allineamento, i punti ferita, i Dadi Vita, la capacità di parlare, le competenze, la Resistenza Leggendaria, le azioni di covo e i punteggi di Intelligenza, Saggezza e Carisma, oltre a questa azione. Le sue statistiche e capacità sono altrimenti sostituite da quelle della nuova forma, eccetto eventuali caratteristiche di classe o azioni leggendarie di quella forma."
+ },
+ "srd-ancient-gold-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-gold-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 24 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-gold-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio di Fuoco. Il drago esala fuoco in un cono di 27 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza con CD 24, subendo 71 (13d10) danni da fuoco in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Debilitante. Il drago esala gas in un cono di 27 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Forza con CD 24 o avere svantaggio ai tiri per colpire basati sulla Forza, alle prove di Forza e ai tiri di salvezza su Forza per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-ancient-gold-dragon::action::6": {
+  "name": "Cambiare Forma",
+  "desc": "Il drago si trasforma magicamente in un umanoide o in una belva con grado di sfida non superiore al proprio, oppure torna alla sua vera forma. Ritorna alla sua vera forma se muore. Qualsiasi equipaggiamento che indossa o porta con sé viene assorbito o sostenuto dalla nuova forma (a scelta del drago).\nNella nuova forma, il drago mantiene il proprio allineamento, i punti ferita, i Dadi Vita, la capacità di parlare, le competenze, la Resistenza Leggendaria, le azioni di covo e i punteggi di Intelligenza, Saggezza e Carisma, oltre a questa azione. Le sue statistiche e capacità sono altrimenti sostituite da quelle della nuova forma, eccetto eventuali caratteristiche di classe o azioni leggendarie di quella forma."
+ },
+ "srd-ancient-green-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-green-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 19 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-green-dragon::action::5": {
+  "name": "Soffio Velenoso",
+  "desc": "Il drago esala gas velenoso in un cono di 27 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 22, subendo 77 (22d6) danni da veleno in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-ancient-red-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-red-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 21 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-red-dragon::action::5": {
+  "name": "Soffio di Fuoco",
+  "desc": "Il drago esala fuoco in un cono di 27 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza con CD 24, subendo 91 (26d6) danni da fuoco in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-ancient-silver-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-silver-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 21 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-silver-dragon::action::5": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio di Freddo. Il drago esala una raffica gelida in un cono di 27 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 24, subendo 67 (15d8) danni da freddo in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Paralizzante. Il drago esala gas paralizzante in un cono di 27 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 24 o essere Paralizzata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-ancient-silver-dragon::action::6": {
+  "name": "Cambiare Forma",
+  "desc": "Il drago si trasforma magicamente in un umanoide o in una belva con grado di sfida non superiore al proprio, oppure torna alla sua vera forma. Ritorna alla sua vera forma se muore. Qualsiasi equipaggiamento che indossa o porta con sé viene assorbito o sostenuto dalla nuova forma (a scelta del drago).\nNella nuova forma, il drago mantiene il proprio allineamento, i punti ferita, i Dadi Vita, la capacità di parlare, le competenze, la Resistenza Leggendaria, le azioni di covo e i punteggi di Intelligenza, Saggezza e Carisma, oltre a questa azione. Le sue statistiche e capacità sono altrimenti sostituite da quelle della nuova forma, eccetto eventuali caratteristiche di classe o azioni leggendarie di quella forma."
+ },
+ "srd-ancient-white-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago può usare la Presenza Spaventosa. Poi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-ancient-white-dragon::action::4": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura scelta dal drago che si trovi entro 36 m da esso e sia consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 16 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune alla Presenza Spaventosa del drago per le successive 24 ore."
+ },
+ "srd-ancient-white-dragon::action::5": {
+  "name": "Soffio di Freddo",
+  "desc": "Il drago esala una raffica gelida in un cono di 27 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 22, subendo 72 (16d8) danni da freddo in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-androsphinx::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La sfinge esegue due attacchi con gli artigli."
+ },
+ "srd-androsphinx::action::2": {
+  "name": "Ruggito",
+  "desc": "La sfinge emette un ruggito magico. Ogni volta che ruggisce prima di terminare un riposo lungo, il ruggito è più forte e l'effetto è diverso, come indicato di seguito. Ogni creatura entro 150 m dalla sfinge e in grado di sentire il ruggito deve effettuare un tiro di salvezza.\n\nPrimo Ruggito. Ogni creatura che fallisce un tiro di salvezza su Saggezza con CD 18 diventa Spaventata per 1 minuto. Una creatura Spaventata può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo.\n\nSecondo Ruggito. Ogni creatura che fallisce un tiro di salvezza su Saggezza con CD 18 diventa Assordata e Spaventata per 1 minuto. Una creatura Spaventata è Paralizzata e può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo.\n\nTerzo Ruggito. Ogni creatura effettua un tiro di salvezza su Costituzione con CD 18. In caso di fallimento, una creatura subisce 44 (8d10) danni da tuono e finisce Prona. In caso di successo, la creatura subisce metà del danno e non finisce Prona."
+ },
+ "srd-animated-armor::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'armatura esegue due attacchi in mischia."
+ },
+ "srd-ankheg::action::1": {
+  "name": "Spruzzo Acido",
+  "desc": "L'ankheg sputa acido in una linea lunga 9 m e larga 1,5 m, a condizione che non abbia nessuna creatura afferrata. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 13, subendo 10 (3d6) danni da acido in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-ape::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La scimmia esegue due attacchi con i pugni."
+ },
+ "srd-assassin::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'assassino esegue due attacchi con la spada corta."
+ },
+ "srd-balor::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il balor esegue due attacchi: uno con la spada lunga e uno con la frusta."
+ },
+ "srd-balor::action::3": {
+  "name": "Teletrasporto",
+  "desc": "Il balor si teletrasporta magicamente, insieme a qualsiasi equipaggiamento che indossa o porta con sé, fino a 36 m in uno spazio libero che può vedere."
+ },
+ "srd-bandit-captain::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il capitano esegue tre attacchi in mischia: due con la scimitarra e uno con il pugnale. Oppure il capitano esegue due attacchi a distanza con i pugnali."
+ },
+ "srd-barbed-devil::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il diavolo esegue tre attacchi in mischia: uno con la coda e due con gli artigli. In alternativa, può usare Lanciare Fiamma due volte."
+ },
+ "srd-barbed-devil::action::3": {
+  "name": "Lanciare Fiamma",
+  "desc": "Attacco con Incantesimo a Distanza: +5 per colpire, gittata 45 m, un bersaglio. Colpito: 10 (3d6) danni da fuoco. Se il bersaglio è un oggetto infiammabile che non viene indossato o portato, prende anche fuoco."
+ },
+ "srd-bearded-devil::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il diavolo esegue due attacchi: uno con la barba e uno con il glaivio."
+ },
+ "srd-behir::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il behir esegue due attacchi: uno con il morso e uno per costringere."
+ },
+ "srd-behir::action::3": {
+  "name": "Soffio Fulminante",
+  "desc": "Il behir esala una linea di fulmini lunga 6 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 16, subendo 66 (12d10) danni da fulmine in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-behir::action::4": {
+  "name": "Ingurgitare",
+  "desc": "Il behir effettua un attacco con il morso contro un bersaglio di taglia Media o inferiore che sta afferrando. Se l'attacco colpisce, il bersaglio viene anche ingurgitato e la presa termina. Mentre è ingurgitato, il bersaglio è Accecato e Trattenuto, ha copertura totale contro attacchi e altri effetti provenienti dall'esterno del behir, e subisce 21 (6d6) danni da acido all'inizio di ciascun turno del behir. Un behir può avere ingurgitata solo una creatura alla volta.\nSe il behir subisce 30 o più danni in un singolo turno dalla creatura ingurgitata, deve superare un tiro di salvezza su Costituzione con CD 14 alla fine di quel turno o rigurgitare la creatura, che cade Prona in uno spazio entro 3 m dal behir. Se il behir muore, una creatura ingurgitata non è più Trattenuta da esso e può fuggire dal corpo usando 4,5 m di movimento, uscendo Prona."
+ },
+ "srd-black-bear::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'orso esegue due attacchi: uno con il morso e uno con gli artigli."
+ },
+ "srd-black-dragon-wyrmling::action::1": {
+  "name": "Soffio Acido",
+  "desc": "Il drago esala acido in una linea lunga 4,5 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 11, subendo 22 (5d8) danni da acido in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-blink-dog::action::1": {
+  "name": "Teletrasporto",
+  "desc": "Il cane si teletrasporta magicamente, insieme a qualsiasi equipaggiamento che indossa o porta con sé, fino a 12 m in uno spazio libero che può vedere. Prima o dopo il teletrasporto, il cane può effettuare un attacco con il morso."
+ },
+ "srd-blue-dragon-wyrmling::action::1": {
+  "name": "Soffio Fulminante",
+  "desc": "Il drago esala fulmini in una linea lunga 9 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 12, subendo 22 (4d10) danni da fulmine in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-bone-devil::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il diavolo esegue tre attacchi: due con gli artigli e uno con il pungiglione."
+ },
+ "srd-brass-dragon-wyrmling::action::1": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio di Fuoco. Il drago esala fuoco in una linea lunga 6 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 11, subendo 14 (4d6) danni da fuoco in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Soporifero. Il drago esala gas soporifero in un cono di 4,5 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 11 o cadere priva di sensi per 1 minuto. Questo effetto termina su una creatura se questa subisce danni o se qualcuno usa un'azione per svegliarla."
+ },
+ "srd-bronze-dragon-wyrmling::action::1": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Fulminante. Il drago esala fulmini in una linea lunga 12 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 12, subendo 16 (3d10) danni da fulmine in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Repulsivo. Il drago esala energia repulsiva in un cono di 9 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Forza con CD 12. In caso di fallimento, la creatura viene spinta a 9 m di distanza dal drago."
+ },
+ "srd-brown-bear::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'orso esegue due attacchi: uno con il morso e uno con gli artigli."
+ },
+ "srd-bulette::action::1": {
+  "name": "Salto Mortale",
+  "desc": "Se il bulette salta almeno 4,5 m come parte del proprio movimento, può quindi usare questa azione per atterrare in piedi in uno spazio che contiene una o più altre creature. Ciascuna di quelle creature deve superare un tiro di salvezza su Forza o Destrezza con CD 16 (a scelta del bersaglio) o finire Prona e subire 14 (3d6 + 4) danni contundenti più 14 (3d6 + 4) danni taglienti. In caso di successo, la creatura subisce solo metà del danno, non finisce Prona e viene spinta per 1,5 m fuori dallo spazio del bulette in uno spazio libero a scelta della creatura. Se non c'è alcuno spazio libero nel raggio, la creatura cade Prona nello spazio del bulette."
+ },
+ "srd-centaur::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il centauro esegue due attacchi: uno con la picca e uno con gli zoccoli, oppure due con l'arco lungo."
+ },
+ "srd-chain-devil::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il diavolo esegue due attacchi con le catene."
+ },
+ "srd-chain-devil::action::2": {
+  "name": "Animare Catene",
+  "desc": "Fino a quattro catene che il diavolo può vedere entro 18 m da esso sviluppano magicamente punte affilate come rasoi e si animano sotto il controllo del diavolo, a condizione che le catene non vengano indossate o portate.\nOgni catena animata è un oggetto con CA 20, 20 punti ferita, resistenza ai danni perforanti e immunità ai danni psichici e da tuono. Quando il diavolo usa gli Attacchi Multipli nel proprio turno, può usare ciascuna catena animata per effettuare un attacco aggiuntivo con la catena. Una catena animata può afferrare una sola creatura ma non può effettuare attacchi mentre afferra. Una catena animata torna al proprio stato inanimato se viene ridotta a 0 punti ferita o se il diavolo è Incapacitato o muore."
+ },
+ "srd-chimera::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La chimera esegue tre attacchi: uno con il morso, uno con le corna e uno con gli artigli. Quando il suo soffio di fuoco è disponibile, può usarlo al posto del morso o delle corna."
+ },
+ "srd-chimera::action::4": {
+  "name": "Soffio di Fuoco",
+  "desc": "La testa di drago esala fuoco in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza con CD 15, subendo 31 (7d8) danni da fuoco in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-chuul::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il chuul esegue due attacchi con le chele. Se il chuul sta afferrando una creatura, può anche usare i tentacoli una volta."
+ },
+ "srd-chuul::action::2": {
+  "name": "Tentacoli",
+  "desc": "Una creatura afferrata dal chuul deve superare un tiro di salvezza su Costituzione con CD 13 o essere Avvelenata per 1 minuto. Finché questo veleno non termina, il bersaglio è Paralizzato. Il bersaglio può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-clay-golem::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il golem esegue due attacchi con lo schianto."
+ },
+ "srd-clay-golem::action::2": {
+  "name": "Fretta",
+  "desc": "Fino alla fine del suo prossimo turno, il golem ottiene magicamente un bonus di +2 alla CA, ha vantaggio ai tiri di salvezza su Destrezza e può usare il proprio attacco con lo schianto come azione bonus."
+ },
+ "srd-cloaker::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il cloaker esegue due attacchi: uno con il morso e uno con la coda."
+ },
+ "srd-cloaker::action::3": {
+  "name": "Lamento",
+  "desc": "Ogni creatura entro 18 m dal cloaker che può sentire il suo lamento e che non è un'aberrazione deve superare un tiro di salvezza su Saggezza con CD 13 o diventare Spaventata fino alla fine del prossimo turno del cloaker. Se il tiro di salvezza di una creatura ha successo, la creatura è immune al lamento del cloaker per le successive 24 ore."
+ },
+ "srd-cloaker::action::4": {
+  "name": "Fantasmi",
+  "desc": "Il cloaker crea magicamente tre duplicati illusori di se stesso se non si trova in luce intensa. I duplicati si muovono con lui e imitano le sue azioni, cambiando posizione in modo da rendere impossibile capire quale cloaker sia quello reale. Se il cloaker si trova in un'area di luce intensa, i duplicati scompaiono.\nOgni volta che una creatura prende di mira il cloaker con un attacco o un incantesimo dannoso mentre rimane un duplicato, quella creatura tira a caso per determinare se prende di mira il cloaker o uno dei duplicati. Una creatura non è soggetta a questo effetto magico se non può vedere o se si basa su sensi diversi dalla vista.\nUn duplicato ha la CA del cloaker e usa i suoi tiri di salvezza. Se un attacco colpisce un duplicato, o se un duplicato fallisce un tiro di salvezza contro un effetto che infligge danni, il duplicato scompare."
+ },
+ "srd-cloud-giant::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il gigante esegue due attacchi con la stella del mattino."
+ },
+ "srd-copper-dragon-wyrmling::action::1": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Acido. Il drago esala acido in una linea lunga 6 m e larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 11, subendo 18 (4d8) danni da acido in caso di fallimento, o la metà dei danni in caso di successo.\nSoffio Rallentante. Il drago esala gas in un cono di 4,5 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 11. In caso di fallimento, la creatura non può usare reazioni, la sua velocità è dimezzata e non può effettuare più di un attacco nel proprio turno. Inoltre, la creatura può usare nel proprio turno o un'azione o un'azione bonus, ma non entrambe. Questi effetti durano 1 minuto. La creatura può ripetere il tiro di salvezza alla fine di ciascuno dei propri turni, terminando l'effetto su di sé con un tiro riuscito."
+ },
+ "srd-couatl::action::2": {
+  "name": "Cambiare Forma",
+  "desc": "Il couatl si trasforma magicamente in un umanoide o in una belva con grado di sfida pari o inferiore al proprio, oppure torna alla sua vera forma. Ritorna alla sua vera forma se muore. Qualsiasi equipaggiamento che indossa o porta con sé viene assorbito o sostenuto dalla nuova forma (a scelta del couatl).\nNella nuova forma, il couatl mantiene le proprie statistiche di gioco e la capacità di parlare, ma la sua CA, le modalità di movimento, la Forza, la Destrezza e le altre azioni sono sostituite da quelle della nuova forma, e ottiene tutte le statistiche e capacità (eccetto caratteristiche di classe, azioni leggendarie e azioni di covo) che la nuova forma possiede ma che gli mancano. Se la nuova forma ha un attacco con il morso, il couatl può usare il proprio morso in quella forma."
+ },
+ "srd-cult-fanatic::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il fanatico esegue due attacchi in mischia."
+ },
+ "srd-darkmantle::action::1": {
+  "name": "Aura di Oscurità",
+  "desc": "Un'oscurità magica con un raggio di 4,5 m si estende a partire dal darkmantle, si muove con esso e si propaga attorno agli angoli. L'oscurità dura per tutto il tempo in cui il darkmantle mantiene la concentrazione, fino a un massimo di 10 minuti (come se si concentrasse su un incantesimo). La scurovisione non può penetrare quest'oscurità, e nessuna luce naturale può illuminarla. Se una parte dell'oscurità si sovrappone a un'area di luce creata da un incantesimo di 2° livello o inferiore, l'incantesimo che crea la luce viene dissolto."
+ },
+ "srd-death-dog::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il cane esegue due attacchi con il morso."
+ },
+ "srd-deva::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il deva esegue due attacchi in mischia."
+ },
+ "srd-deva::action::2": {
+  "name": "Tocco Curativo",
+  "desc": "Il deva tocca un'altra creatura. L'obiettivo recupera magicamente 20 (4d8 + 2) punti ferita e viene liberato da qualsiasi maledizione, malattia, veleno, cecità o sordità."
+ },
+ "srd-deva::action::3": {
+  "name": "Cambiare Forma",
+  "desc": "Il deva si trasforma magicamente in un umanoide o in una bestia con un grado di sfida pari o inferiore al proprio, oppure torna alla sua forma vera. Riprende la sua forma vera se muore. Qualsiasi equipaggiamento che indossa o porta con sé viene assorbito o portato dalla nuova forma (a scelta del deva).\nNella nuova forma, il deva mantiene le proprie statistiche di gioco e la capacità di parlare, ma la sua CA, le modalità di movimento, Forza, Destrezza e sensi speciali sono sostituiti da quelli della nuova forma, e ottiene tutte le statistiche e capacità (eccetto i tratti di classe, le azioni leggendarie e le azioni della tana) che la nuova forma possiede ma che gli mancano."
+ },
+ "srd-djinni::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il jinn esegue tre attacchi con la scimitarra."
+ },
+ "srd-djinni::action::2": {
+  "name": "Creare Turbine",
+  "desc": "Un cilindro vorticoso d'aria con raggio di 1,5 m e altezza di 9 m si forma magicamente in un punto che il jinn può vedere entro 36 m da esso. Il turbine dura finché il jinn mantiene la concentrazione (come se si stesse concentrando su un incantesimo). Qualsiasi creatura diversa dal jinn che entra nel turbine deve superare un tiro di salvezza su Forza CD 18 o essere trattenuta da esso. Il jinn può spostare il turbine fino a 18 m come azione, e le creature trattenute dal turbine si muovono insieme a esso. Il turbine termina se il jinn perde di vista il turbine.\nUna creatura può usare la propria azione per liberare una creatura trattenuta dal turbine, incluse sé stessa, superando una prova di Forza CD 18. Se la prova ha successo, la creatura non è più trattenuta e si sposta nello spazio libero più vicino fuori dal turbine."
+ },
+ "srd-doppelganger::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il doppelganger esegue due attacchi in mischia."
+ },
+ "srd-doppelganger::action::2": {
+  "name": "Leggere i Pensieri",
+  "desc": "Il doppelganger legge magicamente i pensieri superficiali di una creatura entro 18 m da esso. L'effetto può penetrare le barriere, ma 0,9 m di legno o terra, 0,6 m di pietra, 5 cm di metallo o un sottile foglio di piombo lo bloccano. Mentre l'obiettivo è nel raggio d'azione, il doppelganger può continuare a leggerne i pensieri, purché la sua concentrazione non venga interrotta (come se si stesse concentrando su un incantesimo). Mentre legge la mente dell'obiettivo, il doppelganger ha vantaggio alle prove di Saggezza (Intuizione) e Carisma (Inganno, Intimidire e Persuasione) contro l'obiettivo."
+ },
+ "srd-dragon-turtle::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La tartaruga draconica esegue tre attacchi: uno con il morso e due con gli artigli. Può eseguire un attacco con la coda al posto dei due attacchi con gli artigli."
+ },
+ "srd-dragon-turtle::action::4": {
+  "name": "Soffio di Vapore",
+  "desc": "La tartaruga draconica esala vapore bollente in un cono di 18 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione CD 18, subendo 52 (15d6) danni da fuoco se fallisce, o la metà di tali danni se ha successo. Essere sott'acqua non concede resistenza a questo danno."
+ },
+ "srd-dretch::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il dretch esegue due attacchi: uno con il morso e uno con gli artigli."
+ },
+ "srd-dretch::action::3": {
+  "name": "Nube Fetida",
+  "desc": "Un raggio di 3 m di disgustoso gas verde si estende intorno al dretch. Il gas si diffonde attorno agli angoli e la sua area è leggermente oscurata. Dura 1 minuto o finché un forte vento non lo disperde. Qualsiasi creatura che inizia il proprio turno in quell'area deve superare un tiro di salvezza su Costituzione CD 11 o essere avvelenata fino all'inizio del suo turno successivo. Mentre è avvelenato in questo modo, l'obiettivo può eseguire un'azione oppure un'azione bonus nel proprio turno, non entrambe, e non può eseguire reazioni."
+ },
+ "srd-drider::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drider esegue tre attacchi, sia con la sua spada lunga sia con il suo arco lungo. Può sostituire uno di questi attacchi con un attacco con il morso."
+ },
+ "srd-druid::action::0": {
+  "name": "Bastone Ferrato",
+  "desc": "Attacco con Arma da Mischia: +2 per colpire (+4 per colpire con randello incantato), portata 1,5 m, un obiettivo. Colpito: 3 (1d6) danni contundenti, 4 (1d8) danni contundenti se impugnato a due mani, oppure 6 (1d8 + 2) danni contundenti con randello incantato."
+ },
+ "srd-dryad::action::0": {
+  "name": "Clava",
+  "desc": "Attacco con Arma da Mischia: +2 per colpire (+6 per colpire con randello incantato), portata 1,5 m, un obiettivo. Colpito: 2 (1d4) danni contundenti, oppure 8 (1d8 + 4) danni contundenti con randello incantato."
+ },
+ "srd-dryad::action::1": {
+  "name": "Fascino Fatato",
+  "desc": "La driade prende di mira un umanoide o una bestia che può vedere entro 9 m da sé. Se l'obiettivo può vedere la driade, deve superare un tiro di salvezza su Saggezza CD 14 o essere magicamente affascinato. La creatura affascinata considera la driade come un'amica fidata da ascoltare e proteggere. Sebbene l'obiettivo non sia sotto il controllo della driade, interpreta le richieste o le azioni di quest'ultima nel modo più favorevole possibile.\nOgni volta che la driade o i suoi alleati fanno qualcosa di dannoso all'obiettivo, questo può ripetere il tiro di salvezza, terminando l'effetto su di sé in caso di successo. Altrimenti, l'effetto dura 24 ore oppure finché la driade non muore, non si trova su un piano di esistenza diverso da quello dell'obiettivo, o termina l'effetto come azione bonus. Se il tiro di salvezza dell'obiettivo ha successo, l'obiettivo è immune al Fascino Fatato di questa driade per le successive 24 ore.\nLa driade può avere al massimo un umanoide e fino a tre bestie affascinate contemporaneamente."
+ },
+ "srd-duergar::action::0": {
+  "name": "Ingrandire",
+  "desc": "Per 1 minuto, il duergar aumenta magicamente di dimensione, insieme a qualsiasi cosa indossi o porti con sé. Mentre è ingrandito, il duergar è Grande, raddoppia i suoi dadi di danno negli attacchi con armi basati sulla Forza (già incluso negli attacchi) ed esegue prove di Forza e tiri di salvezza su Forza con vantaggio. Se al duergar manca lo spazio per diventare Grande, raggiunge la dimensione massima possibile nello spazio disponibile."
+ },
+ "srd-duergar::action::3": {
+  "name": "Invisibilità",
+  "desc": "Il duergar diventa magicamente invisibile finché non attacca, lancia un incantesimo o usa Ingrandire, oppure finché la sua concentrazione non viene interrotta, per un massimo di 1 ora (come se si stesse concentrando su un incantesimo). Qualsiasi equipaggiamento che il duergar indossa o porta con sé diventa invisibile insieme a lui."
+ },
+ "srd-dust-mephit::action::1": {
+  "name": "Soffio Accecante",
+  "desc": "Il mefita esala un cono di 4,5 m di polvere accecante. Ogni creatura in quell'area deve superare un tiro di salvezza su Destrezza CD 10 o essere accecata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-earth-elemental::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'elementale esegue due attacchi con schianto."
+ },
+ "srd-efreeti::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'efreeti esegue due attacchi con la scimitarra oppure usa due volte Lanciare Fiamma."
+ },
+ "srd-efreeti::action::2": {
+  "name": "Lanciare Fiamma",
+  "desc": "Attacco da Incantatore a Distanza: +7 per colpire, gittata 36 m, un obiettivo. Colpito: 17 (5d6) danni da fuoco."
+ },
+ "srd-erinyes::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'erinni esegue tre attacchi."
+ },
+ "srd-ettercap::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'ettercap esegue due attacchi: uno con il morso e uno con gli artigli."
+ },
+ "srd-ettercap::action::3": {
+  "name": "Ragnatela",
+  "desc": "Attacco con Arma a Distanza: +4 per colpire, gittata 9/18 m, una creatura Grande o più piccola. Colpito: La creatura è trattenuta dalla ragnatela. Come azione, la creatura trattenuta può effettuare una prova di Forza CD 11, liberandosi dalla ragnatela in caso di successo. L'effetto termina se la ragnatela viene distrutta. La ragnatela ha CA 10, 5 punti ferita, è vulnerabile ai danni da fuoco ed è immune ai danni contundenti."
+ },
+ "srd-ettin::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'ettin esegue due attacchi: uno con l'ascia da battaglia e uno con la stella del mattino."
+ },
+ "srd-fire-elemental::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'elementale esegue due attacchi con tocco."
+ },
+ "srd-fire-giant::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il gigante esegue due attacchi con la spadona."
+ },
+ "srd-flesh-golem::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il golem esegue due attacchi con schianto."
+ },
+ "srd-frost-giant::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il gigante esegue due attacchi con l'ascia bipenne."
+ },
+ "srd-gargoyle::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il gargoyle esegue due attacchi: uno con il morso e uno con gli artigli."
+ },
+ "srd-gelatinous-cube::action::1": {
+  "name": "Inglobare",
+  "desc": "Il cubo si sposta fino alla sua velocità. Mentre lo fa, può entrare nello spazio di creature Grandi o più piccole. Ogni volta che il cubo entra nello spazio di una creatura, quest'ultima deve effettuare un tiro di salvezza su Destrezza CD 12.\nIn caso di successo, la creatura può scegliere di essere spinta indietro o di lato di 1,5 m rispetto al cubo. Una creatura che scelga di non essere spinta subisce le conseguenze di un tiro di salvezza fallito.\nIn caso di fallimento, il cubo entra nello spazio della creatura, che subisce 10 (3d6) danni da acido e viene inglobata. La creatura inglobata non può respirare, è trattenuta, ha copertura totale contro attacchi e altri effetti provenienti dall'esterno del cubo, e subisce 21 (6d6) danni da acido all'inizio di ciascun turno del cubo. Quando il cubo si muove, la creatura inglobata si muove con esso.\nUna creatura inglobata può tentare di fuggire usando un'azione per effettuare una prova di Forza CD 12. In caso di successo, la creatura fugge ed entra in uno spazio a sua scelta entro 1,5 m dal cubo."
+ },
+ "srd-ghost::action::1": {
+  "name": "Eterealità",
+  "desc": "Il fantasma entra nel Piano Etereo dal Piano Materiale, o viceversa. È visibile sul Piano Materiale mentre si trova nel Confine Etereo, e viceversa, ma non può influenzare né essere influenzato da nulla sull'altro piano."
+ },
+ "srd-ghost::action::2": {
+  "name": "Volto Orripilante",
+  "desc": "Ogni creatura non non-morta entro 18 m dal fantasma che può vederlo deve superare un tiro di salvezza su Saggezza CD 13 o essere spaventata per 1 minuto. Se il tiro di salvezza fallisce di 5 o più, l'obiettivo invecchia anche di 1d4 × 10 anni. Un obiettivo spaventato può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando la condizione di Spaventato su di sé in caso di successo. Se il tiro di salvezza dell'obiettivo ha successo o l'effetto termina su di esso, l'obiettivo è immune al Volto Orripilante di questo fantasma per le successive 24 ore. L'effetto di invecchiamento può essere annullato con l'incantesimo guarigione superiore, ma solo entro 24 ore dal suo verificarsi."
+ },
+ "srd-ghost::action::3": {
+  "name": "Possessione",
+  "desc": "Un umanoide che il fantasma può vedere entro 1,5 m da sé deve superare un tiro di salvezza su Carisma CD 13 o essere posseduto dal fantasma; il fantasma quindi scompare, e l'obiettivo è incapacitato e perde il controllo del proprio corpo. Il fantasma ora controlla il corpo ma non priva l'obiettivo della consapevolezza. Il fantasma non può essere preso di mira da nessun attacco, incantesimo o altro effetto, eccetto quelli che scacciano i non morti, e conserva il proprio allineamento, Intelligenza, Saggezza, Carisma e immunità a Affascinato e Spaventato. Per il resto, usa le statistiche dell'obiettivo posseduto, ma non ottiene accesso alle sue conoscenze, ai tratti di classe o alle competenze.\nLa possessione dura finché il corpo non scende a 0 punti ferita, il fantasma non la termina come azione bonus, oppure il fantasma viene scacciato o costretto a uscire da un effetto come l'incantesimo dissolvi bene e male. Quando la possessione termina, il fantasma riappare in uno spazio libero entro 1,5 m dal corpo. L'obiettivo è immune alla Possessione di questo fantasma per 24 ore dopo aver superato il tiro di salvezza o dopo che la possessione è terminata."
+ },
+ "srd-giant-ape::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La scimmia gigante esegue due attacchi con i pugni."
+ },
+ "srd-giant-badger::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il tasso gigante esegue due attacchi: uno con il morso e uno con gli artigli."
+ },
+ "srd-giant-crocodile::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il coccodrillo gigante esegue due attacchi: uno con il morso e uno con la coda."
+ },
+ "srd-giant-crocodile::action::2": {
+  "name": "Coda",
+  "desc": "Attacco con Arma da Mischia: +8 per colpire, portata 3 m, un obiettivo non afferrato dal coccodrillo. Colpito: 14 (2d8 + 5) danni contundenti. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza CD 16 o essere atterrato e diventare Prono."
+ },
+ "srd-giant-eagle::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'aquila gigante esegue due attacchi: uno con il becco e uno con gli artigli."
+ },
+ "srd-giant-frog::action::1": {
+  "name": "Ingoiare",
+  "desc": "La rana esegue un attacco con il morso contro un obiettivo Piccolo o più piccolo che sta afferrando. Se l'attacco colpisce, l'obiettivo viene ingoiato e la presa termina. L'obiettivo ingoiato è accecato e trattenuto, ha copertura totale contro attacchi e altri effetti provenienti dall'esterno della rana, e subisce 5 (2d4) danni da acido all'inizio di ciascun turno della rana. La rana può avere solo un obiettivo ingoiato alla volta. Se la rana muore, una creatura ingoiata non è più trattenuta da essa e può fuggire dal corpo usando 1,5 m di movimento, uscendo in posizione Prona."
+ },
+ "srd-giant-octopus::action::1": {
+  "name": "Nube d'Inchiostro",
+  "desc": "Una nube di inchiostro con raggio di 6 m si espande tutt'intorno al polpo se questo si trova sott'acqua. L'area è pesantemente oscurata per 1 minuto, sebbene una corrente significativa possa disperdere l'inchiostro. Dopo aver rilasciato l'inchiostro, il polpo può usare l'azione Scattare come azione bonus."
+ },
+ "srd-giant-scorpion::action::1": {
+  "name": "Attacchi Multipli",
+  "desc": "Lo scorpione esegue tre attacchi: due con le chele e uno con il pungiglione."
+ },
+ "srd-giant-spider::action::1": {
+  "name": "Ragnatela",
+  "desc": "Attacco con Arma a Distanza: +5 per colpire, gittata 9/18 m, una creatura. Colpito: L'obiettivo è trattenuto dalla ragnatela. Come azione, l'obiettivo trattenuto può effettuare una prova di Forza CD 12, rompendo la ragnatela in caso di successo. La ragnatela può anche essere attaccata e distrutta (CA 10; 5 punti ferita; vulnerabilità ai danni da fuoco; immunità ai danni contundenti, da veleno e psichici)."
+ },
+ "srd-giant-toad::action::1": {
+  "name": "Ingoiare",
+  "desc": "Il rospo esegue un attacco con il morso contro un obiettivo Medio o più piccolo che sta afferrando. Se l'attacco colpisce, l'obiettivo viene ingoiato e la presa termina. L'obiettivo ingoiato è accecato e trattenuto, ha copertura totale contro attacchi e altri effetti provenienti dall'esterno del rospo, e subisce 10 (3d6) danni da acido all'inizio di ciascun turno del rospo. Il rospo può avere solo un obiettivo ingoiato alla volta.\nSe il rospo muore, una creatura ingoiata non è più trattenuta da esso e può fuggire dal corpo usando 1,5 m di movimento, uscendo in posizione Prona."
+ },
+ "srd-giant-vulture::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'avvoltoio gigante esegue due attacchi: uno con il becco e uno con gli artigli."
+ },
+ "srd-gibbering-mouther::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La bocca farfugliante esegue un attacco con il morso e, se possibile, usa Sputo Accecante."
+ },
+ "srd-gibbering-mouther::action::2": {
+  "name": "Sputo Accecante",
+  "desc": "La bocca farfugliante sputa un globo chimico verso un punto che può vedere entro 4,5 m da sé. Il globo esplode in un lampo di luce accecante all'impatto. Ogni creatura entro 1,5 m dal lampo deve superare un tiro di salvezza su Destrezza CD 13 o essere accecata fino alla fine del prossimo turno della bocca farfugliante."
+ },
+ "srd-glabrezu::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il glabrezu esegue quattro attacchi: due con le chele e due con i pugni. In alternativa, esegue due attacchi con le chele e lancia un incantesimo."
+ },
+ "srd-gladiator::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il gladiatore esegue tre attacchi in mischia o due attacchi a distanza."
+ },
+ "srd-gold-dragon-wyrmling::action::1": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio di Fuoco. Il drago esala fuoco in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza CD 13, subendo 22 (4d10) danni da fuoco se fallisce, o la metà di tali danni se ha successo.\nSoffio Debilitante. Il drago esala gas in un cono di 4,5 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Forza CD 13 o avere svantaggio ai tiri per colpire basati su Forza, alle prove di Forza e ai tiri di salvezza su Forza per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-gorgon::action::2": {
+  "name": "Soffio Pietrificante",
+  "desc": "La gorgone esala gas pietrificante in un cono di 9 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione CD 13. In caso di fallimento, l'obiettivo inizia a tramutarsi in pietra e viene trattenuto. L'obiettivo trattenuto deve ripetere il tiro di salvezza alla fine del suo turno successivo. In caso di successo, l'effetto termina sull'obiettivo. In caso di ulteriore fallimento, l'obiettivo viene pietrificato finché non viene liberato dall'incantesimo guarigione superiore o da altra magia."
+ },
+ "srd-green-dragon-wyrmling::action::1": {
+  "name": "Soffio di Veleno",
+  "desc": "Il drago esala gas velenoso in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione CD 11, subendo 21 (6d6) danni da veleno se fallisce, o la metà di tali danni se ha successo."
+ },
+ "srd-green-hag::action::1": {
+  "name": "Aspetto Illusorio",
+  "desc": "La strega ricopre sé stessa e qualsiasi cosa indossi o porti con sé con un'illusione magica che la fa apparire come un'altra creatura della sua stessa taglia generale e forma umanoide. L'illusione termina se la strega usa un'azione bonus per terminarla o se muore.\nLe modifiche apportate da questo effetto non resistono a un'ispezione fisica. Per esempio, la strega potrebbe sembrare avere la pelle liscia, ma chi la tocca sentirebbe la sua pelle rugosa. Altrimenti, una creatura deve usare un'azione per ispezionare visivamente l'illusione e superare una prova di Intelligenza (Investigare) CD 20 per scoprire che la strega è camuffata."
+ },
+ "srd-green-hag::action::2": {
+  "name": "Passaggio Invisibile",
+  "desc": "La strega diventa magicamente invisibile finché non attacca o lancia un incantesimo, oppure finché la sua concentrazione non termina (come se si stesse concentrando su un incantesimo). Mentre è invisibile, non lascia tracce fisiche del proprio passaggio, quindi può essere rintracciata solo con la magia. Qualsiasi equipaggiamento che indossa o porta con sé diventa invisibile insieme a lei."
+ },
+ "srd-grick::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il grick esegue un attacco con i tentacoli. Se quell'attacco colpisce, il grick può eseguire un attacco con il becco contro lo stesso obiettivo."
+ },
+ "srd-griffon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il grifone esegue due attacchi: uno con il becco e uno con gli artigli."
+ },
+ "srd-guardian-naga::action::1": {
+  "name": "Sputare Veleno",
+  "desc": "Attacco con Arma a Distanza: +8 per colpire, gittata 4,5/9 m, una creatura. Colpito: L'obiettivo deve effettuare un tiro di salvezza su Costituzione CD 15, subendo 45 (10d8) danni da veleno se fallisce, o la metà di tali danni se ha successo."
+ },
+ "srd-gynosphinx::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La sfinge esegue due attacchi con gli artigli."
+ },
+ "srd-half-red-dragon-veteran::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il veterano esegue due attacchi con la spada lunga. Se ha sguainato una spada corta, può anche eseguire un attacco con la spada corta."
+ },
+ "srd-half-red-dragon-veteran::action::4": {
+  "name": "Soffio di Fuoco",
+  "desc": "Il veterano esala fuoco in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza CD 15, subendo 24 (7d6) danni da fuoco se fallisce, o la metà di tali danni se ha successo."
+ },
+ "srd-harpy::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'arpia esegue due attacchi: uno con gli artigli e uno con la clava."
+ },
+ "srd-harpy::action::3": {
+  "name": "Canto Ammaliante",
+  "desc": "L'arpia canta una melodia magica. Ogni umanoide e gigante entro 90 m dall'arpia che può sentire il canto deve superare un tiro di salvezza su Saggezza CD 11 o essere affascinato finché il canto non termina. L'arpia deve usare un'azione bonus nei suoi turni successivi per continuare a cantare. Può smettere di cantare in qualsiasi momento. Il canto termina se l'arpia viene incapacitata.\nMentre è affascinato dall'arpia, l'obiettivo è incapacitato e ignora i canti delle altre arpie. Se l'obiettivo affascinato si trova a più di 1,5 m dall'arpia, deve muoversi nel proprio turno verso l'arpia seguendo il percorso più diretto. Non evita gli attacchi di opportunità, ma prima di entrare in un terreno pericoloso, come lava o una fossa, e ogni volta che subisce danni da una fonte diversa dall'arpia, l'obiettivo può ripetere il tiro di salvezza. Una creatura può anche ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni. Se il tiro di salvezza di una creatura ha successo, l'effetto termina su di essa.\nUn obiettivo che supera con successo il tiro di salvezza è immune al canto di questa arpia per le successive 24 ore."
+ },
+ "srd-hell-hound::action::1": {
+  "name": "Soffio di Fuoco",
+  "desc": "Il segugio esala fuoco in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza CD 12, subendo 21 (6d6) danni da fuoco se fallisce, o la metà di tali danni se ha successo."
+ },
+ "srd-hezrou::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'hezrou esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-hill-giant::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il gigante esegue due attacchi con la clava grande."
+ },
+ "srd-hippogriff::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'ippogrifo esegue due attacchi: uno con il becco e uno con gli artigli."
+ },
+ "srd-horned-devil::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il diavolo esegue tre attacchi in mischia: due con il forcone e uno con la coda. Può usare Lanciare Fiamma al posto di qualsiasi attacco in mischia."
+ },
+ "srd-horned-devil::action::3": {
+  "name": "Lanciare Fiamma",
+  "desc": "Attacco da Incantatore a Distanza: +7 per colpire, gittata 45 m, un obiettivo. Colpito: 14 (4d6) danni da fuoco. Se l'obiettivo è un oggetto infiammabile che non viene indossato o trasportato, prende anche fuoco."
+ },
+ "srd-hydra::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'idra esegue tanti attacchi con il morso quante sono le sue teste."
+ },
+ "srd-ice-devil::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il diavolo esegue tre attacchi: uno con il morso, uno con gli artigli e uno con la coda."
+ },
+ "srd-ice-devil::action::4": {
+  "name": "Muro di Ghiaccio",
+  "desc": "Il diavolo crea magicamente un muro opaco di ghiaccio su una superficie solida che può vedere entro 18 m da sé. Il muro è spesso 0,3 m e lungo fino a 9 m e alto 3 m, oppure è una cupola emisferica con un diametro massimo di 6 m.\nQuando il muro appare, ogni creatura nel suo spazio viene spinta fuori dal percorso più breve. La creatura scelge da quale lato del muro trovarsi, a meno che non sia incapacitata. La creatura poi effettua un tiro di salvezza su Destrezza CD 17, subendo 35 (10d6) danni da freddo se fallisce, o la metà di tali danni se ha successo.\nIl muro dura 1 minuto o finché il diavolo non viene incapacitato o muore. Il muro può essere danneggiato e abbattuto; ogni sezione di 3 m ha CA 5, 30 punti ferita, vulnerabilità ai danni da fuoco e immunità ai danni da acido, necrotici, da veleno e psichici. Se una sezione viene distrutta, lascia dietro di sé una coltre d'aria gelida nello spazio occupato dal muro. Ogni volta che una creatura termina di muoversi attraverso l'aria gelida durante un turno, volontariamente o no, deve effettuare un tiro di salvezza su Costituzione CD 17, subendo 17 (5d6) danni da freddo se fallisce, o la metà di tali danni se ha successo. L'aria gelida si dissolve quando il resto del muro svanisce."
+ },
+ "srd-ice-mephit::action::1": {
+  "name": "Soffio di Gelo",
+  "desc": "Il mefita esala un cono di 4,5 m di aria fredda. Ogni creatura in quell'area deve superare un tiro di salvezza su Destrezza CD 10, subendo 5 (2d4) danni da freddo se fallisce, o la metà di tali danni se ha successo."
+ },
+ "srd-imp::action::1": {
+  "name": "Invisibilità",
+  "desc": "L'imp diventa magicamente invisibile finché non attacca, oppure finché la sua concentrazione non termina (come se si stesse concentrando su un incantesimo). Qualsiasi equipaggiamento che l'imp indossa o porta con sé diventa invisibile insieme a lui."
+ },
+ "srd-invisible-stalker::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'inseguitore esegue due attacchi con schianto."
+ },
+ "srd-iron-golem::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il golem esegue due attacchi in mischia."
+ },
+ "srd-iron-golem::action::3": {
+  "name": "Soffio di Veleno",
+  "desc": "Il golem esala gas velenoso in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione CD 19, subendo 45 (10d8) danni da veleno se fallisce, o la metà di tali danni se ha successo."
+ },
+ "srd-knight::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il cavaliere esegue due attacchi in mischia."
+ },
+ "srd-knight::action::3": {
+  "name": "Comando",
+  "desc": "Per 1 minuto, il cavaliere può pronunciare un comando speciale o un avvertimento ogni volta che una creatura non ostile che può vedere entro 9 m da sé esegue un tiro per colpire o un tiro di salvezza. La creatura può aggiungere un d4 al proprio tiro, a condizione che possa sentire e comprendere il cavaliere. Una creatura può beneficiare di un solo dado di Comando alla volta. Questo effetto termina se il cavaliere viene incapacitato."
+ },
+ "srd-kraken::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il kraken esegue tre attacchi con i tentacoli, ognuno dei quali può sostituire con un uso di Scagliare."
+ },
+ "srd-kraken::action::3": {
+  "name": "Scagliare",
+  "desc": "Un oggetto Grande o più piccolo tenuto, oppure una creatura afferrata dal kraken, viene scagliato fino a 18 m in una direzione casuale e atterrato in posizione Prona. Se un obiettivo scagliato colpisce una superficie solida, subisce 3 (1d6) danni contundenti per ogni 3 m percorsi durante il lancio. Se l'obiettivo viene scagliato contro un'altra creatura, quest'ultima deve superare un tiro di salvezza su Destrezza CD 18 o subire lo stesso danno ed essere atterrata in posizione Prona."
+ },
+ "srd-kraken::action::4": {
+  "name": "Tempesta di Fulmini",
+  "desc": "Il kraken crea magicamente tre fulmini, ognuno dei quali può colpire un obiettivo che il kraken può vedere entro 36 m da sé. Un obiettivo deve effettuare un tiro di salvezza su Destrezza CD 23, subendo 22 (4d10) danni da fulmine se fallisce, o la metà di tali danni se ha successo."
+ },
+ "srd-lamia::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La lamia esegue due attacchi: uno con gli artigli e uno con il pugnale o con Tocco Inebriante."
+ },
+ "srd-lamia::action::3": {
+  "name": "Tocco Inebriante",
+  "desc": "Attacco da Incantatore in Mischia: +5 per colpire, portata 1,5 m, una creatura. Colpito: L'obiettivo viene magicamente maledetto per 1 ora. Finché la maledizione non termina, l'obiettivo ha svantaggio ai tiri di salvezza su Saggezza e a tutte le prove di caratteristica."
+ },
+ "srd-lich::action::0": {
+  "name": "Tocco Paralizzante",
+  "desc": "Attacco da Incantatore in Mischia: +12 per colpire, portata 1,5 m, una creatura. Colpito: 10 (3d6) danni da freddo. L'obiettivo deve superare un tiro di salvezza su Costituzione CD 18 o essere paralizzato per 1 minuto. L'obiettivo può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-lizardfolk::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'uomo lucertola esegue due attacchi in mischia, ciascuno con un'arma diversa."
+ },
+ "srd-magma-mephit::action::1": {
+  "name": "Soffio di Fuoco",
+  "desc": "Il mefita esala un cono di 4,5 m di fuoco. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza CD 11, subendo 7 (2d6) danni da fuoco se fallisce, o la metà di tali danni se ha successo."
+ },
+ "srd-manticore::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il manticora esegue tre attacchi: uno con il morso e due con gli artigli, oppure tre con le punte della coda."
+ },
+ "srd-marilith::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La marilith può eseguire sette attacchi: sei con le spade lunghe e uno con la coda."
+ },
+ "srd-marilith::action::3": {
+  "name": "Teletrasporto",
+  "desc": "La marilith si teletrasporta magicamente, insieme a qualsiasi equipaggiamento che indossa o porta con sé, fino a 36 m in uno spazio libero che può vedere."
+ },
+ "srd-medusa::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La medusa esegue tre attacchi in mischia--uno con i capelli serpentini e due con la spada corta--oppure due attacchi a distanza con l'arco lungo."
+ },
+ "srd-merrow::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il merrow esegue due attacchi: uno con il morso e uno con gli artigli o con l'arpione."
+ },
+ "srd-mummy::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La mummia può usare Sguardo Terrificante ed esegue un attacco con il pugno marcescente."
+ },
+ "srd-mummy::action::2": {
+  "name": "Sguardo Terrificante",
+  "desc": "La mummia prende di mira una creatura che può vedere entro 18 m da sé. Se l'obiettivo può vedere la mummia, deve superare un tiro di salvezza su Saggezza CD 11 contro questa magia o diventare spaventato fino alla fine del prossimo turno della mummia. Se l'obiettivo fallisce il tiro di salvezza di 5 o più, viene anche paralizzato per la stessa durata. Un obiettivo che supera il tiro di salvezza è immune allo Sguardo Terrificante di tutte le mummie (ma non dei signori delle mummie) per le successive 24 ore."
+ },
+ "srd-mummy-lord::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La mummia può usare Sguardo Terrificante ed esegue un attacco con il pugno marcescente."
+ },
+ "srd-mummy-lord::action::2": {
+  "name": "Sguardo Terrificante",
+  "desc": "Il signore delle mummie prende di mira una creatura che può vedere entro 18 m da sé. Se l'obiettivo può vedere il signore delle mummie, deve superare un tiro di salvezza su Saggezza CD 16 contro questa magia o diventare spaventato fino alla fine del prossimo turno della mummia. Se l'obiettivo fallisce il tiro di salvezza di 5 o più, viene anche paralizzato per la stessa durata. Un obiettivo che supera il tiro di salvezza è immune allo Sguardo Terrificante di tutte le mummie e i signori delle mummie per le successive 24 ore."
+ },
+ "srd-nalfeshnee::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il nalfeshnee usa Aura d'Orrore se può. Quindi esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-nalfeshnee::action::3": {
+  "name": "Aura d'Orrore",
+  "desc": "Il nalfeshnee emette magicamente una luce scintillante e multicolore. Ogni creatura entro 4,5 m dal nalfeshnee che può vedere la luce deve superare un tiro di salvezza su Saggezza CD 15 o essere spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune all'Aura d'Orrore di questo nalfeshnee per le successive 24 ore."
+ },
+ "srd-nalfeshnee::action::4": {
+  "name": "Teletrasporto",
+  "desc": "Il nalfeshnee si teletrasporta magicamente, insieme a qualsiasi equipaggiamento che indossa o porta con sé, fino a 36 m in uno spazio libero che può vedere."
+ },
+ "srd-night-hag::action::1": {
+  "name": "Cambiare Forma",
+  "desc": "La strega si trasforma magicamente in un umanoide femmina Piccolo o Medio, oppure torna alla sua forma vera. Le sue statistiche sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Riprende la sua forma vera se muore."
+ },
+ "srd-night-hag::action::2": {
+  "name": "Eterealità",
+  "desc": "La strega entra magicamente nel Piano Etereo dal Piano Materiale, o viceversa. Per farlo, la strega deve avere in suo possesso una pietra del cuore."
+ },
+ "srd-night-hag::action::3": {
+  "name": "Assalto agli Incubi",
+  "desc": "Mentre si trova sul Piano Etereo, la strega tocca magicamente un umanoide addormentato sul Piano Materiale. L'incantesimo protezione dal male e dal bene lanciato sull'obiettivo previene questo contatto, così come un cerchio magico. Per tutta la durata del contatto, l'obiettivo ha visioni terrificanti. Se queste visioni durano almeno 1 ora, l'obiettivo non ottiene alcun beneficio dal suo riposo, e il suo massimo dei punti ferita viene ridotto di 5 (1d10). Se questo effetto riduce il massimo dei punti ferita dell'obiettivo a 0, l'obiettivo muore, e se l'obiettivo era malvagio, la sua anima viene imprigionata nella sacca delle anime della strega. La riduzione al massimo dei punti ferita dell'obiettivo dura finché non viene rimossa dall'incantesimo guarigione superiore o magia simile."
+ },
+ "srd-nightmare::action::1": {
+  "name": "Passo Etereo",
+  "desc": "L'incubo e fino a tre creature volontarie entro 1,5 m da esso entrano magicamente nel Piano Etereo dal Piano Materiale, o viceversa."
+ },
+ "srd-octopus::action::1": {
+  "name": "Nube d'Inchiostro",
+  "desc": "Una nube di inchiostro con raggio di 1,5 m si espande tutt'intorno al polpo se questo si trova sott'acqua. L'area è pesantemente oscurata per 1 minuto, sebbene una corrente significativa possa disperdere l'inchiostro. Dopo aver rilasciato l'inchiostro, il polpo può usare l'azione Scattare come azione bonus."
+ },
+ "srd-oni::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'oni esegue due attacchi, sia con gli artigli sia con il glaivio."
+ },
+ "srd-oni::action::3": {
+  "name": "Cambiare Forma",
+  "desc": "L'oni si trasforma magicamente in un umanoide Piccolo o Medio, in un gigante Grande, oppure torna alla sua forma vera. A eccezione della taglia, le sue statistiche sono le stesse in ogni forma. Il solo equipaggiamento che viene trasformato è il suo glaivio, che si rimpicciolisce in modo da poter essere impugnato in forma umanoide. Se l'oni muore, riprende la sua forma vera, e il suo glaivio riprende le sue dimensioni normali."
+ },
+ "srd-otyugh::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'otyugh esegue tre attacchi: uno con il morso e due con i tentacoli."
+ },
+ "srd-otyugh::action::3": {
+  "name": "Schianto di Tentacoli",
+  "desc": "L'otyugh sbatte le creature afferrate da esso l'una contro l'altra o contro una superficie solida. Ogni creatura deve superare un tiro di salvezza su Costituzione CD 14 o subire 10 (2d6 + 3) danni contundenti ed essere stordita fino alla fine del prossimo turno dell'otyugh. In caso di successo, l'obiettivo subisce metà dei danni contundenti e non viene stordito."
+ },
+ "srd-owlbear::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'orso-civetta esegue due attacchi: uno con il becco e uno con gli artigli."
+ },
+ "srd-pit-fiend::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il diavolo della fossa esegue quattro attacchi: uno con il morso, uno con l'artiglio, uno con la mazza e uno con la coda."
+ },
+ "srd-planetar::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il planetar esegue due attacchi in mischia."
+ },
+ "srd-planetar::action::2": {
+  "name": "Tocco Curativo",
+  "desc": "Il planetar tocca un'altra creatura. L'obiettivo recupera magicamente 30 (6d8 + 3) punti ferita e viene liberato da qualsiasi maledizione, malattia, veleno, cecità o sordità."
+ },
+ "srd-polar-bear::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'orso esegue due attacchi: uno con il morso e uno con gli artigli."
+ },
+ "srd-purple-worm::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il verme esegue due attacchi: uno con il morso e uno con il pungiglione."
+ },
+ "srd-quasit::action::1": {
+  "name": "Spaventa",
+  "desc": "Una creatura a scelta del quasit entro 6 m da esso deve superare un tiro di salvezza su Saggezza con CD 10 o sarà Spaventata per 1 minuto. Il bersaglio può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, con svantaggio se il quasit è nel suo campo visivo, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-quasit::action::2": {
+  "name": "Invisibilità",
+  "desc": "Il quasit diventa magicamente invisibile finché non attacca o usa Spaventa, oppure finché la sua concentrazione non termina (come se stesse concentrandosi su un incantesimo). Qualsiasi equipaggiamento indossato o portato dal quasit diventa invisibile con esso."
+ },
+ "srd-rakshasa::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il rakshasa esegue due attacchi con gli artigli."
+ },
+ "srd-red-dragon-wyrmling::action::1": {
+  "name": "Soffio di Fuoco",
+  "desc": "Il drago esala fuoco in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza con CD 13, subendo 24 (7d6) danni da fuoco se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-remorhaz::action::1": {
+  "name": "Ingoia",
+  "desc": "Il remorhaz esegue un attacco con il morso contro una creatura di taglia Media o inferiore che ha Afferrato. Se l'attacco colpisce, quella creatura subisce i danni del morso e viene ingoiata, e la presa termina. Mentre è ingoiata, la creatura è Accecata e Trattenuta, ha copertura totale contro attacchi e altri effetti provenienti dall'esterno del remorhaz, e subisce 21 (6d6) danni da acido all'inizio di ogni turno del remorhaz.\nSe il remorhaz subisce 30 o più danni in un singolo turno da una creatura al suo interno, deve superare un tiro di salvezza su Costituzione con CD 15 alla fine di quel turno o rigurgitare tutte le creature ingoiate, che cadono Prone in uno spazio entro 3 m dal remorhaz. Se il remorhaz muore, una creatura ingoiata non è più Trattenuta da esso e può fuggire dal cadavere usando 4,5 m di movimento, uscendo Prona."
+ },
+ "srd-roc::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il roc esegue due attacchi: uno con il becco e uno con gli artigli."
+ },
+ "srd-roper::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il roper esegue quattro attacchi con i tentacoli, usa Trascina e poi esegue un attacco con il morso."
+ },
+ "srd-roper::action::2": {
+  "name": "Tentacolo",
+  "desc": "Attacco con Arma da Mischia: +7 per colpire, gittata 15 m, una creatura. Colpito: Il bersaglio è Afferrato (CD fuga 15). Finché la presa non termina, il bersaglio è Trattenuto e ha svantaggio ai tiri per caratteristica su Forza e ai tiri di salvezza su Forza, e il roper non può usare lo stesso tentacolo su un altro bersaglio."
+ },
+ "srd-roper::action::3": {
+  "name": "Trascina",
+  "desc": "Il roper tira a sé ogni creatura che ha Afferrato fino a 7,5 m in linea retta verso di sé."
+ },
+ "srd-rug-of-smothering::action::0": {
+  "name": "Soffoca",
+  "desc": "Attacco con Arma da Mischia: +5 per colpire, gittata 1,5 m, una creatura di taglia Media o inferiore. Colpito: La creatura viene Afferrata (CD fuga 13). Finché questa presa non termina, il bersaglio è Trattenuto, Accecato e a rischio di soffocamento, e il tappeto non può soffocare un altro bersaglio. Inoltre, all'inizio di ogni turno del bersaglio, esso subisce 10 (2d6 + 3) danni contundenti."
+ },
+ "srd-rust-monster::action::1": {
+  "name": "Antenne",
+  "desc": "Il mostro della ruggine corrode un oggetto di metallo ferroso non magico che può vedere entro 1,5 m da esso. Se l'oggetto non è indossato o portato, il tocco distrugge un cubo di 30 cm di esso. Se l'oggetto è indossato o portato da una creatura, questa può effettuare un tiro di salvezza su Destrezza con CD 11 per evitare il tocco del mostro della ruggine.\nSe l'oggetto toccato è un'armatura di metallo o uno scudo di metallo indossato o portato, esso subisce una penalità permanente e cumulativa di -1 alla CA che offre. Un'armatura ridotta a una CA di 10 o uno scudo che scende a un bonus di +0 viene distrutto. Se l'oggetto toccato è un'arma di metallo impugnata, essa arrugginisce come descritto nella caratteristica Corrosione del Metallo."
+ },
+ "srd-sahuagin::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il sahuagin esegue due attacchi in mischia: uno con il morso e uno con gli artigli o la lancia."
+ },
+ "srd-salamander::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La salamandra esegue due attacchi: uno con la lancia e uno con la coda."
+ },
+ "srd-scout::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'esploratore esegue due attacchi in mischia o due attacchi a distanza."
+ },
+ "srd-sea-hag::action::1": {
+  "name": "Sguardo di Morte",
+  "desc": "La strega prende di mira una creatura Spaventata che può vedere entro 9 m da sé. Se il bersaglio può vedere la strega, deve superare un tiro di salvezza su Saggezza con CD 11 contro questa magia o scendere a 0 punti ferita."
+ },
+ "srd-sea-hag::action::2": {
+  "name": "Aspetto Illusorio",
+  "desc": "La strega ricopre se stessa e qualsiasi cosa indossi o porti con un'illusione magica che le fa assumere l'aspetto di una creatura brutta della sua taglia generale e forma umanoide. L'effetto termina se la strega usa un'azione bonus per interromperlo o se muore.\nI cambiamenti prodotti da questo effetto non resistono a un'ispezione fisica. Per esempio, la strega potrebbe sembrare non avere artigli, ma chi le toccasse la mano potrebbe sentirli. Altrimenti, una creatura deve impiegare un'azione per ispezionare visivamente l'illusione e superare una prova di Intelligenza (Indagare) con CD 16 per scoprire che la strega è camuffata."
+ },
+ "srd-shambling-mound::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il cumulo strisciante esegue due attacchi con gli schianti. Se entrambi gli attacchi colpiscono un bersaglio di taglia Media o inferiore, il bersaglio viene Afferrato (CD fuga 14), e il cumulo strisciante usa Inghiotti su di esso."
+ },
+ "srd-shambling-mound::action::2": {
+  "name": "Inghiotti",
+  "desc": "Il cumulo strisciante inghiotte una creatura di taglia Media o inferiore che ha Afferrato. Il bersaglio inghiottito è Accecato, Trattenuto e incapace di respirare, e deve superare un tiro di salvezza su Costituzione con CD 14 all'inizio di ogni turno del cumulo o subire 13 (2d8 + 4) danni contundenti. Se il cumulo si muove, il bersaglio inghiottito si muove con esso. Il cumulo può avere solo una creatura inghiottita alla volta."
+ },
+ "srd-shield-guardian::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il guardiano esegue due attacchi con il pugno."
+ },
+ "srd-silver-dragon-wyrmling::action::1": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Gelido. Il drago esala una raffica gelida in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 13, subendo 18 (4d8) danni da freddo se fallisce il tiro di salvezza, o la metà di tali danni se ha successo.\nSoffio Paralizzante. Il drago esala gas paralizzante in un cono di 4,5 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 13 o essere Paralizzata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-solar::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il solare esegue due attacchi con la spada bastarda."
+ },
+ "srd-solar::action::3": {
+  "name": "Spada Volante",
+  "desc": "Il solare rilascia la sua spada bastarda, che resta magicamente in volo stazionario in uno spazio libero entro 1,5 m da esso. Se il solare può vedere la spada, può comandarla mentalmente come azione bonus per volare fino a 15 m ed eseguire un attacco contro un bersaglio oppure tornare nelle mani del solare. Se la spada in volo stazionario è presa di mira da un effetto, il solare è considerato come se la stesse impugnando. La spada in volo stazionario cade se il solare muore."
+ },
+ "srd-solar::action::4": {
+  "name": "Tocco Curativo",
+  "desc": "Il solare tocca un'altra creatura. Il bersaglio recupera magicamente 40 (8d8 + 4) punti ferita e viene liberato da qualsiasi maledizione, malattia, veleno, cecità o sordità."
+ },
+ "srd-specter::action::0": {
+  "name": "Assorbimento Vitale",
+  "desc": "Attacco con Incantesimo da Mischia: +4 per colpire, gittata 1,5 m, una creatura. Colpito: 10 (3d6) danni necrotici. Il bersaglio deve superare un tiro di salvezza su Costituzione con CD 10 o il suo massimo dei punti ferita viene ridotto di una quantità pari ai danni subiti. Questa riduzione dura finché la creatura non completa un riposo lungo. Il bersaglio muore se questo effetto riduce a 0 il suo massimo dei punti ferita."
+ },
+ "srd-sprite::action::2": {
+  "name": "Vista del Cuore",
+  "desc": "Lo spirito folletto tocca una creatura e conosce magicamente il suo stato emotivo attuale. Se il bersaglio fallisce un tiro di salvezza su Carisma con CD 10, lo spirito folletto conosce anche l'allineamento della creatura. I celestiali, i demoni infernali e i non morti falliscono automaticamente il tiro di salvezza."
+ },
+ "srd-sprite::action::3": {
+  "name": "Invisibilità",
+  "desc": "Lo spirito folletto diventa magicamente invisibile finché non attacca o lancia un incantesimo, oppure finché la sua concentrazione non termina (come se stesse concentrandosi su un incantesimo). Qualsiasi equipaggiamento indossato o portato dallo spirito folletto diventa invisibile con esso."
+ },
+ "srd-spy::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La spia esegue due attacchi in mischia."
+ },
+ "srd-steam-mephit::action::1": {
+  "name": "Soffio di Vapore",
+  "desc": "Il mefite esala un cono di 4,5 m di vapore bollente. Ogni creatura in quell'area deve superare un tiro di salvezza su Destrezza con CD 10, subendo 4 (1d8) danni da fuoco se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-stone-giant::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il gigante esegue due attacchi con la clava grande."
+ },
+ "srd-stone-golem::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il golem esegue due attacchi con gli schianti."
+ },
+ "srd-stone-golem::action::2": {
+  "name": "Rallenta",
+  "desc": "Il golem prende di mira una o più creature che può vedere entro 3 m da sé. Ogni bersaglio deve effettuare un tiro di salvezza su Saggezza con CD 17 contro questa magia. Se fallisce il tiro di salvezza, il bersaglio non può usare reazioni, la sua velocità è dimezzata, e non può eseguire più di un attacco nel suo turno. Inoltre, il bersaglio può compiere un'azione oppure un'azione bonus nel suo turno, non entrambe. Questi effetti durano 1 minuto. Un bersaglio può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-storm-giant::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il gigante esegue due attacchi con la spada bastarda."
+ },
+ "srd-storm-giant::action::3": {
+  "name": "Saetta Fulminante",
+  "desc": "Il gigante lancia un fulmine magico verso un punto che può vedere entro 150 m da sé. Ogni creatura entro 3 m da quel punto deve effettuare un tiro di salvezza su Destrezza con CD 17, subendo 54 (12d8) danni da fulmine se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-succubus-incubus::action::1": {
+  "name": "Fascino",
+  "desc": "Un umanoide che il demone può vedere entro 9 m da sé deve superare un tiro di salvezza su Saggezza con CD 15 o essere magicamente Affascinato per 1 giorno. Il bersaglio Affascinato obbedisce ai comandi verbali o telepatici del demone. Se il bersaglio subisce un danno o riceve un comando suicida, può ripetere il tiro di salvezza, terminando l'effetto in caso di successo. Se il bersaglio supera con successo il tiro di salvezza contro l'effetto, oppure se l'effetto su di esso termina, il bersaglio è immune al Fascino di questo demone per le successive 24 ore.\nIl demone può avere solo un bersaglio Affascinato alla volta. Se ne affascina un altro, l'effetto sul precedente bersaglio termina."
+ },
+ "srd-succubus-incubus::action::2": {
+  "name": "Bacio Drenante",
+  "desc": "Il demone bacia una creatura che ha Affascinato o una creatura consenziente. Il bersaglio deve effettuare un tiro di salvezza su Costituzione con CD 15 contro questa magia, subendo 32 (5d10 + 5) danni psichici se fallisce il tiro di salvezza, o la metà di tali danni se ha successo. Il massimo dei punti ferita del bersaglio viene ridotto di una quantità pari ai danni subiti. Questa riduzione dura finché il bersaglio non completa un riposo lungo. Il bersaglio muore se questo effetto riduce a 0 il suo massimo dei punti ferita."
+ },
+ "srd-succubus-incubus::action::3": {
+  "name": "Etereità",
+  "desc": "Il demone entra magicamente nel Piano Etereo dal Piano Materiale, o viceversa."
+ },
+ "srd-swarm-of-bats::action::0": {
+  "name": "Morsi",
+  "desc": "Attacco con Arma da Mischia: +4 per colpire, gittata 0 m, una creatura nello spazio dello sciame. Colpito: 5 (2d4) danni perforanti, oppure 2 (1d4) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno."
+ },
+ "srd-swarm-of-beetles::action::0": {
+  "name": "Morsi",
+  "desc": "Attacco con Arma da Mischia: +3 per colpire, gittata 0 m, un bersaglio nello spazio dello sciame. Colpito: 10 (4d4) danni perforanti, oppure 5 (2d4) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno."
+ },
+ "srd-swarm-of-centipedes::action::0": {
+  "name": "Morsi",
+  "desc": "Attacco con Arma da Mischia: +3 per colpire, gittata 0 m, un bersaglio nello spazio dello sciame. Colpito: 10 (4d4) danni perforanti, oppure 5 (2d4) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno.\nUna creatura ridotta a 0 punti ferita da uno sciame di millepiedi è stabile ma Avvelenata per 1 ora, anche dopo aver recuperato punti ferita, ed è Paralizzata mentre è Avvelenata in questo modo."
+ },
+ "srd-swarm-of-insects::action::0": {
+  "name": "Morsi",
+  "desc": "Attacco con Arma da Mischia: +3 per colpire, gittata 0 m, un bersaglio nello spazio dello sciame. Colpito: 10 (4d4) danni perforanti, oppure 5 (2d4) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno."
+ },
+ "srd-swarm-of-poisonous-snakes::action::0": {
+  "name": "Morsi",
+  "desc": "Attacco con Arma da Mischia: +6 per colpire, gittata 0 m, una creatura nello spazio dello sciame. Colpito: 7 (2d6) danni perforanti, oppure 3 (1d6) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno. Il bersaglio deve effettuare un tiro di salvezza su Costituzione con CD 10, subendo 14 (4d6) danni da veleno se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-swarm-of-quippers::action::0": {
+  "name": "Morsi",
+  "desc": "Attacco con Arma da Mischia: +5 per colpire, gittata 0 m, una creatura nello spazio dello sciame. Colpito: 14 (4d6) danni perforanti, oppure 7 (2d6) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno."
+ },
+ "srd-swarm-of-rats::action::0": {
+  "name": "Morsi",
+  "desc": "Attacco con Arma da Mischia: +2 per colpire, gittata 0 m, un bersaglio nello spazio dello sciame. Colpito: 7 (2d6) danni perforanti, oppure 3 (1d6) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno."
+ },
+ "srd-swarm-of-ravens::action::0": {
+  "name": "Becchi",
+  "desc": "Attacco con Arma da Mischia: +4 per colpire, gittata 1,5 m, un bersaglio nello spazio dello sciame. Colpito: 7 (2d6) danni perforanti, oppure 3 (1d6) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno."
+ },
+ "srd-swarm-of-spiders::action::0": {
+  "name": "Morsi",
+  "desc": "Attacco con Arma da Mischia: +3 per colpire, gittata 0 m, un bersaglio nello spazio dello sciame. Colpito: 10 (4d4) danni perforanti, oppure 5 (2d4) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno."
+ },
+ "srd-swarm-of-wasps::action::0": {
+  "name": "Morsi",
+  "desc": "Attacco con Arma da Mischia: +3 per colpire, gittata 0 m, un bersaglio nello spazio dello sciame. Colpito: 10 (4d4) danni perforanti, oppure 5 (2d4) danni perforanti se lo sciame ha la metà dei suoi punti ferita o meno."
+ },
+ "srd-tarrasque::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il tarasco può usare la sua Presenza Spaventosa. Esegue poi cinque attacchi: uno con il morso, due con gli artigli, uno con le corna e uno con la coda. Può usare Ingoia al posto del morso."
+ },
+ "srd-tarrasque::action::5": {
+  "name": "Presenza Spaventosa",
+  "desc": "Ogni creatura a scelta del tarasco entro 36 m da esso e consapevole della sua presenza deve superare un tiro di salvezza su Saggezza con CD 17 o diventare Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, con svantaggio se il tarasco è nel suo campo visivo, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto su di essa termina, la creatura è immune alla Presenza Spaventosa del tarasco per le successive 24 ore."
+ },
+ "srd-tarrasque::action::6": {
+  "name": "Ingoia",
+  "desc": "Il tarasco esegue un attacco con il morso contro una creatura di taglia Grande o inferiore che ha Afferrato. Se l'attacco colpisce, il bersaglio subisce i danni del morso, viene ingoiato, e la presa termina. Mentre è ingoiata, la creatura è Accecata e Trattenuta, ha copertura totale contro attacchi e altri effetti provenienti dall'esterno del tarasco, e subisce 56 (16d6) danni da acido all'inizio di ogni turno del tarasco.\nSe il tarasco subisce 60 o più danni in un singolo turno da una creatura al suo interno, deve superare un tiro di salvezza su Costituzione con CD 20 alla fine di quel turno o rigurgitare tutte le creature ingoiate, che cadono Prone in uno spazio entro 3 m dal tarasco. Se il tarasco muore, una creatura ingoiata non è più Trattenuta da esso e può fuggire dal cadavere usando 9 m di movimento, uscendo Prona."
+ },
+ "srd-thug::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il bandito esegue due attacchi in mischia."
+ },
+ "srd-treant::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il treant esegue due attacchi con gli schianti."
+ },
+ "srd-treant::action::3": {
+  "name": "Anima gli Alberi",
+  "desc": "Il treant anima magicamente uno o due alberi che può vedere entro 18 m da sé. Questi alberi hanno le stesse statistiche di un treant, salvo che hanno punteggi di Intelligenza e Carisma pari a 1, non possono parlare, e hanno a disposizione solo l'opzione di azione Schianto. Un albero animato agisce come alleato del treant. L'albero resta animato per 1 giorno, oppure finché il treant non muore o non si trova a più di 36 m dall'albero, oppure finché il treant non usa un'azione bonus per farlo tornare un albero inanimato. L'albero allora si radica nuovamente, se possibile."
+ },
+ "srd-troll::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il troll esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-tyrannosaurus-rex::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il tirannosauro esegue due attacchi: uno con il morso e uno con la coda. Non può eseguire entrambi gli attacchi contro lo stesso bersaglio."
+ },
+ "srd-unicorn::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'unicorno esegue due attacchi: uno con gli zoccoli e uno con il corno."
+ },
+ "srd-unicorn::action::3": {
+  "name": "Tocco Curativo",
+  "desc": "L'unicorno tocca un'altra creatura con il proprio corno. Il bersaglio recupera magicamente 11 (2d8 + 2) punti ferita. Inoltre, il tocco rimuove tutte le malattie e neutralizza tutti i veleni che affliggono il bersaglio."
+ },
+ "srd-unicorn::action::4": {
+  "name": "Teletrasporto",
+  "desc": "L'unicorno teletrasporta magicamente se stesso e fino a tre creature consenzienti che può vedere entro 1,5 m da sé, insieme a qualsiasi equipaggiamento che indossano o portano, in un luogo che l'unicorno conosce bene, fino a 1,6 km di distanza."
+ },
+ "srd-vampire-bat::action::0": {
+  "name": "Morso",
+  "desc": "Attacco con Arma da Mischia: +9 per colpire, gittata 1,5 m, una creatura consenziente, oppure una creatura Afferrata dal vampiro, Incapacitata o Trattenuta. Colpito: 7 (1d6 + 4) danni perforanti più 10 (3d6) danni necrotici. Il massimo dei punti ferita del bersaglio viene ridotto di una quantità pari ai danni necrotici subiti, e il vampiro recupera punti ferita pari a tale quantità. La riduzione dura finché il bersaglio non completa un riposo lungo. Il bersaglio muore se questo effetto riduce a 0 il suo massimo dei punti ferita. Un umanoide ucciso in questo modo e successivamente sepolto sotto terra risorge la notte seguente come progenie di vampiro sotto il controllo del vampiro."
+ },
+ "srd-vampire-bat::action::1": {
+  "name": "Fascino",
+  "desc": "Il vampiro prende di mira un umanoide che può vedere entro 9 m da sé. Se il bersaglio può vedere il vampiro, deve superare un tiro di salvezza su Saggezza con CD 17 contro questa magia o essere Affascinato dal vampiro. Il bersaglio Affascinato considera il vampiro un amico fidato da ascoltare e proteggere. Sebbene il bersaglio non sia sotto il controllo del vampiro, interpreta le richieste o le azioni del vampiro nel modo più favorevole possibile, ed è un bersaglio consenziente per l'attacco con il morso del vampiro.\nOgni volta che il vampiro o i suoi compagni infliggono un danno al bersaglio, questo può ripetere il tiro di salvezza, terminando l'effetto su di sé in caso di successo. Altrimenti, l'effetto dura 24 ore oppure finché il vampiro non viene distrutto, non si trova su un piano di esistenza diverso da quello del bersaglio, oppure usa un'azione bonus per terminare l'effetto."
+ },
+ "srd-vampire-bat::action::2": {
+  "name": "Figli della Notte",
+  "desc": "Il vampiro evoca magicamente 2d4 sciami di pipistrelli o ratti, a condizione che il sole non sia alto nel cielo. Se si trova all'aperto, il vampiro può invece evocare 3d6 lupi. Le creature evocate arrivano in 1d4 round, agendo come alleate del vampiro e obbedendo ai suoi comandi verbali. Le bestie restano per 1 ora, finché il vampiro non muore, oppure finché il vampiro non le congeda con un'azione bonus."
+ },
+ "srd-vampire-spawn::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il vampiro esegue due attacchi, di cui solo uno può essere un attacco con il morso."
+ },
+ "srd-vampire-spawn::action::1": {
+  "name": "Morso",
+  "desc": "Attacco con Arma da Mischia: +6 per colpire, gittata 1,5 m, una creatura consenziente, oppure una creatura Afferrata dal vampiro, Incapacitata o Trattenuta. Colpito: 6 (1d6 + 3) danni perforanti più 7 (2d6) danni necrotici. Il massimo dei punti ferita del bersaglio viene ridotto di una quantità pari ai danni necrotici subiti, e il vampiro recupera punti ferita pari a tale quantità. La riduzione dura finché il bersaglio non completa un riposo lungo. Il bersaglio muore se questo effetto riduce a 0 il suo massimo dei punti ferita."
+ },
+ "srd-vampire-vampire::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il vampiro esegue due attacchi, di cui solo uno può essere un attacco con il morso."
+ },
+ "srd-vampire-vampire::action::2": {
+  "name": "Morso",
+  "desc": "Attacco con Arma da Mischia: +9 per colpire, gittata 1,5 m, una creatura consenziente, oppure una creatura Afferrata dal vampiro, Incapacitata o Trattenuta. Colpito: 7 (1d6 + 4) danni perforanti più 10 (3d6) danni necrotici. Il massimo dei punti ferita del bersaglio viene ridotto di una quantità pari ai danni necrotici subiti, e il vampiro recupera punti ferita pari a tale quantità. La riduzione dura finché il bersaglio non completa un riposo lungo. Il bersaglio muore se questo effetto riduce a 0 il suo massimo dei punti ferita. Un umanoide ucciso in questo modo e successivamente sepolto sotto terra risorge la notte seguente come progenie di vampiro sotto il controllo del vampiro."
+ },
+ "srd-vampire-vampire::action::3": {
+  "name": "Fascino",
+  "desc": "Il vampiro prende di mira un umanoide che può vedere entro 9 m da sé. Se il bersaglio può vedere il vampiro, deve superare un tiro di salvezza su Saggezza con CD 17 contro questa magia o essere Affascinato dal vampiro. Il bersaglio Affascinato considera il vampiro un amico fidato da ascoltare e proteggere. Sebbene il bersaglio non sia sotto il controllo del vampiro, interpreta le richieste o le azioni del vampiro nel modo più favorevole possibile, ed è un bersaglio consenziente per l'attacco con il morso del vampiro.\nOgni volta che il vampiro o i suoi compagni infliggono un danno al bersaglio, questo può ripetere il tiro di salvezza, terminando l'effetto su di sé in caso di successo. Altrimenti, l'effetto dura 24 ore oppure finché il vampiro non viene distrutto, non si trova su un piano di esistenza diverso da quello del bersaglio, oppure usa un'azione bonus per terminare l'effetto."
+ },
+ "srd-vampire-vampire::action::4": {
+  "name": "Figli della Notte",
+  "desc": "Il vampiro evoca magicamente 2d4 sciami di pipistrelli o ratti, a condizione che il sole non sia alto nel cielo. Se si trova all'aperto, il vampiro può invece evocare 3d6 lupi. Le creature evocate arrivano in 1d4 round, agendo come alleate del vampiro e obbedendo ai suoi comandi verbali. Le bestie restano per 1 ora, finché il vampiro non muore, oppure finché il vampiro non le congeda con un'azione bonus."
+ },
+ "srd-veteran::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il veterano esegue due attacchi con la spada lunga. Se ha sguainato una spada corta, può eseguire anche un attacco con la spada corta."
+ },
+ "srd-violet-fungus::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il fungo esegue 1d4 attacchi con Tocco Corrosivo."
+ },
+ "srd-vrock::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il vrock esegue due attacchi: uno con il becco e uno con gli artigli."
+ },
+ "srd-vrock::action::3": {
+  "name": "Spore",
+  "desc": "Una nube di spore tossiche con un raggio di 4,5 m si espande dal vrock. Le spore si diffondono anche dietro gli angoli. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 14 o diventare Avvelenata. Mentre è Avvelenata in questo modo, un bersaglio subisce 5 (1d10) danni da veleno all'inizio di ciascuno dei suoi turni. Un bersaglio può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé in caso di successo. Versare una fiala di acqua santa sul bersaglio termina l'effetto su di esso."
+ },
+ "srd-vrock::action::4": {
+  "name": "Stridio Assordante",
+  "desc": "Il vrock emette uno stridio orribile. Ogni creatura entro 6 m da esso che può udirlo e che non è un demone deve superare un tiro di salvezza su Costituzione con CD 14 o essere Stordita fino alla fine del prossimo turno del vrock."
+ },
+ "srd-water-elemental::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "L'elementale esegue due attacchi con gli schianti."
+ },
+ "srd-water-elemental::action::2": {
+  "name": "Sommergi",
+  "desc": "Ogni creatura nello spazio dell'elementale deve effettuare un tiro di salvezza su Forza con CD 15. In caso di fallimento, un bersaglio subisce 13 (2d8 + 4) danni contundenti. Se è di taglia Grande o inferiore, viene anche Afferrato (CD fuga 14). Finché questa presa non termina, il bersaglio è Trattenuto e incapace di respirare a meno che non possa respirare in acqua. Se il tiro di salvezza ha successo, il bersaglio viene spinto fuori dallo spazio dell'elementale.\nL'elementale può avere Afferrata una creatura di taglia Grande oppure fino a due creature di taglia Media o inferiore alla volta. All'inizio di ogni turno dell'elementale, ogni bersaglio da esso Afferrato subisce 13 (2d8 + 4) danni contundenti. Una creatura entro 1,5 m dall'elementale può estrarre una creatura o un oggetto da esso impiegando un'azione per effettuare una prova di Forza con CD 14 e avendo successo."
+ },
+ "srd-werebear-bear::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "In forma di orso, il licantropo orso esegue due attacchi con gli artigli. In forma umanoide, esegue due attacchi con l'ascia bipenne. In forma ibrida, può attaccare come un orso o come un umanoide."
+ },
+ "srd-werebear-human::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "In forma di orso, il licantropo orso esegue due attacchi con gli artigli. In forma umanoide, esegue due attacchi con l'ascia bipenne. In forma ibrida, può attaccare come un orso o come un umanoide."
+ },
+ "srd-werebear-hybrid::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "In forma di orso, il licantropo orso esegue due attacchi con gli artigli. In forma umanoide, esegue due attacchi con l'ascia bipenne. In forma ibrida, può attaccare come un orso o come un umanoide."
+ },
+ "srd-wereboar-human::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il licantropo cinghiale esegue due attacchi, di cui solo uno può essere con le zanne."
+ },
+ "srd-wereboar-hybrid::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il licantropo cinghiale esegue due attacchi, di cui solo uno può essere con le zanne."
+ },
+ "srd-wererat-human::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il licantropo ratto esegue due attacchi, di cui solo uno può essere un morso."
+ },
+ "srd-wererat-hybrid::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il licantropo ratto esegue due attacchi, di cui solo uno può essere un morso."
+ },
+ "srd-weretiger-human::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "In forma umanoide, il licantropo tigre esegue due attacchi con la scimitarra o due attacchi con l'arco lungo. In forma ibrida, può attaccare come un umanoide oppure eseguire due attacchi con gli artigli."
+ },
+ "srd-weretiger-hybrid::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "In forma umanoide, il licantropo tigre esegue due attacchi con la scimitarra o due attacchi con l'arco lungo. In forma ibrida, può attaccare come un umanoide oppure eseguire due attacchi con gli artigli."
+ },
+ "srd-werewolf-human::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il licantropo lupo esegue due attacchi: due con la lancia (forma umanoide) oppure uno con il morso e uno con gli artigli (forma ibrida)."
+ },
+ "srd-werewolf-hybrid::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il licantropo lupo esegue due attacchi: due con la lancia (forma umanoide) oppure uno con il morso e uno con gli artigli (forma ibrida)."
+ },
+ "srd-white-dragon-wyrmling::action::1": {
+  "name": "Soffio Gelido",
+  "desc": "Il drago esala una raffica gelida di grandine in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 12, subendo 22 (5d8) danni da freddo se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-wight::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Lo spettro vivente esegue due attacchi con la spada lunga o due attacchi con l'arco lungo. Può usare Assorbimento Vitale al posto di un attacco con la spada lunga."
+ },
+ "srd-will-o-wisp::action::0": {
+  "name": "Scossa",
+  "desc": "Attacco con Incantesimo da Mischia: +4 per colpire, gittata 1,5 m, una creatura. Colpito: 9 (2d8) danni da fulmine."
+ },
+ "srd-will-o-wisp::action::1": {
+  "name": "Invisibilità",
+  "desc": "Il fuoco fatuo e la sua luce diventano magicamente invisibili finché non attacca o usa il suo Consuma Vita, oppure finché la sua concentrazione non termina (come se stesse concentrandosi su un incantesimo)."
+ },
+ "srd-winter-wolf::action::1": {
+  "name": "Soffio Gelido",
+  "desc": "Il lupo esala una raffica di vento gelido in un cono di 4,5 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza con CD 12, subendo 18 (4d8) danni da freddo se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-wraith::action::1": {
+  "name": "Crea Spettro",
+  "desc": "Lo spettro prende di mira un umanoide entro 3 m da sé che è morto non più di 1 minuto prima e che è morto in modo violento. Lo spirito del bersaglio risorge come spettro nello spazio del suo cadavere o nello spazio libero più vicino. Lo spettro è sotto il controllo dello spettro evocatore. Lo spettro evocatore può avere sotto il proprio controllo non più di sette spettri alla volta."
+ },
+ "srd-wyvern::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "La viverna esegue due attacchi: uno con il morso e uno con il pungiglione. Mentre vola, può usare gli artigli al posto di un altro attacco."
+ },
+ "srd-xorn::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Lo xorn esegue tre attacchi con gli artigli e un attacco con il morso."
+ },
+ "srd-young-black-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-black-dragon::action::3": {
+  "name": "Soffio Acido",
+  "desc": "Il drago esala acido in una linea di 9 m larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 14, subendo 49 (11d8) danni da acido se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-young-blue-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-blue-dragon::action::3": {
+  "name": "Soffio Fulminante",
+  "desc": "Il drago esala fulmini in una linea di 18 m larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 16, subendo 55 (10d10) danni da fulmine se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-young-brass-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-brass-dragon::action::3": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio di Fuoco. Il drago esala fuoco in una linea di 12 m larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 14, subendo 42 (12d6) danni da fuoco se fallisce il tiro di salvezza, o la metà di tali danni se ha successo.\nSoffio Soporifero. Il drago esala gas soporifero in un cono di 9 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 14 o cadere priva di sensi per 5 minuti. Questo effetto termina per una creatura se essa subisce danni o se qualcuno usa un'azione per svegliarla."
+ },
+ "srd-young-bronze-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-bronze-dragon::action::3": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Fulminante. Il drago esala fulmini in una linea di 18 m larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 15, subendo 55 (10d10) danni da fulmine se fallisce il tiro di salvezza, o la metà di tali danni se ha successo.\nSoffio Repulsivo. Il drago esala energia repulsiva in un cono di 9 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Forza con CD 15. Se fallisce il tiro di salvezza, la creatura viene spinta a 12 m di distanza dal drago."
+ },
+ "srd-young-copper-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-copper-dragon::action::3": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Acido. Il drago esala acido in una linea di 12 m larga 1,5 m. Ogni creatura in quella linea deve effettuare un tiro di salvezza su Destrezza con CD 14, subendo 40 (9d8) danni da acido se fallisce il tiro di salvezza, o la metà di tali danni se ha successo.\nSoffio Rallentante. Il drago esala gas in un cono di 9 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 14. Se fallisce il tiro di salvezza, la creatura non può usare reazioni, la sua velocità è dimezzata, e non può eseguire più di un attacco nel suo turno. Inoltre, la creatura può usare un'azione oppure un'azione bonus nel suo turno, ma non entrambe. Questi effetti durano 1 minuto. La creatura può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé con un tiro riuscito."
+ },
+ "srd-young-gold-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-gold-dragon::action::3": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio di Fuoco. Il drago esala fuoco in un cono di 9 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza con CD 17, subendo 55 (10d10) danni da fuoco se fallisce il tiro di salvezza, o la metà di tali danni se ha successo.\nSoffio Debilitante. Il drago esala gas in un cono di 9 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Forza con CD 17 o avere svantaggio ai tiri per colpire basati su Forza, alle prove di Forza e ai tiri di salvezza su Forza per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-young-green-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-green-dragon::action::3": {
+  "name": "Soffio Velenoso",
+  "desc": "Il drago esala gas velenoso in un cono di 9 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 14, subendo 42 (12d6) danni da veleno se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-young-red-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-red-dragon::action::3": {
+  "name": "Soffio di Fuoco",
+  "desc": "Il drago esala fuoco in un cono di 9 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Destrezza con CD 17, subendo 56 (16d6) danni da fuoco se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ },
+ "srd-young-silver-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-silver-dragon::action::3": {
+  "name": "Armi del Soffio",
+  "desc": "Il drago usa una delle seguenti armi del soffio.\nSoffio Gelido. Il drago esala una raffica gelida in un cono di 9 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 17, subendo 54 (12d8) danni da freddo se fallisce il tiro di salvezza, o la metà di tali danni se ha successo.\nSoffio Paralizzante. Il drago esala gas paralizzante in un cono di 9 m. Ogni creatura in quell'area deve superare un tiro di salvezza su Costituzione con CD 17 o essere Paralizzata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-young-white-dragon::action::0": {
+  "name": "Attacchi Multipli",
+  "desc": "Il drago esegue tre attacchi: uno con il morso e due con gli artigli."
+ },
+ "srd-young-white-dragon::action::3": {
+  "name": "Soffio Gelido",
+  "desc": "Il drago esala una raffica gelida in un cono di 9 m. Ogni creatura in quell'area deve effettuare un tiro di salvezza su Costituzione con CD 15, subendo 45 (10d8) danni da freddo se fallisce il tiro di salvezza, o la metà di tali danni se ha successo."
+ }
+}

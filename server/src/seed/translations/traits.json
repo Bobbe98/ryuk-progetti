@@ -1,0 +1,2206 @@
+{
+ "srd-aboleth::trait::0": {
+  "name": "Anfibio",
+  "desc": "L'aboleth può respirare sia in aria che in acqua."
+ },
+ "srd-aboleth::trait::1": {
+  "name": "Nube Mucosa",
+  "desc": "Mentre è sott'acqua, l'aboleth è circondato da un muco trasformante. Una creatura che tocca l'aboleth o che lo colpisce con un attacco in mischia mentre si trova entro 1,5 m da esso deve effettuare un tiro di salvezza su COS CD 14. In caso di fallimento, la creatura contrae una malattia per 1d4 ore. La creatura malata può respirare solo sott'acqua."
+ },
+ "srd-aboleth::trait::2": {
+  "name": "Telepatia Indagatrice",
+  "desc": "Se una creatura comunica telepaticamente con l'aboleth, l'aboleth apprende i suoi desideri più grandi, a condizione che possa vederla."
+ },
+ "srd-acolyte::trait::0": {
+  "name": "Lancio di Incantesimi",
+  "desc": "L'accolito è un lanciatore di incantesimi di 1° livello. La sua caratteristica per lanciare incantesimi è Saggezza (CD 12 per i tiri di salvezza, +4 ai tiri per colpire con incantesimi). L'accolito ha preparato i seguenti incantesimi da chierico:\n\n- Trucchetti (a volontà): luce, fiamma sacra, taumaturgia\n- Incantesimi di 1° livello (3 slot): benedizione, cura ferite, santuario"
+ },
+ "srd-adult-black-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-adult-black-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-adult-blue-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-adult-brass-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-adult-bronze-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-adult-bronze-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-adult-copper-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-adult-gold-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-adult-gold-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-adult-green-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-adult-green-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-adult-red-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-adult-silver-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-adult-white-dragon::trait::0": {
+  "name": "Andatura sul Ghiaccio",
+  "desc": "Il drago può muoversi e arrampicarsi su superfici ghiacciate senza dover effettuare una prova di caratteristica. Inoltre, il terreno difficile composto da ghiaccio o neve non gli costa movimento extra."
+ },
+ "srd-adult-white-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-air-elemental::trait::0": {
+  "name": "Forma d'Aria",
+  "desc": "L'elementale può entrare nello spazio di una creatura ostile e fermarsi lì. Può muoversi attraverso uno spazio largo appena 2,5 cm senza dover stringersi."
+ },
+ "srd-ancient-black-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-ancient-black-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-ancient-blue-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-ancient-brass-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-ancient-bronze-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-ancient-bronze-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-ancient-copper-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-ancient-gold-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-ancient-gold-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-ancient-green-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-ancient-green-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-ancient-red-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-ancient-silver-dragon::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-ancient-white-dragon::trait::0": {
+  "name": "Andatura sul Ghiaccio",
+  "desc": "Il drago può muoversi e arrampicarsi su superfici ghiacciate senza dover effettuare una prova di caratteristica. Inoltre, il terreno difficile composto da ghiaccio o neve non gli costa movimento extra."
+ },
+ "srd-ancient-white-dragon::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il drago fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-androsphinx::trait::0": {
+  "name": "Inscrutabile",
+  "desc": "La sfinge è immune a qualsiasi effetto che percepisca le sue emozioni o legga i suoi pensieri, così come a qualsiasi incantesimo di divinazione che essa rifiuti. Le prove di Saggezza (Intuizione) effettuate per accertare le intenzioni o la sincerità della sfinge hanno svantaggio."
+ },
+ "srd-androsphinx::trait::1": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi della sfinge sono magici."
+ },
+ "srd-androsphinx::trait::2": {
+  "name": "Lancio di Incantesimi",
+  "desc": "La sfinge è una lanciatrice di incantesimi di 12° livello. La sua caratteristica per lanciare incantesimi è Saggezza (CD 18 per i tiri di salvezza, +10 ai tiri per colpire con incantesimi). Non richiede componenti materiali per lanciare i suoi incantesimi. La sfinge ha preparato i seguenti incantesimi da chierico:\n\n- Trucchetti (a volontà): fiamma sacra, salvare dalla morte, taumaturgia\n- Incantesimi di 1° livello (4 slot): comando, individuazione del bene e del male, individuazione magica\n- Incantesimi di 2° livello (3 slot): ristorazione inferiore, zona di verità\n- Incantesimi di 3° livello (3 slot): dissolvi magia, linguaggi\n- Incantesimi di 4° livello (3 slot): banimento, libertà di movimento\n- Incantesimi di 5° livello (2 slot): colpo di fiamme, ristorazione superiore\n- Incantesimi di 6° livello (1 slot): banchetto degli eroi"
+ },
+ "srd-animated-armor::trait::0": {
+  "name": "Suscettibilità all'Antimagia",
+  "desc": "L'armatura è incapacitata mentre si trova nell'area di un campo di antimagia. Se è bersaglio di dissolvi magia, l'armatura deve superare un tiro di salvezza su Costituzione contro la CD di salvezza dell'incantatore o cade priva di sensi per 1 minuto."
+ },
+ "srd-animated-armor::trait::1": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre rimane immobile, l'armatura è indistinguibile da una normale armatura."
+ },
+ "srd-archmage::trait::0": {
+  "name": "Resistenza alla Magia",
+  "desc": "L'arcimago ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-archmage::trait::1": {
+  "name": "Lancio di Incantesimi",
+  "desc": "L'arcimago è un lanciatore di incantesimi di 18° livello. La sua caratteristica per lanciare incantesimi è Intelligenza (CD 17 per i tiri di salvezza, +9 ai tiri per colpire con incantesimi). L'arcimago può lanciare camuffare e invisibilità a volontà e ha preparato i seguenti incantesimi da mago:\n\n- Trucchetti (a volontà): dardo di fuoco, luce, mano magica, prestidigitazione, presa elettrizzante\n- Incantesimi di 1° livello (4 slot): individuazione magica, identificare, armatura magica*, missile incantato\n- Incantesimi di 2° livello (3 slot): percezione dei pensieri, immagine speculare, passo nebbioso\n- Incantesimi di 3° livello (3 slot): contromagia, volare, fulmine\n- Incantesimi di 4° livello (3 slot): banimento, scudo di fuoco, pelle di pietra*\n- Incantesimi di 5° livello (3 slot): cono di gelo, scrutare, muro di forza\n- Incantesimi di 6° livello (1 slot): globo di invulnerabilità\n- Incantesimi di 7° livello (1 slot): teletrasporto\n- Incantesimi di 8° livello (1 slot): mente impenetrabile*\n- Incantesimi di 9° livello (1 slot): fermare il tempo\n* L'arcimago lancia questi incantesimi su sé stesso prima del combattimento."
+ },
+ "srd-assassin::trait::0": {
+  "name": "Assassinare",
+  "desc": "Durante il suo primo turno, l'assassino ha vantaggio ai tiri per colpire contro qualsiasi creatura che non ha ancora agito nel combattimento. Qualsiasi colpo che l'assassino infligge a una creatura colta di sorpresa è un colpo critico."
+ },
+ "srd-assassin::trait::1": {
+  "name": "Schivare",
+  "desc": "Se l'assassino è soggetto a un effetto che gli permette di effettuare un tiro di salvezza su Destrezza per subire solo metà danno, l'assassino non subisce alcun danno se ha successo nel tiro di salvezza, e solo metà danno se fallisce."
+ },
+ "srd-assassin::trait::2": {
+  "name": "Attacco Furtivo (1/Turno)",
+  "desc": "L'assassino infligge 13 (4d6) danni extra quando colpisce un bersaglio con un attacco con arma e ha vantaggio al tiro per colpire, oppure quando il bersaglio si trova entro 1,5 m da un alleato dell'assassino che non è incapacitato e l'assassino non ha svantaggio al tiro per colpire."
+ },
+ "srd-awakened-shrub::trait::0": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre rimane immobile, l'arbusto è indistinguibile da un normale arbusto."
+ },
+ "srd-awakened-tree::trait::0": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre rimane immobile, l'albero è indistinguibile da un normale albero."
+ },
+ "srd-azer::trait::0": {
+  "name": "Corpo Incandescente",
+  "desc": "Una creatura che tocca l'azer o che lo colpisce con un attacco in mischia mentre si trova entro 1,5 m da esso subisce 5 (1d10) danni da fuoco."
+ },
+ "srd-azer::trait::1": {
+  "name": "Armi Incandescenti",
+  "desc": "Quando l'azer colpisce con un'arma da mischia metallica, infligge 3 (1d6) danni da fuoco extra (già inclusi nell'attacco)."
+ },
+ "srd-azer::trait::2": {
+  "name": "Illuminazione",
+  "desc": "L'azer emana luce intensa in un raggio di 3 m e luce fioca per altri 3 m."
+ },
+ "srd-baboon::trait::0": {
+  "name": "Tattiche di Branco",
+  "desc": "Il babbuino ha vantaggio al tiro per colpire contro una creatura se almeno uno dei suoi alleati si trova entro 1,5 m da quella creatura e l'alleato non è incapacitato."
+ },
+ "srd-badger::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Il tasso ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-balor::trait::0": {
+  "name": "Agonia Mortale",
+  "desc": "Quando il balor muore, esplode, e ogni creatura entro 9 m da esso deve effettuare un tiro di salvezza su Destrezza CD 20, subendo 70 (20d6) danni da fuoco se fallisce, o la metà di quel danno se ha successo. L'esplosione incendia gli oggetti infiammabili in quell'area che non sono indossati o trasportati, e distrugge le armi del balor."
+ },
+ "srd-balor::trait::1": {
+  "name": "Aura di Fuoco",
+  "desc": "All'inizio di ciascuno dei turni del balor, ogni creatura entro 1,5 m da esso subisce 10 (3d6) danni da fuoco, e gli oggetti infiammabili nell'aura che non sono indossati o trasportati si incendiano. Una creatura che tocca il balor o che lo colpisce con un attacco in mischia mentre si trova entro 1,5 m da esso subisce 10 (3d6) danni da fuoco."
+ },
+ "srd-balor::trait::2": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il balor ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-balor::trait::3": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi del balor sono magici."
+ },
+ "srd-barbed-devil::trait::0": {
+  "name": "Pelle Spinosa",
+  "desc": "All'inizio di ciascuno dei suoi turni, il diavolo spinoso infligge 5 (1d10) danni perforanti a qualsiasi creatura che lo sta afferrando."
+ },
+ "srd-barbed-devil::trait::1": {
+  "name": "Vista del Diavolo",
+  "desc": "L'oscurità magica non ostacola la visione nel buio del diavolo."
+ },
+ "srd-barbed-devil::trait::2": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il diavolo ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-basilisk::trait::0": {
+  "name": "Sguardo Pietrificante",
+  "desc": "Se una creatura inizia il suo turno entro 9 m dal basilisco e i due possono vedersi a vicenda, il basilisco può costringere la creatura a effettuare un tiro di salvezza su Costituzione CD 12, a condizione che il basilisco non sia incapacitato. In caso di fallimento, la creatura inizia magicamente a trasformarsi in pietra ed è trattenuta. Deve ripetere il tiro di salvezza al termine del suo turno successivo. In caso di successo, l'effetto termina. In caso di fallimento, la creatura è pietrificata finché non viene liberata dall'incantesimo ristorazione superiore o da altra magia.\nUna creatura che non è colta di sorpresa può distogliere lo sguardo per evitare il tiro di salvezza all'inizio del suo turno. Se lo fa, non può vedere il basilisco fino all'inizio del suo turno successivo, momento in cui può distogliere nuovamente lo sguardo. Se nel frattempo guarda il basilisco, deve immediatamente effettuare il tiro di salvezza.\nSe il basilisco vede il proprio riflesso entro 9 m da esso in luce intensa, si scambia per un rivale e bersaglia sé stesso con il proprio sguardo."
+ },
+ "srd-bat::trait::0": {
+  "name": "Ecolocalizzazione",
+  "desc": "Il pipistrello non può usare la sua percezione cieca mentre è assordato."
+ },
+ "srd-bat::trait::1": {
+  "name": "Udito Acuto",
+  "desc": "Il pipistrello ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito."
+ },
+ "srd-bearded-devil::trait::0": {
+  "name": "Vista del Diavolo",
+  "desc": "L'oscurità magica non ostacola la visione nel buio del diavolo."
+ },
+ "srd-bearded-devil::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il diavolo ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-bearded-devil::trait::2": {
+  "name": "Risoluto",
+  "desc": "Il diavolo non può essere spaventato mentre può vedere una creatura alleata entro 9 m da esso."
+ },
+ "srd-berserker::trait::0": {
+  "name": "Sconsiderato",
+  "desc": "All'inizio del suo turno, il berserker può ottenere vantaggio a tutti i tiri per colpire con armi da mischia durante quel turno, ma i tiri per colpire contro di lui hanno vantaggio fino all'inizio del suo turno successivo."
+ },
+ "srd-black-bear::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "L'orso ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-black-dragon-wyrmling::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-black-pudding::trait::0": {
+  "name": "Amorfo",
+  "desc": "La putrefazione può muoversi attraverso uno spazio largo appena 2,5 cm senza dover stringersi."
+ },
+ "srd-black-pudding::trait::1": {
+  "name": "Forma Corrosiva",
+  "desc": "Una creatura che tocca la putrefazione o che la colpisce con un attacco in mischia mentre si trova entro 1,5 m da essa subisce 4 (1d8) danni da acido. Qualsiasi arma non magica di metallo o legno che colpisce la putrefazione si corrode. Dopo aver infierito il danno, l'arma subisce una penalità permanente e cumulativa di -1 ai tiri per i danni. Se la penalità scende a -5, l'arma è distrutta. Le munizioni non magiche di metallo o legno che colpiscono la putrefazione sono distrutte dopo aver infierito il danno. La putrefazione può corrodere 5 cm di legno o metallo non magico in 1 round."
+ },
+ "srd-black-pudding::trait::2": {
+  "name": "Scalata su Ragnatela",
+  "desc": "La putrefazione può scalare superfici difficili, incluso a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-blink-dog::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il cane ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-blood-hawk::trait::0": {
+  "name": "Vista Acuta",
+  "desc": "Il falco ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-blood-hawk::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Il falco ha vantaggio al tiro per colpire contro una creatura se almeno uno dei suoi alleati si trova entro 1,5 m da quella creatura e l'alleato non è incapacitato."
+ },
+ "srd-boar::trait::0": {
+  "name": "Carica",
+  "desc": "Se il cinghiale si muove di almeno 6 m in linea retta verso un bersaglio e poi lo colpisce con un attacco di zanna nello stesso turno, il bersaglio subisce 3 (1d6) danni taglienti extra. Se il bersaglio è una creatura, deve superare un tiro di salvezza su Forza CD 11 o essere abbattuto prono."
+ },
+ "srd-boar::trait::1": {
+  "name": "Implacabile",
+  "desc": "Se il cinghiale subisce 7 danni o meno che lo ridurrebbero a 0 punti ferita, viene invece ridotto a 1 punto ferita."
+ },
+ "srd-bone-devil::trait::0": {
+  "name": "Vista del Diavolo",
+  "desc": "L'oscurità magica non ostacola la visione nel buio del diavolo."
+ },
+ "srd-bone-devil::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il diavolo ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-bronze-dragon-wyrmling::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-brown-bear::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "L'orso ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-bugbear::trait::0": {
+  "name": "Bruto",
+  "desc": "Un'arma da mischia infligge un dado extra del suo danno quando il bugbear colpisce con essa (già incluso nell'attacco)."
+ },
+ "srd-bugbear::trait::1": {
+  "name": "Attacco a Sorpresa",
+  "desc": "Se il bugbear sorprende una creatura e la colpisce con un attacco durante il primo round di combattimento, il bersaglio subisce 7 (2d6) danni extra da quell'attacco."
+ },
+ "srd-bulette::trait::0": {
+  "name": "Salto in Piedi",
+  "desc": "Il salto in lungo del bulette è fino a 9 m e il suo salto in alto è fino a 4,5 m, con o senza rincorsa."
+ },
+ "srd-cat::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Il gatto ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-centaur::trait::0": {
+  "name": "Carica",
+  "desc": "Se il centauro si muove di almeno 9 m in linea retta verso un bersaglio e poi lo colpisce con un attacco di picca nello stesso turno, il bersaglio subisce 10 (3d6) danni perforanti extra."
+ },
+ "srd-chain-devil::trait::0": {
+  "name": "Vista del Diavolo",
+  "desc": "L'oscurità magica non ostacola la visione nel buio del diavolo."
+ },
+ "srd-chain-devil::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il diavolo ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-chuul::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il chuul può respirare sia in aria che in acqua."
+ },
+ "srd-chuul::trait::1": {
+  "name": "Percezione della Magia",
+  "desc": "Il chuul percepisce la magia entro 36 m da esso a volontà. Questa peculiarità funziona altrimenti come l'incantesimo individuazione magica, ma non è essa stessa magica."
+ },
+ "srd-clay-golem::trait::0": {
+  "name": "Assorbimento dell'Acido",
+  "desc": "Quando il golem è soggetto a danni da acido, non subisce alcun danno e invece recupera un numero di punti ferita pari al danno da acido inflitto."
+ },
+ "srd-clay-golem::trait::1": {
+  "name": "Furia Incontrollata",
+  "desc": "Ogni volta che il golem inizia il suo turno con 60 punti ferita o meno, tira 1d6. Con un risultato di 6, il golem va in furia incontrollata. In ciascuno dei suoi turni mentre è in furia, il golem attacca la creatura più vicina che riesce a vedere. Se nessuna creatura è abbastanza vicina da poter raggiungere e attaccare, il golem attacca un oggetto, preferendo un oggetto più piccolo di lui. Una volta che il golem va in furia incontrollata, continua a farlo finché non viene distrutto o non recupera tutti i suoi punti ferita."
+ },
+ "srd-clay-golem::trait::2": {
+  "name": "Forma Immutabile",
+  "desc": "Il golem è immune a qualsiasi incantesimo o effetto che alterebbe la sua forma."
+ },
+ "srd-clay-golem::trait::3": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il golem ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-clay-golem::trait::4": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi del golem sono magici."
+ },
+ "srd-cloaker::trait::0": {
+  "name": "Trasferimento del Danno",
+  "desc": "Mentre è attaccato a una creatura, il cloaker subisce solo metà del danno che gli viene infierito (arrotondato per difetto), e quella creatura subisce l'altra metà."
+ },
+ "srd-cloaker::trait::1": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre rimane immobile senza esporre il suo lato inferiore, il cloaker è indistinguibile da un mantello di pelle scura."
+ },
+ "srd-cloaker::trait::2": {
+  "name": "Sensibilità alla Luce",
+  "desc": "Mentre si trova in luce intensa, il cloaker ha svantaggio ai tiri per colpire e alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-cloud-giant::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Il gigante ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-cloud-giant::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi innato del gigante è Carisma. Può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\n\nA volontà: individuazione magica, nube di nebbia, luce\n3/giorno ciascuno: caduta plumea, volare, passo nebbioso, telecinesi\n1/giorno ciascuno: controllo del clima, forma gassosa"
+ },
+ "srd-couatl::trait::0": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi del couatl è Carisma (CD 14 per i tiri di salvezza). Può lanciare in modo innato i seguenti incantesimi, richiedendo solo componenti verbali:\n\nA volontà: individuazione del bene e del male, individuazione magica, percezione dei pensieri\n3/giorno ciascuno: benedizione, creare cibo e acqua, cura ferite, ristorazione inferiore, protezione dal veleno, santuario, scudo\n1/giorno ciascuno: sogno, ristorazione superiore, scrutare"
+ },
+ "srd-couatl::trait::1": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi del couatl sono magici."
+ },
+ "srd-couatl::trait::2": {
+  "name": "Mente Schermata",
+  "desc": "Il couatl è immune a scrutare e a qualsiasi effetto che percepisca le sue emozioni, legga i suoi pensieri o individui la sua posizione."
+ },
+ "srd-crab::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il granchio può respirare sia in aria che in acqua."
+ },
+ "srd-crocodile::trait::0": {
+  "name": "Trattenere il Respiro",
+  "desc": "Il coccodrillo può trattenere il respiro per 15 minuti."
+ },
+ "srd-cult-fanatic::trait::0": {
+  "name": "Devozione Oscura",
+  "desc": "Il fanatico ha vantaggio ai tiri di salvezza contro l'essere affascinato o spaventato."
+ },
+ "srd-cult-fanatic::trait::1": {
+  "name": "Lancio di Incantesimi",
+  "desc": "Il fanatico è un lanciatore di incantesimi di 4° livello. La sua caratteristica per lanciare incantesimi è Saggezza (CD 11 per i tiri di salvezza, +3 ai tiri per colpire con incantesimi). Il fanatico ha preparato i seguenti incantesimi da chierico:\n\nTrucchetti (a volontà): luce, fiamma sacra, taumaturgia\n- Incantesimi di 1° livello (4 slot): comando, infliggere ferite, scudo della fede\n- Incantesimi di 2° livello (3 slot): tenere persone, arma spirituale"
+ },
+ "srd-cultist::trait::0": {
+  "name": "Devozione Oscura",
+  "desc": "Il cultista ha vantaggio ai tiri di salvezza contro l'essere affascinato o spaventato."
+ },
+ "srd-darkmantle::trait::0": {
+  "name": "Ecolocalizzazione",
+  "desc": "Il darkmantle non può usare la sua percezione cieca mentre è assordato."
+ },
+ "srd-darkmantle::trait::1": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre rimane immobile, il darkmantle è indistinguibile da una formazione rocciosa come una stalattite o una stalagmite."
+ },
+ "srd-death-dog::trait::0": {
+  "name": "Due Teste",
+  "desc": "Il cane ha vantaggio alle prove di Saggezza (Percezione) e ai tiri di salvezza contro l'essere accecato, affascinato, assordato, spaventato, stordito o privato dei sensi."
+ },
+ "srd-deep-gnome-svirfneblin::trait::0": {
+  "name": "Mimetismo Roccioso",
+  "desc": "Lo gnomo ha vantaggio alle prove di Destrezza (Furtività) effettuate per nascondersi in un terreno roccioso."
+ },
+ "srd-deep-gnome-svirfneblin::trait::1": {
+  "name": "Astuzia Gnomesca",
+  "desc": "Lo gnomo ha vantaggio ai tiri di salvezza su Intelligenza, Saggezza e Carisma contro la magia."
+ },
+ "srd-deep-gnome-svirfneblin::trait::2": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi innato dello gnomo è Intelligenza (CD 11 per i tiri di salvezza). Può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\nA volontà: non individuazione (solo su sé stesso)\n1/giorno ciascuno: cecità/sordità, confusione visiva, camuffare"
+ },
+ "srd-deva::trait::0": {
+  "name": "Armi Angeliche",
+  "desc": "Gli attacchi con armi del deva sono magici. Quando il deva colpisce con qualsiasi arma, l'arma infligge 4d8 danni radianti extra (già inclusi nell'attacco)."
+ },
+ "srd-deva::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi del deva è Carisma (CD 17 per i tiri di salvezza). Il deva può lanciare in modo innato i seguenti incantesimi, richiedendo solo componenti verbali:\nA volontà: individuazione del bene e del male\n1/giorno ciascuno: comunione, resurrezione"
+ },
+ "srd-deva::trait::2": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il deva ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-dire-wolf::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il lupo ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-dire-wolf::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Il lupo ha vantaggio al tiro per colpire contro una creatura se almeno uno dei suoi alleati si trova entro 1,5 m da quella creatura e l'alleato non è incapacitato."
+ },
+ "srd-djinni::trait::0": {
+  "name": "Trapasso Elementale",
+  "desc": "Se il djinn muore, il suo corpo si disintegra in una brezza calda, lasciando dietro di sé solo l'equipaggiamento che il djinn indossava o trasportava."
+ },
+ "srd-djinni::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi innato del djinn è Carisma (CD 17 per i tiri di salvezza, +9 ai tiri per colpire con incantesimi). Può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\n\nA volontà: individuazione del bene e del male, individuazione magica, onda tonante\n3/giorno ciascuno: creare cibo e acqua (può creare vino invece di acqua), linguaggi, camminare nel vento\n1/giorno ciascuno: evocare elementale (solo elementale dell'aria), creazione, forma gassosa, invisibilità, immagine maggiore, viaggio dimensionale"
+ },
+ "srd-doppelganger::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il doppelganger può usare la sua azione per trasformarsi in un umanoide Piccolo o Medio che ha visto, o tornare alla sua vera forma. Le sue statistiche, a eccezione della taglia, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o trasporta non viene trasformato. Ritorna alla sua vera forma se muore."
+ },
+ "srd-doppelganger::trait::1": {
+  "name": "Imboscatore",
+  "desc": "Nel primo round di combattimento, il doppelganger ha vantaggio ai tiri per colpire contro qualsiasi creatura che ha colto di sorpresa."
+ },
+ "srd-doppelganger::trait::2": {
+  "name": "Attacco a Sorpresa",
+  "desc": "Se il doppelganger sorprende una creatura e la colpisce con un attacco durante il primo round di combattimento, il bersaglio subisce 10 (3d6) danni extra da quell'attacco."
+ },
+ "srd-dragon-turtle::trait::0": {
+  "name": "Anfibio",
+  "desc": "La tartaruga draconica può respirare sia in aria che in acqua."
+ },
+ "srd-drider::trait::0": {
+  "name": "Ascendenza Fatata",
+  "desc": "Il drider ha vantaggio ai tiri di salvezza contro l'essere affascinato, e la magia non può farlo addormentare."
+ },
+ "srd-drider::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi innato del drider è Saggezza (CD 13 per i tiri di salvezza). Il drider può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\nA volontà: luci danzanti\n1/giorno ciascuno: oscurità, fuoco fatato"
+ },
+ "srd-drider::trait::2": {
+  "name": "Scalata su Ragnatela",
+  "desc": "Il drider può scalare superfici difficili, incluso a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-drider::trait::3": {
+  "name": "Sensibilità alla Luce Solare",
+  "desc": "Mentre si trova alla luce del sole, il drider ha svantaggio ai tiri per colpire, così come alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-drider::trait::4": {
+  "name": "Camminatore di Ragnatele",
+  "desc": "Il drider ignora le restrizioni di movimento causate dalle ragnatele."
+ },
+ "srd-drow::trait::0": {
+  "name": "Ascendenza Fatata",
+  "desc": "Il drow ha vantaggio ai tiri di salvezza contro l'essere affascinato, e la magia non può farlo addormentare."
+ },
+ "srd-drow::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi del drow è Carisma (CD 11 per i tiri di salvezza). Può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\nA volontà: luci danzanti\n1/giorno ciascuno: oscurità, fuoco fatato"
+ },
+ "srd-drow::trait::2": {
+  "name": "Sensibilità alla Luce Solare",
+  "desc": "Mentre si trova alla luce del sole, il drow ha svantaggio ai tiri per colpire, così come alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-druid::trait::0": {
+  "name": "Lancio di Incantesimi",
+  "desc": "Il druido è un lanciatore di incantesimi di 4° livello. La sua caratteristica per lanciare incantesimi è Saggezza (CD 12 per i tiri di salvezza, +4 ai tiri per colpire con incantesimi). Ha preparato i seguenti incantesimi da druido:\n\n- Trucchetti (a volontà): magia della natura, produrre fiamma, randello incantato\n- Incantesimi di 1° livello (4 slot): impaniare, falcata della strega, parlare con gli animali, onda tonante\n- Incantesimi di 2° livello (3 slot): messaggero animale, pelle d'albero"
+ },
+ "srd-dryad::trait::0": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi innato della driade è Carisma (CD 14 per i tiri di salvezza). La driade può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\n\nA volontà: magia della natura\n3/giorno ciascuno: impaniare, baccabuona\n1/giorno ciascuno: pelle d'albero, passare senza lasciare traccia, randello incantato"
+ },
+ "srd-dryad::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "La driade ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-dryad::trait::2": {
+  "name": "Parlare con Bestie e Piante",
+  "desc": "La driade può comunicare con bestie e piante come se condividessero un linguaggio."
+ },
+ "srd-dryad::trait::3": {
+  "name": "Passo tra gli Alberi",
+  "desc": "Una volta per turno, la driade può usare 3 m del suo movimento per entrare magicamente in un albero vivo entro la sua portata e uscire da un secondo albero vivo entro 18 m dal primo, apparendo in uno spazio libero entro 1,5 m dal secondo albero. Entrambi gli alberi devono essere di taglia Grande o superiore."
+ },
+ "srd-duergar::trait::0": {
+  "name": "Resilienza Duergar",
+  "desc": "Il duergar ha vantaggio ai tiri di salvezza contro veleno, incantesimi e illusioni, così come per resistere all'essere affascinato o paralizzato."
+ },
+ "srd-duergar::trait::1": {
+  "name": "Sensibilità alla Luce Solare",
+  "desc": "Mentre si trova alla luce del sole, il duergar ha svantaggio ai tiri per colpire, così come alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-dust-mephit::trait::0": {
+  "name": "Scoppio Mortale",
+  "desc": "Quando il mefit muore, esplode in un'esplosione di polvere. Ogni creatura entro 1,5 m da esso deve quindi superare un tiro di salvezza su Costituzione CD 10 o essere accecata per 1 minuto. Una creatura accecata può ripetere il tiro di salvezza a ogni suo turno, terminando l'effetto su di sé in caso di successo."
+ },
+ "srd-dust-mephit::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "Il mephit può lanciare in modo innato sonno, senza bisogno di componenti materiali. La sua caratteristica per il lancio di incantesimi innato è Carisma."
+ },
+ "srd-eagle::trait::0": {
+  "name": "Vista Acuta",
+  "desc": "L'aquila ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-earth-elemental::trait::0": {
+  "name": "Scivolamento nella Terra",
+  "desc": "L'elementale può scavare attraverso terra e roccia non magiche e non lavorate. Mentre lo fa, l'elementale non disturba il materiale che attraversa."
+ },
+ "srd-earth-elemental::trait::1": {
+  "name": "Mostro d'Assedio",
+  "desc": "L'elementale infligge danni doppi a oggetti e strutture."
+ },
+ "srd-efreeti::trait::0": {
+  "name": "Dissoluzione Elementale",
+  "desc": "Se l'efreeti muore, il suo corpo si disintegra in un lampo di fuoco e una nuvola di fumo, lasciando dietro di sé solo l'equipaggiamento che il djinn indossava o portava con sé."
+ },
+ "srd-efreeti::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi innato dell'efreeti è Carisma (CD 15 per i tiri di salvezza contro gli incantesimi, +7 per colpire con gli attacchi con incantesimi). Può lanciare in modo innato i seguenti incantesimi, senza bisogno di componenti materiali:\n\nA volontà: individuazione del magico\n3/giorno: ingrandire/rimpicciolire, lingue\n1/giorno ciascuno: evocare elementale (solo elementale del fuoco), forma gassosa, invisibilità, immagine maggiore, viaggio tra i piani, muro di fuoco"
+ },
+ "srd-elephant::trait::0": {
+  "name": "Carica Travolgente",
+  "desc": "Se l'elefante si muove di almeno 9 m in linea retta verso una creatura e poi la colpisce con un attacco di zanna nello stesso turno, l'obiettivo deve superare un tiro di salvezza su Forza CD 12 o essere fatto cadere prono. Se l'obiettivo è prono, l'elefante può effettuare un attacco di calpestio contro di esso come azione bonus."
+ },
+ "srd-elk::trait::0": {
+  "name": "Carica",
+  "desc": "Se l'alce si muove di almeno 9 m in linea retta verso un obiettivo e poi lo colpisce con un attacco di cornata nello stesso turno, l'obiettivo subisce 7 (2d6) danni aggiuntivi. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza CD 13 o essere fatto cadere prono."
+ },
+ "srd-erinyes::trait::0": {
+  "name": "Armi Infernali",
+  "desc": "Gli attacchi con armi dell'erinni sono magici e infliggono 13 (3d8) danni da veleno aggiuntivi se colpiscono (già inclusi negli attacchi)."
+ },
+ "srd-erinyes::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "L'erinni ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-ettercap::trait::0": {
+  "name": "Scalata su Ragnatela",
+  "desc": "L'ettercap può scalare superfici difficili, anche a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-ettercap::trait::1": {
+  "name": "Percezione delle Ragnatele",
+  "desc": "Mentre è in contatto con una ragnatela, l'ettercap conosce la posizione esatta di qualsiasi altra creatura in contatto con la stessa ragnatela."
+ },
+ "srd-ettercap::trait::2": {
+  "name": "Camminatore di Ragnatele",
+  "desc": "L'ettercap ignora le restrizioni al movimento causate dalle ragnatele."
+ },
+ "srd-ettin::trait::0": {
+  "name": "Due Teste",
+  "desc": "L'ettin ha vantaggio alle prove di Saggezza (Percezione) e ai tiri di salvezza contro l'essere Accecato, Affascinato, Assordato, Spaventato, Stordito e reso Privo di sensi."
+ },
+ "srd-ettin::trait::1": {
+  "name": "Sempre Vigile",
+  "desc": "Quando una delle teste dell'ettin dorme, l'altra è sveglia."
+ },
+ "srd-fire-elemental::trait::0": {
+  "name": "Forma di Fuoco",
+  "desc": "L'elementale può muoversi attraverso uno spazio largo appena 2,5 cm senza dover stringersi. Una creatura che tocca l'elementale o lo colpisce con un attacco in mischia mentre è entro 1,5 m da esso subisce 5 (1d10) danni da fuoco. Inoltre, l'elementale può entrare nello spazio di una creatura ostile e fermarsi lì. La prima volta che entra nello spazio di una creatura in un turno, quella creatura subisce 5 (1d10) danni da fuoco e prende fuoco; finché qualcuno non compie un'azione per spegnere le fiamme, la creatura subisce 5 (1d10) danni da fuoco all'inizio di ciascuno dei suoi turni."
+ },
+ "srd-fire-elemental::trait::1": {
+  "name": "Illuminazione",
+  "desc": "L'elementale emana luce intensa in un raggio di 9 m e luce fioca per altri 9 m."
+ },
+ "srd-fire-elemental::trait::2": {
+  "name": "Vulnerabilità all'Acqua",
+  "desc": "Per ogni 1,5 m che l'elementale si muove nell'acqua, o per ogni secchio d'acqua che gli viene versato sopra, subisce 1 danno da freddo."
+ },
+ "srd-flesh-golem::trait::0": {
+  "name": "Furia Incontrollata",
+  "desc": "Ogni volta che il golem inizia il suo turno con 40 punti ferita o meno, tira un d6. Con un risultato di 6, il golem entra in furia incontrollata. In ciascuno dei suoi turni mentre è in furia, il golem attacca la creatura più vicina che può vedere. Se non ci sono creature abbastanza vicine da raggiungere e attaccare, il golem attacca un oggetto, preferendo un oggetto più piccolo di sé. Una volta che il golem entra in furia incontrollata, continua a farlo finché non viene distrutto o non recupera tutti i suoi punti ferita.\nIl creatore del golem, se entro 18 m dal golem in furia, può tentare di calmarlo parlando con fermezza e in modo persuasivo. Il golem deve poter sentire il suo creatore, che deve usare un'azione per effettuare una prova di Carisma (Persuasione) CD 15. Se la prova ha successo, il golem smette di essere in furia. Se subisce danni mentre è ancora a 40 punti ferita o meno, il golem potrebbe entrare di nuovo in furia incontrollata."
+ },
+ "srd-flesh-golem::trait::1": {
+  "name": "Aversione al Fuoco",
+  "desc": "Se il golem subisce danni da fuoco, ha svantaggio ai tiri per colpire e alle prove di caratteristica fino alla fine del suo turno successivo."
+ },
+ "srd-flesh-golem::trait::2": {
+  "name": "Forma Immutabile",
+  "desc": "Il golem è immune a qualsiasi incantesimo o effetto che alteri la sua forma."
+ },
+ "srd-flesh-golem::trait::3": {
+  "name": "Assorbimento del Fulmine",
+  "desc": "Ogni volta che il golem è soggetto a danni da fulmine, non subisce alcun danno e recupera invece un numero di punti ferita pari al danno da fulmine subito."
+ },
+ "srd-flesh-golem::trait::4": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il golem ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-flesh-golem::trait::5": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi del golem sono magici."
+ },
+ "srd-flying-snake::trait::0": {
+  "name": "Volo Radente",
+  "desc": "Il serpente non provoca attacchi di opportunità quando vola fuori dalla portata di un nemico."
+ },
+ "srd-flying-sword::trait::0": {
+  "name": "Vulnerabilità all'Antimagia",
+  "desc": "La spada è incapacitata mentre si trova nell'area di un campo antimagico. Se è bersaglio di dissolvi magia, la spada deve superare un tiro di salvezza su Costituzione contro la CD per i tiri di salvezza contro gli incantesimi dell'incantatore o cadere priva di sensi per 1 minuto."
+ },
+ "srd-flying-sword::trait::1": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre la spada resta immobile e non vola, è indistinguibile da una spada normale."
+ },
+ "srd-frog::trait::0": {
+  "name": "Anfibio",
+  "desc": "La rana può respirare sia in aria che in acqua."
+ },
+ "srd-frog::trait::1": {
+  "name": "Salto in Piedi",
+  "desc": "Il salto in lungo della rana è fino a 3 m e il salto in alto è fino a 1,5 m, con o senza rincorsa."
+ },
+ "srd-gargoyle::trait::0": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre il gargoyle resta immobile, è indistinguibile da una statua inanimata."
+ },
+ "srd-gelatinous-cube::trait::0": {
+  "name": "Cubo Limaccioso",
+  "desc": "Il cubo occupa interamente il suo spazio. Altre creature possono entrare nello spazio, ma una creatura che lo fa è soggetta all'Inghiottimento del cubo e ha svantaggio al tiro di salvezza.\nLe creature all'interno del cubo possono essere viste ma godono di copertura totale.\nUna creatura entro 1,5 m dal cubo può usare un'azione per estrarre una creatura o un oggetto dal cubo. Per farlo è necessaria una prova di Forza CD 12 riuscita, e la creatura che effettua il tentativo subisce 10 (3d6) danni da acido.\nIl cubo può contenere al suo interno solo una creatura Grande o fino a quattro creature Medie o più piccole alla volta."
+ },
+ "srd-gelatinous-cube::trait::1": {
+  "name": "Trasparente",
+  "desc": "Anche quando il cubo è in piena vista, è necessaria una prova di Saggezza (Percezione) CD 15 riuscita per individuare un cubo che non si è mosso né ha attaccato. Una creatura che cerca di entrare nello spazio del cubo senza essere consapevole della sua presenza viene colta di sorpresa dal cubo."
+ },
+ "srd-ghast::trait::0": {
+  "name": "Fetore",
+  "desc": "Qualsiasi creatura che inizia il suo turno entro 1,5 m dal ghast deve superare un tiro di salvezza su Costituzione CD 10 o essere Avvelenata fino all'inizio del suo turno successivo. Con un tiro di salvezza riuscito, la creatura è immune al Fetore del ghast per 24 ore."
+ },
+ "srd-ghast::trait::1": {
+  "name": "Resistenza alla Cacciata",
+  "desc": "Il ghast e ogni ghoul entro 9 m da esso hanno vantaggio ai tiri di salvezza contro gli effetti che scacciano gli non morti."
+ },
+ "srd-ghost::trait::0": {
+  "name": "Vista Etera",
+  "desc": "Il fantasma può vedere per 18 m nel Piano Etereo quando si trova sul Piano Materiale, e viceversa."
+ },
+ "srd-ghost::trait::1": {
+  "name": "Movimento Incorporeo",
+  "desc": "Il fantasma può muoversi attraverso altre creature e oggetti come se fossero terreno difficile. Subisce 5 (1d10) danni da forza se termina il suo turno all'interno di un oggetto."
+ },
+ "srd-giant-badger::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Il tasso ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-giant-bat::trait::0": {
+  "name": "Ecolocalizzazione",
+  "desc": "Il pipistrello non può usare la sua vista cieca mentre è Assordato."
+ },
+ "srd-giant-bat::trait::1": {
+  "name": "Udito Acuto",
+  "desc": "Il pipistrello ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito."
+ },
+ "srd-giant-boar::trait::0": {
+  "name": "Carica",
+  "desc": "Se il cinghiale si muove di almeno 9 m in linea retta verso un obiettivo e poi lo colpisce con un attacco di zanna nello stesso turno, l'obiettivo subisce 7 (2d6) danni taglienti aggiuntivi. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza CD 13 o essere fatto cadere prono."
+ },
+ "srd-giant-boar::trait::1": {
+  "name": "Inarrestabile",
+  "desc": "Se il cinghiale subisce 10 danni o meno che lo porterebbero a 0 punti ferita, viene invece ridotto a 1 punto ferita."
+ },
+ "srd-giant-crab::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il granchio può respirare sia in aria che in acqua."
+ },
+ "srd-giant-crocodile::trait::0": {
+  "name": "Trattenere il Respiro",
+  "desc": "Il coccodrillo può trattenere il respiro per 30 minuti."
+ },
+ "srd-giant-eagle::trait::0": {
+  "name": "Vista Acuta",
+  "desc": "L'aquila ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-giant-elk::trait::0": {
+  "name": "Carica",
+  "desc": "Se l'alce si muove di almeno 9 m in linea retta verso un obiettivo e poi lo colpisce con un attacco di cornata nello stesso turno, l'obiettivo subisce 7 (2d6) danni aggiuntivi. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza CD 14 o essere fatto cadere prono."
+ },
+ "srd-giant-fire-beetle::trait::0": {
+  "name": "Illuminazione",
+  "desc": "Lo scarafaggio emana luce intensa in un raggio di 3 m e luce fioca per altri 3 m."
+ },
+ "srd-giant-frog::trait::0": {
+  "name": "Anfibio",
+  "desc": "La rana può respirare sia in aria che in acqua."
+ },
+ "srd-giant-frog::trait::1": {
+  "name": "Salto in Piedi",
+  "desc": "Il salto in lungo della rana è fino a 6 m e il salto in alto è fino a 3 m, con o senza rincorsa."
+ },
+ "srd-giant-goat::trait::0": {
+  "name": "Carica",
+  "desc": "Se la capra si muove di almeno 9 m in linea retta verso un obiettivo e poi lo colpisce con un attacco di cornata nello stesso turno, l'obiettivo subisce 5 (2d4) danni contundenti aggiuntivi. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza CD 13 o essere fatto cadere prono."
+ },
+ "srd-giant-goat::trait::1": {
+  "name": "Passo Sicuro",
+  "desc": "La capra ha vantaggio ai tiri di salvezza su Forza e Destrezza effettuati contro effetti che la farebbero cadere prona."
+ },
+ "srd-giant-hyena::trait::0": {
+  "name": "Furia Aggressiva",
+  "desc": "Quando la iena riduce una creatura a 0 punti ferita con un attacco in mischia nel suo turno, la iena può usare un'azione bonus per muoversi fino alla metà della sua velocità ed effettuare un attacco di morso."
+ },
+ "srd-giant-octopus::trait::0": {
+  "name": "Trattenere il Respiro",
+  "desc": "Quando si trova fuori dall'acqua, il polpo può trattenere il respiro per 1 ora."
+ },
+ "srd-giant-octopus::trait::1": {
+  "name": "Mimetismo Subacqueo",
+  "desc": "Il polpo ha vantaggio alle prove di Destrezza (Furtività) effettuate sott'acqua."
+ },
+ "srd-giant-octopus::trait::2": {
+  "name": "Respirazione Acquatica",
+  "desc": "Il polpo può respirare solo sott'acqua."
+ },
+ "srd-giant-owl::trait::0": {
+  "name": "Volo Radente",
+  "desc": "Il gufo non provoca attacchi di opportunità quando vola fuori dalla portata di un nemico."
+ },
+ "srd-giant-owl::trait::1": {
+  "name": "Udito e Vista Acuti",
+  "desc": "Il gufo ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sulla vista."
+ },
+ "srd-giant-rat::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Il ratto ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-giant-rat::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Il ratto ha vantaggio al tiro per colpire contro una creatura se almeno uno degli alleati del ratto è entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-giant-rat-diseased::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Il ratto ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-giant-rat-diseased::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Il ratto ha vantaggio al tiro per colpire contro una creatura se almeno uno degli alleati del ratto è entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-giant-sea-horse::trait::0": {
+  "name": "Carica",
+  "desc": "Se il cavalluccio marino si muove di almeno 9 m in linea retta verso un obiettivo e poi lo colpisce con un attacco di cornata nello stesso turno, l'obiettivo subisce 7 (2d6) danni contundenti aggiuntivi. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza CD 11 o essere fatto cadere prono."
+ },
+ "srd-giant-sea-horse::trait::1": {
+  "name": "Respirazione Acquatica",
+  "desc": "Il cavalluccio marino può respirare solo sott'acqua."
+ },
+ "srd-giant-shark::trait::0": {
+  "name": "Frenesia di Sangue",
+  "desc": "Lo squalo ha vantaggio ai tiri per colpire in mischia contro qualsiasi creatura che non abbia tutti i suoi punti ferita."
+ },
+ "srd-giant-shark::trait::1": {
+  "name": "Respirazione Acquatica",
+  "desc": "Lo squalo può respirare solo sott'acqua."
+ },
+ "srd-giant-spider::trait::0": {
+  "name": "Scalata su Ragnatela",
+  "desc": "Il ragno può scalare superfici difficili, anche a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-giant-spider::trait::1": {
+  "name": "Percezione delle Ragnatele",
+  "desc": "Mentre è in contatto con una ragnatela, il ragno conosce la posizione esatta di qualsiasi altra creatura in contatto con la stessa ragnatela."
+ },
+ "srd-giant-spider::trait::2": {
+  "name": "Camminatore di Ragnatele",
+  "desc": "Il ragno ignora le restrizioni al movimento causate dalle ragnatele."
+ },
+ "srd-giant-toad::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il rospo può respirare sia in aria che in acqua."
+ },
+ "srd-giant-toad::trait::1": {
+  "name": "Salto in Piedi",
+  "desc": "Il salto in lungo del rospo è fino a 6 m e il salto in alto è fino a 3 m, con o senza rincorsa."
+ },
+ "srd-giant-vulture::trait::0": {
+  "name": "Vista e Olfatto Acuti",
+  "desc": "L'avvoltoio ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista o sull'olfatto."
+ },
+ "srd-giant-vulture::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "L'avvoltoio ha vantaggio al tiro per colpire contro una creatura se almeno uno degli alleati dell'avvoltoio è entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-giant-weasel::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "La donnola ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-giant-wolf-spider::trait::0": {
+  "name": "Scalata su Ragnatela",
+  "desc": "Il ragno può scalare superfici difficili, anche a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-giant-wolf-spider::trait::1": {
+  "name": "Percezione delle Ragnatele",
+  "desc": "Mentre è in contatto con una ragnatela, il ragno conosce la posizione esatta di qualsiasi altra creatura in contatto con la stessa ragnatela."
+ },
+ "srd-giant-wolf-spider::trait::2": {
+  "name": "Camminatore di Ragnatele",
+  "desc": "Il ragno ignora le restrizioni al movimento causate dalle ragnatele."
+ },
+ "srd-gibbering-mouther::trait::0": {
+  "name": "Terreno Aberrante",
+  "desc": "Il terreno in un raggio di 3 m intorno al brontolatore è terreno difficile e simile a pasta. Ogni creatura che inizia il suo turno in quell'area deve superare un tiro di salvezza su Forza CD 10 o avere la propria velocità ridotta a 0 fino all'inizio del suo turno successivo."
+ },
+ "srd-gibbering-mouther::trait::1": {
+  "name": "Farfugliamento",
+  "desc": "Il brontolatore farfuglia in modo incoerente mentre può vedere qualsiasi creatura e non è incapacitato. Ogni creatura che inizia il suo turno entro 6 m dal brontolatore e può sentire il farfugliamento deve superare un tiro di salvezza su Saggezza CD 10. In caso di fallimento, la creatura non può effettuare reazioni fino all'inizio del suo turno successivo e tira un d8 per determinare cosa fa durante il suo turno. Con un risultato da 1 a 4, la creatura non fa nulla. Con un risultato di 5 o 6, la creatura non effettua alcuna azione o azione bonus e usa tutto il suo movimento per spostarsi in una direzione determinata casualmente. Con un risultato di 7 o 8, la creatura effettua un attacco in mischia contro una creatura determinata casualmente entro la sua portata, oppure non fa nulla se non può effettuare un tale attacco."
+ },
+ "srd-glabrezu::trait::0": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi del glabrezu è Intelligenza (CD 16 per i tiri di salvezza contro gli incantesimi). Il glabrezu può lanciare in modo innato i seguenti incantesimi, senza bisogno di componenti materiali:\nA volontà: oscurità, individuazione del magico, dissolvi magia\n1/giorno ciascuno: confusione, volare, parola di potere stordire"
+ },
+ "srd-glabrezu::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il glabrezu ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-gladiator::trait::0": {
+  "name": "Coraggioso",
+  "desc": "Il gladiatore ha vantaggio ai tiri di salvezza contro l'essere Spaventato."
+ },
+ "srd-gladiator::trait::1": {
+  "name": "Bruto",
+  "desc": "Un'arma da mischia infligge un dado di danno aggiuntivo del suo tipo quando il gladiatore colpisce con essa (già incluso nell'attacco)."
+ },
+ "srd-gnoll::trait::0": {
+  "name": "Furia Aggressiva",
+  "desc": "Quando il gnoll riduce una creatura a 0 punti ferita con un attacco in mischia nel suo turno, il gnoll può usare un'azione bonus per muoversi fino alla metà della sua velocità ed effettuare un attacco di morso."
+ },
+ "srd-goat::trait::0": {
+  "name": "Carica",
+  "desc": "Se la capra si muove di almeno 9 m in linea retta verso un obiettivo e poi lo colpisce con un attacco di cornata nello stesso turno, l'obiettivo subisce 2 (1d4) danni contundenti aggiuntivi. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza CD 10 o essere fatto cadere prono."
+ },
+ "srd-goat::trait::1": {
+  "name": "Passo Sicuro",
+  "desc": "La capra ha vantaggio ai tiri di salvezza su Forza e Destrezza effettuati contro effetti che la farebbero cadere prona."
+ },
+ "srd-goblin::trait::0": {
+  "name": "Fuga Agile",
+  "desc": "Il goblin può effettuare l'azione Disimpegno o Nascondersi come azione bonus in ciascuno dei suoi turni."
+ },
+ "srd-gold-dragon-wyrmling::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-gorgon::trait::0": {
+  "name": "Carica Travolgente",
+  "desc": "Se la gorgone si muove di almeno 6 m in linea retta verso una creatura e poi la colpisce con un attacco di cornata nello stesso turno, l'obiettivo deve superare un tiro di salvezza su Forza CD 16 o essere fatto cadere prono. Se l'obiettivo è prono, la gorgone può effettuare un attacco di zoccoli contro di esso come azione bonus."
+ },
+ "srd-gray-ooze::trait::0": {
+  "name": "Amorfo",
+  "desc": "La melma può muoversi attraverso uno spazio largo appena 2,5 cm senza dover stringersi."
+ },
+ "srd-gray-ooze::trait::1": {
+  "name": "Corrosione del Metallo",
+  "desc": "Qualsiasi arma non magica fatta di metallo che colpisce la melma si corrode. Dopo aver infierito danni, l'arma subisce una penalità permanente e cumulativa di -1 ai tiri per i danni. Se la penalità raggiunge -5, l'arma viene distrutta. Le munizioni non magiche fatte di metallo che colpiscono la melma vengono distrutte dopo aver infierito danni.\nLa melma può corrodere 5 cm di metallo non magico in 1 round."
+ },
+ "srd-gray-ooze::trait::2": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre la melma resta immobile, è indistinguibile da una pozza oleosa o da una roccia bagnata."
+ },
+ "srd-green-dragon-wyrmling::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-green-hag::trait::0": {
+  "name": "Anfibio",
+  "desc": "La strega può respirare sia in aria che in acqua."
+ },
+ "srd-green-hag::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi innato della strega è Carisma (CD 12 per i tiri di salvezza contro gli incantesimi). Può lanciare in modo innato i seguenti incantesimi, senza bisogno di componenti materiali:\n\nA volontà: luci danzanti, illusione minore, scherno crudele"
+ },
+ "srd-green-hag::trait::2": {
+  "name": "Mimetismo Vocale",
+  "desc": "La strega può imitare suoni di animali e voci umanoidi. Una creatura che sente i suoni può riconoscerli come imitazioni con una prova di Saggezza (Intuizione) CD 14 riuscita."
+ },
+ "srd-grick::trait::0": {
+  "name": "Mimetismo Roccioso",
+  "desc": "Il grick ha vantaggio alle prove di Destrezza (Furtività) effettuate per nascondersi in terreno roccioso."
+ },
+ "srd-griffon::trait::0": {
+  "name": "Vista Acuta",
+  "desc": "Il grifone ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-grimlock::trait::0": {
+  "name": "Sensi Ciechi",
+  "desc": "Il grimlock non può usare la sua vista cieca mentre è Assordato e incapace di odorare."
+ },
+ "srd-grimlock::trait::1": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il grimlock ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-grimlock::trait::2": {
+  "name": "Mimetismo Roccioso",
+  "desc": "Il grimlock ha vantaggio alle prove di Destrezza (Furtività) effettuate per nascondersi in terreno roccioso."
+ },
+ "srd-guardian-naga::trait::0": {
+  "name": "Rinascita",
+  "desc": "Se muore, il naga ritorna in vita dopo 1d6 giorni e recupera tutti i suoi punti ferita. Solo l'incantesimo desiderio può impedire a questo tratto di funzionare."
+ },
+ "srd-guardian-naga::trait::1": {
+  "name": "Lancio di Incantesimi",
+  "desc": "Il naga è un incantatore di 11° livello. La sua caratteristica per il lancio di incantesimi è Saggezza (CD 16 per i tiri di salvezza contro gli incantesimi, +8 per colpire con gli attacchi con incantesimi), e necessita solo di componenti verbali per lanciare i suoi incantesimi. Ha preparato i seguenti incantesimi da chierico:\n\n- Trucchetti (a volontà): riparare, fiamma sacra, taumaturgia\n- 1° livello (4 slot): comando, cura ferite, scudo della fede\n- 2° livello (3 slot): calmare le emozioni, individuazione di una persona\n- 3° livello (3 slot): infliggere maledizione, chiaroveggenza\n- 4° livello (3 slot): bandire, libertà di movimento\n- 5° livello (2 slot): colpo di fiamme, costrizione\n- 6° livello (1 slot): vera vista"
+ },
+ "srd-gynosphinx::trait::0": {
+  "name": "Insondabile",
+  "desc": "La sfinge è immune a qualsiasi effetto che percepisca le sue emozioni o legga i suoi pensieri, così come a qualsiasi incantesimo divinatorio che essa rifiuti. Le prove di Saggezza (Intuizione) effettuate per accertare le intenzioni o la sincerità della sfinge hanno svantaggio."
+ },
+ "srd-gynosphinx::trait::1": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi della sfinge sono magici."
+ },
+ "srd-gynosphinx::trait::2": {
+  "name": "Lancio di Incantesimi",
+  "desc": "La sfinge è un'incantatrice di 9° livello. La sua caratteristica per il lancio di incantesimi è Intelligenza (CD 16 per i tiri di salvezza contro gli incantesimi, +8 per colpire con gli attacchi con incantesimi). Non necessita di componenti materiali per lanciare i suoi incantesimi. La sfinge ha preparato i seguenti incantesimi da mago:\n\n- Trucchetti (a volontà): mano magica, illusione minore, prestidigitazione\n- 1° livello (4 slot): individuazione del magico, identificare, scudo\n- 2° livello (3 slot): oscurità, individuazione di oggetti, suggestione\n- 3° livello (3 slot): dissolvi magia, rimuovi maledizione, lingue\n- 4° livello (3 slot): bandire, invisibilità superiore\n- 5° livello (1 slot): scoperta di leggende"
+ },
+ "srd-hawk::trait::0": {
+  "name": "Vista Acuta",
+  "desc": "Il falco ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-hell-hound::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il segugio ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-hell-hound::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Il segugio ha vantaggio al tiro per colpire contro una creatura se almeno uno degli alleati del segugio è entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-hezrou::trait::0": {
+  "name": "Resistenza alla Magia",
+  "desc": "L'hezrou ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-hezrou::trait::1": {
+  "name": "Fetore",
+  "desc": "Qualsiasi creatura che inizia il suo turno entro 3 m dall'hezrou deve superare un tiro di salvezza su Costituzione CD 14 o essere Avvelenata fino all'inizio del suo turno successivo. Con un tiro di salvezza riuscito, la creatura è immune al fetore dell'hezrou per 24 ore."
+ },
+ "srd-hippogriff::trait::0": {
+  "name": "Vista Acuta",
+  "desc": "L'ippogrifo ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-hobgoblin::trait::0": {
+  "name": "Vantaggio Marziale",
+  "desc": "Una volta per turno, lo hobgoblin può infliggere 7 (2d6) danni aggiuntivi a una creatura che colpisce con un attacco con arma se quella creatura si trova entro 1,5 m da un alleato dello hobgoblin che non è incapacitato."
+ },
+ "srd-homunculus::trait::0": {
+  "name": "Legame Telepatico",
+  "desc": "Mentre l'homunculus si trova sullo stesso piano di esistenza del suo padrone, può trasmettere magicamente al padrone ciò che percepisce, e i due possono comunicare telepaticamente."
+ },
+ "srd-horned-devil::trait::0": {
+  "name": "Vista del Diavolo",
+  "desc": "L'oscurità magica non ostacola la scurovisione del diavolo."
+ },
+ "srd-horned-devil::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il diavolo ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-hunter-shark::trait::0": {
+  "name": "Frenesia di Sangue",
+  "desc": "Lo squalo ha vantaggio ai tiri per colpire in mischia contro qualsiasi creatura che non abbia tutti i suoi punti ferita."
+ },
+ "srd-hunter-shark::trait::1": {
+  "name": "Respirazione Acquatica",
+  "desc": "Lo squalo può respirare solo sott'acqua."
+ },
+ "srd-hydra::trait::0": {
+  "name": "Trattenere il Respiro",
+  "desc": "L'idra può trattenere il respiro per 1 ora."
+ },
+ "srd-hydra::trait::1": {
+  "name": "Teste Multiple",
+  "desc": "L'idra ha cinque teste. Mentre ha più di una testa, l'idra ha vantaggio ai tiri di salvezza contro l'essere Accecata, Affascinata, Assordata, Spaventata, Stordita e resa Priva di sensi.\nOgni volta che l'idra subisce 25 o più danni in un singolo turno, una delle sue teste muore. Se tutte le sue teste muoiono, l'idra muore.\nAlla fine del suo turno, fa crescere due teste per ognuna delle teste morte dalla fine del suo ultimo turno, a meno che non abbia subito danni da fuoco dall'ultimo turno. L'idra recupera 10 punti ferita per ogni testa rigenerata in questo modo."
+ },
+ "srd-hydra::trait::2": {
+  "name": "Teste Reattive",
+  "desc": "Per ogni testa che l'idra possiede oltre la prima, ottiene una reazione aggiuntiva che può essere usata solo per attacchi di opportunità."
+ },
+ "srd-hydra::trait::3": {
+  "name": "Sempre Vigile",
+  "desc": "Mentre l'idra dorme, almeno una delle sue teste è sveglia."
+ },
+ "srd-hyena::trait::0": {
+  "name": "Tattiche di Branco",
+  "desc": "La iena ha vantaggio al tiro per colpire contro una creatura se almeno uno degli alleati della iena è entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-ice-devil::trait::0": {
+  "name": "Vista del Diavolo",
+  "desc": "L'oscurità magica non ostacola la scurovisione del diavolo."
+ },
+ "srd-ice-devil::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il diavolo ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-ice-mephit::trait::0": {
+  "name": "Scoppio Mortale",
+  "desc": "Quando il mephit muore, esplode in una raffica di ghiaccio frastagliato. Ogni creatura entro 1,5 m da esso deve effettuare un tiro di salvezza su Destrezza CD 10, subendo 4 (1d8) danni taglienti in caso di fallimento, o la metà dei danni in caso di successo."
+ },
+ "srd-ice-mephit::trait::1": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre il mephit resta immobile, è indistinguibile da una normale scheggia di ghiaccio."
+ },
+ "srd-ice-mephit::trait::2": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "Il mephit può lanciare in modo innato nube di nebbia, senza bisogno di componenti materiali. La sua caratteristica per il lancio di incantesimi innato è Carisma."
+ },
+ "srd-imp::trait::0": {
+  "name": "Cambiaforma",
+  "desc": "L'imp può usare la sua azione per trasformarsi in una forma bestiale che ricorda un ratto (velocità 6 m), un corvo (6 m, volare 18 m) o un ragno (6 m, scalare 6 m), oppure ritornare alla sua vera forma. Le sue statistiche sono le stesse in ogni forma, eccetto per i cambiamenti di velocità indicati. L'equipaggiamento che indossa o porta con sé non viene trasformato. Ritorna alla sua vera forma se muore."
+ },
+ "srd-imp::trait::1": {
+  "name": "Vista del Diavolo",
+  "desc": "L'oscurità magica non ostacola la scurovisione dell'imp."
+ },
+ "srd-imp::trait::2": {
+  "name": "Resistenza alla Magia",
+  "desc": "L'imp ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-invisible-stalker::trait::0": {
+  "name": "Invisibilità",
+  "desc": "L'inseguitore è invisibile."
+ },
+ "srd-invisible-stalker::trait::1": {
+  "name": "Cacciatore Infallibile",
+  "desc": "All'inseguitore viene affidata una preda dal suo evocatore. L'inseguitore conosce la direzione e la distanza dalla sua preda fintanto che entrambi si trovano sullo stesso piano di esistenza. L'inseguitore conosce anche la posizione del suo evocatore."
+ },
+ "srd-iron-golem::trait::0": {
+  "name": "Assorbimento del Fuoco",
+  "desc": "Ogni volta che il golem è soggetto a danni da fuoco, non subisce alcun danno e recupera invece un numero di punti ferita pari al danno da fuoco subito."
+ },
+ "srd-iron-golem::trait::1": {
+  "name": "Forma Immutabile",
+  "desc": "Il golem è immune a qualsiasi incantesimo o effetto che alteri la sua forma."
+ },
+ "srd-iron-golem::trait::2": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il golem ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-iron-golem::trait::3": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi del golem sono magici."
+ },
+ "srd-jackal::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Lo sciacallo ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-jackal::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Lo sciacallo ha vantaggio al tiro per colpire contro una creatura se almeno uno degli alleati dello sciacallo è entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-killer-whale::trait::0": {
+  "name": "Ecolocalizzazione",
+  "desc": "L'orca non può usare la sua vista cieca mentre è Assordata."
+ },
+ "srd-killer-whale::trait::1": {
+  "name": "Trattenere il Respiro",
+  "desc": "L'orca può trattenere il respiro per 30 minuti."
+ },
+ "srd-killer-whale::trait::2": {
+  "name": "Udito Acuto",
+  "desc": "L'orca ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito."
+ },
+ "srd-knight::trait::0": {
+  "name": "Coraggioso",
+  "desc": "Il cavaliere ha vantaggio ai tiri di salvezza contro la condizione Spaventato."
+ },
+ "srd-kobold::trait::0": {
+  "name": "Sensibilità alla Luce Solare",
+  "desc": "Mentre è alla luce del sole, il kobold ha svantaggio ai tiri per colpire, così come alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-kobold::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Il kobold ha vantaggio al tiro per colpire contro una creatura se almeno uno degli alleati del kobold si trova entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-kraken::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il kraken può respirare sia in aria che in acqua."
+ },
+ "srd-kraken::trait::1": {
+  "name": "Libertà di Movimento",
+  "desc": "Il kraken ignora il terreno difficile e gli effetti magici non possono ridurre la sua velocità o renderlo Trattenuto. Può spendere 1,5 m di movimento per liberarsi da restrizioni non magiche o dalla condizione Afferrato."
+ },
+ "srd-kraken::trait::2": {
+  "name": "Mostro d'Assedio",
+  "desc": "Il kraken infligge danni doppi a oggetti e strutture."
+ },
+ "srd-lamia::trait::0": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica da incantatore innato della lamia è il Carisma (CD tiro salvezza incantesimi 13). Può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali. A volontà: pseudoaspetto (qualsiasi forma umanoide), immagine maggiore 3/giorno ciascuno: amicizia, immagine speculare, sfera di cristallo, suggestione 1/giorno: vincolo"
+ },
+ "srd-lemure::trait::0": {
+  "name": "Vista del Diavolo",
+  "desc": "L'oscurità magica non ostacola la scurovisione del lemure."
+ },
+ "srd-lemure::trait::1": {
+  "name": "Rigenerazione Infernale",
+  "desc": "Un lemure che muore nei Nove Inferi torna in vita con tutti i suoi punti ferita in 1d10 giorni, a meno che non venga ucciso da una creatura di allineamento buono su cui sia stato lanciato l'incantesimo benedizione o i suoi resti vengano cosparsi di acqua santa."
+ },
+ "srd-lich::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il lich fallisce un tiro di salvezza, può scegliere di renderlo riuscito."
+ },
+ "srd-lich::trait::1": {
+  "name": "Ringiovanimento",
+  "desc": "Se possiede una filatteria, un lich distrutto ottiene un nuovo corpo in 1d10 giorni, recuperando tutti i suoi punti ferita e tornando attivo. Il nuovo corpo appare entro 1,5 m dalla filatteria."
+ },
+ "srd-lich::trait::2": {
+  "name": "Lancio di Incantesimi",
+  "desc": "Il lich è un incantatore di 18° livello. La sua caratteristica da incantatore è l'Intelligenza (CD tiro salvezza incantesimi 20, +12 ai tiri per colpire con gli incantesimi). Il lich ha preparato i seguenti incantesimi da mago:\n\n- Trucchetti (a volontà): mano magica, prestidigitazione, raggio gelido\n- 1° livello (4 slot): individuazione del magico, missile incantato, scudo, onda tonante\n- 2° livello (3 slot): freccia acida, individuazione dei pensieri, invisibilità, immagine speculare\n- 3° livello (3 slot): animare i morti, controincantesimo, dissolvi magia, palla di fuoco\n- 4° livello (3 slot): piaga, porta dimensionale\n- 5° livello (3 slot): nube mefitica, sfera di cristallo\n- 6° livello (1 slot): disintegrare, globo di invulnerabilità\n- 7° livello (1 slot): dito della morte, viaggio dimensionale\n- 8° livello (1 slot): dominare creatura, parola di potere: stordire\n- 9° livello (1 slot): parola di potere: uccidere"
+ },
+ "srd-lich::trait::3": {
+  "name": "Resistenza al Tour",
+  "desc": "Il lich ha vantaggio ai tiri di salvezza contro qualsiasi effetto che scaccia gli non morti."
+ },
+ "srd-lion::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Il leone ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-lion::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Il leone ha vantaggio al tiro per colpire contro una creatura se almeno uno degli alleati del leone si trova entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-lion::trait::2": {
+  "name": "Agguato",
+  "desc": "Se il leone si muove di almeno 6 m in linea retta verso una creatura e poi la colpisce con un attacco di artiglio nello stesso turno, quel bersaglio deve superare un tiro di salvezza su Forza CD 13 o essere atterrato Prono. Se il bersaglio è Prono, il leone può effettuare un attacco di morso contro di esso come azione bonus."
+ },
+ "srd-lion::trait::3": {
+  "name": "Salto in Corsa",
+  "desc": "Con una rincorsa di 3 m, il leone può effettuare un salto in lungo fino a 7,5 m."
+ },
+ "srd-lizardfolk::trait::0": {
+  "name": "Trattenere il Respiro",
+  "desc": "L'uomo lucertola può trattenere il respiro per 15 minuti."
+ },
+ "srd-mage::trait::0": {
+  "name": "Lancio di Incantesimi",
+  "desc": "Il mago è un incantatore di 9° livello. La sua caratteristica da incantatore è l'Intelligenza (CD tiro salvezza incantesimi 14, +6 ai tiri per colpire con gli incantesimi). Il mago ha preparato i seguenti incantesimi da mago:\n\n- Trucchetti (a volontà): dardo infuocato, luce, mano magica, prestidigitazione\n- 1° livello (4 slot): individuazione del magico, armatura magica, missile incantato, scudo\n- 2° livello (3 slot): passo velato, suggestione\n- 3° livello (3 slot): controincantesimo, palla di fuoco, volare\n- 4° livello (3 slot): invisibilità superiore, tempesta di ghiaccio\n- 5° livello (1 slot): cono di gelo"
+ },
+ "srd-magma-mephit::trait::0": {
+  "name": "Esplosione Mortale",
+  "desc": "Quando il mefit muore, esplode in un'eruzione di lava. Ogni creatura entro 1,5 m da esso deve effettuare un tiro di salvezza su Destrezza CD 11, subendo 7 (2d6) danni da fuoco se il tiro fallisce, o la metà di quel danno se ha successo."
+ },
+ "srd-magma-mephit::trait::1": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre il mefit rimane immobile, è indistinguibile da un comune cumulo di magma."
+ },
+ "srd-magma-mephit::trait::2": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "Il mefit può lanciare in modo innato infuoca metallo (CD tiro salvezza incantesimi 10), senza richiedere componenti materiali. La sua caratteristica da incantatore innato è il Carisma."
+ },
+ "srd-magmin::trait::0": {
+  "name": "Esplosione Mortale",
+  "desc": "Quando il magmin muore, esplode in un'eruzione di fuoco e magma. Ogni creatura entro 3 m da esso deve effettuare un tiro di salvezza su Destrezza CD 11, subendo 7 (2d6) danni da fuoco se il tiro fallisce, o la metà di quel danno se ha successo. Gli oggetti infiammabili che non vengono indossati o trasportati in quell'area si incendiano."
+ },
+ "srd-magmin::trait::1": {
+  "name": "Illuminazione Infuocata",
+  "desc": "Come azione bonus, il magmin può incendiarsi o estinguere le proprie fiamme. Mentre è in fiamme, il magmin emana luce intensa in un raggio di 3 m e luce fioca per altri 3 m."
+ },
+ "srd-mammoth::trait::0": {
+  "name": "Carica Travolgente",
+  "desc": "Se il mammut si muove di almeno 6 m in linea retta verso una creatura e poi la colpisce con un attacco di zanna nello stesso turno, quel bersaglio deve superare un tiro di salvezza su Forza CD 18 o essere atterrato Prono. Se il bersaglio è Prono, il mammut può effettuare un attacco di zampata contro di esso come azione bonus."
+ },
+ "srd-manticore::trait::0": {
+  "name": "Ricrescita degli Aculei della Coda",
+  "desc": "La manticora ha ventiquattro aculei sulla coda. Gli aculei utilizzati ricrescono quando la manticora completa un riposo lungo."
+ },
+ "srd-marilith::trait::0": {
+  "name": "Resistenza alla Magia",
+  "desc": "La marilith ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-marilith::trait::1": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi della marilith sono magici."
+ },
+ "srd-marilith::trait::2": {
+  "name": "Reattiva",
+  "desc": "La marilith può effettuare una reazione a ogni turno di combattimento."
+ },
+ "srd-mastiff::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il mastino ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-medusa::trait::0": {
+  "name": "Sguardo Pietrificante",
+  "desc": "Quando una creatura che può vedere gli occhi della medusa inizia il suo turno entro 9 m dalla medusa, la medusa può costringerla a effettuare un tiro di salvezza su Costituzione CD 14 se la medusa non è incapacitata e può vedere la creatura. Se il tiro di salvezza fallisce di 5 o più, la creatura viene immediatamente pietrificata. Altrimenti, una creatura che fallisce il tiro inizia a trasformarsi in pietra e diventa Trattenuta. La creatura Trattenuta deve ripetere il tiro di salvezza alla fine del suo turno successivo, diventando pietrificata in caso di fallimento o terminando l'effetto in caso di successo. La pietrificazione dura finché la creatura non viene liberata dall'incantesimo guarigione superiore o da altra magia.\nA meno che non sia colta di sorpresa, una creatura può distogliere lo sguardo per evitare il tiro di salvezza all'inizio del suo turno. Se la creatura lo fa, non può vedere la medusa fino all'inizio del suo turno successivo, momento in cui può di nuovo distogliere lo sguardo. Se la creatura guarda la medusa nel frattempo, deve immediatamente effettuare il tiro di salvezza.\nSe la medusa vede il proprio riflesso su una superficie levigata entro 9 m da essa e in un'area di luce intensa, la medusa è, a causa della sua maledizione, colpita dal proprio sguardo."
+ },
+ "srd-merfolk::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il tritone può respirare sia in aria che in acqua."
+ },
+ "srd-merrow::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il merrow può respirare sia in aria che in acqua."
+ },
+ "srd-mimic::trait::0": {
+  "name": "Cambiaforma",
+  "desc": "Il mimic può usare la sua azione per trasformarsi in un oggetto o tornare alla sua vera forma amorfa. Le sue statistiche sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-mimic::trait::1": {
+  "name": "Adesivo (Solo in Forma di Oggetto)",
+  "desc": "Il mimic si attacca a qualsiasi cosa lo tocchi. Una creatura di taglia Enorme o inferiore attaccata al mimic viene anche Afferrata da esso (CD fuga 13). Le prove di caratteristica effettuate per liberarsi da questa presa hanno svantaggio."
+ },
+ "srd-mimic::trait::2": {
+  "name": "Falso Aspetto (Solo in Forma di Oggetto)",
+  "desc": "Mentre il mimic rimane immobile, è indistinguibile da un comune oggetto."
+ },
+ "srd-mimic::trait::3": {
+  "name": "Lottatore",
+  "desc": "Il mimic ha vantaggio ai tiri per colpire contro qualsiasi creatura da esso Afferrata."
+ },
+ "srd-minotaur::trait::0": {
+  "name": "Carica",
+  "desc": "Se il minotauro si muove di almeno 3 m in linea retta verso un bersaglio e poi lo colpisce con un attacco di corna nello stesso turno, il bersaglio subisce 9 (2d8) danni perforanti extra. Se il bersaglio è una creatura, deve superare un tiro di salvezza su Forza CD 14 o essere spinto fino a 3 m di distanza e atterrato Prono."
+ },
+ "srd-minotaur::trait::1": {
+  "name": "Memoria del Labirinto",
+  "desc": "Il minotauro può ricordare perfettamente qualsiasi percorso che ha attraversato."
+ },
+ "srd-minotaur::trait::2": {
+  "name": "Avventato",
+  "desc": "All'inizio del suo turno, il minotauro può ottenere vantaggio a tutti i tiri per colpire con armi da mischia effettuati durante quel turno, ma i tiri per colpire contro di esso hanno vantaggio fino all'inizio del suo turno successivo."
+ },
+ "srd-minotaur-skeleton::trait::0": {
+  "name": "Carica",
+  "desc": "Se lo scheletro si muove di almeno 3 m in linea retta verso un bersaglio e poi lo colpisce con un attacco di corna nello stesso turno, il bersaglio subisce 9 (2d8) danni perforanti extra. Se il bersaglio è una creatura, deve superare un tiro di salvezza su Forza CD 14 o essere spinto fino a 3 m di distanza e atterrato Prono."
+ },
+ "srd-mule::trait::0": {
+  "name": "Animale da Soma",
+  "desc": "Il mulo è considerato un animale di taglia Grande ai fini della determinazione della sua capacità di carico."
+ },
+ "srd-mule::trait::1": {
+  "name": "Piede Fermo",
+  "desc": "Il mulo ha vantaggio ai tiri di salvezza su Forza e Destrezza effettuati contro effetti che lo atterrerebbero Prono."
+ },
+ "srd-mummy-lord::trait::0": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il signore delle mummie ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-mummy-lord::trait::1": {
+  "name": "Ringiovanimento",
+  "desc": "Un signore delle mummie distrutto ottiene un nuovo corpo in 24 ore se il suo cuore è intatto, recuperando tutti i suoi punti ferita e tornando attivo. Il nuovo corpo appare entro 1,5 m dal cuore del signore delle mummie."
+ },
+ "srd-mummy-lord::trait::2": {
+  "name": "Lancio di Incantesimi",
+  "desc": "Il signore delle mummie è un incantatore di 10° livello. La sua caratteristica da incantatore è la Saggezza (CD tiro salvezza incantesimi 17, +9 ai tiri per colpire con gli incantesimi). Il signore delle mummie ha preparato i seguenti incantesimi da chierico:\n\n- Trucchetti (a volontà): fiamma sacra, taumaturgia\n- 1° livello (4 slot): comando, dardo guida, scudo della fede\n- 2° livello (3 slot): tenere persone, silenzio, arma spirituale\n- 3° livello (3 slot): animare i morti, dissolvi magia\n- 4° livello (3 slot): divinazione, guardiano della fede\n- 5° livello (2 slot): contagio, piaga di insetti\n- 6° livello (1 slot): danno"
+ },
+ "srd-nalfeshnee::trait::0": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il nalfeshnee ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-night-hag::trait::0": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica da incantatore innato della strega è il Carisma (CD tiro salvezza incantesimi 14, +6 ai tiri per colpire con gli incantesimi). Può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\n\nA volontà: individuazione del magico, missile incantato\n2/giorno ciascuno: viaggio dimensionale (solo su se stessa), raggio d'indebolimento, sonno"
+ },
+ "srd-night-hag::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "La strega ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-night-hag::trait::2": {
+  "name": "Oggetti della Strega della Notte",
+  "desc": "Una strega della notte porta con sé due oggetti magici molto rari che deve forgiare da sola. Se uno dei due oggetti viene perduto, la strega della notte farà di tutto per recuperarlo, poiché creare un nuovo strumento richiede tempo e fatica.\nPietra del Cuore: questa lucente gemma nera permette a una strega della notte di diventare etera mentre è in suo possesso. Il tocco di una pietra del cuore cura inoltre qualsiasi malattia. Forgiare una pietra del cuore richiede 30 giorni.\nSacco delle Anime: quando un umanoide malvagio muore a causa della Caccia agli Incubi di una strega della notte, la strega catattura l'anima in questo sacco nero fatto di carne cucita. Un sacco delle anime può contenere solo un'anima malvagia alla volta, e solo la strega della notte che ha forgiato il sacco può catturare un'anima con esso. Forgiare un sacco delle anime richiede 7 giorni e il sacrificio di un umanoide (la cui carne viene usata per realizzare il sacco)."
+ },
+ "srd-nightmare::trait::0": {
+  "name": "Concedi Resistenza al Fuoco",
+  "desc": "L'incubo può concedere resistenza ai danni da fuoco a chiunque lo stia cavalcando."
+ },
+ "srd-nightmare::trait::1": {
+  "name": "Illuminazione",
+  "desc": "L'incubo emana luce intensa in un raggio di 3 m e luce fioca per altri 3 m."
+ },
+ "srd-ochre-jelly::trait::0": {
+  "name": "Amorfa",
+  "desc": "La gelatina può muoversi attraverso uno spazio largo appena 2,5 cm senza dover stringersi."
+ },
+ "srd-ochre-jelly::trait::1": {
+  "name": "Camminare sulle Pareti",
+  "desc": "La gelatina può scalare superfici difficili, incluso a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-octopus::trait::0": {
+  "name": "Trattenere il Respiro",
+  "desc": "Fuori dall'acqua, il polpo può trattenere il respiro per 30 minuti."
+ },
+ "srd-octopus::trait::1": {
+  "name": "Mimetismo Subacqueo",
+  "desc": "Il polpo ha vantaggio alle prove di Destrezza (Furtività) effettuate mentre è sott'acqua."
+ },
+ "srd-octopus::trait::2": {
+  "name": "Respirazione Acquatica",
+  "desc": "Il polpo può respirare solo sott'acqua."
+ },
+ "srd-ogre-zombie::trait::0": {
+  "name": "Fermezza dei non Morti",
+  "desc": "Se un danno riduce lo zombie a 0 punti ferita, deve effettuare un tiro di salvezza su Costituzione con CD pari a 5 + il danno subito, a meno che il danno non sia radiante o provenga da un colpo critico. Se ha successo, lo zombie scende a 1 punto ferita invece di cadere a 0."
+ },
+ "srd-oni::trait::0": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica da incantatore innato dell'oni è il Carisma (CD tiro salvezza incantesimi 13). L'oni può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\n\nA volontà: oscurità, invisibilità\n1/giorno ciascuno: amicizia, cono di gelo, forma gassosa, sonno"
+ },
+ "srd-oni::trait::1": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi dell'oni sono magici."
+ },
+ "srd-oni::trait::2": {
+  "name": "Rigenerazione",
+  "desc": "L'oni recupera 10 punti ferita all'inizio del suo turno se ha almeno 1 punto ferita."
+ },
+ "srd-orc::trait::0": {
+  "name": "Aggressivo",
+  "desc": "Come azione bonus, l'orco può muoversi fino alla sua velocità verso una creatura ostile che può vedere."
+ },
+ "srd-otyugh::trait::0": {
+  "name": "Telepatia Limitata",
+  "desc": "L'otyugh può trasmettere magicamente messaggi e immagini semplici a qualsiasi creatura entro 36 m da esso che possa comprendere un linguaggio. Questa forma di telepatia non permette alla creatura ricevente di rispondere telepaticamente."
+ },
+ "srd-owl::trait::0": {
+  "name": "Volo Radente",
+  "desc": "Il gufo non provoca attacchi di opportunità quando vola fuori dalla portata di un nemico."
+ },
+ "srd-owl::trait::1": {
+  "name": "Udito e Vista Acuti",
+  "desc": "Il gufo ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sulla vista."
+ },
+ "srd-owlbear::trait::0": {
+  "name": "Vista e Olfatto Acuti",
+  "desc": "L'orso-gufo ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista o sull'olfatto."
+ },
+ "srd-panther::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "La pantera ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-panther::trait::1": {
+  "name": "Agguato",
+  "desc": "Se la pantera si muove di almeno 6 m in linea retta verso una creatura e poi la colpisce con un attacco di artiglio nello stesso turno, quel bersaglio deve superare un tiro di salvezza su Forza CD 12 o essere atterrato Prono. Se il bersaglio è Prono, la pantera può effettuare un attacco di morso contro di esso come azione bonus."
+ },
+ "srd-phase-spider::trait::0": {
+  "name": "Salto Etereo",
+  "desc": "Come azione bonus, il ragno può spostarsi magicamente dal Piano Materiale al Piano Etereo, o viceversa."
+ },
+ "srd-phase-spider::trait::1": {
+  "name": "Camminare sulle Pareti",
+  "desc": "Il ragno può scalare superfici difficili, incluso a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-phase-spider::trait::2": {
+  "name": "Camminare sulle Ragnatele",
+  "desc": "Il ragno ignora le restrizioni di movimento causate dalle ragnatele."
+ },
+ "srd-pit-fiend::trait::0": {
+  "name": "Aura di Paura",
+  "desc": "Qualsiasi creatura ostile al diavolo delle fosse che inizia il suo turno entro 6 m dal diavolo delle fosse deve effettuare un tiro di salvezza su Saggezza CD 21, a meno che il diavolo delle fosse non sia incapacitato. Se il tiro fallisce, la creatura diventa Spaventata fino all'inizio del suo turno successivo. Se il tiro di salvezza di una creatura ha successo, la creatura è immune all'Aura di Paura del diavolo delle fosse per le successive 24 ore."
+ },
+ "srd-pit-fiend::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il diavolo delle fosse ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-pit-fiend::trait::2": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi del diavolo delle fosse sono magici."
+ },
+ "srd-pit-fiend::trait::3": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica da incantatore del diavolo delle fosse è il Carisma (CD tiro salvezza incantesimi 21). Il diavolo delle fosse può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\nA volontà: individuazione del magico, palla di fuoco\n3/giorno ciascuno: tenere mostri, muro di fuoco"
+ },
+ "srd-planetar::trait::0": {
+  "name": "Armi Angeliche",
+  "desc": "Gli attacchi con armi del planetar sono magici. Quando il planetar colpisce con un'arma qualsiasi, l'arma infligge 5d8 danni radianti extra (già inclusi nell'attacco)."
+ },
+ "srd-planetar::trait::1": {
+  "name": "Percezione Divina",
+  "desc": "Il planetar sa quando sente una menzogna."
+ },
+ "srd-planetar::trait::2": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica da incantatore del planetar è il Carisma (CD tiro salvezza incantesimi 20). Il planetar può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\nA volontà: individuazione del bene e del male, invisibilità (solo su se stesso)\n3/giorno ciascuno: barriera di lame, dissolvi bene e male, percossa fiammeggiante, resurrezione\n1/giorno ciascuno: comunione, controllo del tempo atmosferico, piaga di insetti"
+ },
+ "srd-planetar::trait::3": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il planetar ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-plesiosaurus::trait::0": {
+  "name": "Trattenere il Respiro",
+  "desc": "Il plesiosauro può trattenere il respiro per 1 ora."
+ },
+ "srd-polar-bear::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "L'orso ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-priest::trait::0": {
+  "name": "Eminenza Divina",
+  "desc": "Come azione bonus, il sacerdote può spendere uno slot incantesimo per far sì che i suoi attacchi con armi da mischia infliggano magicamente 10 (3d6) danni radianti extra a un bersaglio colpito. Questo beneficio dura fino alla fine del turno. Se il sacerdote spende uno slot incantesimo di 2° livello o superiore, il danno extra aumenta di 1d6 per ogni livello superiore al 1°."
+ },
+ "srd-priest::trait::1": {
+  "name": "Lancio di Incantesimi",
+  "desc": "Il sacerdote è un incantatore di 5° livello. La sua caratteristica da incantatore è la Saggezza (CD tiro salvezza incantesimi 13, +5 ai tiri per colpire con gli incantesimi). Il sacerdote ha preparato i seguenti incantesimi da chierico:\n\n- Trucchetti (a volontà): luce, fiamma sacra, taumaturgia\n- 1° livello (4 slot): curare le ferite, dardo guida, santuario\n- 2° livello (3 slot): guarigione inferiore, arma spirituale\n- 3° livello (2 slot): dissolvi magia, guardiani spirituali"
+ },
+ "srd-pseudodragon::trait::0": {
+  "name": "Sensi Acuti",
+  "desc": "Lo pseudodrago ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista, sull'udito o sull'olfatto."
+ },
+ "srd-pseudodragon::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Lo pseudodrago ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-pseudodragon::trait::2": {
+  "name": "Telepatia Limitata",
+  "desc": "Lo pseudodrago può comunicare magicamente idee semplici, emozioni e immagini per via telepatica con qualsiasi creatura entro 30 m da esso che possa comprendere un linguaggio."
+ },
+ "srd-purple-worm::trait::0": {
+  "name": "Scavatore",
+  "desc": "Il verme può scavare attraverso la roccia solida a metà della sua velocità di scavo e lascia dietro di sé una galleria di 3 m di diametro."
+ },
+ "srd-quasit::trait::0": {
+  "name": "Cambiaforma",
+  "desc": "Il quasit può usare la sua azione per trasformarsi in una forma bestiale che ricorda un pipistrello (velocità 3 m, volare 12 m), un millepiedi (12 m, scalare 12 m) o un rospo (12 m, nuotare 12 m), oppure tornare alla sua vera forma. Le sue statistiche sono le stesse in ogni forma, eccetto per i cambiamenti di velocità indicati. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-quasit::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il quasit ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-quipper::trait::0": {
+  "name": "Frenesia di Sangue",
+  "desc": "Il quipper ha vantaggio ai tiri per colpire in mischia contro qualsiasi creatura che non abbia tutti i suoi punti ferita."
+ },
+ "srd-quipper::trait::1": {
+  "name": "Respirazione Acquatica",
+  "desc": "Il quipper può respirare solo sott'acqua."
+ },
+ "srd-rakshasa::trait::0": {
+  "name": "Immunità Magica Limitata",
+  "desc": "Il rakshasa non può essere influenzato o individuato da incantesimi di 6° livello o inferiore a meno che non lo desideri. Ha vantaggio ai tiri di salvezza contro tutti gli altri incantesimi ed effetti magici."
+ },
+ "srd-rakshasa::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica da incantatore innato del rakshasa è il Carisma (CD tiro salvezza incantesimi 18, +10 ai tiri per colpire con gli incantesimi). Il rakshasa può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\n\nA volontà: individuazione dei pensieri, pseudoaspetto, mano magica, illusione minore\n3/giorno ciascuno: amicizia, individuazione del magico, invisibilità, immagine maggiore, suggestione\n1/giorno ciascuno: dominare persone, volare, viaggio dimensionale, vista del vero"
+ },
+ "srd-rat::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Il ratto ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-raven::trait::0": {
+  "name": "Imitazione",
+  "desc": "Il corvo può imitare suoni semplici che ha sentito, come una persona che sussurra, un bambino che piange o un animale che cigola. Una creatura che sente questi suoni può capire che sono imitazioni con una prova di Saggezza (Intuizione) CD 10 superata."
+ },
+ "srd-reef-shark::trait::0": {
+  "name": "Tattiche di Branco",
+  "desc": "Lo squalo ha vantaggio al tiro per colpire contro una creatura se almeno uno degli alleati dello squalo si trova entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-reef-shark::trait::1": {
+  "name": "Respirazione Acquatica",
+  "desc": "Lo squalo può respirare solo sott'acqua."
+ },
+ "srd-remorhaz::trait::0": {
+  "name": "Corpo Incandescente",
+  "desc": "Una creatura che tocca il remorhaz o lo colpisce con un attacco da mischia mentre si trova entro 1,5 m da esso subisce 10 (3d6) danni da fuoco."
+ },
+ "srd-rhinoceros::trait::0": {
+  "name": "Carica",
+  "desc": "Se il rinoceronte si muove di almeno 6 m in linea retta verso un bersaglio e poi lo colpisce con un attacco di corno nello stesso turno, il bersaglio subisce 9 (2d8) danni contundenti extra. Se il bersaglio è una creatura, deve superare un tiro di salvezza su Forza CD 15 o essere atterrato Prono."
+ },
+ "srd-roc::trait::0": {
+  "name": "Vista Acuta",
+  "desc": "Il roc ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-roper::trait::0": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre il roper rimane immobile, è indistinguibile da una normale formazione rocciosa, come una stalagmite."
+ },
+ "srd-roper::trait::1": {
+  "name": "Tentacoli Adesivi",
+  "desc": "Il roper può avere fino a sei tentacoli alla volta. Ogni tentacolo può essere attaccato (CA 20; 10 punti ferita; immunità ai danni da veleno e psichici). Distruggere un tentacolo non infligge danno al roper, che può far germogliare un tentacolo di sostituzione al suo turno successivo. Un tentacolo può anche essere spezzato se una creatura compie un'azione e supera una prova di Forza CD 15 contro di esso."
+ },
+ "srd-roper::trait::2": {
+  "name": "Camminare sulle Pareti",
+  "desc": "Il roper può scalare superfici difficili, incluso a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-rug-of-smothering::trait::0": {
+  "name": "Suscettibilità all'Antimagia",
+  "desc": "Il tappeto è incapacitato mentre si trova nell'area di un campo antimagico. Se è bersaglio di dissolvi magia, il tappeto deve superare un tiro di salvezza su Costituzione contro la CD tiro salvezza incantesimi dell'incantatore o cadere privo di sensi per 1 minuto."
+ },
+ "srd-rug-of-smothering::trait::1": {
+  "name": "Trasferimento del Danno",
+  "desc": "Mentre sta Afferrando una creatura, il tappeto subisce solo la metà del danno a esso infliggibile, mentre la creatura Afferrata dal tappeto subisce l'altra metà."
+ },
+ "srd-rug-of-smothering::trait::2": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre il tappeto rimane immobile, è indistinguibile da un normale tappeto."
+ },
+ "srd-rust-monster::trait::0": {
+  "name": "Olfatto del Ferro",
+  "desc": "Il mostro della ruggine può individuare con precisione, tramite l'olfatto, la posizione di metallo ferroso entro 9 m da esso."
+ },
+ "srd-rust-monster::trait::1": {
+  "name": "Arrugginire il Metallo",
+  "desc": "Qualsiasi arma non magica fatta di metallo che colpisce il mostro della ruggine si corrode. Dopo aver infliggere danno, l'arma subisce una penalità permanente e cumulativa di -1 ai tiri per il danno. Se la sua penalità scende a -5, l'arma viene distrutta. Le munizioni non magiche fatte di metallo che colpiscono il mostro della ruggine vengono distrutte dopo aver infliggere danno."
+ },
+ "srd-saber-toothed-tiger::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "La tigre ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-saber-toothed-tiger::trait::1": {
+  "name": "Agguato",
+  "desc": "Se la tigre si muove di almeno 6 m in linea retta verso una creatura e poi la colpisce con un attacco di artiglio nello stesso turno, quel bersaglio deve superare un tiro di salvezza su Forza CD 14 o essere atterrato Prono. Se il bersaglio è Prono, la tigre può effettuare un attacco di morso contro di esso come azione bonus."
+ },
+ "srd-sahuagin::trait::0": {
+  "name": "Frenesia di Sangue",
+  "desc": "Il sahuagin ha vantaggio ai tiri per colpire in mischia contro qualsiasi creatura che non abbia tutti i suoi punti ferita."
+ },
+ "srd-sahuagin::trait::1": {
+  "name": "Anfibiosità Limitata",
+  "desc": "Il sahuagin può respirare sia in aria che in acqua, ma deve immergersi almeno una volta ogni 4 ore per evitare di soffocare."
+ },
+ "srd-sahuagin::trait::2": {
+  "name": "Telepatia con gli Squali",
+  "desc": "Il sahuagin può comandare magicamente qualsiasi squalo entro 36 m da esso, usando una telepatia limitata."
+ },
+ "srd-salamander::trait::0": {
+  "name": "Corpo Incandescente",
+  "desc": "Una creatura che tocca la salamandra o la colpisce con un attacco da mischia mentre si trova entro 1,5 m da essa subisce 7 (2d6) danni da fuoco."
+ },
+ "srd-salamander::trait::1": {
+  "name": "Armi Incandescenti",
+  "desc": "Qualsiasi arma da mischia in metallo brandita dalla salamandra infligge 3 (1d6) danni da fuoco extra se colpisce (già inclusi nell'attacco)."
+ },
+ "srd-satyr::trait::0": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il satiro ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-scout::trait::0": {
+  "name": "Udito e Vista Acuti",
+  "desc": "L'esploratore ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sulla vista."
+ },
+ "srd-sea-hag::trait::0": {
+  "name": "Anfibia",
+  "desc": "La strega può respirare sia in aria che in acqua."
+ },
+ "srd-sea-hag::trait::1": {
+  "name": "Aspetto Orrifico",
+  "desc": "Qualsiasi umanoide che inizia il suo turno entro 9 m dalla strega e può vedere la sua vera forma deve effettuare un tiro di salvezza su Saggezza CD 11. Se il tiro fallisce, la creatura diventa Spaventata per 1 minuto. Una creatura può ripetere il tiro di salvezza alla fine di ciascuno dei suoi turni, con svantaggio se la strega è nel suo campo visivo, terminando l'effetto su di sé in caso di successo. Se il tiro di salvezza di una creatura ha successo o l'effetto termina su di essa, la creatura è immune all'Aspetto Orrifico della strega per le successive 24 ore.\nA meno che il bersaglio non sia colto di sorpresa o la rivelazione della vera forma della strega sia improvvisa, il bersaglio può distogliere lo sguardo ed evitare di effettuare il tiro di salvezza iniziale. Fino all'inizio del suo turno successivo, una creatura che distoglie lo sguardo ha svantaggio ai tiri per colpire contro la strega."
+ },
+ "srd-sea-horse::trait::0": {
+  "name": "Respirazione Acquatica",
+  "desc": "Il cavalluccio marino può respirare solo sott'acqua."
+ },
+ "srd-shadow::trait::0": {
+  "name": "Amorfa",
+  "desc": "L'ombra può muoversi attraverso uno spazio largo appena 2,5 cm senza dover stringersi."
+ },
+ "srd-shadow::trait::1": {
+  "name": "Furtività nell'Ombra",
+  "desc": "Mentre si trova in luce fioca o nell'oscurità, l'ombra può effettuare l'azione Nascondersi come azione bonus. Il suo bonus di furtività viene inoltre migliorato a +6."
+ },
+ "srd-shadow::trait::2": {
+  "name": "Debolezza alla Luce Solare",
+  "desc": "Mentre è alla luce del sole, l'ombra ha svantaggio ai tiri per colpire, alle prove di caratteristica e ai tiri di salvezza."
+ },
+ "srd-shambling-mound::trait::0": {
+  "name": "Assorbimento del Fulmine",
+  "desc": "Ogni volta che il cumulo strisciante è soggetto a danno da fulmine, non subisce danno e recupera un numero di punti ferita pari al danno da fulmine infliggibile."
+ },
+ "srd-shield-guardian::trait::0": {
+  "name": "Vincolato",
+  "desc": "Il guardiano dello scudo è magicamente legato a un amuleto. Finché il guardiano e il suo amuleto si trovano sullo stesso piano d'esistenza, chi indossa l'amuleto può richiamare telepaticamente il guardiano perché lo raggiunga, e il guardiano conosce la distanza e la direzione dell'amuleto. Se il guardiano si trova entro 18 m da chi indossa l'amuleto, metà di qualsiasi danno subito da quest'ultimo (arrotondato per eccesso) viene trasferito al guardiano."
+ },
+ "srd-shield-guardian::trait::1": {
+  "name": "Rigenerazione",
+  "desc": "Il guardiano dello scudo recupera 10 punti ferita all'inizio del suo turno se ha almeno 1 punto ferita."
+ },
+ "srd-shield-guardian::trait::2": {
+  "name": "Custodia degli Incantesimi",
+  "desc": "Un incantatore che indossa l'amuleto del guardiano dello scudo può far sì che il guardiano custodisca un incantesimo di 4° livello o inferiore. Per farlo, chi lo indossa deve lanciare l'incantesimo sul guardiano. L'incantesimo non ha alcun effetto ma viene custodito all'interno del guardiano. Quando gli viene comandato da chi indossa l'amuleto, oppure quando si verifica una situazione predefinita dall'incantatore, il guardiano lancia l'incantesimo custodito con qualsiasi parametro stabilito dall'incantatore originale, senza richiedere componenti. Quando l'incantesimo viene lanciato o ne viene custodito uno nuovo, qualsiasi incantesimo precedentemente custodito viene perso."
+ },
+ "srd-shrieker::trait::0": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre lo strillone rimane immobile, è indistinguibile da un comune fungo."
+ },
+ "srd-solar::trait::0": {
+  "name": "Armi Angeliche",
+  "desc": "Gli attacchi con armi del solar sono magici. Quando il solar colpisce con un'arma qualsiasi, l'arma infligge 6d8 danni radianti extra (già inclusi nell'attacco)."
+ },
+ "srd-solar::trait::1": {
+  "name": "Percezione Divina",
+  "desc": "Il solar sa quando sente una menzogna."
+ },
+ "srd-solar::trait::2": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica da incantatore del solar è il Carisma (CD tiro salvezza incantesimi 25). Può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\nA volontà: individuazione del bene e del male, invisibilità (solo su se stesso)\n3/giorno ciascuno: barriera di lame, dissolvi bene e male, resurrezione\n1/giorno ciascuno: comunione, controllo del tempo atmosferico"
+ },
+ "srd-solar::trait::3": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il solar ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-specter::trait::0": {
+  "name": "Movimento Incorporeo",
+  "desc": "Lo spettro può muoversi attraverso altre creature e oggetti come se fossero terreno difficile. Subisce 5 (1d10) danni da forza se termina il suo turno dentro un oggetto."
+ },
+ "srd-specter::trait::1": {
+  "name": "Sensibilità alla Luce Solare",
+  "desc": "Mentre è alla luce del sole, lo spettro ha svantaggio ai tiri per colpire, così come alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-spider::trait::0": {
+  "name": "Camminare sulle Pareti",
+  "desc": "Il ragno può scalare superfici difficili, incluso a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-spider::trait::1": {
+  "name": "Percezione delle Ragnatele",
+  "desc": "Mentre è in contatto con una ragnatela, il ragno conosce la posizione esatta di qualsiasi altra creatura in contatto con la stessa ragnatela."
+ },
+ "srd-spider::trait::2": {
+  "name": "Camminare sulle Ragnatele",
+  "desc": "Il ragno ignora le restrizioni di movimento causate dalle ragnatele."
+ },
+ "srd-spirit-naga::trait::0": {
+  "name": "Ringiovanimento",
+  "desc": "Se muore, la naga torna in vita in 1d6 giorni e recupera tutti i suoi punti ferita. Solo l'incantesimo desiderio può impedire a questo tratto di funzionare."
+ },
+ "srd-spirit-naga::trait::1": {
+  "name": "Lancio di Incantesimi",
+  "desc": "La naga è un'incantatrice di 10° livello. La sua caratteristica da incantatrice è l'Intelligenza (CD tiro salvezza incantesimi 14, +6 ai tiri per colpire con gli incantesimi), e necessita solo di componenti verbali per lanciare i suoi incantesimi. Ha preparato i seguenti incantesimi da mago:\n\n- Trucchetti (a volontà): mano magica, illusione minore, raggio gelido\n- 1° livello (4 slot): amicizia, individuazione del magico, sonno\n- 2° livello (3 slot): individuazione dei pensieri, tenere persone\n- 3° livello (3 slot): fulmine, respirazione acquatica\n- 4° livello (3 slot): piaga, porta dimensionale\n- 5° livello (2 slot): dominare persone"
+ },
+ "srd-spy::trait::0": {
+  "name": "Azione Astuta",
+  "desc": "A ogni suo turno, la spia può usare un'azione bonus per effettuare l'azione Scattare, Disimpegnarsi o Nascondersi."
+ },
+ "srd-spy::trait::1": {
+  "name": "Attacco Furtivo (1/Turno)",
+  "desc": "La spia infligge 7 (2d6) danni extra quando colpisce un obiettivo con un attacco con armi e ha vantaggio al tiro per colpire, oppure quando l'obiettivo si trova entro 1,5 m da un alleato della spia che non sia incapacitato e la spia non ha svantaggio al tiro per colpire."
+ },
+ "srd-steam-mephit::trait::0": {
+  "name": "Esplosione Mortale",
+  "desc": "Quando il mefit muore, esplode in una nube di vapore. Ogni creatura entro 1,5 m dal mefit deve superare un tiro di salvezza su Destrezza con CD 10 o subire 4 (1d8) danni da fuoco."
+ },
+ "srd-steam-mephit::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "Il mefit può lanciare in modo innato sfocatura, senza richiedere componenti materiali. La sua caratteristica per il lancio di incantesimi innato è il Carisma."
+ },
+ "srd-stone-giant::trait::0": {
+  "name": "Mimetismo nella Roccia",
+  "desc": "Il gigante ha vantaggio alle prove di Destrezza (Furtività) effettuate per nascondersi in un terreno roccioso."
+ },
+ "srd-stone-golem::trait::0": {
+  "name": "Forma Immutabile",
+  "desc": "Il golem è immune a qualsiasi incantesimo o effetto che alteri la sua forma."
+ },
+ "srd-stone-golem::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il golem ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-stone-golem::trait::2": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi del golem sono magici."
+ },
+ "srd-storm-giant::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il gigante può respirare sia in aria che in acqua."
+ },
+ "srd-storm-giant::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi innato del gigante è il Carisma (CD tiro di salvezza incantesimi 17). Può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti materiali:\n\nA volontà: individuazione del magico, caduta plumea, levitazione, luce\n3/giorno ciascuno: controllo del clima, respirare in acqua"
+ },
+ "srd-succubus-incubus::trait::0": {
+  "name": "Legame Telepatico",
+  "desc": "Il diavolo ignora la restrizione di portata della sua telepatia quando comunica con una creatura che ha affascinato. Le due non devono nemmeno trovarsi sullo stesso piano di esistenza."
+ },
+ "srd-succubus-incubus::trait::1": {
+  "name": "Mutaforma",
+  "desc": "Il diavolo può usare la sua azione per trasformarsi in un umanoide di taglia Piccola o Media, o per tornare alla sua vera forma. Senza ali, il diavolo perde la sua velocità di volo. A parte la taglia e la velocità, le sue statistiche sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-swarm-of-bats::trait::0": {
+  "name": "Ecolocalizzazione",
+  "desc": "Lo sciame non può usare la sua vista cieca mentre è Assordato."
+ },
+ "srd-swarm-of-bats::trait::1": {
+  "name": "Udito Acuto",
+  "desc": "Lo sciame ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito."
+ },
+ "srd-swarm-of-bats::trait::2": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un pipistrello di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-swarm-of-beetles::trait::0": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un insetto di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-swarm-of-centipedes::trait::0": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un insetto di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-swarm-of-insects::trait::0": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un insetto di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-swarm-of-poisonous-snakes::trait::0": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un serpente di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-swarm-of-quippers::trait::0": {
+  "name": "Frenesia di Sangue",
+  "desc": "Lo sciame ha vantaggio ai tiri per colpire in mischia contro qualsiasi creatura che non abbia tutti i suoi punti ferita."
+ },
+ "srd-swarm-of-quippers::trait::1": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un pesce predatore di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-swarm-of-quippers::trait::2": {
+  "name": "Respirazione Acquatica",
+  "desc": "Lo sciame può respirare solo sott'acqua."
+ },
+ "srd-swarm-of-rats::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Lo sciame ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-swarm-of-rats::trait::1": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un ratto di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-swarm-of-ravens::trait::0": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un corvo di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-swarm-of-spiders::trait::0": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un insetto di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-swarm-of-spiders::trait::1": {
+  "name": "Camminare sui Ragnatele",
+  "desc": "Lo sciame può scalare superfici difficili, anche a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-swarm-of-spiders::trait::2": {
+  "name": "Percezione delle Ragnatele",
+  "desc": "Mentre è in contatto con una ragnatela, lo sciame conosce l'esatta posizione di qualsiasi altra creatura in contatto con la stessa ragnatela."
+ },
+ "srd-swarm-of-spiders::trait::3": {
+  "name": "Camminatore di Ragnatele",
+  "desc": "Lo sciame ignora le restrizioni al movimento causate dalle ragnatele."
+ },
+ "srd-swarm-of-wasps::trait::0": {
+  "name": "Sciame",
+  "desc": "Lo sciame può occupare lo spazio di un'altra creatura e viceversa, e può muoversi attraverso qualsiasi apertura sufficientemente grande per un insetto di taglia Minuscola. Lo sciame non può recuperare punti ferita né ottenere punti ferita temporanei."
+ },
+ "srd-tarrasque::trait::0": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il tarasco fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-tarrasque::trait::1": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il tarasco ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-tarrasque::trait::2": {
+  "name": "Carapace Riflettente",
+  "desc": "Ogni volta che il tarasco viene preso di mira da un incantesimo missile magico, da un incantesimo a linea, o da un incantesimo che richiede un tiro per colpire a distanza, tira un d6. Con un risultato da 1 a 5, il tarasco non subisce effetti. Con un risultato di 6, il tarasco non subisce effetti e l'effetto viene riflesso verso l'incantatore come se avesse avuto origine dal tarasco, rendendo l'incantatore stesso l'obiettivo."
+ },
+ "srd-tarrasque::trait::3": {
+  "name": "Mostro d'Assedio",
+  "desc": "Il tarasco infligge danni doppi a oggetti e strutture."
+ },
+ "srd-thug::trait::0": {
+  "name": "Tattiche di Branco",
+  "desc": "Lo scagnozzo ha vantaggio a un tiro per colpire contro una creatura se almeno uno degli alleati dello scagnozzo si trova entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-tiger::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "La tigre ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-tiger::trait::1": {
+  "name": "Assalto",
+  "desc": "Se la tigre si muove di almeno 6 m in linea retta verso una creatura e poi la colpisce con un attacco di zampata nello stesso turno, l'obiettivo deve superare un tiro di salvezza su Forza con CD 13 o essere atterrato Prono. Se l'obiettivo è Prono, la tigre può effettuare un attacco di morso contro di esso come azione bonus."
+ },
+ "srd-treant::trait::0": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre l'omone d'albero rimane immobile, è indistinguibile da un albero normale."
+ },
+ "srd-treant::trait::1": {
+  "name": "Mostro d'Assedio",
+  "desc": "L'omone d'albero infligge danni doppi a oggetti e strutture."
+ },
+ "srd-tribal-warrior::trait::0": {
+  "name": "Tattiche di Branco",
+  "desc": "Il guerriero ha vantaggio a un tiro per colpire contro una creatura se almeno uno degli alleati del guerriero si trova entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-triceratops::trait::0": {
+  "name": "Carica Travolgente",
+  "desc": "Se il triceratopo si muove di almeno 6 m in linea retta verso una creatura e poi la colpisce con un attacco di incornata nello stesso turno, l'obiettivo deve superare un tiro di salvezza su Forza con CD 13 o essere atterrato Prono. Se l'obiettivo è Prono, il triceratopo può effettuare un attacco di calpestamento contro di esso come azione bonus."
+ },
+ "srd-troll::trait::0": {
+  "name": "Olfatto Acuto",
+  "desc": "Il troll ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-troll::trait::1": {
+  "name": "Rigenerazione",
+  "desc": "Il troll recupera 10 punti ferita all'inizio del suo turno. Se il troll subisce danni da acido o da fuoco, questo tratto non funziona all'inizio del turno successivo del troll. Il troll muore solo se inizia il suo turno con 0 punti ferita e non si rigenera."
+ },
+ "srd-unicorn::trait::0": {
+  "name": "Carica",
+  "desc": "Se l'unicorno si muove di almeno 6 m in linea retta verso un obiettivo e poi lo colpisce con un attacco di corno nello stesso turno, l'obiettivo subisce 9 (2d8) danni perforanti extra. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza con CD 15 o essere atterrato Prono."
+ },
+ "srd-unicorn::trait::1": {
+  "name": "Lancio di Incantesimi Innato",
+  "desc": "La caratteristica per il lancio di incantesimi innato dell'unicorno è il Carisma (CD tiro di salvezza incantesimi 14). L'unicorno può lanciare in modo innato i seguenti incantesimi, senza richiedere componenti:\n\nA volontà: individuazione del bene e del male, magia silvana, passo senza traccia\n1/giorno ciascuno: calmare le emozioni, dissolvi bene e male, viticci"
+ },
+ "srd-unicorn::trait::2": {
+  "name": "Resistenza alla Magia",
+  "desc": "L'unicorno ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-unicorn::trait::3": {
+  "name": "Armi Magiche",
+  "desc": "Gli attacchi con armi dell'unicorno sono magici."
+ },
+ "srd-vampire-bat::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Se il vampiro non è alla luce del sole o nell'acqua corrente, può usare la sua azione per trasformarsi in un pipistrello di taglia Minuscola o in una nube di nebbia di taglia Media, oppure per tornare alla sua vera forma.\nMentre è in forma di pipistrello, il vampiro non può parlare, la sua velocità di camminata è 1,5 m e ha una velocità di volo di 9 m. Le sue statistiche, a parte la taglia e la velocità, rimangono invariate. Qualsiasi cosa indossi si trasforma con lui, ma nulla di ciò che porta con sé lo fa. Torna alla sua vera forma se muore.\nMentre è in forma di nebbia, il vampiro non può compiere azioni, parlare o manipolare oggetti. È senza peso, ha una velocità di volo di 6 m, può volare stazionario e può entrare nello spazio di una creatura ostile e fermarsi lì. Inoltre, se l'aria può passare attraverso uno spazio, la nebbia può farlo senza stringersi, e non può passare attraverso l'acqua. Ha vantaggio ai tiri di salvezza su Forza, Destrezza e Costituzione, ed è immune a tutti i danni non magici, eccetto i danni che subisce dalla luce del sole."
+ },
+ "srd-vampire-bat::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il vampiro fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-vampire-bat::trait::2": {
+  "name": "Fuga Nebbiosa",
+  "desc": "Quando scende a 0 punti ferita fuori dal suo luogo di riposo, il vampiro si trasforma in una nube di nebbia (come nel tratto Mutaforma) invece di cadere Privo di sensi, a condizione che non sia alla luce del sole o nell'acqua corrente. Se non può trasformarsi, viene distrutto.\nMentre ha 0 punti ferita in forma di nebbia, non può tornare alla sua forma di vampiro, e deve raggiungere il suo luogo di riposo entro 2 ore o essere distrutto. Una volta nel suo luogo di riposo, torna alla sua forma di vampiro. È quindi Paralizzato finché non recupera almeno 1 punto ferita. Dopo aver trascorso 1 ora nel suo luogo di riposo con 0 punti ferita, recupera 1 punto ferita."
+ },
+ "srd-vampire-bat::trait::3": {
+  "name": "Rigenerazione",
+  "desc": "Il vampiro recupera 20 punti ferita all'inizio del suo turno se ha almeno 1 punto ferita e non è alla luce del sole o nell'acqua corrente. Se il vampiro subisce danni radianti o danni da acqua santa, questo tratto non funziona all'inizio del turno successivo del vampiro."
+ },
+ "srd-vampire-bat::trait::4": {
+  "name": "Camminare sui Ragnatele",
+  "desc": "Il vampiro può scalare superfici difficili, anche a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-vampire-bat::trait::5": {
+  "name": "Debolezze del Vampiro",
+  "desc": "Il vampiro ha i seguenti difetti:\nDivieto. Il vampiro non può entrare in una residenza senza un invito da parte di uno degli occupanti.\nDanneggiato dall'Acqua Corrente. Il vampiro subisce 20 danni da acido se termina il suo turno nell'acqua corrente.\nPaletto nel Cuore. Se un'arma perforante di legno viene infilzata nel cuore del vampiro mentre questo è incapacitato nel suo luogo di riposo, il vampiro è Paralizzato finché il paletto non viene rimosso.\nIpersensibilità alla Luce del Sole. Il vampiro subisce 20 danni radianti quando inizia il suo turno alla luce del sole. Mentre è alla luce del sole, ha svantaggio ai tiri per colpire e alle prove di caratteristica."
+ },
+ "srd-vampire-mist::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Se il vampiro non è alla luce del sole o nell'acqua corrente, può usare la sua azione per trasformarsi in un pipistrello di taglia Minuscola o in una nube di nebbia di taglia Media, oppure per tornare alla sua vera forma.\nMentre è in forma di pipistrello, il vampiro non può parlare, la sua velocità di camminata è 1,5 m e ha una velocità di volo di 9 m. Le sue statistiche, a parte la taglia e la velocità, rimangono invariate. Qualsiasi cosa indossi si trasforma con lui, ma nulla di ciò che porta con sé lo fa. Torna alla sua vera forma se muore.\nMentre è in forma di nebbia, il vampiro non può compiere azioni, parlare o manipolare oggetti. È senza peso, ha una velocità di volo di 6 m, può volare stazionario e può entrare nello spazio di una creatura ostile e fermarsi lì. Inoltre, se l'aria può passare attraverso uno spazio, la nebbia può farlo senza stringersi, e non può passare attraverso l'acqua. Ha vantaggio ai tiri di salvezza su Forza, Destrezza e Costituzione, ed è immune a tutti i danni non magici, eccetto i danni che subisce dalla luce del sole."
+ },
+ "srd-vampire-mist::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il vampiro fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-vampire-mist::trait::2": {
+  "name": "Fuga Nebbiosa",
+  "desc": "Quando scende a 0 punti ferita fuori dal suo luogo di riposo, il vampiro si trasforma in una nube di nebbia (come nel tratto Mutaforma) invece di cadere Privo di sensi, a condizione che non sia alla luce del sole o nell'acqua corrente. Se non può trasformarsi, viene distrutto.\nMentre ha 0 punti ferita in forma di nebbia, non può tornare alla sua forma di vampiro, e deve raggiungere il suo luogo di riposo entro 2 ore o essere distrutto. Una volta nel suo luogo di riposo, torna alla sua forma di vampiro. È quindi Paralizzato finché non recupera almeno 1 punto ferita. Dopo aver trascorso 1 ora nel suo luogo di riposo con 0 punti ferita, recupera 1 punto ferita."
+ },
+ "srd-vampire-mist::trait::3": {
+  "name": "Rigenerazione",
+  "desc": "Il vampiro recupera 20 punti ferita all'inizio del suo turno se ha almeno 1 punto ferita e non è alla luce del sole o nell'acqua corrente. Se il vampiro subisce danni radianti o danni da acqua santa, questo tratto non funziona all'inizio del turno successivo del vampiro."
+ },
+ "srd-vampire-mist::trait::4": {
+  "name": "Camminare sui Ragnatele",
+  "desc": "Il vampiro può scalare superfici difficili, anche a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-vampire-mist::trait::5": {
+  "name": "Debolezze del Vampiro",
+  "desc": "Il vampiro ha i seguenti difetti:\nDivieto. Il vampiro non può entrare in una residenza senza un invito da parte di uno degli occupanti.\nDanneggiato dall'Acqua Corrente. Il vampiro subisce 20 danni da acido se termina il suo turno nell'acqua corrente.\nPaletto nel Cuore. Se un'arma perforante di legno viene infilzata nel cuore del vampiro mentre questo è incapacitato nel suo luogo di riposo, il vampiro è Paralizzato finché il paletto non viene rimosso.\nIpersensibilità alla Luce del Sole. Il vampiro subisce 20 danni radianti quando inizia il suo turno alla luce del sole. Mentre è alla luce del sole, ha svantaggio ai tiri per colpire e alle prove di caratteristica."
+ },
+ "srd-vampire-spawn::trait::0": {
+  "name": "Rigenerazione",
+  "desc": "Il vampiro recupera 10 punti ferita all'inizio del suo turno se ha almeno 1 punto ferita e non è alla luce del sole o nell'acqua corrente. Se il vampiro subisce danni radianti o danni da acqua santa, questo tratto non funziona all'inizio del turno successivo del vampiro."
+ },
+ "srd-vampire-spawn::trait::1": {
+  "name": "Camminare sui Ragnatele",
+  "desc": "Il vampiro può scalare superfici difficili, anche a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-vampire-spawn::trait::2": {
+  "name": "Debolezze del Vampiro",
+  "desc": "Il vampiro ha i seguenti difetti:\nDivieto. Il vampiro non può entrare in una residenza senza un invito da parte di uno degli occupanti.\nDanneggiato dall'Acqua Corrente. Il vampiro subisce 20 danni da acido quando termina il suo turno nell'acqua corrente.\nPaletto nel Cuore. Il vampiro viene distrutto se un'arma perforante di legno viene infilzata nel suo cuore mentre è incapacitato nel suo luogo di riposo.\nIpersensibilità alla Luce del Sole. Il vampiro subisce 20 danni radianti quando inizia il suo turno alla luce del sole. Mentre è alla luce del sole, ha svantaggio ai tiri per colpire e alle prove di caratteristica."
+ },
+ "srd-vampire-vampire::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Se il vampiro non è alla luce del sole o nell'acqua corrente, può usare la sua azione per trasformarsi in un pipistrello di taglia Minuscola o in una nube di nebbia di taglia Media, oppure per tornare alla sua vera forma.\nMentre è in forma di pipistrello, il vampiro non può parlare, la sua velocità di camminata è 1,5 m e ha una velocità di volo di 9 m. Le sue statistiche, a parte la taglia e la velocità, rimangono invariate. Qualsiasi cosa indossi si trasforma con lui, ma nulla di ciò che porta con sé lo fa. Torna alla sua vera forma se muore.\nMentre è in forma di nebbia, il vampiro non può compiere azioni, parlare o manipolare oggetti. È senza peso, ha una velocità di volo di 6 m, può volare stazionario e può entrare nello spazio di una creatura ostile e fermarsi lì. Inoltre, se l'aria può passare attraverso uno spazio, la nebbia può farlo senza stringersi, e non può passare attraverso l'acqua. Ha vantaggio ai tiri di salvezza su Forza, Destrezza e Costituzione, ed è immune a tutti i danni non magici, eccetto i danni che subisce dalla luce del sole."
+ },
+ "srd-vampire-vampire::trait::1": {
+  "name": "Resistenza Leggendaria",
+  "desc": "Se il vampiro fallisce un tiro di salvezza, può scegliere di avere successo invece."
+ },
+ "srd-vampire-vampire::trait::2": {
+  "name": "Fuga Nebbiosa",
+  "desc": "Quando scende a 0 punti ferita fuori dal suo luogo di riposo, il vampiro si trasforma in una nube di nebbia (come nel tratto Mutaforma) invece di cadere Privo di sensi, a condizione che non sia alla luce del sole o nell'acqua corrente. Se non può trasformarsi, viene distrutto.\nMentre ha 0 punti ferita in forma di nebbia, non può tornare alla sua forma di vampiro, e deve raggiungere il suo luogo di riposo entro 2 ore o essere distrutto. Una volta nel suo luogo di riposo, torna alla sua forma di vampiro. È quindi Paralizzato finché non recupera almeno 1 punto ferita. Dopo aver trascorso 1 ora nel suo luogo di riposo con 0 punti ferita, recupera 1 punto ferita."
+ },
+ "srd-vampire-vampire::trait::3": {
+  "name": "Rigenerazione",
+  "desc": "Il vampiro recupera 20 punti ferita all'inizio del suo turno se ha almeno 1 punto ferita e non è alla luce del sole o nell'acqua corrente. Se il vampiro subisce danni radianti o danni da acqua santa, questo tratto non funziona all'inizio del turno successivo del vampiro."
+ },
+ "srd-vampire-vampire::trait::4": {
+  "name": "Camminare sui Ragnatele",
+  "desc": "Il vampiro può scalare superfici difficili, anche a testa in giù sui soffitti, senza dover effettuare una prova di caratteristica."
+ },
+ "srd-vampire-vampire::trait::5": {
+  "name": "Debolezze del Vampiro",
+  "desc": "Il vampiro ha i seguenti difetti:\nDivieto. Il vampiro non può entrare in una residenza senza un invito da parte di uno degli occupanti.\nDanneggiato dall'Acqua Corrente. Il vampiro subisce 20 danni da acido se termina il suo turno nell'acqua corrente.\nPaletto nel Cuore. Se un'arma perforante di legno viene infilzata nel cuore del vampiro mentre questo è incapacitato nel suo luogo di riposo, il vampiro è Paralizzato finché il paletto non viene rimosso.\nIpersensibilità alla Luce del Sole. Il vampiro subisce 20 danni radianti quando inizia il suo turno alla luce del sole. Mentre è alla luce del sole, ha svantaggio ai tiri per colpire e alle prove di caratteristica."
+ },
+ "srd-violet-fungus::trait::0": {
+  "name": "Falso Aspetto",
+  "desc": "Mentre il fungo viola rimane immobile, è indistinguibile da un fungo ordinario."
+ },
+ "srd-vrock::trait::0": {
+  "name": "Resistenza alla Magia",
+  "desc": "Il vrock ha vantaggio ai tiri di salvezza contro incantesimi e altri effetti magici."
+ },
+ "srd-vulture::trait::0": {
+  "name": "Vista e Olfatto Acuti",
+  "desc": "L'avvoltoio ha vantaggio alle prove di Saggezza (Percezione) basate sulla vista o sull'olfatto."
+ },
+ "srd-vulture::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "L'avvoltoio ha vantaggio a un tiro per colpire contro una creatura se almeno uno degli alleati dell'avvoltoio si trova entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-warhorse::trait::0": {
+  "name": "Carica Travolgente",
+  "desc": "Se il cavallo si muove di almeno 6 m in linea retta verso una creatura e poi la colpisce con un attacco di zoccoli nello stesso turno, l'obiettivo deve superare un tiro di salvezza su Forza con CD 14 o essere atterrato Prono. Se l'obiettivo è Prono, il cavallo può effettuare un altro attacco con gli zoccoli contro di esso come azione bonus."
+ },
+ "srd-water-elemental::trait::0": {
+  "name": "Forma d'Acqua",
+  "desc": "L'elementale può entrare nello spazio di una creatura ostile e fermarsi lì. Può muoversi attraverso uno spazio largo appena 2,5 cm senza dover stringersi."
+ },
+ "srd-water-elemental::trait::1": {
+  "name": "Congelamento",
+  "desc": "Se l'elementale subisce danni da freddo, si congela parzialmente; la sua velocità viene ridotta di 6 m fino alla fine del suo turno successivo."
+ },
+ "srd-weasel::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "La donnola ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-werebear-bear::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo orso può usare la sua azione per trasformarsi in un ibrido orso-umanoide di taglia Grande o in un orso di taglia Grande, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la taglia e la CA, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-werebear-bear::trait::1": {
+  "name": "Olfatto Acuto",
+  "desc": "Il licantropo orso ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-werebear-human::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo orso può usare la sua azione per trasformarsi in un ibrido orso-umanoide di taglia Grande o in un orso di taglia Grande, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la taglia e la CA, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-werebear-human::trait::1": {
+  "name": "Olfatto Acuto",
+  "desc": "Il licantropo orso ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-werebear-hybrid::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo orso può usare la sua azione per trasformarsi in un ibrido orso-umanoide di taglia Grande o in un orso di taglia Grande, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la taglia e la CA, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-werebear-hybrid::trait::1": {
+  "name": "Olfatto Acuto",
+  "desc": "Il licantropo orso ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-wereboar-boar::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo cinghiale può usare la sua azione per trasformarsi in un ibrido cinghiale-umanoide o in un cinghiale, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la CA, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-wereboar-boar::trait::1": {
+  "name": "Carica (Solo Forma di Cinghiale o Ibrida)",
+  "desc": "Se il licantropo cinghiale si muove di almeno 4,5 m in linea retta verso un obiettivo e poi lo colpisce con le sue zanne nello stesso turno, l'obiettivo subisce 7 (2d6) danni taglienti extra. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza con CD 13 o essere atterrato Prono."
+ },
+ "srd-wereboar-boar::trait::2": {
+  "name": "Implacabile",
+  "desc": "Se il licantropo cinghiale subisce 14 danni o meno che lo porterebbero a 0 punti ferita, viene invece ridotto a 1 punto ferita."
+ },
+ "srd-wereboar-human::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo cinghiale può usare la sua azione per trasformarsi in un ibrido cinghiale-umanoide o in un cinghiale, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la CA, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-wereboar-human::trait::1": {
+  "name": "Implacabile",
+  "desc": "Se il licantropo cinghiale subisce 14 danni o meno che lo porterebbero a 0 punti ferita, viene invece ridotto a 1 punto ferita."
+ },
+ "srd-wereboar-hybrid::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo cinghiale può usare la sua azione per trasformarsi in un ibrido cinghiale-umanoide o in un cinghiale, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la CA, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-wereboar-hybrid::trait::1": {
+  "name": "Carica (Solo Forma di Cinghiale o Ibrida)",
+  "desc": "Se il licantropo cinghiale si muove di almeno 4,5 m in linea retta verso un obiettivo e poi lo colpisce con le sue zanne nello stesso turno, l'obiettivo subisce 7 (2d6) danni taglienti extra. Se l'obiettivo è una creatura, deve superare un tiro di salvezza su Forza con CD 13 o essere atterrato Prono."
+ },
+ "srd-wereboar-hybrid::trait::2": {
+  "name": "Implacabile",
+  "desc": "Se il licantropo cinghiale subisce 14 danni o meno che lo porterebbero a 0 punti ferita, viene invece ridotto a 1 punto ferita."
+ },
+ "srd-wererat-human::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo ratto può usare la sua azione per trasformarsi in un ibrido ratto-umanoide o in un ratto gigante, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la taglia, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-wererat-human::trait::1": {
+  "name": "Olfatto Acuto",
+  "desc": "Il licantropo ratto ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-wererat-hybrid::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo ratto può usare la sua azione per trasformarsi in un ibrido ratto-umanoide o in un ratto gigante, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la taglia, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-wererat-hybrid::trait::1": {
+  "name": "Olfatto Acuto",
+  "desc": "Il licantropo ratto ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-wererat-rat::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo ratto può usare la sua azione per trasformarsi in un ibrido ratto-umanoide o in un ratto gigante, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la taglia, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-wererat-rat::trait::1": {
+  "name": "Olfatto Acuto",
+  "desc": "Il licantropo ratto ha vantaggio alle prove di Saggezza (Percezione) basate sull'olfatto."
+ },
+ "srd-weretiger-human::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo tigre può usare la sua azione per trasformarsi in un ibrido tigre-umanoide o in una tigre, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la taglia, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-weretiger-human::trait::1": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il licantropo tigre ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-weretiger-hybrid::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo tigre può usare la sua azione per trasformarsi in un ibrido tigre-umanoide o in una tigre, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la taglia, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-weretiger-hybrid::trait::1": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il licantropo tigre ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-weretiger-hybrid::trait::2": {
+  "name": "Assalto",
+  "desc": "Se il licantropo tigre si muove di almeno 4,5 m in linea retta verso una creatura e poi la colpisce con un attacco di zampata nello stesso turno, l'obiettivo deve superare un tiro di salvezza su Forza con CD 14 o essere atterrato Prono. Se l'obiettivo è Prono, il licantropo tigre può effettuare un attacco di morso contro di esso come azione bonus."
+ },
+ "srd-weretiger-tiger::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo tigre può usare la sua azione per trasformarsi in un ibrido tigre-umanoide o in una tigre, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la taglia, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-weretiger-tiger::trait::1": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il licantropo tigre ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-weretiger-tiger::trait::2": {
+  "name": "Assalto",
+  "desc": "Se il licantropo tigre si muove di almeno 4,5 m in linea retta verso una creatura e poi la colpisce con un attacco di zampata nello stesso turno, l'obiettivo deve superare un tiro di salvezza su Forza con CD 14 o essere atterrato Prono. Se l'obiettivo è Prono, il licantropo tigre può effettuare un attacco di morso contro di esso come azione bonus."
+ },
+ "srd-werewolf-human::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo lupo può usare la sua azione per trasformarsi in un ibrido lupo-umanoide o in un lupo, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la CA, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-werewolf-human::trait::1": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il licantropo lupo ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-werewolf-hybrid::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo lupo può usare la sua azione per trasformarsi in un ibrido lupo-umanoide o in un lupo, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la CA, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-werewolf-hybrid::trait::1": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il licantropo lupo ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-werewolf-wolf::trait::0": {
+  "name": "Mutaforma",
+  "desc": "Il licantropo lupo può usare la sua azione per trasformarsi in un ibrido lupo-umanoide o in un lupo, oppure per tornare alla sua vera forma, che è umanoide. Le sue statistiche, a parte la CA, sono le stesse in ogni forma. Qualsiasi equipaggiamento che indossa o porta con sé non viene trasformato. Torna alla sua vera forma se muore."
+ },
+ "srd-werewolf-wolf::trait::1": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il licantropo lupo ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-wight::trait::0": {
+  "name": "Sensibilità alla Luce del Sole",
+  "desc": "Mentre è alla luce del sole, lo spettro ha svantaggio ai tiri per colpire, così come alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-will-o-wisp::trait::0": {
+  "name": "Consumare la Vita",
+  "desc": "Come azione bonus, il fuoco fatuo può prendere di mira una creatura che può vedere entro 1,5 m da sé che ha 0 punti ferita ed è ancora viva. L'obiettivo deve superare un tiro di salvezza su Costituzione con CD 10 contro questa magia o morire. Se l'obiettivo muore, il fuoco fatuo recupera 10 (3d6) punti ferita."
+ },
+ "srd-will-o-wisp::trait::1": {
+  "name": "Effimero",
+  "desc": "Il fuoco fatuo non può indossare o portare nulla."
+ },
+ "srd-will-o-wisp::trait::2": {
+  "name": "Movimento Incorporeo",
+  "desc": "Il fuoco fatuo può muoversi attraverso altre creature e oggetti come se fossero terreno difficile. Subisce 5 (1d10) danni da forza se termina il suo turno dentro un oggetto."
+ },
+ "srd-will-o-wisp::trait::3": {
+  "name": "Illuminazione Variabile",
+  "desc": "Il fuoco fatuo emana luce intensa in un raggio da 1,5 a 6 m e luce fioca per un ulteriore numero di metri pari al raggio scelto. Il fuoco fatuo può alterare il raggio come azione bonus."
+ },
+ "srd-winter-wolf::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il lupo ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-winter-wolf::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Il lupo ha vantaggio a un tiro per colpire contro una creatura se almeno uno degli alleati del lupo si trova entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-winter-wolf::trait::2": {
+  "name": "Mimetismo nella Neve",
+  "desc": "Il lupo ha vantaggio alle prove di Destrezza (Furtività) effettuate per nascondersi in un terreno innevato."
+ },
+ "srd-wolf::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il lupo ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-wolf::trait::1": {
+  "name": "Tattiche di Branco",
+  "desc": "Il lupo ha vantaggio a un tiro per colpire contro una creatura se almeno uno degli alleati del lupo si trova entro 1,5 m dalla creatura e l'alleato non è incapacitato."
+ },
+ "srd-worg::trait::0": {
+  "name": "Udito e Olfatto Acuti",
+  "desc": "Il worg ha vantaggio alle prove di Saggezza (Percezione) basate sull'udito o sull'olfatto."
+ },
+ "srd-wraith::trait::0": {
+  "name": "Movimento Incorporeo",
+  "desc": "Lo spettro può muoversi attraverso altre creature e oggetti come se fossero terreno difficile. Subisce 5 (1d10) danni da forza se termina il suo turno dentro un oggetto."
+ },
+ "srd-wraith::trait::1": {
+  "name": "Sensibilità alla Luce del Sole",
+  "desc": "Mentre è alla luce del sole, lo spettro ha svantaggio ai tiri per colpire, così come alle prove di Saggezza (Percezione) basate sulla vista."
+ },
+ "srd-xorn::trait::0": {
+  "name": "Scivolamento nella Terra",
+  "desc": "Lo xorn può scavare attraverso terra e roccia non magiche e non lavorate. Mentre lo fa, lo xorn non disturba il materiale attraverso cui si muove."
+ },
+ "srd-xorn::trait::1": {
+  "name": "Mimetismo nella Roccia",
+  "desc": "Lo xorn ha vantaggio alle prove di Destrezza (Furtività) effettuate per nascondersi in un terreno roccioso."
+ },
+ "srd-xorn::trait::2": {
+  "name": "Percezione dei Tesori",
+  "desc": "Lo xorn può individuare, tramite l'olfatto, la posizione di metalli e pietre preziose, come monete e gemme, entro 18 m da sé."
+ },
+ "srd-young-black-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-young-bronze-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-young-gold-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-young-green-dragon::trait::0": {
+  "name": "Anfibio",
+  "desc": "Il drago può respirare sia in aria che in acqua."
+ },
+ "srd-young-white-dragon::trait::0": {
+  "name": "Camminata sul Ghiaccio",
+  "desc": "Il drago può muoversi e scalare superfici ghiacciate senza dover effettuare una prova di caratteristica. Inoltre, il terreno difficile composto da ghiaccio o neve non gli costa movimento extra."
+ },
+ "srd-zombie::trait::0": {
+  "name": "Fortitudine dei Non Morti",
+  "desc": "Se un danno riduce lo zombie a 0 punti ferita, deve effettuare un tiro di salvezza su Costituzione con CD pari a 5 + il danno subito, a meno che il danno non sia radiante o provenga da un colpo critico. Se ha successo, lo zombie scende invece a 1 punto ferita."
+ }
+}
