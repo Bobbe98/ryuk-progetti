@@ -253,12 +253,13 @@ function seedEquipment() {
       description, properties, crafting_materials, crafting_procedure, image_url
     ) VALUES (
       @id, 'srd', @name, @category, 'common', 0, @cost_gp, 0, @weight,
-      @description, @properties, @crafting_materials, @crafting_procedure, NULL
+      @description, @properties, @crafting_materials, @crafting_procedure, @image_url
     )
     ON CONFLICT(id) DO UPDATE SET
       name=excluded.name, category=excluded.category, cost_gp=excluded.cost_gp,
       weight=excluded.weight, description=excluded.description, properties=excluded.properties,
-      crafting_materials=excluded.crafting_materials, crafting_procedure=excluded.crafting_procedure
+      crafting_materials=excluded.crafting_materials, crafting_procedure=excluded.crafting_procedure,
+      image_url=excluded.image_url
   `);
 
   const tx = db.transaction((list) => {
@@ -275,6 +276,7 @@ function seedEquipment() {
         weight: eq.weight ?? null,
         description: ITEM_DESCRIPTIONS_IT[key] || describeEquipment(eq),
         properties: JSON.stringify({ weapon_category: eq.weapon_category, armor_category: eq.armor_category, properties: (eq.properties || []).map((p) => p.name) }),
+        image_url: eq.image ? `https://www.dnd5eapi.co${eq.image}` : null,
         crafting_materials: JSON.stringify(crafting_materials),
         crafting_procedure,
       });
