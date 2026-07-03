@@ -15,6 +15,20 @@ Non serve installare nulla:
 > `python3 -m http.server 8000` nella cartella del progetto, poi apri
 > [http://localhost:8000](http://localhost:8000)
 
+## 📱 Installala come app sul telefono (Android e iPhone)
+
+Ryuk Docs è una **PWA** (Progressive Web App): non serve un APK dal Play Store.
+Una volta pubblicata su GitHub Pages (succede in automatico grazie al workflow
+incluso, oppure attivala da *Settings → Pages* del repository):
+
+1. Apri l'indirizzo dell'app dal browser del telefono
+   (es. `https://bobbe98.github.io/ryuk-progetti/`)
+2. **Android (Chrome)**: menu ⋮ → **«Aggiungi a schermata Home»** / «Installa app»
+3. **iPhone (Safari)**: pulsante Condividi → **«Aggiungi a Home»**
+
+L'app compare con la sua icona 📄 tra le altre app, si apre a schermo intero
+e **funziona anche offline** dopo la prima visita.
+
 ## 📊 Excel (.xlsx, .xls, .csv)
 
 - Griglia stile Excel con **barra della formula**, più fogli, righe/colonne espandibili

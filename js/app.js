@@ -56,6 +56,11 @@
     if (e.dataTransfer.files.length) openFile(e.dataTransfer.files[0]);
   });
 
+  // PWA: registra il service worker (serve https o localhost, non file://)
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    navigator.serviceWorker.register('sw.js').catch(function () { /* offline non disponibile */ });
+  }
+
   // Utility comune: scarica un blob come file.
   window.RyukDocs.download = function (blob, filename) {
     var a = document.createElement('a');
