@@ -95,7 +95,7 @@ input[type="color"] { width: 34px; height: 30px; border: 1px solid #cbd5e1; bord
 
 .excel-body { flex: 1 1 auto; display: flex; min-height: 0; }
 .grid-wrap { flex: 1; overflow: auto; background: #fff; }
-table.grid { border-collapse: collapse; table-layout: fixed; }
+table.grid { border-collapse: collapse; table-layout: fixed; touch-action: manipulation; }
 table.grid th, table.grid td {
   border: 1px solid #d7dde5; font-size: 13px; height: 24px; padding: 0 5px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
@@ -172,6 +172,7 @@ table.grid td input.cell-editor {
 .pdf-overlay-text {
   position: absolute; transform: translateY(-50%); white-space: pre;
   font-family: Helvetica, Arial, sans-serif; cursor: move; z-index: 5;
+  touch-action: none; /* consente il trascinamento col dito */
 }
 .pdf-overlay-text .del {
   position: absolute; top: -14px; right: -14px; width: 16px; height: 16px; line-height: 14px;
@@ -185,3 +186,20 @@ table.grid td input.cell-editor {
   transform: translateY(-50%); min-width: 160px;
 }
 #pdf-text-panel { width: 380px; }
+
+/* ===== schermi piccoli / touch ===== */
+.pdf-canvas-wrap { touch-action: manipulation; }
+@media (max-width: 700px) {
+  .topbar { gap: 10px; padding: 0 8px; }
+  .brand { font-size: 15px; }
+  .tab { padding: 8px 10px; font-size: 13px; }
+  .btn { padding: 9px 12px; font-size: 14px; }   /* bersagli touch più grandi */
+  .toolbar { overflow-x: auto; flex-wrap: nowrap; }
+  .filename { display: none; }
+  .word-page { padding: 24px 18px; min-height: 70vh; }
+  .fx-panel { position: fixed; right: 0; top: 52px; bottom: 0; z-index: 20;
+              width: min(85vw, 340px); box-shadow: -4px 0 16px rgba(0,0,0,.25); }
+  #pdf-text-panel { width: min(85vw, 340px); }
+  .home-hero { padding: 20px 12px; }
+  table.grid td { width: 84px; min-width: 84px; max-width: 84px; height: 30px; }
+}

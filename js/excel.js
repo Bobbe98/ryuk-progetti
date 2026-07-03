@@ -207,7 +207,14 @@
   gridWrap.addEventListener('mousedown', function (e) {
     var td = e.target.closest('td');
     if (!td || e.target.classList.contains('cell-editor')) return;
-    selectCell(+td.dataset.r, +td.dataset.c);
+    var r = +td.dataset.r, c = +td.dataset.c;
+    // toccare di nuovo la cella già selezionata apre la modifica (utile su touchscreen)
+    if (r === sel.row && c === sel.col && !editing) {
+      e.preventDefault();
+      startEdit();
+      return;
+    }
+    selectCell(r, c);
   });
   gridWrap.addEventListener('dblclick', function (e) {
     var td = e.target.closest('td');

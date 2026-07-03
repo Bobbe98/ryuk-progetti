@@ -219,10 +219,11 @@
     div.appendChild(del);
     wrap.appendChild(div);
 
-    // trascinamento per riposizionare
-    div.addEventListener('mousedown', function (e) {
+    // trascinamento per riposizionare (pointer events: funziona con mouse e touch)
+    div.addEventListener('pointerdown', function (e) {
       if (e.target === del) return;
       e.preventDefault();
+      div.setPointerCapture(e.pointerId);
       var startX = e.clientX, startY = e.clientY, origX = t.x, origY = t.y;
       function move(ev) {
         t.x = origX + (ev.clientX - startX);
@@ -230,12 +231,13 @@
         div.style.left = t.x + 'px';
         div.style.top = t.y + 'px';
       }
-      function up() {
-        document.removeEventListener('mousemove', move);
-        document.removeEventListener('mouseup', up);
+      function up(ev) {
+        div.releasePointerCapture(ev.pointerId);
+        div.removeEventListener('pointermove', move);
+        div.removeEventListener('pointerup', up);
       }
-      document.addEventListener('mousemove', move);
-      document.addEventListener('mouseup', up);
+      div.addEventListener('pointermove', move);
+      div.addEventListener('pointerup', up);
     });
   }
 
