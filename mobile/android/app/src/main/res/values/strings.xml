@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Ryuk Docs</string>
+    <string name="title_activity_main">Ryuk Docs</string>
+    <string name="package_name">it.ryukdocs.app</string>
+    <string name="custom_url_scheme">it.ryukdocs.app</string>
+</resources>

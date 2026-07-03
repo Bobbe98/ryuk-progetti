@@ -1,0 +1,8 @@
+{
+  "appId": "it.ryukdocs.app",
+  "appName": "Ryuk Docs",
+  "webDir": "www",
+  "android": {
+    "allowMixedContent": false
+  }
+}

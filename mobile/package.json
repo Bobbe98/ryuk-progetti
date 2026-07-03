@@ -1,0 +1,15 @@
+{
+  "name": "ryuk-docs-mobile",
+  "version": "1.0.0",
+  "description": "App Android di Ryuk Docs (Capacitor)",
+  "private": true,
+  "scripts": {
+    "sync-www": "rm -rf www && mkdir www && cp -r ../index.html ../manifest.json ../sw.js ../css ../js ../vendor ../icons www/",
+    "apk": "npm run sync-www && npx cap sync android && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.6.7",
+    "@capacitor/cli": "^7.6.7",
+    "@capacitor/core": "^7.6.7"
+  }
+}
