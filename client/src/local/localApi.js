@@ -4,10 +4,11 @@
 // (see ../api.js platform detection) so the app needs no server at all.
 import SRD_CREATURES from '../data/creatures.json';
 import SRD_ITEMS from '../data/items.json';
+import SRD_SPELLS from '../data/spells.json';
 import { homebrewStore } from './homebrewStore';
-import { queryCreatures, queryItems } from './query';
+import { queryCreatures, queryItems, querySpells } from './query';
 import { generateEncounter, generateShop } from './generators';
-import { ENVIRONMENT_LABELS, RARITY_LABELS } from '../i18n';
+import { ENVIRONMENT_LABELS, RARITY_LABELS, SPELL_SCHOOL_LABELS, SPELL_CLASS_LABELS } from '../i18n';
 import { PROFESSIONS } from './professions';
 
 function allCreatures() {
@@ -31,7 +32,18 @@ export const localApi = {
       sizes: distinct(creatures.map((c) => c.size)),
       rarities: Object.keys(RARITY_LABELS).map((key) => ({ key, label: RARITY_LABELS[key] })),
       professions: Object.entries(PROFESSIONS).map(([key, p]) => ({ key, label: p.label })),
+      spellSchools: Object.entries(SPELL_SCHOOL_LABELS).map(([key, label]) => ({ key, label })),
+      spellClasses: Object.entries(SPELL_CLASS_LABELS).map(([key, label]) => ({ key, label })),
     };
+  },
+
+  async spells(params) {
+    return querySpells(SRD_SPELLS, params);
+  },
+  async spell(id) {
+    const found = SRD_SPELLS.find((s) => s.id === id);
+    if (!found) throw new Error('Incantesimo non trovato');
+    return found;
   },
 
   async creatures(params) {

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { api } from '../api';
 import EntityImage from '../components/EntityImage';
+import DiceText from '../components/DiceText';
+import FavoriteButton from '../components/FavoriteButton';
 import { CATEGORY_LABELS, RARITY_LABELS, RARITY_COLORS } from '../i18n';
 
 export default function ItemDetailPage() {
@@ -31,7 +33,10 @@ export default function ItemDetailPage() {
       <div className="mt-4 flex flex-col gap-6 sm:flex-row">
         <EntityImage src={item.image_url} name={item.name} kind={item.category} className="h-56 w-56 flex-shrink-0 rounded-lg object-cover" />
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-amber-300">{item.name}</h1>
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <h1 className="font-display text-3xl font-bold text-amber-300">{item.name}</h1>
+            <FavoriteButton kind="item" id={item.id} />
+          </div>
           <p className="mt-1 text-zinc-400">{CATEGORY_LABELS[item.category] || item.category}</p>
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <span className={`rounded px-2 py-0.5 text-xs text-white ${RARITY_COLORS[item.rarity] || 'bg-zinc-600'}`}>
@@ -50,12 +55,12 @@ export default function ItemDetailPage() {
             </div>
           )}
 
-          <p className="mt-3 whitespace-pre-line text-sm text-zinc-300">{item.description}</p>
+          <p className="mt-3 whitespace-pre-line text-sm text-zinc-300"><DiceText text={item.description} /></p>
         </div>
       </div>
 
-      <div className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
-        <h2 className="text-lg font-semibold text-amber-300">Creazione: materiali e procedura</h2>
+      <div className="card mt-6 p-4">
+        <h2 className="font-display text-lg font-semibold text-amber-300">Creazione: materiali e procedura</h2>
         {item.crafting_materials?.length > 0 && (
           <ul className="mt-2 list-inside list-disc text-sm text-zinc-300">
             {item.crafting_materials.map((m, i) => <li key={i}>{m}</li>)}

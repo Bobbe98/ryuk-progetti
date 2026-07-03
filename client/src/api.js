@@ -30,6 +30,9 @@ const networkApi = {
   updateCreature: (id, data) => request(`/creatures/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   deleteCreature: (id) => request(`/creatures/${id}`, { method: 'DELETE' }),
 
+  spells: (params) => request(`/spells?${new URLSearchParams(params)}`),
+  spell: (id) => request(`/spells/${id}`),
+
   items: (params) => request(`/items?${new URLSearchParams(params)}`),
   item: (id) => request(`/items/${id}`),
   createItem: (data) => request('/items', { method: 'POST', body: JSON.stringify(data) }),

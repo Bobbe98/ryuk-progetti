@@ -85,7 +85,7 @@ export default function CreatureFormPage({ editMode }) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <Link to="/creature" className="text-sm text-amber-400">&larr; Torna al bestiario</Link>
-      <h1 className="mt-3 text-2xl font-bold text-amber-300">{editMode ? 'Modifica creatura homebrew' : 'Nuova creatura homebrew'}</h1>
+      <h1 className="font-display mt-3 text-2xl font-bold text-amber-300">{editMode ? 'Modifica creatura homebrew' : 'Nuova creatura homebrew'}</h1>
 
       {error && <p className="mt-3 rounded bg-red-900/40 px-3 py-2 text-sm text-red-300">{error}</p>}
 

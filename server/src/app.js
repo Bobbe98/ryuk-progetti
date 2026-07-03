@@ -6,16 +6,19 @@ import { fileURLToPath } from 'node:url';
 import db from './db/index.js';
 import creaturesRouter from './routes/creatures.js';
 import itemsRouter from './routes/items.js';
+import spellsRouter from './routes/spells.js';
 import encountersRouter from './routes/encounters.js';
 import shopsRouter from './routes/shops.js';
 import metaRouter from './routes/meta.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Auto-seed on first run if the database is empty.
+// Auto-seed on first run if the database is empty (or predates a content
+// expansion, like the spells table added after the first release).
 const creatureCount = db.prepare('SELECT COUNT(*) c FROM creatures').get().c;
-if (creatureCount === 0) {
-  console.log('Database vuoto: avvio seed automatico dei dati SRD...');
+const spellCount = db.prepare('SELECT COUNT(*) c FROM spells').get().c;
+if (creatureCount === 0 || spellCount === 0) {
+  console.log('Database vuoto o incompleto: avvio seed automatico dei dati SRD...');
   await import('./seed/seedDb.js');
 }
 
@@ -25,6 +28,7 @@ app.use(express.json({ limit: '2mb' }));
 
 app.use('/api/creatures', creaturesRouter);
 app.use('/api/items', itemsRouter);
+app.use('/api/spells', spellsRouter);
 app.use('/api/encounters', encountersRouter);
 app.use('/api/shops', shopsRouter);
 app.use('/api/meta', metaRouter);

@@ -397,10 +397,58 @@ function seedHomebrewItems() {
   console.log(`Seeded ${HOMEBREW_ITEMS.length} homebrew items.`);
 }
 
+function seedSpells() {
+  const spells = readJson('spells.json');
+  const SPELLS_IT = readTranslations('spells-it.json');
+
+  const insert = db.prepare(`
+    INSERT INTO spells (
+      id, source, name, level, school, ritual, concentration,
+      casting_time, range, components, duration, classes, description
+    ) VALUES (
+      @id, 'srd', @name, @level, @school, @ritual, @concentration,
+      @casting_time, @range, @components, @duration, @classes, @description
+    )
+    ON CONFLICT(id) DO UPDATE SET
+      name=excluded.name, level=excluded.level, school=excluded.school,
+      ritual=excluded.ritual, concentration=excluded.concentration,
+      casting_time=excluded.casting_time, range=excluded.range,
+      components=excluded.components, duration=excluded.duration,
+      classes=excluded.classes, description=excluded.description
+  `);
+
+  const tx = db.transaction((list) => {
+    for (const s of list) {
+      const key = `srd-spell-${s.index}`;
+      const it = SPELLS_IT[key];
+      if (!it) throw new Error(`Traduzione mancante per ${key}`);
+      insert.run({
+        id: key,
+        name: it.name,
+        level: s.level,
+        // The official Italian SRD is authoritative for the school (it fixes
+        // a few 2014-API discrepancies like mass-cure-wounds/revivify).
+        school: it.school,
+        ritual: it.ritual ? 1 : 0,
+        concentration: s.concentration ? 1 : 0,
+        casting_time: it.casting_time,
+        range: it.range,
+        components: it.components,
+        duration: it.duration,
+        classes: JSON.stringify((s.classes || []).map((c) => c.index)),
+        description: it.description,
+      });
+    }
+  });
+  tx(spells);
+  console.log(`Seeded ${spells.length} spells (SRD, testi ufficiali italiani).`);
+}
+
 function main() {
   seedMonsters();
   seedMagicItems();
   seedEquipment();
+  seedSpells();
   seedHomebrewCreatures();
   seedHomebrewItems();
   console.log('Seeding complete.');

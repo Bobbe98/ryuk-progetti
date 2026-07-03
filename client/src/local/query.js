@@ -35,6 +35,30 @@ export function queryCreatures(all, params = {}) {
   return paginate(rows, page, pageSize);
 }
 
+const SPELL_SORTS = {
+  level_asc: (a, b) => a.level - b.level || a.name.localeCompare(b.name),
+  level_desc: (a, b) => b.level - a.level || a.name.localeCompare(b.name),
+  name_asc: (a, b) => a.name.localeCompare(b.name),
+  name_desc: (a, b) => b.name.localeCompare(a.name),
+};
+
+export function querySpells(all, params = {}) {
+  const { search, level, school, klass, ritual, concentration, sort, page, pageSize } = params;
+  let rows = all;
+  if (search) {
+    const needle = String(search).toLowerCase();
+    rows = rows.filter((s) => s.name.toLowerCase().includes(needle) || (s.description || '').toLowerCase().includes(needle));
+  }
+  if (level !== undefined && level !== '') rows = rows.filter((s) => s.level === Number(level));
+  if (school) rows = rows.filter((s) => s.school === school);
+  if (klass) rows = rows.filter((s) => (s.classes || []).includes(klass));
+  if (ritual === '1') rows = rows.filter((s) => s.ritual);
+  if (concentration === '1') rows = rows.filter((s) => s.concentration);
+
+  rows = [...rows].sort(SPELL_SORTS[sort] || SPELL_SORTS.level_asc);
+  return paginate(rows, page, pageSize);
+}
+
 const ITEM_SORTS = {
   rarity_asc: (a, b) => a.rarity_rank - b.rarity_rank || a.name.localeCompare(b.name),
   rarity_desc: (a, b) => b.rarity_rank - a.rarity_rank || a.name.localeCompare(b.name),

@@ -12,7 +12,7 @@ export default function SettingsPage() {
   if (Capacitor.isNativePlatform()) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-8">
-        <h1 className="text-2xl font-bold text-amber-300">Impostazioni</h1>
+        <h1 className="font-display text-2xl font-bold text-amber-300">Impostazioni</h1>
         <p className="mt-4 rounded bg-emerald-900/40 px-3 py-2 text-sm text-emerald-300">
           Questa app funziona completamente offline: {SRD_CREATURES.length} creature e {SRD_ITEMS.length} oggetti SRD
           sono incorporati nell'APK, e le creature/oggetti homebrew che crei vengono salvati direttamente sul telefono.
@@ -45,7 +45,7 @@ export default function SettingsPage() {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-amber-300">Impostazioni</h1>
+      <h1 className="font-display text-2xl font-bold text-amber-300">Impostazioni</h1>
       <p className="mt-1 text-sm text-zinc-400">
         Indica l'indirizzo del server (es. <code className="text-zinc-300">http://192.168.1.10:4000</code>).
         Sul telefono il server dev'essere raggiungibile dalla stessa rete (o pubblicato online).

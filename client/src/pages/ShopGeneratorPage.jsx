@@ -34,7 +34,7 @@ export default function ShopGeneratorPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-amber-300">Generatore di negozi</h1>
+      <h1 className="font-display text-2xl font-bold text-amber-300">Generatore di negozi</h1>
       <p className="mt-1 text-sm text-zinc-400">Genera un negozio casuale con inventario coerente in base al mestiere del mercante.</p>
 
       <div className="mt-4 flex flex-wrap items-end gap-3 rounded-lg border border-white/10 bg-white/5 p-4">
@@ -55,7 +55,7 @@ export default function ShopGeneratorPage() {
         <div className="mt-6">
           <div className="mb-4 flex items-baseline justify-between">
             <div>
-              <h2 className="text-xl font-bold text-amber-200">{result.name}</h2>
+              <h2 className="font-display text-xl font-bold text-amber-200">{result.name}</h2>
               <p className="text-sm text-zinc-400">{result.profession}</p>
             </div>
             <p className="text-sm text-zinc-400">Valore totale inventario: <b className="text-zinc-200">{result.totalValueGp} mo</b></p>

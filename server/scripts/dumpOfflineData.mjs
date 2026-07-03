@@ -4,6 +4,7 @@
 import db from '../src/db/index.js';
 import { rowToCreature } from '../src/routes/creatures.js';
 import { rowToItem } from '../src/routes/items.js';
+import { rowToSpell } from '../src/routes/spells.js';
 import { HOMEBREW_CREATURES, HOMEBREW_ITEMS } from '../src/seed/homebrew.js';
 import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -27,7 +28,10 @@ const items = db.prepare(
   `SELECT * FROM items WHERE source = 'srd' OR id IN (${itemPlaceholders})`
 ).all(...homebrewItemIds).map(rowToItem);
 
+const spells = db.prepare(`SELECT * FROM spells WHERE source = 'srd'`).all().map(rowToSpell);
+
 writeFileSync(path.join(outDir, 'creatures.json'), JSON.stringify(creatures));
 writeFileSync(path.join(outDir, 'items.json'), JSON.stringify(items));
+writeFileSync(path.join(outDir, 'spells.json'), JSON.stringify(spells));
 
-console.log(`Esportate ${creatures.length} creature e ${items.length} oggetti in ${outDir}`);
+console.log(`Esportate ${creatures.length} creature, ${items.length} oggetti e ${spells.length} incantesimi in ${outDir}`);

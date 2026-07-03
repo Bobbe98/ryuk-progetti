@@ -32,6 +32,27 @@ export const CATEGORY_LABELS = {
   'Mounts and Vehicles': 'Cavalcature e veicoli',
 };
 
+export const SPELL_SCHOOL_LABELS = {
+  abjuration: 'Abiurazione', conjuration: 'Evocazione', divination: 'Divinazione',
+  enchantment: 'Ammaliamento', evocation: 'Invocazione', illusion: 'Illusione',
+  necromancy: 'Necromanzia', transmutation: 'Trasmutazione',
+};
+
+export const SPELL_SCHOOL_COLORS = {
+  abjuration: 'bg-sky-800', conjuration: 'bg-amber-800', divination: 'bg-indigo-800',
+  enchantment: 'bg-pink-800', evocation: 'bg-red-800', illusion: 'bg-violet-800',
+  necromancy: 'bg-lime-900', transmutation: 'bg-teal-800',
+};
+
+export const SPELL_CLASS_LABELS = {
+  bard: 'Bardo', cleric: 'Chierico', druid: 'Druido', paladin: 'Paladino',
+  ranger: 'Ranger', sorcerer: 'Stregone', warlock: 'Warlock', wizard: 'Mago',
+};
+
+export function spellLevel(level) {
+  return level === 0 ? 'Trucchetto' : `${level}° livello`;
+}
+
 export function cr(value) {
   if (value === 0) return '0';
   if (value === 0.125) return '1/8';

@@ -1,7 +1,10 @@
 import express from 'express';
 import db from '../db/index.js';
 import { ENVIRONMENTS } from '../seed/environments.js';
-import { RARITY_ORDER, RARITY_LABELS_IT } from '../db/schema.js';
+import {
+  RARITY_ORDER, RARITY_LABELS_IT,
+  SPELL_SCHOOLS, SPELL_SCHOOL_LABELS_IT, SPELL_CLASSES, SPELL_CLASS_LABELS_IT,
+} from '../db/schema.js';
 import { PROFESSIONS } from '../seed/professions.js';
 
 const router = express.Router();
@@ -18,6 +21,8 @@ router.get('/', (_req, res) => {
     sizes,
     rarities: RARITY_ORDER.map((key) => ({ key, label: RARITY_LABELS_IT[key] })),
     professions: Object.entries(PROFESSIONS).map(([key, p]) => ({ key, label: p.label })),
+    spellSchools: SPELL_SCHOOLS.map((key) => ({ key, label: SPELL_SCHOOL_LABELS_IT[key] })),
+    spellClasses: SPELL_CLASSES.map((key) => ({ key, label: SPELL_CLASS_LABELS_IT[key] })),
   });
 });
 

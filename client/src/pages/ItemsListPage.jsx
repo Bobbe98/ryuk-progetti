@@ -35,7 +35,7 @@ export default function ItemsListPage() {
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
       <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
-        <h1 className="text-2xl font-bold text-amber-300">Oggetti ({data.total})</h1>
+        <h1 className="font-display text-2xl font-bold text-amber-300">Oggetti ({data.total})</h1>
         <Link to="/oggetti/nuovo" className="rounded bg-amber-600 px-4 py-2 text-sm font-semibold hover:bg-amber-500">
           + Nuovo oggetto homebrew
         </Link>
@@ -66,13 +66,15 @@ export default function ItemsListPage() {
       </div>
 
       {loading ? (
-        <p className="text-zinc-400">Caricamento...</p>
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {Array.from({ length: 12 }, (_, i) => <div key={i} className="skeleton h-44 rounded-xl" />)}
+        </div>
       ) : error ? (
         <p className="text-red-400">Errore nel caricamento degli oggetti: {error}. Verifica l'indirizzo del server in Impostazioni.</p>
       ) : (
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {data.results.map((it) => (
-            <Link key={it.id} to={`/oggetti/${it.id}`} className="group overflow-hidden rounded-lg border border-white/10 bg-white/5 transition hover:border-amber-500/50">
+            <Link key={it.id} to={`/oggetti/${it.id}`} className="card group overflow-hidden">
               <EntityImage src={it.image_url} name={it.name} kind={it.category} className="h-28 w-full object-cover" />
               <div className="p-2">
                 <p className="truncate text-sm font-medium group-hover:text-amber-300">{it.name}</p>

@@ -1,14 +1,116 @@
 @import "tailwindcss";
+@import "@fontsource/cinzel/600.css";
+@import "@fontsource/cinzel/700.css";
+
+:root {
+  --bg-base: #100d16;
+  --bg-glow-1: rgba(120, 60, 190, 0.14);
+  --bg-glow-2: rgba(217, 119, 6, 0.10);
+  --bg-glow-3: rgba(30, 90, 160, 0.10);
+}
 
 body {
   margin: 0;
-  background-color: #14121a;
   color: #e6e1ea;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-base);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 20% -10%, var(--bg-glow-1), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 10%, var(--bg-glow-2), transparent 55%),
+    radial-gradient(ellipse 70% 60% at 50% 110%, var(--bg-glow-3), transparent 60%);
+  background-attachment: fixed;
 }
+
+/* Subtle parchment-like grain, generated inline so it works fully offline. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.05'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+.font-display {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  letter-spacing: 0.02em;
+}
+
+/* Custom scrollbar to match the theme */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #14111c; }
+::-webkit-scrollbar-thumb { background: #3d3450; border-radius: 6px; border: 2px solid #14111c; }
+::-webkit-scrollbar-thumb:hover { background: #55496f; }
 
 @layer components {
   .input {
-    @apply w-full rounded border border-white/10 bg-black/30 px-3 py-2 text-sm text-zinc-100 outline-none focus:border-amber-500/60;
+    @apply w-full rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-zinc-100 outline-none transition focus:border-amber-500/60 focus:bg-black/40;
   }
+
+  .card {
+    @apply block rounded-xl border border-white/10 bg-white/[0.04] shadow-lg shadow-black/20 backdrop-blur-[2px] transition duration-200;
+  }
+  a.card:hover, .card-hover:hover {
+    @apply -translate-y-0.5 border-amber-500/40 bg-white/[0.07] shadow-xl shadow-black/30;
+  }
+
+  .dice-chip {
+    @apply mx-0.5 inline-block cursor-pointer rounded-md border border-amber-500/40 bg-amber-500/10 px-1.5 py-0 align-baseline font-mono text-[0.85em] font-semibold text-amber-300 transition hover:border-amber-400 hover:bg-amber-500/25 active:scale-95;
+  }
+
+  .skeleton {
+    @apply relative overflow-hidden border border-white/5 bg-white/[0.04];
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.06) 50%, transparent 70%);
+    animation: shimmer 1.6s infinite;
+  }
+}
+
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-rise { animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.animate-rise-1 { animation: rise 0.45s 0.06s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.animate-rise-2 { animation: rise 0.45s 0.12s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+.animate-rise-3 { animation: rise 0.45s 0.18s cubic-bezier(0.2, 0.7, 0.3, 1) both; }
+
+@keyframes dice-pop {
+  0% { opacity: 0; transform: translateY(8px) scale(0.9); }
+  60% { transform: translateY(-2px) scale(1.04); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-dice-pop { animation: dice-pop 0.3s cubic-bezier(0.2, 0.7, 0.3, 1.2) both; }
+
+/* Ornamental divider used on headers (pure CSS, offline-safe) */
+.rule-ornate {
+  position: relative;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(217, 119, 6, 0.7) 20%, rgba(251, 191, 36, 0.9) 50%, rgba(217, 119, 6, 0.7) 80%, transparent);
+}
+.rule-ornate::after {
+  content: '◆';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  color: #fbbf24;
+  text-shadow: 0 0 8px rgba(251, 191, 36, 0.8);
+  background: transparent;
 }

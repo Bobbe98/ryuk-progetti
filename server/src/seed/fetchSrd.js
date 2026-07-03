@@ -54,6 +54,7 @@ async function main() {
   await fetchCollection('monsters', 'monsters.json');
   await fetchCollection('magic-items', 'magic-items.json');
   await fetchCollection('equipment', 'equipment.json');
+  await fetchCollection('spells', 'spells.json');
   console.log('Done.');
 }
 

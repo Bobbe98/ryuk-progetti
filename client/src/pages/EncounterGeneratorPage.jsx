@@ -39,7 +39,7 @@ export default function EncounterGeneratorPage() {
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-amber-300">Generatore di incontri</h1>
+      <h1 className="font-display text-2xl font-bold text-amber-300">Generatore di incontri</h1>
       <p className="mt-1 text-sm text-zinc-400">
         Genera un incontro casuale a partire da un Grado di Sfida target (con eventuale ambiente), oppure calcola il
         budget XP corretto in base a livello e dimensione del gruppo.

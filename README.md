@@ -13,6 +13,7 @@ Il Manuale dei Mostri completo, gli oggetti magici non-SRD e le illustrazioni uf
 
 - 334 creature (intero bestiario SRD)
 - 578 oggetti (341 oggetti magici + 237 equipaggiamento)
+- 319 incantesimi (intera lista SRD, con i testi della **traduzione italiana ufficiale della SRD 5.1** pubblicata da Wizards of the Coast sotto licenza Creative Commons Attribution 4.0)
 
 Le immagini vengono mostrate via hotlink diretto a dnd5eapi.co (nessuna immagine viene copiata o redistribuita dal server); quando un'illustrazione non esiste o non è disponibile, l'interfaccia mostra automaticamente un'icona segnaposto generata (gradiente + iniziali, deterministico per nome).
 
@@ -28,6 +29,9 @@ Dati non presenti nella SRD sono stati ricostruiti con regole homebrew dichiarat
 - **Bestiario**: ricerca, filtro per tipo/ambiente/GS, ordinamento, scheda completa (CA, PF, statistiche, salvezze, abilità, resistenze/immunità, sensi, linguaggi, tratti, azioni, azioni leggendarie, reazioni, habitat).
 - **Oggetti**: ricerca, filtro per categoria/rarità, ordinamento, scheda completa (descrizione, rarità, costo, peso, sintonia, materiali e procedura di creazione).
 - **Generatore di incontri**: per GS target (con ambiente opzionale) o per livello/dimensione gruppo/difficoltà, con calcolo budget PE e moltiplicatore per numero di creature.
+- **Incantesimi**: tutti gli incantesimi SRD in italiano ufficiale, con filtri per classe, livello, scuola, rituali e concentrazione.
+- **Tiradadi integrato**: ogni formula (es. `2d6+3`) nelle schede è cliccabile e tira i dadi; vassoio flottante con dadi rapidi, formule personalizzate e storico dei tiri.
+- **Preferiti e liste di preparazione**: stella su creature/oggetti/incantesimi e liste personalizzate (es. per sessione), salvate sul dispositivo.
 - **Generatore di negozi**: inventario casuale coerente con rarità pesata per mestiere (fabbro, alchimista, incantatore, ecc.), con prezzi e quantità.
 - **Homebrew**: creazione, modifica ed eliminazione di creature e oggetti personalizzati via form dedicati.
 

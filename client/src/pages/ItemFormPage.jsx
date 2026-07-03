@@ -62,7 +62,7 @@ export default function ItemFormPage({ editMode }) {
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
       <Link to="/oggetti" className="text-sm text-amber-400">&larr; Torna agli oggetti</Link>
-      <h1 className="mt-3 text-2xl font-bold text-amber-300">{editMode ? 'Modifica oggetto homebrew' : 'Nuovo oggetto homebrew'}</h1>
+      <h1 className="font-display mt-3 text-2xl font-bold text-amber-300">{editMode ? 'Modifica oggetto homebrew' : 'Nuovo oggetto homebrew'}</h1>
 
       {error && <p className="mt-3 rounded bg-red-900/40 px-3 py-2 text-sm text-red-300">{error}</p>}
 

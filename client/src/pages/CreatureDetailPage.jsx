@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { api } from '../api';
 import EntityImage from '../components/EntityImage';
+import DiceText from '../components/DiceText';
+import FavoriteButton from '../components/FavoriteButton';
 import { TYPE_LABELS, SIZE_LABELS, ENVIRONMENT_LABELS, cr } from '../i18n';
 
 function mod(score) {
@@ -43,7 +45,10 @@ export default function CreatureDetailPage() {
       <div className="mt-4 flex flex-col gap-6 sm:flex-row">
         <EntityImage src={creature.image_url} name={creature.name} kind={creature.type} className="h-56 w-56 flex-shrink-0 rounded-lg object-cover" />
         <div className="flex-1">
-          <h1 className="text-3xl font-bold text-amber-300">{creature.name}</h1>
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <h1 className="font-display text-3xl font-bold text-amber-300">{creature.name}</h1>
+            <FavoriteButton kind="creature" id={creature.id} />
+          </div>
           <p className="italic text-zinc-400">
             {SIZE_LABELS[creature.size] || creature.size} {TYPE_LABELS[creature.type] || creature.type}
             {creature.subtype ? ` (${creature.subtype})` : ''}, {creature.alignment}
@@ -69,7 +74,7 @@ export default function CreatureDetailPage() {
 
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
         <Stat label="Classe Armatura" value={creature.ac} />
-        <Stat label="Punti Ferita" value={`${creature.hp} (${creature.hit_dice})`} />
+        <Stat label="Punti Ferita" value={<span>{creature.hp} (<DiceText text={creature.hit_dice} />)</span>} />
         <Stat label="Grado di Sfida" value={`${cr(creature.cr)} (${creature.xp} PE)`} />
         <Stat label="Velocità" value={Object.entries(speed).filter(([k]) => k !== 'hover').map(([k, v]) => `${k} ${v}`).join(', ')} />
       </div>
@@ -108,7 +113,7 @@ export default function CreatureDetailPage() {
 
 function Stat({ label, value }) {
   return (
-    <div className="rounded border border-white/10 bg-white/5 p-3 text-center">
+    <div className="rounded-lg border border-white/10 bg-white/5 p-3 text-center">
       <div className="text-xs text-zinc-400">{label}</div>
       <div className="font-semibold">{value}</div>
     </div>
@@ -119,10 +124,10 @@ function Section({ title, items }) {
   if (!items || items.length === 0) return null;
   return (
     <div className="mt-6">
-      <h2 className="border-b border-amber-700/40 pb-1 text-lg font-semibold text-amber-300">{title}</h2>
+      <h2 className="font-display border-b border-amber-700/40 pb-1 text-lg font-semibold text-amber-300">{title}</h2>
       <div className="mt-2 space-y-2 text-sm">
         {items.map((it, i) => (
-          <p key={i}><span className="font-semibold italic">{it.name}.</span> {it.desc}</p>
+          <p key={i}><span className="font-semibold italic">{it.name}.</span> <DiceText text={it.desc} /></p>
         ))}
       </div>
     </div>
