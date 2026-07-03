@@ -4,6 +4,17 @@ import { getServerUrl, setServerUrl, getApiBase } from '../serverConfig';
 import SRD_CREATURES from '../data/creatures.json';
 import SRD_ITEMS from '../data/items.json';
 
+function Credits() {
+  return (
+    <p className="mt-6 border-t border-white/10 pt-4 text-xs leading-relaxed text-zinc-500">
+      Contenuti: System Reference Document 5.1 (Wizards of the Coast, licenza OGL; testi degli incantesimi dalla
+      traduzione italiana ufficiale della SRD 5.1, licenza CC BY 4.0). Icone di oggetti e creature da{' '}
+      <a href="https://game-icons.net" target="_blank" rel="noreferrer" className="text-amber-400/80 hover:underline">game-icons.net</a>{' '}
+      (licenza CC BY 3.0 — autori: Lorc, Delapouite, Skoll, DarkZaitzev, Faithtoken, Carl Olsen, sbed, Willdabeast, Lucas, Zajkonur e altri).
+    </p>
+  );
+}
+
 export default function SettingsPage() {
   const [url, setUrl] = useState(getServerUrl());
   const [status, setStatus] = useState(null);
@@ -18,6 +29,7 @@ export default function SettingsPage() {
           sono incorporati nell'APK, e le creature/oggetti homebrew che crei vengono salvati direttamente sul telefono.
           Non è richiesto nessun server.
         </p>
+        <Credits />
       </div>
     );
   }
@@ -75,6 +87,7 @@ export default function SettingsPage() {
           {status.message}
         </p>
       )}
+      <Credits />
     </div>
   );
 }
