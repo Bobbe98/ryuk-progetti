@@ -1,0 +1,187 @@
+/* ===== Ryuk Docs — stile ===== */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+  background: #f0f2f5;
+  color: #1d2129;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- barra superiore ---- */
+.topbar {
+  display: flex; align-items: center; gap: 24px;
+  background: #1e293b; color: #fff;
+  padding: 0 16px; height: 52px; flex: 0 0 auto;
+}
+.brand { font-size: 18px; font-weight: 700; letter-spacing: .3px; }
+.tabs { display: flex; gap: 4px; }
+.tab {
+  background: transparent; color: #cbd5e1; border: none;
+  padding: 8px 16px; font-size: 14px; cursor: pointer; border-radius: 8px;
+}
+.tab:hover { background: #334155; color: #fff; }
+.tab.active { background: #3b82f6; color: #fff; font-weight: 600; }
+
+/* ---- pannelli ---- */
+.panel { display: none; flex: 1 1 auto; min-height: 0; flex-direction: column; }
+.panel.active { display: flex; }
+
+/* ---- home ---- */
+.home-hero { max-width: 860px; margin: 0 auto; padding: 40px 20px; text-align: center; }
+.home-hero h1 { margin: 0 0 8px; }
+.home-hero > p { color: #475569; margin: 0 0 24px; }
+.dropzone {
+  border: 2px dashed #94a3b8; border-radius: 16px; background: #fff;
+  padding: 36px 20px; margin-bottom: 28px; transition: all .15s;
+}
+.dropzone.dragover { border-color: #3b82f6; background: #eff6ff; }
+.dz-icon { font-size: 34px; }
+.dz-text { color: #64748b; margin: 8px 0 14px; line-height: 1.5; }
+.home-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.home-card {
+  background: #fff; border-radius: 14px; padding: 20px; cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08); text-align: left; transition: transform .12s, box-shadow .12s;
+}
+.home-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,.12); }
+.hc-icon { font-size: 28px; }
+.home-card h3 { margin: 8px 0 6px; }
+.home-card p { margin: 0; color: #64748b; font-size: 13.5px; line-height: 1.45; }
+
+/* ---- toolbar comune ---- */
+.toolbar {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  background: #fff; border-bottom: 1px solid #e2e8f0; padding: 8px 12px; flex: 0 0 auto;
+}
+.toolbar-2 { border-top: none; }
+.btn {
+  background: #f1f5f9; border: 1px solid #cbd5e1; color: #1e293b;
+  border-radius: 8px; padding: 6px 12px; font-size: 13.5px; cursor: pointer;
+}
+.btn:hover:not(:disabled) { background: #e2e8f0; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-primary { background: #3b82f6; border-color: #2563eb; color: #fff; font-weight: 600; }
+.btn-primary:hover:not(:disabled) { background: #2563eb; }
+.btn-small { padding: 2px 8px; font-size: 12px; }
+.btn-toggle.on { background: #fde68a; border-color: #f59e0b; }
+.sep { width: 1px; height: 22px; background: #e2e8f0; margin: 0 4px; }
+.filename { margin-left: auto; color: #64748b; font-size: 13px; font-style: italic; }
+.select { padding: 5px 8px; border: 1px solid #cbd5e1; border-radius: 8px; background: #f8fafc; }
+.inline-label { font-size: 13px; color: #475569; display: inline-flex; align-items: center; gap: 4px; }
+.num { width: 58px; padding: 4px 6px; border: 1px solid #cbd5e1; border-radius: 6px; }
+input[type="color"] { width: 34px; height: 30px; border: 1px solid #cbd5e1; border-radius: 6px; padding: 2px; background: #fff; cursor: pointer; }
+
+.statusbar {
+  flex: 0 0 auto; padding: 4px 12px; font-size: 12.5px; color: #475569;
+  background: #f8fafc; border-top: 1px solid #e2e8f0; min-height: 24px;
+}
+
+/* ===== EXCEL ===== */
+.formulabar {
+  display: flex; align-items: center; gap: 8px;
+  background: #fff; border-bottom: 1px solid #e2e8f0; padding: 6px 12px; flex: 0 0 auto;
+}
+.cellname {
+  min-width: 64px; text-align: center; font-weight: 600; font-size: 13px;
+  border: 1px solid #cbd5e1; border-radius: 6px; padding: 5px 8px; background: #f8fafc;
+}
+.fx-label { color: #64748b; font-style: italic; font-weight: 600; }
+#xl-formula-input {
+  flex: 1; padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 6px;
+  font-family: Consolas, Menlo, monospace; font-size: 13.5px;
+}
+#xl-formula-input:focus { outline: 2px solid #93c5fd; }
+
+.excel-body { flex: 1 1 auto; display: flex; min-height: 0; }
+.grid-wrap { flex: 1; overflow: auto; background: #fff; }
+table.grid { border-collapse: collapse; table-layout: fixed; }
+table.grid th, table.grid td {
+  border: 1px solid #d7dde5; font-size: 13px; height: 24px; padding: 0 5px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+table.grid th {
+  background: #eef2f7; color: #475569; font-weight: 600; text-align: center;
+  position: sticky; z-index: 2; user-select: none;
+}
+table.grid thead th { top: 0; }
+table.grid tbody th { left: 0; width: 46px; min-width: 46px; }
+table.grid thead th.corner { left: 0; z-index: 3; }
+table.grid td { width: 96px; min-width: 96px; max-width: 96px; background: #fff; cursor: cell; }
+table.grid td.num { text-align: right; }
+table.grid td.err { color: #dc2626; font-weight: 600; }
+table.grid td.sel { outline: 2px solid #2563eb; outline-offset: -2px; background: #eff6ff; }
+table.grid th.hl { background: #dbeafe; color: #1d4ed8; }
+table.grid td input.cell-editor {
+  width: 100%; height: 100%; border: none; padding: 0 4px; margin: 0;
+  font: inherit; font-family: Consolas, Menlo, monospace; outline: 2px solid #2563eb;
+}
+
+.sheetbar {
+  display: flex; align-items: center; gap: 6px; padding: 4px 12px;
+  background: #fff; border-top: 1px solid #e2e8f0; flex: 0 0 auto;
+}
+.sheet-tabs { display: flex; gap: 4px; overflow-x: auto; }
+.sheet-tab {
+  padding: 4px 14px; font-size: 13px; border: 1px solid #cbd5e1; border-bottom: none;
+  border-radius: 8px 8px 0 0; background: #f1f5f9; cursor: pointer; white-space: nowrap;
+}
+.sheet-tab.active { background: #3b82f6; color: #fff; border-color: #2563eb; font-weight: 600; }
+
+/* pannello funzioni / testo estratto */
+.fx-panel {
+  width: 320px; flex: 0 0 auto; background: #fff; border-left: 1px solid #e2e8f0;
+  display: flex; flex-direction: column; padding: 10px;
+}
+.fx-panel.hidden { display: none; }
+.fx-panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+#xl-fx-search { padding: 6px 10px; border: 1px solid #cbd5e1; border-radius: 8px; margin-bottom: 8px; }
+.fx-list { overflow-y: auto; flex: 1; }
+.fx-item { padding: 7px 8px; border-radius: 8px; cursor: pointer; }
+.fx-item:hover { background: #eff6ff; }
+.fx-item b { color: #1d4ed8; font-family: Consolas, Menlo, monospace; font-size: 13px; }
+.fx-item small { display: block; color: #64748b; margin-top: 2px; line-height: 1.35; }
+#pdf-extracted { flex: 1; resize: none; border: 1px solid #cbd5e1; border-radius: 8px; padding: 8px; font-size: 12.5px; font-family: Consolas, Menlo, monospace; }
+
+/* ===== WORD ===== */
+.word-body { flex: 1 1 auto; overflow: auto; padding: 24px 12px; }
+.word-page {
+  max-width: 820px; min-height: 1000px; margin: 0 auto; background: #fff;
+  padding: 60px 70px; box-shadow: 0 2px 12px rgba(0,0,0,.14); border-radius: 4px;
+  line-height: 1.6; font-size: 15px; outline: none;
+}
+.word-page:focus { box-shadow: 0 2px 12px rgba(37,99,235,.28); }
+.word-page img { max-width: 100%; }
+.word-page table { border-collapse: collapse; }
+.word-page table td, .word-page table th { border: 1px solid #94a3b8; padding: 4px 8px; }
+.btn-fmt { min-width: 34px; }
+
+/* ===== PDF ===== */
+.pdf-body { flex: 1 1 auto; display: flex; min-height: 0; }
+.pdf-pages { flex: 1; overflow: auto; padding: 20px; text-align: center; }
+.pdf-empty { color: #64748b; margin-top: 80px; font-size: 16px; line-height: 2; }
+.pdf-page-box { display: inline-block; margin: 0 auto 22px; text-align: center; }
+.pdf-page-head {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12.5px; color: #475569; margin-bottom: 4px; padding: 0 2px;
+}
+.pdf-page-actions { display: flex; gap: 4px; }
+.pdf-canvas-wrap { position: relative; display: inline-block; box-shadow: 0 2px 10px rgba(0,0,0,.18); }
+.pdf-canvas-wrap.addtext-mode { cursor: crosshair; }
+.pdf-canvas-wrap canvas { display: block; background: #fff; max-width: 100%; }
+.pdf-overlay-text {
+  position: absolute; transform: translateY(-50%); white-space: pre;
+  font-family: Helvetica, Arial, sans-serif; cursor: move; z-index: 5;
+}
+.pdf-overlay-text .del {
+  position: absolute; top: -14px; right: -14px; width: 16px; height: 16px; line-height: 14px;
+  font-size: 11px; text-align: center; background: #ef4444; color: #fff; border-radius: 50%;
+  cursor: pointer; display: none;
+}
+.pdf-overlay-text:hover .del { display: block; }
+.pdf-text-input {
+  position: absolute; z-index: 6; border: 2px solid #2563eb; border-radius: 4px;
+  padding: 2px 4px; font-family: Helvetica, Arial, sans-serif; background: #fff;
+  transform: translateY(-50%); min-width: 160px;
+}
+#pdf-text-panel { width: 380px; }

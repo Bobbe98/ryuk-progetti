@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ryuk Docs — Editor PDF, Excel e Word</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📄</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">📄 Ryuk Docs</div>
+    <nav class="tabs">
+      <button class="tab active" data-tab="home">🏠 Home</button>
+      <button class="tab" data-tab="excel">📊 Excel</button>
+      <button class="tab" data-tab="word">📝 Word</button>
+      <button class="tab" data-tab="pdf">📕 PDF</button>
+    </nav>
+  </header>
+
+  <!-- ============ HOME ============ -->
+  <section id="panel-home" class="panel active">
+    <div class="home-hero">
+      <h1>Benvenuto in Ryuk Docs</h1>
+      <p>Leggi e modifica file <strong>Excel</strong> (con tutte le formule), <strong>Word</strong> e <strong>PDF</strong> — tutto nel tuo browser, senza inviare nulla su internet.</p>
+      <div id="dropzone" class="dropzone">
+        <div class="dz-icon">⬆️</div>
+        <div class="dz-text">Trascina qui un file <b>.xlsx / .xls / .csv / .docx / .pdf</b><br>oppure</div>
+        <button id="btn-home-open" class="btn btn-primary">Scegli un file…</button>
+        <input type="file" id="home-file-input" accept=".xlsx,.xls,.csv,.docx,.pdf" hidden>
+      </div>
+      <div class="home-cards">
+        <div class="home-card" data-goto="excel">
+          <div class="hc-icon">📊</div>
+          <h3>Excel</h3>
+          <p>Foglio di calcolo completo con oltre 380 funzioni (SOMMA, CERCA.VERT, SE…), apri e salva .xlsx</p>
+        </div>
+        <div class="home-card" data-goto="word">
+          <div class="hc-icon">📝</div>
+          <h3>Word</h3>
+          <p>Apri documenti .docx, modificali con l'editor di testo e salvali di nuovo in .docx</p>
+        </div>
+        <div class="home-card" data-goto="pdf">
+          <div class="hc-icon">📕</div>
+          <h3>PDF</h3>
+          <p>Leggi PDF, aggiungi testo, elimina o ruota pagine, estrai il testo e salva</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXCEL ============ -->
+  <section id="panel-excel" class="panel">
+    <div class="toolbar">
+      <button id="xl-new" class="btn" title="Nuovo foglio di lavoro vuoto">🆕 Nuovo</button>
+      <button id="xl-open" class="btn" title="Apri un file Excel o CSV">📂 Apri</button>
+      <input type="file" id="xl-file-input" accept=".xlsx,.xls,.csv" hidden>
+      <button id="xl-save" class="btn btn-primary" title="Scarica come .xlsx">💾 Salva .xlsx</button>
+      <button id="xl-csv" class="btn" title="Scarica il foglio attivo come CSV">⬇️ CSV</button>
+      <span class="sep"></span>
+      <button id="xl-add-row" class="btn">➕ Riga</button>
+      <button id="xl-add-col" class="btn">➕ Colonna</button>
+      <span class="sep"></span>
+      <button id="xl-fx-help" class="btn" title="Elenco di tutte le funzioni disponibili">ƒx Funzioni</button>
+      <span id="xl-filename" class="filename"></span>
+    </div>
+    <div class="formulabar">
+      <div id="xl-cellname" class="cellname">A1</div>
+      <span class="fx-label">ƒx</span>
+      <input id="xl-formula-input" type="text" spellcheck="false"
+             placeholder="Scrivi un valore o una formula, es. =SUM(A1:A10)">
+    </div>
+    <div class="excel-body">
+      <div id="xl-grid-wrap" class="grid-wrap"></div>
+      <aside id="xl-fx-panel" class="fx-panel hidden">
+        <div class="fx-panel-head">
+          <b>Funzioni disponibili</b>
+          <button id="xl-fx-close" class="btn btn-small">✕</button>
+        </div>
+        <input id="xl-fx-search" type="text" placeholder="Cerca funzione… (es. SOMMA, IF, VLOOKUP)">
+        <div id="xl-fx-list" class="fx-list"></div>
+      </aside>
+    </div>
+    <div class="sheetbar">
+      <div id="xl-sheet-tabs" class="sheet-tabs"></div>
+      <button id="xl-add-sheet" class="btn btn-small" title="Aggiungi foglio">＋</button>
+    </div>
+    <div id="xl-status" class="statusbar"></div>
+  </section>
+
+  <!-- ============ WORD ============ -->
+  <section id="panel-word" class="panel">
+    <div class="toolbar">
+      <button id="wd-new" class="btn">🆕 Nuovo</button>
+      <button id="wd-open" class="btn">📂 Apri .docx</button>
+      <input type="file" id="wd-file-input" accept=".docx" hidden>
+      <button id="wd-save" class="btn btn-primary" title="Scarica come .docx">💾 Salva .docx</button>
+      <button id="wd-print" class="btn" title="Stampa o salva come PDF">🖨️ Stampa/PDF</button>
+      <span id="wd-filename" class="filename"></span>
+    </div>
+    <div class="toolbar toolbar-2">
+      <select id="wd-block" class="select" title="Stile paragrafo">
+        <option value="p">Paragrafo</option>
+        <option value="h1">Titolo 1</option>
+        <option value="h2">Titolo 2</option>
+        <option value="h3">Titolo 3</option>
+      </select>
+      <select id="wd-fontsize" class="select" title="Dimensione testo">
+        <option value="1">Piccolissimo</option>
+        <option value="2">Piccolo</option>
+        <option value="3" selected>Normale</option>
+        <option value="4">Medio</option>
+        <option value="5">Grande</option>
+        <option value="6">Molto grande</option>
+        <option value="7">Enorme</option>
+      </select>
+      <span class="sep"></span>
+      <button class="btn btn-fmt" data-cmd="bold" title="Grassetto"><b>G</b></button>
+      <button class="btn btn-fmt" data-cmd="italic" title="Corsivo"><i>C</i></button>
+      <button class="btn btn-fmt" data-cmd="underline" title="Sottolineato"><u>S</u></button>
+      <button class="btn btn-fmt" data-cmd="strikeThrough" title="Barrato"><s>B</s></button>
+      <input type="color" id="wd-color" title="Colore testo" value="#000000">
+      <input type="color" id="wd-bgcolor" title="Evidenziatore" value="#ffff00">
+      <span class="sep"></span>
+      <button class="btn btn-fmt" data-cmd="justifyLeft" title="Allinea a sinistra">⯇</button>
+      <button class="btn btn-fmt" data-cmd="justifyCenter" title="Centra">≡</button>
+      <button class="btn btn-fmt" data-cmd="justifyRight" title="Allinea a destra">⯈</button>
+      <span class="sep"></span>
+      <button class="btn btn-fmt" data-cmd="insertUnorderedList" title="Elenco puntato">• Elenco</button>
+      <button class="btn btn-fmt" data-cmd="insertOrderedList" title="Elenco numerato">1. Elenco</button>
+      <button id="wd-link" class="btn" title="Inserisci collegamento">🔗</button>
+      <span class="sep"></span>
+      <button class="btn btn-fmt" data-cmd="undo" title="Annulla">↶</button>
+      <button class="btn btn-fmt" data-cmd="redo" title="Ripristina">↷</button>
+      <button class="btn btn-fmt" data-cmd="removeFormat" title="Rimuovi formattazione">🧹</button>
+    </div>
+    <div class="word-body">
+      <div id="wd-editor" class="word-page" contenteditable="true" spellcheck="true">
+        <h1>Nuovo documento</h1>
+        <p>Inizia a scrivere qui, oppure apri un file .docx con il pulsante «Apri» qui sopra.</p>
+      </div>
+    </div>
+    <div id="wd-status" class="statusbar"></div>
+  </section>
+
+  <!-- ============ PDF ============ -->
+  <section id="panel-pdf" class="panel">
+    <div class="toolbar">
+      <button id="pdf-open" class="btn">📂 Apri PDF</button>
+      <input type="file" id="pdf-file-input" accept=".pdf" hidden>
+      <button id="pdf-save" class="btn btn-primary" title="Scarica il PDF con le modifiche" disabled>💾 Salva PDF</button>
+      <span class="sep"></span>
+      <button id="pdf-add-text" class="btn btn-toggle" title="Clicca su una pagina per aggiungere testo" disabled>✏️ Aggiungi testo</button>
+      <label class="inline-label">Dimensione <input id="pdf-font-size" type="number" min="6" max="96" value="14" class="num"></label>
+      <input type="color" id="pdf-text-color" value="#d90000" title="Colore del testo">
+      <span class="sep"></span>
+      <button id="pdf-extract" class="btn" title="Estrai tutto il testo del PDF" disabled>📋 Estrai testo</button>
+      <span id="pdf-filename" class="filename"></span>
+    </div>
+    <div class="pdf-body">
+      <div id="pdf-pages" class="pdf-pages">
+        <div class="pdf-empty">Apri un file PDF per iniziare.<br><small>Potrai aggiungere testo, eliminare o ruotare pagine ed estrarre il testo.</small></div>
+      </div>
+      <aside id="pdf-text-panel" class="fx-panel hidden">
+        <div class="fx-panel-head">
+          <b>Testo estratto</b>
+          <div>
+            <button id="pdf-copy-text" class="btn btn-small">Copia</button>
+            <button id="pdf-text-close" class="btn btn-small">✕</button>
+          </div>
+        </div>
+        <textarea id="pdf-extracted" readonly></textarea>
+      </aside>
+    </div>
+    <div id="pdf-status" class="statusbar"></div>
+  </section>
+
+  <!-- Librerie (incluse nel progetto: funziona anche senza internet) -->
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script src="vendor/hyperformula.full.min.js"></script>
+  <script src="vendor/mammoth.browser.min.js"></script>
+  <script src="vendor/html-docx.js"></script>
+  <script src="vendor/pdf.min.js"></script>
+  <script src="vendor/pdf-lib.min.js"></script>
+
+  <script src="js/app.js"></script>
+  <script src="js/excel.js"></script>
+  <script src="js/word.js"></script>
+  <script src="js/pdf.js"></script>
+</body>
+</html>
