@@ -15,6 +15,19 @@ Non serve installare nulla:
 > `python3 -m http.server 8000` nella cartella del progetto, poi apri
 > [http://localhost:8000](http://localhost:8000)
 
+## 🤖 APK Android (installazione diretta)
+
+Nel repository trovi **`RyukDocs.apk`**: l'app Android pronta da installare.
+
+1. Scarica `RyukDocs.apk` sul telefono (da GitHub: apri il file → pulsante «Download raw file»)
+2. Apri il file scaricato: Android chiederà di consentire l'installazione da
+   **origini sconosciute** → consenti (è normale per le app fuori dal Play Store)
+3. Fine: troverai **Ryuk Docs** 📄 tra le tue app, funziona completamente offline
+
+> L'APK è firmato con una chiave di debug: va benissimo per uso personale.
+> Per ricompilarlo: `cd mobile && npm install && npm run apk`
+> (servono Android SDK e Gradle).
+
 ## 📱 Installala come app sul telefono (Android e iPhone)
 
 Ryuk Docs è una **PWA** (Progressive Web App): non serve un APK dal Play Store.
