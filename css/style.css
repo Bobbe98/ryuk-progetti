@@ -187,8 +187,35 @@ table.grid td input.cell-editor {
 }
 #pdf-text-panel { width: 380px; }
 
+/* riquadri del testo esistente (modalità Modifica testo) */
+.pdf-textbox {
+  position: absolute; z-index: 4; cursor: text;
+  outline: 1px dashed rgba(37, 99, 235, .55);
+  background: rgba(59, 130, 246, .07);
+  border-radius: 2px;
+}
+.pdf-textbox:hover { background: rgba(59, 130, 246, .22); outline-color: #2563eb; }
+
+/* testo sostituito: toppa bianca con il nuovo testo */
+.pdf-edit-overlay {
+  position: absolute; z-index: 5; background: #fff; color: #000;
+  font-family: Helvetica, Arial, sans-serif; white-space: pre;
+  display: flex; align-items: center; line-height: 1;
+  outline: 1px dashed rgba(22, 163, 74, .6);
+}
+.pdf-edit-overlay .del {
+  position: absolute; top: -14px; right: -14px; width: 16px; height: 16px; line-height: 14px;
+  font-size: 11px; text-align: center; background: #ef4444; color: #fff; border-radius: 50%;
+  cursor: pointer; display: none;
+}
+.pdf-edit-overlay:hover .del { display: block; }
+
 /* ===== schermi piccoli / touch ===== */
 .pdf-canvas-wrap { touch-action: manipulation; }
+@media (hover: none) {
+  /* senza mouse non c'è hover: mostra sempre i pulsanti di rimozione */
+  .pdf-overlay-text .del, .pdf-edit-overlay .del { display: block; }
+}
 @media (max-width: 700px) {
   .topbar { gap: 10px; padding: 0 8px; }
   .brand { font-size: 15px; }

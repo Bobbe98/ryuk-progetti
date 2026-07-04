@@ -153,6 +153,7 @@
       <input type="file" id="pdf-file-input" accept=".pdf" hidden>
       <button id="pdf-save" class="btn btn-primary" title="Scarica il PDF con le modifiche" disabled>💾 Salva PDF</button>
       <span class="sep"></span>
+      <button id="pdf-edit-text" class="btn btn-toggle" title="Tocca una scritta della pagina per modificarla" disabled>📝 Modifica testo</button>
       <button id="pdf-add-text" class="btn btn-toggle" title="Clicca su una pagina per aggiungere testo" disabled>✏️ Aggiungi testo</button>
       <label class="inline-label">Dimensione <input id="pdf-font-size" type="number" min="6" max="96" value="14" class="num"></label>
       <input type="color" id="pdf-text-color" value="#d90000" title="Colore del testo">
@@ -162,7 +163,7 @@
     </div>
     <div class="pdf-body">
       <div id="pdf-pages" class="pdf-pages">
-        <div class="pdf-empty">Apri un file PDF per iniziare.<br><small>Potrai aggiungere testo, eliminare o ruotare pagine ed estrarre il testo.</small></div>
+        <div class="pdf-empty">Apri un file PDF per iniziare.<br><small>Potrai modificare il testo esistente, aggiungere testo, eliminare o ruotare pagine ed estrarre il testo.</small></div>
       </div>
       <aside id="pdf-text-panel" class="fx-panel hidden">
         <div class="fx-panel-head">

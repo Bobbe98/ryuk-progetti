@@ -24,9 +24,13 @@
   var pdfDoc = null;          // documento PDF.js
   var fileName = '';
   var addTextMode = false;
+  var editTextMode = false;
   // Stato delle modifiche per pagina (indice 0-based sul documento originale)
-  // { deleted: bool, extraRotation: 0/90/180/270, texts: [{x,y,size,color,text}], widthPts, heightPts }
+  // { deleted, extraRotation, texts: [{x,y,size,color,text}],
+  //   edits: [{x,y,w,h,size,text}] (coordinate PDF: sostituzioni di testo esistente),
+  //   viewport, widthPts, heightPts }
   var pageState = [];
+  var btnEditText = document.getElementById('pdf-edit-text');
 
   function setStatus(msg) { statusEl.textContent = msg || ''; }
 
@@ -43,10 +47,11 @@
           pdfDoc = doc;
           pageState = [];
           for (var i = 0; i < doc.numPages; i++) {
-            pageState.push({ deleted: false, extraRotation: 0, texts: [], widthPts: 0, heightPts: 0 });
+            pageState.push({ deleted: false, extraRotation: 0, texts: [], edits: [], widthPts: 0, heightPts: 0 });
           }
           btnSave.disabled = false;
           btnAddText.disabled = false;
+          btnEditText.disabled = false;
           btnExtract.disabled = false;
           renderAllPages();
         })
@@ -127,12 +132,14 @@
 
       var wrap = document.createElement('div');
       wrap.className = 'pdf-canvas-wrap' + (addTextMode ? ' addtext-mode' : '');
+      wrap.dataset.page = num;
       var canvas = document.createElement('canvas');
       canvas.width = viewport.width;
       canvas.height = viewport.height;
       wrap.appendChild(canvas);
       box.appendChild(wrap);
       (container || pagesEl).appendChild(box);
+      st.viewport = viewport;
 
       wrap.addEventListener('click', function (e) {
         if (!addTextMode) return;
@@ -142,15 +149,156 @@
       });
 
       st.texts.forEach(function (t) { addOverlay(wrap, num, t); });
+      st.edits.forEach(function (ed) { addEditOverlay(wrap, num, ed); });
+      if (editTextMode) buildTextBoxes(wrap, num);
 
       return page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
     });
   }
 
+  // ---------- modifica del testo esistente ----------
+  // Riquadro (in pixel del canvas) di un elemento di testo della pagina
+  function itemRect(st, item) {
+    var tx = item.transform; // [a,b,c,d,e,f]: e,f = origine della riga (baseline)
+    var fontH = Math.hypot(tx[2], tx[3]) || item.height || 10;
+    var p0 = st.viewport.convertToViewportPoint(tx[4], tx[5] - fontH * 0.25);
+    var p1 = st.viewport.convertToViewportPoint(tx[4] + item.width, tx[5] + fontH * 0.8);
+    return {
+      left: Math.min(p0[0], p1[0]), top: Math.min(p0[1], p1[1]),
+      w: Math.abs(p1[0] - p0[0]), h: Math.abs(p1[1] - p0[1]),
+      fontH: fontH
+    };
+  }
+
+  function buildTextBoxes(wrap, num) {
+    pdfDoc.getPage(num).then(function (page) {
+      return page.getTextContent();
+    }).then(function (tc) {
+      var st = pageState[num - 1];
+      tc.items.forEach(function (item) {
+        if (!item.str || !item.str.trim() || !item.width) return;
+        var r = itemRect(st, item);
+        var boxEl = document.createElement('div');
+        boxEl.className = 'pdf-textbox';
+        boxEl.style.left = r.left + 'px';
+        boxEl.style.top = r.top + 'px';
+        boxEl.style.width = r.w + 'px';
+        boxEl.style.height = r.h + 'px';
+        boxEl.title = 'Tocca per modificare: ' + item.str;
+        boxEl.addEventListener('click', function (e) {
+          e.stopPropagation();
+          openEditInput(wrap, num, item, r, boxEl);
+        });
+        wrap.appendChild(boxEl);
+      });
+    });
+  }
+
+  function removeTextBoxes() {
+    document.querySelectorAll('.pdf-textbox').forEach(function (b) { b.remove(); });
+  }
+
+  function openEditInput(wrap, pageNum, item, r, boxEl) {
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.className = 'pdf-text-input pdf-edit-input';
+    input.value = item.str;
+    input.style.left = r.left + 'px';
+    input.style.top = (r.top + r.h / 2) + 'px';
+    input.style.minWidth = Math.max(160, r.w + 20) + 'px';
+    input.style.fontSize = Math.max(11, r.h * 0.75) + 'px';
+    wrap.appendChild(input);
+    input.focus();
+    input.select();
+    setStatus('Modifica il testo e premi Invio (lascia vuoto per cancellarlo). Esc per annullare.');
+
+    var committed = false;
+    function commit() {
+      if (committed) return;
+      committed = true;
+      var text = input.value;
+      input.remove();
+      if (text === item.str) return; // nessuna modifica
+      var tx = item.transform;
+      var ed = {
+        x: tx[4], y: tx[5],            // baseline in coordinate PDF
+        w: item.width, h: r.fontH,
+        size: Math.round(r.fontH),
+        text: text
+      };
+      pageState[pageNum - 1].edits.push(ed);
+      if (boxEl) boxEl.remove();
+      addEditOverlay(wrap, pageNum, ed);
+      setStatus('Testo modificato a pagina ' + pageNum + '. Ricorda di salvare.');
+    }
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') { e.preventDefault(); commit(); }
+      if (e.key === 'Escape') { committed = true; input.remove(); }
+      e.stopPropagation();
+    });
+    input.addEventListener('blur', function () { commit(); });
+  }
+
+  // Mostra subito l'effetto della sostituzione: toppa bianca + nuovo testo
+  function addEditOverlay(wrap, pageNum, ed) {
+    var st = pageState[pageNum - 1];
+    var p0 = st.viewport.convertToViewportPoint(ed.x, ed.y - ed.h * 0.3);
+    var p1 = st.viewport.convertToViewportPoint(ed.x + ed.w, ed.y + ed.h * 0.85);
+    var left = Math.min(p0[0], p1[0]), top = Math.min(p0[1], p1[1]);
+    var w = Math.abs(p1[0] - p0[0]), h = Math.abs(p1[1] - p0[1]);
+    var div = document.createElement('div');
+    div.className = 'pdf-edit-overlay';
+    div.style.left = left + 'px';
+    div.style.top = top + 'px';
+    div.style.minWidth = w + 'px';
+    div.style.height = h + 'px';
+    div.style.fontSize = (ed.h * RENDER_SCALE * 0.95) + 'px';
+    div.textContent = ed.text;
+    div.title = 'Testo modificato — ✕ per ripristinare l’originale';
+    var del = document.createElement('span');
+    del.className = 'del';
+    del.textContent = '✕';
+    del.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var arr = st.edits;
+      var i = arr.indexOf(ed);
+      if (i >= 0) arr.splice(i, 1);
+      div.remove();
+      setStatus('Modifica annullata: il testo originale è stato ripristinato.');
+    });
+    div.appendChild(del);
+    wrap.appendChild(div);
+  }
+
+  // ---------- modalità ----------
+  btnEditText.addEventListener('click', function () {
+    editTextMode = !editTextMode;
+    btnEditText.classList.toggle('on', editTextMode);
+    if (editTextMode && addTextMode) {
+      addTextMode = false;
+      btnAddText.classList.remove('on');
+      document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) { w.classList.remove('addtext-mode'); });
+    }
+    if (editTextMode) {
+      document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) {
+        buildTextBoxes(w, +w.dataset.page);
+      });
+      setStatus('Modalità modifica attiva: tocca una scritta evidenziata per cambiarla.');
+    } else {
+      removeTextBoxes();
+      setStatus('');
+    }
+  });
+
   // ---------- aggiunta testo ----------
   btnAddText.addEventListener('click', function () {
     addTextMode = !addTextMode;
     btnAddText.classList.toggle('on', addTextMode);
+    if (addTextMode && editTextMode) {
+      editTextMode = false;
+      btnEditText.classList.remove('on');
+      removeTextBoxes();
+    }
     document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) {
       w.classList.toggle('addtext-mode', addTextMode);
     });
@@ -305,6 +453,26 @@
             var current = page.getRotation().angle || 0;
             page.setRotation(PDFLib.degrees((current + st.extraRotation) % 360));
           }
+          // sostituzioni di testo esistente: toppa bianca + nuovo testo
+          st.edits.forEach(function (ed) {
+            page.drawRectangle({
+              x: ed.x - 1.5,
+              y: ed.y - ed.h * 0.3,
+              width: ed.w + 3,
+              height: ed.h * 1.2,
+              color: PDFLib.rgb(1, 1, 1)
+            });
+            if (ed.text && ed.text.trim()) {
+              var safe = ed.text;
+              try {
+                page.drawText(safe, { x: ed.x, y: ed.y, size: ed.size, font: font, color: PDFLib.rgb(0, 0, 0) });
+              } catch (encErr) {
+                // caratteri non supportati dal font: sostituiscili
+                safe = safe.replace(/[^\x20-\x7EàèéìòùÀÈÉÌÒÙçÇ°€£'’"«»\-]/g, '?');
+                page.drawText(safe, { x: ed.x, y: ed.y, size: ed.size, font: font, color: PDFLib.rgb(0, 0, 0) });
+              }
+            }
+          });
           // testi aggiunti: converti i pixel del canvas in punti PDF.
           // Nota: il canvas è renderizzato già ruotato, quindi il click va
           // riportato nel sistema di coordinate non ruotato della pagina.
