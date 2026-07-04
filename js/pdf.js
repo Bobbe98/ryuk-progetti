@@ -74,8 +74,10 @@
       })(i);
     }
     chain.then(function () {
-      setStatus(fileName + ' — ' + pdfDoc.numPages + ' pagine. ' +
-        'Usa «Aggiungi testo» e poi clicca su una pagina; 🗑 elimina e ↻ ruota le pagine.');
+      setStatus(fileName + ' — ' + pdfDoc.numPages + ' pagine.');
+      // modifica diretta: appena il PDF è aperto, il testo è già toccabile
+      editTextMode = false;
+      enterEditMode();
     });
   }
 
@@ -171,12 +173,14 @@
   }
 
   function buildTextBoxes(wrap, num) {
-    pdfDoc.getPage(num).then(function (page) {
+    return pdfDoc.getPage(num).then(function (page) {
       return page.getTextContent();
     }).then(function (tc) {
       var st = pageState[num - 1];
+      var count = 0;
       tc.items.forEach(function (item) {
         if (!item.str || !item.str.trim() || !item.width) return;
+        count++;
         var r = itemRect(st, item);
         var boxEl = document.createElement('div');
         boxEl.className = 'pdf-textbox';
@@ -191,6 +195,30 @@
         });
         wrap.appendChild(boxEl);
       });
+      return count;
+    });
+  }
+
+  function enterEditMode() {
+    if (editTextMode) return;
+    editTextMode = true;
+    btnEditText.classList.add('on');
+    if (addTextMode) {
+      addTextMode = false;
+      btnAddText.classList.remove('on');
+      document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) { w.classList.remove('addtext-mode'); });
+    }
+    var jobs = [];
+    document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) {
+      jobs.push(buildTextBoxes(w, +w.dataset.page));
+    });
+    Promise.all(jobs).then(function (counts) {
+      var total = counts.reduce(function (a, b) { return a + b; }, 0);
+      if (total === 0) {
+        setStatus('⚠️ In questo PDF non c’è testo modificabile: probabilmente è una scansione (immagine). Usa «Aggiungi testo» per scriverci sopra.');
+      } else {
+        setStatus('Modifica attiva: tocca una scritta evidenziata per cambiarla. ' + total + ' testi trovati.');
+      }
     });
   }
 
@@ -272,19 +300,11 @@
 
   // ---------- modalità ----------
   btnEditText.addEventListener('click', function () {
-    editTextMode = !editTextMode;
-    btnEditText.classList.toggle('on', editTextMode);
-    if (editTextMode && addTextMode) {
-      addTextMode = false;
-      btnAddText.classList.remove('on');
-      document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) { w.classList.remove('addtext-mode'); });
-    }
-    if (editTextMode) {
-      document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) {
-        buildTextBoxes(w, +w.dataset.page);
-      });
-      setStatus('Modalità modifica attiva: tocca una scritta evidenziata per cambiarla.');
+    if (!editTextMode) {
+      enterEditMode();
     } else {
+      editTextMode = false;
+      btnEditText.classList.remove('on');
       removeTextBoxes();
       setStatus('');
     }

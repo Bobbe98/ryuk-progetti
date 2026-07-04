@@ -56,8 +56,27 @@
     if (e.dataTransfer.files.length) openFile(e.dataTransfer.files[0]);
   });
 
-  // PWA: registra il service worker (serve https o localhost, non file://)
-  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+  // Versione dell'app, visibile in home per capire quale build è in uso
+  window.RyukDocs.VERSION = '1.3';
+  var verEl = document.getElementById('app-version');
+  if (verEl) verEl.textContent = 'Versione ' + window.RyukDocs.VERSION;
+
+  // Nell'app Android (Capacitor) i file sono già sul telefono: il service
+  // worker serve solo alla versione web. Dentro l'app va rimosso, altrimenti
+  // dopo un aggiornamento dell'APK continuerebbe a mostrare i file vecchi.
+  if (window.Capacitor) {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then(function (regs) {
+        regs.forEach(function (r) { r.unregister(); });
+      }).catch(function () {});
+    }
+    if (window.caches && caches.keys) {
+      caches.keys().then(function (keys) {
+        keys.forEach(function (k) { caches.delete(k); });
+      }).catch(function () {});
+    }
+  } else if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    // PWA web: registra il service worker (serve https o localhost)
     navigator.serviceWorker.register('sw.js').catch(function () { /* offline non disponibile */ });
   }
 
