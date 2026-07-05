@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api';
 import EntityImage from '../components/EntityImage';
+import { applyOverrides } from '../local/overridesStore';
 import { CATEGORY_LABELS, RARITY_LABELS, RARITY_COLORS } from '../i18n';
 
 const PAGE_SIZE = 24;
@@ -20,7 +21,7 @@ export default function ItemsListPage() {
     setLoading(true);
     setError(null);
     const params = Object.fromEntries(Object.entries({ ...filters, page, pageSize: PAGE_SIZE }).filter(([, v]) => v !== ''));
-    api.items(params).then(setData).catch((e) => setError(e.message)).finally(() => setLoading(false));
+    api.items(params).then((d) => setData({ ...d, results: applyOverrides('item', d.results) })).catch((e) => setError(e.message)).finally(() => setLoading(false));
   }, [filters, page]);
 
   useEffect(() => { load(); }, [load]);

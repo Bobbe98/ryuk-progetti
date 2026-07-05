@@ -2,7 +2,20 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api';
 import EntityImage from '../components/EntityImage';
+import { applyOverride } from '../local/overridesStore';
 import { TYPE_LABELS, ENVIRONMENT_LABELS, cr } from '../i18n';
+
+const DIFFICULTY_LABELS = { easy: 'Facile', medium: 'Media', hard: 'Difficile', deadly: 'Mortale' };
+
+function groupCreatures(creatures) {
+  const groups = new Map();
+  for (const c of creatures) {
+    const g = groups.get(c.id);
+    if (g) g.count += 1;
+    else groups.set(c.id, { creature: applyOverride('creature', c), count: 1 });
+  }
+  return [...groups.values()];
+}
 
 export default function EncounterGeneratorPage() {
   const [meta, setMeta] = useState(null);
@@ -86,18 +99,22 @@ export default function EncounterGeneratorPage() {
 
       {result && (
         <div className="mt-6">
-          <div className="mb-3 flex gap-4 text-sm text-zinc-400">
+          <div className="mb-3 flex flex-wrap gap-4 text-sm text-zinc-400">
             <span>Budget XP: <b className="text-zinc-200">{result.budgetXp}</b></span>
-            <span>XP incontro (con moltiplicatore): <b className="text-zinc-200">{result.adjustedXp}</b></span>
+            <span>XP incontro (con moltiplicatore): <b className={`${result.adjustedXp > result.budgetXp * 1.1 ? 'text-red-300' : 'text-emerald-300'}`}>{result.adjustedXp}</b> <span className="text-zinc-500">({Math.round((result.adjustedXp / result.budgetXp) * 100)}% del budget)</span></span>
+            {result.difficulty && <span>Difficoltà: <b className="text-zinc-200">{DIFFICULTY_LABELS[result.difficulty]}</b></span>}
             {result.environment && <span>Ambiente: <b className="text-zinc-200">{ENVIRONMENT_LABELS[result.environment]}</b></span>}
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-            {result.creatures.map((c) => (
-              <Link key={c.id} to={`/creature/${c.id}`} className="group overflow-hidden rounded-lg border border-white/10 bg-white/5 hover:border-amber-500/50">
+            {groupCreatures(result.creatures).map(({ creature: c, count }) => (
+              <Link key={c.id} to={`/creature/${c.id}`} className="card group relative overflow-hidden">
+                {count > 1 && (
+                  <span className="absolute right-1.5 top-1.5 z-10 rounded-full bg-amber-600 px-2 py-0.5 text-xs font-bold text-white shadow">×{count}</span>
+                )}
                 <EntityImage src={c.image_url} name={c.name} kind={c.type} className="h-28 w-full object-cover" />
                 <div className="p-2">
-                  <p className="truncate text-sm font-medium group-hover:text-amber-300">{c.name}</p>
-                  <p className="text-xs text-zinc-400">GS {cr(c.cr)} · {TYPE_LABELS[c.type] || c.type}</p>
+                  <p className="truncate text-sm font-medium group-hover:text-amber-300">{count > 1 ? `${count}× ` : ''}{c.name}</p>
+                  <p className="text-xs text-zinc-400">GS {cr(c.cr)} · {TYPE_LABELS[c.type] || c.type} · {c.xp} PE{count > 1 ? ` l'una` : ''}</p>
                 </div>
               </Link>
             ))}

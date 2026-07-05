@@ -5,18 +5,9 @@ import { xpForCr, partyXpBudget, monsterCountMultiplier } from '../utils/encount
 
 const router = express.Router();
 
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function fetchPool(environment, crMax) {
-  const where = ['cr <= @crMax'];
-  const params = { crMax };
+function fetchPool(environment) {
+  const where = ['xp > 0'];
+  const params = {};
   if (environment) {
     where.push('environments LIKE @environment');
     params.environment = `%"${environment}"%`;
@@ -24,9 +15,54 @@ function fetchPool(environment, crMax) {
   return db.prepare(`SELECT * FROM creatures WHERE ${where.join(' AND ')}`).all(params);
 }
 
-// Build an encounter whose total XP budget is targeted either directly by a
-// chosen CR (treated as "one creature of this CR is an appropriate
-// challenge") or by full party-level encounter-building math.
+// Balanced encounter builder (DMG method): the difficulty budget is compared
+// against the ADJUSTED XP (base XP × multiplier for the number of monsters)
+// at every step, so an encounter generated as "medium" really lands in the
+// medium band. It tries many random compositions (boss, pair, small group,
+// horde — duplicates allowed, like 4 goblins) and keeps the one whose
+// adjusted XP is closest to the budget, never exceeding it by more than 10%.
+export function buildBalancedEncounter(pool, budget, desiredCount) {
+  const candidates = pool.filter((c) => (c.xp || 0) > 0 && c.xp <= budget * 1.05);
+  if (candidates.length === 0) {
+    // Budget below the weakest creature available: single weakest creature.
+    const weakest = [...pool].sort((a, b) => (a.xp || 0) - (b.xp || 0))[0];
+    return weakest ? { selected: [weakest], totalXp: weakest.xp || 0 } : null;
+  }
+
+  const countChoices = desiredCount
+    ? [Math.max(1, Math.min(12, desiredCount))]
+    : [1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8];
+
+  let best = null;
+  for (let attempt = 0; attempt < 80; attempt++) {
+    const n = countChoices[Math.floor(Math.random() * countChoices.length)];
+    const idealXp = budget / (monsterCountMultiplier(n) * n);
+    let band = candidates.filter((c) => c.xp >= idealXp * 0.5 && c.xp <= idealXp * 1.6);
+    if (band.length === 0) {
+      band = [...candidates]
+        .sort((a, b) => Math.abs(Math.log(a.xp / idealXp)) - Math.abs(Math.log(b.xp / idealXp)))
+        .slice(0, 8);
+    }
+    // Groups are often homogeneous (classic packs of identical monsters).
+    const homogeneous = n > 1 && Math.random() < 0.55;
+    const fixed = band[Math.floor(Math.random() * band.length)];
+    const selected = [];
+    let totalXp = 0;
+    for (let i = 0; i < n; i++) {
+      const c = homogeneous ? fixed : band[Math.floor(Math.random() * band.length)];
+      selected.push(c);
+      totalXp += c.xp;
+    }
+    const adjusted = totalXp * monsterCountMultiplier(n);
+    const ratio = adjusted / budget;
+    let score = Math.abs(Math.log(ratio));
+    if (ratio > 1.1) score += (ratio - 1.1) * 5; // never noticeably over budget
+    if (!best || score < best.score) best = { selected, totalXp, score };
+    if (best.score < 0.04) break;
+  }
+  return { selected: best.selected, totalXp: best.totalXp };
+}
+
 router.post('/generate', (req, res) => {
   const { mode = 'cr', cr, environment, partyLevel, partySize, difficulty = 'medium', creatureCount } = req.body || {};
 
@@ -40,33 +76,19 @@ router.post('/generate', (req, res) => {
     budget = xpForCr(targetCr);
   }
 
-  const crCeiling = mode === 'party' ? 30 : Math.max(0.125, Number(cr) || 1) * 1.5 + 2;
-  const pool = fetchPool(environment, crCeiling);
+  const pool = fetchPool(environment);
   if (pool.length === 0) {
     return res.status(404).json({ error: 'Nessuna creatura trovata per i filtri selezionati (ambiente/GS).' });
   }
 
-  const desiredCount = creatureCount ? Math.max(1, Math.min(12, Number(creatureCount))) : null;
-  const shuffled = shuffle(pool);
-
-  const selected = [];
-  let totalXp = 0;
-  for (const creature of shuffled) {
-    if (desiredCount && selected.length >= desiredCount) break;
-    const candidateXp = totalXp + (creature.xp || xpForCr(creature.cr));
-    const multiplier = monsterCountMultiplier(selected.length + 1);
-    if (selected.length > 0 && candidateXp * multiplier > budget * 1.15 && !desiredCount) continue;
-    selected.push(creature);
-    totalXp = candidateXp;
-    if (!desiredCount && totalXp * monsterCountMultiplier(selected.length) >= budget * 0.85) break;
-    if (selected.length >= 8) break;
-  }
-  if (selected.length === 0) selected.push(shuffled[0]);
-
+  const built = buildBalancedEncounter(pool, budget, creatureCount ? Number(creatureCount) : null);
+  const selected = built.selected;
+  const totalXp = built.totalXp;
   const adjustedXp = totalXp * monsterCountMultiplier(selected.length);
 
   res.json({
     mode,
+    difficulty: mode === 'party' ? difficulty : null,
     environment: environment || null,
     budgetXp: Math.round(budget),
     totalXp: Math.round(totalXp),

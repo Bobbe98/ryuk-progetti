@@ -2,18 +2,25 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { api } from '../api';
 import DiceText from '../components/DiceText';
+import EntityImage from '../components/EntityImage';
 import FavoriteButton from '../components/FavoriteButton';
+import CustomizeEditor from '../components/CustomizeEditor';
+import { applyOverride } from '../local/overridesStore';
 import { SPELL_SCHOOL_LABELS, SPELL_SCHOOL_COLORS, SPELL_CLASS_LABELS, spellLevel } from '../i18n';
 
 export default function SpellDetailPage() {
   const { id } = useParams();
-  const [spell, setSpell] = useState(null);
+  const [raw, setRaw] = useState(null);
   const [error, setError] = useState(null);
+  const [rev, setRev] = useState(0);
 
   useEffect(() => {
-    setSpell(null);
-    api.spell(id).then(setSpell).catch((e) => setError(e.message));
+    setRaw(null);
+    api.spell(id).then(setRaw).catch((e) => setError(e.message));
   }, [id]);
+
+  void rev; // re-applies the override after each save/restore
+  const spell = raw && applyOverride('spell', raw);
 
   if (error) return <div className="mx-auto max-w-3xl px-4 py-8 text-red-400">{error}</div>;
   if (!spell) return <div className="mx-auto max-w-3xl px-4 py-8"><div className="skeleton h-64 rounded-xl" /></div>;
@@ -29,9 +36,17 @@ export default function SpellDetailPage() {
       <div className="card relative mt-4 overflow-hidden p-6">
         <span className={`absolute inset-x-0 top-0 h-1 ${SPELL_SCHOOL_COLORS[spell.school] || 'bg-zinc-600'}`} />
         <div className="flex flex-wrap items-start justify-between gap-3">
-          <div>
-            <h1 className="font-display text-3xl font-bold text-amber-300">{spell.name}</h1>
-            <p className="mt-0.5 italic text-zinc-400">{typeLine}{spell.ritual ? ' (rituale)' : ''}</p>
+          <div className="flex items-start gap-4">
+            {spell.image_url && (
+              <EntityImage src={spell.image_url} name={spell.name} kind={spell.school} className="h-24 w-24 flex-shrink-0 rounded-lg object-cover" />
+            )}
+            <div>
+              <h1 className="font-display text-3xl font-bold text-amber-300">{spell.name}</h1>
+              <p className="mt-0.5 italic text-zinc-400">{typeLine}{spell.ritual ? ' (rituale)' : ''}</p>
+              <div className="mt-2">
+                <CustomizeEditor kind="spell" entity={spell} onChange={() => setRev((r) => r + 1)} />
+              </div>
+            </div>
           </div>
           <FavoriteButton kind="spell" id={spell.id} />
         </div>

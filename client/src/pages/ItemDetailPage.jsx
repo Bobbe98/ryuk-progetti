@@ -4,18 +4,24 @@ import { api } from '../api';
 import EntityImage from '../components/EntityImage';
 import DiceText from '../components/DiceText';
 import FavoriteButton from '../components/FavoriteButton';
+import CustomizeEditor from '../components/CustomizeEditor';
+import { applyOverride } from '../local/overridesStore';
 import { CATEGORY_LABELS, RARITY_LABELS, RARITY_COLORS } from '../i18n';
 
 export default function ItemDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [item, setItem] = useState(null);
+  const [raw, setRaw] = useState(null);
   const [error, setError] = useState(null);
+  const [rev, setRev] = useState(0);
 
   useEffect(() => {
-    setItem(null);
-    api.item(id).then(setItem).catch((e) => setError(e.message));
+    setRaw(null);
+    api.item(id).then(setRaw).catch((e) => setError(e.message));
   }, [id]);
+
+  void rev; // re-applies the override after each save/restore
+  const item = raw && applyOverride('item', raw);
 
   async function handleDelete() {
     if (!confirm(`Eliminare definitivamente "${item.name}"?`)) return;
@@ -48,12 +54,16 @@ export default function ItemDetailPage() {
             {item.source === 'homebrew' && <span className="rounded bg-amber-700/40 px-2 py-0.5 text-xs text-amber-300">Homebrew</span>}
           </div>
 
-          {item.source === 'homebrew' && (
-            <div className="mt-2 flex gap-2">
-              <Link to={`/oggetti/${id}/modifica`} className="rounded bg-white/10 px-2 py-0.5 text-xs hover:bg-white/20">Modifica</Link>
-              <button onClick={handleDelete} className="rounded bg-red-900/50 px-2 py-0.5 text-xs hover:bg-red-800/60">Elimina</button>
-            </div>
-          )}
+          <div className="mt-2 flex flex-wrap gap-2">
+            {item.source === 'homebrew' ? (
+              <>
+                <Link to={`/oggetti/${id}/modifica`} className="rounded bg-white/10 px-2 py-0.5 text-xs hover:bg-white/20">Modifica</Link>
+                <button onClick={handleDelete} className="rounded bg-red-900/50 px-2 py-0.5 text-xs hover:bg-red-800/60">Elimina</button>
+              </>
+            ) : (
+              <CustomizeEditor kind="item" entity={item} onChange={() => setRev((r) => r + 1)} />
+            )}
+          </div>
 
           <p className="mt-3 whitespace-pre-line text-sm text-zinc-300"><DiceText text={item.description} /></p>
         </div>

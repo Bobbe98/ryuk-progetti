@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api';
 import EntityImage from '../components/EntityImage';
+import { applyOverrides } from '../local/overridesStore';
 import { TYPE_LABELS, ENVIRONMENT_LABELS, cr } from '../i18n';
 
 const PAGE_SIZE = 24;
@@ -22,7 +23,7 @@ export default function CreaturesListPage() {
     setLoading(true);
     setError(null);
     const params = Object.fromEntries(Object.entries({ ...filters, page, pageSize: PAGE_SIZE }).filter(([, v]) => v !== ''));
-    api.creatures(params).then(setData).catch((e) => setError(e.message)).finally(() => setLoading(false));
+    api.creatures(params).then((d) => setData({ ...d, results: applyOverrides('creature', d.results) })).catch((e) => setError(e.message)).finally(() => setLoading(false));
   }, [filters, page]);
 
   useEffect(() => { load(); }, [load]);

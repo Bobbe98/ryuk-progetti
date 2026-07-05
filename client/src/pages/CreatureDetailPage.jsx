@@ -4,6 +4,8 @@ import { api } from '../api';
 import EntityImage from '../components/EntityImage';
 import DiceText from '../components/DiceText';
 import FavoriteButton from '../components/FavoriteButton';
+import CustomizeEditor from '../components/CustomizeEditor';
+import { applyOverride } from '../local/overridesStore';
 import { TYPE_LABELS, SIZE_LABELS, ENVIRONMENT_LABELS, cr } from '../i18n';
 
 function mod(score) {
@@ -18,13 +20,17 @@ const ABILITIES = [
 export default function CreatureDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [creature, setCreature] = useState(null);
+  const [raw, setRaw] = useState(null);
   const [error, setError] = useState(null);
+  const [rev, setRev] = useState(0);
 
   useEffect(() => {
-    setCreature(null);
-    api.creature(id).then(setCreature).catch((e) => setError(e.message));
+    setRaw(null);
+    api.creature(id).then(setRaw).catch((e) => setError(e.message));
   }, [id]);
+
+  void rev; // re-applies the override after each save/restore
+  const creature = raw && applyOverride('creature', raw);
 
   async function handleDelete() {
     if (!confirm(`Eliminare definitivamente "${creature.name}"?`)) return;
@@ -53,14 +59,18 @@ export default function CreatureDetailPage() {
             {SIZE_LABELS[creature.size] || creature.size} {TYPE_LABELS[creature.type] || creature.type}
             {creature.subtype ? ` (${creature.subtype})` : ''}, {creature.alignment}
           </p>
-          {creature.source === 'homebrew' && (
-            <div className="mt-2 flex gap-2">
-              <span className="inline-block rounded bg-amber-700/40 px-2 py-0.5 text-xs text-amber-300">Homebrew</span>
-              <Link to={`/creature/${id}/modifica`} className="rounded bg-white/10 px-2 py-0.5 text-xs hover:bg-white/20">Modifica</Link>
-              <button onClick={handleDelete} className="rounded bg-red-900/50 px-2 py-0.5 text-xs hover:bg-red-800/60">Elimina</button>
-            </div>
-          )}
-          <p className="mt-3 text-sm text-zinc-300">{creature.description}</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {creature.source === 'homebrew' ? (
+              <>
+                <span className="inline-block rounded bg-amber-700/40 px-2 py-0.5 text-xs text-amber-300">Homebrew</span>
+                <Link to={`/creature/${id}/modifica`} className="rounded bg-white/10 px-2 py-0.5 text-xs hover:bg-white/20">Modifica</Link>
+                <button onClick={handleDelete} className="rounded bg-red-900/50 px-2 py-0.5 text-xs hover:bg-red-800/60">Elimina</button>
+              </>
+            ) : (
+              <CustomizeEditor kind="creature" entity={creature} onChange={() => setRev((r) => r + 1)} />
+            )}
+          </div>
+          <p className="mt-3 whitespace-pre-line text-sm text-zinc-300">{creature.description}</p>
 
           {creature.environments?.length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1.5">

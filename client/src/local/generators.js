@@ -12,6 +12,52 @@ function shuffle(arr) {
   return a;
 }
 
+// Balanced encounter builder (DMG method): the difficulty budget is compared
+// against the ADJUSTED XP (base XP × multiplier for the number of monsters)
+// at every step, so an encounter generated as "medium" really lands in the
+// medium band. It tries many random compositions (boss, pair, small group,
+// horde — duplicates allowed, like 4 goblins) and keeps the one whose
+// adjusted XP is closest to the budget, never exceeding it by more than 10%.
+function buildBalancedEncounter(pool, budget, desiredCount) {
+  const candidates = pool.filter((c) => (c.xp || 0) > 0 && c.xp <= budget * 1.05);
+  if (candidates.length === 0) {
+    const weakest = [...pool].sort((a, b) => (a.xp || 0) - (b.xp || 0))[0];
+    return weakest ? { selected: [weakest], totalXp: weakest.xp || 0 } : null;
+  }
+
+  const countChoices = desiredCount
+    ? [Math.max(1, Math.min(12, desiredCount))]
+    : [1, 1, 2, 2, 3, 3, 4, 4, 5, 6, 7, 8];
+
+  let best = null;
+  for (let attempt = 0; attempt < 80; attempt++) {
+    const n = countChoices[Math.floor(Math.random() * countChoices.length)];
+    const idealXp = budget / (monsterCountMultiplier(n) * n);
+    let band = candidates.filter((c) => c.xp >= idealXp * 0.5 && c.xp <= idealXp * 1.6);
+    if (band.length === 0) {
+      band = [...candidates]
+        .sort((a, b) => Math.abs(Math.log(a.xp / idealXp)) - Math.abs(Math.log(b.xp / idealXp)))
+        .slice(0, 8);
+    }
+    const homogeneous = n > 1 && Math.random() < 0.55;
+    const fixed = band[Math.floor(Math.random() * band.length)];
+    const selected = [];
+    let totalXp = 0;
+    for (let i = 0; i < n; i++) {
+      const c = homogeneous ? fixed : band[Math.floor(Math.random() * band.length)];
+      selected.push(c);
+      totalXp += c.xp;
+    }
+    const adjusted = totalXp * monsterCountMultiplier(n);
+    const ratio = adjusted / budget;
+    let score = Math.abs(Math.log(ratio));
+    if (ratio > 1.1) score += (ratio - 1.1) * 5;
+    if (!best || score < best.score) best = { selected, totalXp, score };
+    if (best.score < 0.04) break;
+  }
+  return { selected: best.selected, totalXp: best.totalXp };
+}
+
 export function generateEncounter(allCreatures, payload = {}) {
   const { mode = 'cr', cr, environment, partyLevel, partySize, difficulty = 'medium', creatureCount } = payload;
 
@@ -25,33 +71,18 @@ export function generateEncounter(allCreatures, payload = {}) {
     budget = xpForCr(targetCr);
   }
 
-  const crCeiling = mode === 'party' ? 30 : Math.max(0.125, Number(cr) || 1) * 1.5 + 2;
-  const pool = allCreatures.filter((c) => c.cr <= crCeiling && (!environment || (c.environments || []).includes(environment)));
+  const pool = allCreatures.filter((c) => (c.xp || 0) > 0 && (!environment || (c.environments || []).includes(environment)));
   if (pool.length === 0) {
     throw new Error('Nessuna creatura trovata per i filtri selezionati (ambiente/GS).');
   }
 
-  const desiredCount = creatureCount ? Math.max(1, Math.min(12, Number(creatureCount))) : null;
-  const shuffled = shuffle(pool);
-
-  const selected = [];
-  let totalXp = 0;
-  for (const creature of shuffled) {
-    if (desiredCount && selected.length >= desiredCount) break;
-    const candidateXp = totalXp + (creature.xp || xpForCr(creature.cr));
-    const multiplier = monsterCountMultiplier(selected.length + 1);
-    if (selected.length > 0 && candidateXp * multiplier > budget * 1.15 && !desiredCount) continue;
-    selected.push(creature);
-    totalXp = candidateXp;
-    if (!desiredCount && totalXp * monsterCountMultiplier(selected.length) >= budget * 0.85) break;
-    if (selected.length >= 8) break;
-  }
-  if (selected.length === 0) selected.push(shuffled[0]);
-
+  const built = buildBalancedEncounter(pool, budget, creatureCount ? Number(creatureCount) : null);
+  const { selected, totalXp } = built;
   const adjustedXp = totalXp * monsterCountMultiplier(selected.length);
 
   return {
     mode,
+    difficulty: mode === 'party' ? difficulty : null,
     environment: environment || null,
     budgetXp: Math.round(budget),
     totalXp: Math.round(totalXp),
@@ -92,12 +123,21 @@ function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+function priceAndQuantity(item, config) {
+  const markup = config.markup[0] + Math.random() * (config.markup[1] - config.markup[0]);
+  const quantity = item.category === 'Adventuring Gear' || item.category === 'Ammunition' ? randInt(1, 8) : 1;
+  return {
+    ...item,
+    shop_price_gp: Math.max(1, Math.round((item.cost_gp || 1) * markup)),
+    quantity,
+  };
+}
+
 export function generateShop(allItems, payload = {}) {
-  const { profession, name } = payload;
+  const { profession, name, rarityCounts } = payload;
   const config = PROFESSIONS[profession];
   if (!config) throw new Error('Mestiere non valido.');
 
-  const stockCount = randInt(config.stockRange[0], config.stockRange[1]);
   const candidates = allItems.filter((it) => config.categories.includes(it.category));
   if (candidates.length === 0) {
     throw new Error('Nessun oggetto disponibile per questo mestiere.');
@@ -109,22 +149,36 @@ export function generateShop(allItems, payload = {}) {
   }
 
   const stock = [];
-  const usedIds = new Set();
-  let attempts = 0;
-  while (stock.length < stockCount && attempts < stockCount * 20) {
-    attempts++;
-    const rarity = weightedRarity(config.rarityWeights);
-    const bucket = byRarity[rarity] || candidates;
-    const item = bucket[Math.floor(Math.random() * bucket.length)];
-    if (usedIds.has(item.id)) continue;
-    usedIds.add(item.id);
-    const markup = config.markup[0] + Math.random() * (config.markup[1] - config.markup[0]);
-    const quantity = item.category === 'Adventuring Gear' || item.category === 'Ammunition' ? randInt(1, 8) : 1;
-    stock.push({
-      ...item,
-      shop_price_gp: Math.max(1, Math.round((item.cost_gp || 1) * markup)),
-      quantity,
-    });
+  const manual = rarityCounts && Object.values(rarityCounts).some((n) => Number(n) > 0);
+
+  if (manual) {
+    // The user decides exactly how many items per rarity. Preference goes to
+    // items coherent with the profession; if the profession's categories run
+    // out, the bucket is topped up from the whole catalog of that rarity.
+    for (const [rarity, rawCount] of Object.entries(rarityCounts)) {
+      const count = Math.max(0, Math.min(30, Number(rawCount) || 0));
+      if (!count) continue;
+      let bucket = shuffle(byRarity[rarity] || []);
+      if (bucket.length < count) {
+        const seen = new Set(bucket.map((it) => it.id));
+        const extra = shuffle(allItems.filter((it) => it.rarity === rarity && !seen.has(it.id)));
+        bucket = bucket.concat(extra);
+      }
+      for (const item of bucket.slice(0, count)) stock.push(priceAndQuantity(item, config));
+    }
+  } else {
+    const stockCount = randInt(config.stockRange[0], config.stockRange[1]);
+    const usedIds = new Set();
+    let attempts = 0;
+    while (stock.length < stockCount && attempts < stockCount * 20) {
+      attempts++;
+      const rarity = weightedRarity(config.rarityWeights);
+      const bucket = byRarity[rarity] || candidates;
+      const item = bucket[Math.floor(Math.random() * bucket.length)];
+      if (usedIds.has(item.id)) continue;
+      usedIds.add(item.id);
+      stock.push(priceAndQuantity(item, config));
+    }
   }
 
   const totalValue = stock.reduce((s, it) => s + it.shop_price_gp * it.quantity, 0);
