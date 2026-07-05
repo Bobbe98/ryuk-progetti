@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { iconFor } from '../lib/entityIcons';
+import { bundledArtFor } from '../lib/srdArt';
 
 const PALETTES = [
   ['#7c2d12', '#1c0a05'], ['#1e3a8a', '#0a1330'], ['#14532d', '#06190f'],
@@ -51,12 +52,15 @@ function Placeholder({ name, kind, className }) {
 
 export default function EntityImage({ src, name, kind, className }) {
   const [failed, setFailed] = useState(false);
-  if (!src || failed) {
+  // Prefer the bundled offline copy of the artwork; hit the network only for
+  // URLs we don't ship (e.g. custom homebrew image links).
+  const effective = bundledArtFor(src) || src;
+  if (!effective || failed) {
     return <Placeholder name={name} kind={kind} className={className} />;
   }
   return (
     <img
-      src={src}
+      src={effective}
       alt={name}
       className={className}
       onError={() => setFailed(true)}
