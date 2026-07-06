@@ -158,7 +158,10 @@ table.grid td input.cell-editor {
 
 /* ===== PDF ===== */
 .pdf-body { flex: 1 1 auto; display: flex; min-height: 0; }
-.pdf-pages { flex: 1; overflow: auto; padding: 20px; text-align: center; }
+.pdf-pages {
+  flex: 1; overflow: auto; padding: 20px; text-align: center;
+  touch-action: pan-x pan-y; /* lo zoom a due dita lo gestisce l'app */
+}
 .pdf-empty { color: #64748b; margin-top: 80px; font-size: 16px; line-height: 2; }
 .pdf-page-box { display: inline-block; margin: 0 auto 22px; text-align: center; }
 .pdf-page-head {

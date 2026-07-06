@@ -154,6 +154,11 @@
       <input type="file" id="pdf-file-input" accept=".pdf" hidden>
       <button id="pdf-save" class="btn btn-primary" title="Scarica il PDF con le modifiche" disabled>💾 Salva PDF</button>
       <span class="sep"></span>
+      <button id="pdf-zoom-out" class="btn" title="Riduci" disabled>−</button>
+      <span id="pdf-zoom-label" class="inline-label" style="min-width:44px;text-align:center">100%</span>
+      <button id="pdf-zoom-in" class="btn" title="Ingrandisci" disabled>＋</button>
+      <button id="pdf-zoom-fit" class="btn" title="Adatta la pagina allo schermo" disabled>Adatta</button>
+      <span class="sep"></span>
       <span class="inline-label" title="Tocca una scritta per modificarla, tocca un punto vuoto per scrivere">✏️ Testo nuovo:</span>
       <label class="inline-label">Dimensione <input id="pdf-font-size" type="number" min="6" max="96" value="14" class="num"></label>
       <input type="color" id="pdf-text-color" value="#d90000" title="Colore del testo nuovo">

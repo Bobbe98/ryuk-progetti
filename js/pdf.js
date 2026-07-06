@@ -20,6 +20,11 @@
   var colorEl = document.getElementById('pdf-text-color');
   var textPanel = document.getElementById('pdf-text-panel');
   var extractedEl = document.getElementById('pdf-extracted');
+  var btnZoomIn = document.getElementById('pdf-zoom-in');
+  var btnZoomOut = document.getElementById('pdf-zoom-out');
+  var btnZoomFit = document.getElementById('pdf-zoom-fit');
+  var zoomLabel = document.getElementById('pdf-zoom-label');
+  var userZoom = 1;           // ingrandimento scelto dall'utente (1 = adatta)
 
   var originalBytes = null;   // ArrayBuffer del PDF originale
   var pdfDoc = null;          // documento PDF.js
@@ -59,6 +64,11 @@
           }
           btnSave.disabled = false;
           btnExtract.disabled = false;
+          btnZoomIn.disabled = false;
+          btnZoomOut.disabled = false;
+          btnZoomFit.disabled = false;
+          userZoom = 1;
+          zoomLabel.textContent = '100%';
           renderAllPages();
         })
         .catch(function (err) {
@@ -104,12 +114,15 @@
       st.pageRotate = page.rotate || 0;
       var rot = (st.pageRotate + st.extraRotation) % 360;
 
-      // La pagina si adatta alla larghezza disponibile: niente zoom CSS,
-      // così le coordinate di tocco e i riquadri combaciano sempre.
+      // La pagina si adatta alla larghezza disponibile, moltiplicata per lo
+      // zoom scelto dall'utente. Niente zoom CSS: le coordinate di tocco e
+      // i riquadri combaciano sempre.
       var base = page.getViewport({ scale: 1, rotation: rot });
       var avail = Math.max(280, (pagesEl.clientWidth || 800) - 36);
-      var scale = Math.min(1.6, Math.max(0.4, avail / base.width));
+      var fitScale = Math.min(1.6, Math.max(0.4, avail / base.width));
+      var scale = Math.min(5, Math.max(0.3, fitScale * userZoom));
       var dpr = Math.min(2, window.devicePixelRatio || 1);
+      if (scale * dpr > 4) dpr = 4 / scale; // limita la memoria del canvas
       var renderViewport = page.getViewport({ scale: scale * dpr, rotation: rot });
       var cssViewport = page.getViewport({ scale: scale, rotation: rot });
       st.viewport = cssViewport;
@@ -274,6 +287,52 @@
       return count;
     }).catch(function () { st.fieldCount = 0; return 0; });
   }
+
+  // ---------- zoom ----------
+  function applyZoom(z, statusMsg) {
+    z = Math.min(3, Math.max(0.5, z));
+    if (Math.abs(z - userZoom) < 0.01) return;
+    // se c'è una casella aperta, salva il suo contenuto prima di ridisegnare
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    userZoom = z;
+    zoomLabel.textContent = Math.round(z * 100) + '%';
+    renderAllPages();
+    if (statusMsg) setStatus(statusMsg);
+  }
+  btnZoomIn.addEventListener('click', function () { applyZoom(userZoom * 1.25); });
+  btnZoomOut.addEventListener('click', function () { applyZoom(userZoom / 1.25); });
+  btnZoomFit.addEventListener('click', function () { applyZoom(1, 'Pagina adattata allo schermo.'); });
+
+  // pizzica con due dita per ingrandire (con anteprima immediata)
+  var pinch = null;
+  function touchDist(t) {
+    var dx = t[0].clientX - t[1].clientX, dy = t[0].clientY - t[1].clientY;
+    return Math.hypot(dx, dy);
+  }
+  pagesEl.addEventListener('touchstart', function (e) {
+    if (e.touches.length === 2) {
+      pinch = { d0: touchDist(e.touches), z0: userZoom, ratio: 1 };
+    }
+  }, { passive: true });
+  pagesEl.addEventListener('touchmove', function (e) {
+    if (!pinch || e.touches.length !== 2) return;
+    e.preventDefault();
+    pinch.ratio = touchDist(e.touches) / pinch.d0;
+    // anteprima leggera: scala visivamente le pagine durante il gesto
+    document.querySelectorAll('.pdf-page-box').forEach(function (b) {
+      b.style.transformOrigin = 'top center';
+      b.style.transform = 'scale(' + pinch.ratio + ')';
+    });
+  }, { passive: false });
+  ['touchend', 'touchcancel'].forEach(function (ev) {
+    pagesEl.addEventListener(ev, function (e) {
+      if (!pinch || e.touches.length >= 2) return;
+      var target = pinch.z0 * pinch.ratio;
+      pinch = null;
+      document.querySelectorAll('.pdf-page-box').forEach(function (b) { b.style.transform = ''; });
+      applyZoom(target);
+    });
+  });
 
   // Riadatta le pagine SOLO quando cambia la larghezza (rotazione del
   // telefono). La tastiera virtuale cambia solo l'altezza: in quel caso
