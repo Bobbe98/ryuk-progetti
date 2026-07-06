@@ -57,7 +57,7 @@
   });
 
   // Versione dell'app, visibile in home per capire quale build è in uso
-  window.RyukDocs.VERSION = '1.4';
+  window.RyukDocs.VERSION = '1.5';
   var verEl = document.getElementById('app-version');
   if (verEl) verEl.textContent = 'Versione ' + window.RyukDocs.VERSION;
 

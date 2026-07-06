@@ -177,12 +177,22 @@
     });
   }
 
-  // riadatta le pagine quando cambia la larghezza (es. rotazione del telefono)
+  // Riadatta le pagine SOLO quando cambia la larghezza (rotazione del
+  // telefono). La tastiera virtuale cambia solo l'altezza: in quel caso
+  // non bisogna ridisegnare, altrimenti la casella che l'utente sta
+  // usando verrebbe distrutta e la tastiera si chiuderebbe da sola.
   var resizeTimer = null;
+  var lastWidth = window.innerWidth;
   window.addEventListener('resize', function () {
     if (!pdfDoc) return;
+    if (window.innerWidth === lastWidth) return;      // è solo la tastiera
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function () { renderAllPages(); }, 350);
+    resizeTimer = setTimeout(function () {
+      if (window.innerWidth === lastWidth) return;
+      if (document.querySelector('.pdf-text-input')) return; // non mentre si scrive
+      lastWidth = window.innerWidth;
+      renderAllPages();
+    }, 350);
   });
 
   // ---------- modifica del testo esistente ----------
