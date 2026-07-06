@@ -28,6 +28,8 @@
   var btnHl = document.getElementById('pdf-hl');
   var btnDraw = document.getElementById('pdf-draw');
   var btnUndoStroke = document.getElementById('pdf-undo-stroke');
+  var btnMode = document.getElementById('pdf-mode');
+  var readMode = false;       // sola lettura: le modifiche restano ma non si tocca nulla
   var hlMode = false;         // evidenziatore attivo
   var drawMode = false;       // penna a mano libera attiva
   var drawHistory = [];       // per «annulla ultimo tratto»
@@ -78,6 +80,10 @@
           btnHl.disabled = false;
           btnDraw.disabled = false;
           btnUndoStroke.disabled = false;
+          btnMode.disabled = false;
+          readMode = false;
+          btnMode.textContent = '👁 Lettura';
+          btnMode.classList.remove('on');
           drawHistory = [];
           userZoom = 1;
           zoomLabel.textContent = '100%';
@@ -183,7 +189,8 @@
       box.appendChild(head);
 
       var wrap = document.createElement('div');
-      wrap.className = 'pdf-canvas-wrap' + (drawMode ? ' drawing' : '') + (hlMode ? ' hl-mode' : '');
+      wrap.className = 'pdf-canvas-wrap' + (drawMode ? ' drawing' : '') +
+        (hlMode ? ' hl-mode' : '') + (readMode ? ' read-mode' : '');
       wrap.dataset.page = num;
       var canvas = document.createElement('canvas');
       canvas.width = renderViewport.width;
@@ -203,7 +210,7 @@
 
       // tocco su un punto vuoto della pagina = scrivi qui
       wrap.addEventListener('click', function (e) {
-        if (drawMode || hlMode) return;
+        if (readMode || drawMode || hlMode) return;
         if (e.target.closest('.pdf-overlay-text') || e.target.closest('.pdf-text-input') ||
             e.target.closest('.pdf-textbox') || e.target.closest('.pdf-edit-overlay') ||
             e.target.closest('.pdf-field') || e.target.closest('.pdf-hl')) return;
@@ -352,6 +359,31 @@
       return count;
     }).catch(function () { st.fieldCount = 0; return 0; });
   }
+
+  // ---------- lettura / modifica ----------
+  function setReadMode(on) {
+    // salva automaticamente qualsiasi casella aperta prima di cambiare modalità
+    if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    readMode = on;
+    btnMode.textContent = on ? '✏️ Modifica' : '👁 Lettura';
+    btnMode.classList.toggle('on', on);
+    if (on) {
+      hlMode = false; btnHl.classList.remove('on');
+      drawMode = false; btnDraw.classList.remove('on');
+    }
+    btnHl.disabled = on;
+    btnDraw.disabled = on;
+    btnUndoStroke.disabled = on;
+    document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) {
+      w.classList.toggle('read-mode', on);
+      w.classList.remove('drawing');
+      w.classList.remove('hl-mode');
+    });
+    setStatus(on
+      ? '👁 Sola lettura: le tue modifiche restano. Tocca «✏️ Modifica» per riprendere a modificare.'
+      : '✏️ Modifica attiva: tocca una scritta per cambiarla o un punto vuoto per scrivere.');
+  }
+  btnMode.addEventListener('click', function () { setReadMode(!readMode); });
 
   // ---------- evidenziatore e penna ----------
   function addHlOverlay(wrap, pageNum, h) {
@@ -519,7 +551,7 @@
         boxEl.title = 'Tocca per modificare: ' + item.str;
         boxEl.addEventListener('click', function (e) {
           e.stopPropagation();
-          if (drawMode) return;
+          if (readMode || drawMode) return;
           if (hlMode) {
             var tx = item.transform;
             var fontH = r.fontH;
@@ -680,7 +712,7 @@
 
     // trascinamento per riposizionare (pointer events: mouse e dito)
     div.addEventListener('pointerdown', function (e) {
-      if (e.target === del) return;
+      if (readMode || e.target === del) return;
       e.preventDefault();
       div.setPointerCapture(e.pointerId);
       var start = st.viewport.convertToViewportPoint(t.px, t.py);

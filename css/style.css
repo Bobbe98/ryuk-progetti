@@ -331,6 +331,19 @@ table.grid td input.cell-editor {
   background: rgba(255, 233, 77, .22); outline-color: #eab308; cursor: pointer;
 }
 
+/* modalità sola lettura: le modifiche restano visibili ma non si tocca nulla */
+.pdf-canvas-wrap.read-mode { cursor: default; }
+.pdf-canvas-wrap.read-mode .pdf-textbox { display: none; }
+.pdf-canvas-wrap.read-mode .pdf-hl,
+.pdf-canvas-wrap.read-mode .pdf-overlay-text,
+.pdf-canvas-wrap.read-mode .pdf-edit-overlay { pointer-events: none; }
+.pdf-canvas-wrap.read-mode .pdf-overlay-text .del,
+.pdf-canvas-wrap.read-mode .pdf-edit-overlay .del { display: none !important; }
+.pdf-canvas-wrap.read-mode .pdf-edit-overlay { outline: none; }
+.pdf-canvas-wrap.read-mode .pdf-field {
+  pointer-events: none; background: transparent; border-color: transparent; box-shadow: none;
+}
+
 /* campi dei moduli compilabili (AcroForm) */
 .pdf-field {
   position: absolute; z-index: 6; box-sizing: border-box;
