@@ -198,6 +198,20 @@ table.grid td input.cell-editor {
 }
 .pdf-textbox:hover { background: rgba(59, 130, 246, .22); outline-color: #2563eb; }
 
+/* penna a mano libera ed evidenziatore */
+.pdf-draw-layer { position: absolute; left: 0; top: 0; pointer-events: none; z-index: 7; }
+.pdf-hl {
+  position: absolute; z-index: 5; background: #ffe94d; opacity: .45;
+  cursor: pointer; border-radius: 2px;
+}
+.pdf-canvas-wrap.drawing { touch-action: none; cursor: crosshair; }
+.pdf-canvas-wrap.drawing .pdf-textbox, .pdf-canvas-wrap.drawing .pdf-field,
+.pdf-canvas-wrap.drawing .pdf-overlay-text, .pdf-canvas-wrap.drawing .pdf-edit-overlay,
+.pdf-canvas-wrap.drawing .pdf-hl { pointer-events: none; }
+.pdf-canvas-wrap.hl-mode .pdf-textbox {
+  background: rgba(255, 233, 77, .22); outline-color: #eab308; cursor: pointer;
+}
+
 /* campi dei moduli compilabili (AcroForm) */
 .pdf-field {
   position: absolute; z-index: 6; box-sizing: border-box;

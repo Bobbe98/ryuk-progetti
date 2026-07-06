@@ -25,6 +25,13 @@
   var btnZoomFit = document.getElementById('pdf-zoom-fit');
   var zoomLabel = document.getElementById('pdf-zoom-label');
   var userZoom = 1;           // ingrandimento scelto dall'utente (1 = adatta)
+  var btnHl = document.getElementById('pdf-hl');
+  var btnDraw = document.getElementById('pdf-draw');
+  var btnUndoStroke = document.getElementById('pdf-undo-stroke');
+  var hlMode = false;         // evidenziatore attivo
+  var drawMode = false;       // penna a mano libera attiva
+  var drawHistory = [];       // per «annulla ultimo tratto»
+  var SVGNS = 'http://www.w3.org/2000/svg';
 
   var originalBytes = null;   // ArrayBuffer del PDF originale
   var pdfDoc = null;          // documento PDF.js
@@ -58,7 +65,8 @@
           for (var i = 0; i < doc.numPages; i++) {
             pageState.push({
               deleted: false, extraRotation: 0, pageRotate: 0,
-              texts: [], edits: [], viewport: null, scale: 1,
+              texts: [], edits: [], highlights: [], strokes: [],
+              viewport: null, scale: 1, svg: null,
               textCount: 0, fieldCount: 0
             });
           }
@@ -67,6 +75,10 @@
           btnZoomIn.disabled = false;
           btnZoomOut.disabled = false;
           btnZoomFit.disabled = false;
+          btnHl.disabled = false;
+          btnDraw.disabled = false;
+          btnUndoStroke.disabled = false;
+          drawHistory = [];
           userZoom = 1;
           zoomLabel.textContent = '100%';
           renderAllPages();
@@ -171,7 +183,7 @@
       box.appendChild(head);
 
       var wrap = document.createElement('div');
-      wrap.className = 'pdf-canvas-wrap';
+      wrap.className = 'pdf-canvas-wrap' + (drawMode ? ' drawing' : '') + (hlMode ? ' hl-mode' : '');
       wrap.dataset.page = num;
       var canvas = document.createElement('canvas');
       canvas.width = renderViewport.width;
@@ -179,20 +191,73 @@
       canvas.style.width = cssViewport.width + 'px';
       canvas.style.height = cssViewport.height + 'px';
       wrap.appendChild(canvas);
+      // livello dei disegni a mano libera
+      var svg = document.createElementNS(SVGNS, 'svg');
+      svg.setAttribute('class', 'pdf-draw-layer');
+      svg.setAttribute('width', cssViewport.width);
+      svg.setAttribute('height', cssViewport.height);
+      wrap.appendChild(svg);
+      st.svg = svg;
       box.appendChild(wrap);
       (container || pagesEl).appendChild(box);
 
       // tocco su un punto vuoto della pagina = scrivi qui
       wrap.addEventListener('click', function (e) {
+        if (drawMode || hlMode) return;
         if (e.target.closest('.pdf-overlay-text') || e.target.closest('.pdf-text-input') ||
             e.target.closest('.pdf-textbox') || e.target.closest('.pdf-edit-overlay') ||
-            e.target.closest('.pdf-field') || e.target.closest('.pdf-field-wrap')) return;
+            e.target.closest('.pdf-field') || e.target.closest('.pdf-hl')) return;
         var rect = wrap.getBoundingClientRect();
         placeTextInput(wrap, num, e.clientX - rect.left, e.clientY - rect.top);
       });
 
+      // penna a mano libera
+      wrap.addEventListener('pointerdown', function (e) {
+        if (!drawMode) return;
+        if (e.target.closest('.pdf-text-input')) return;
+        e.preventDefault();
+        wrap.setPointerCapture(e.pointerId);
+        var rect = wrap.getBoundingClientRect();
+        var pts = [[e.clientX - rect.left, e.clientY - rect.top]];
+        var poly = document.createElementNS(SVGNS, 'polyline');
+        poly.setAttribute('fill', 'none');
+        poly.setAttribute('stroke', colorEl.value);
+        poly.setAttribute('stroke-width', 2.5 * st.scale);
+        poly.setAttribute('stroke-linecap', 'round');
+        poly.setAttribute('stroke-linejoin', 'round');
+        st.svg.appendChild(poly);
+        function update() {
+          poly.setAttribute('points', pts.map(function (p) { return p.join(','); }).join(' '));
+        }
+        update();
+        function move(ev) {
+          pts.push([ev.clientX - rect.left, ev.clientY - rect.top]);
+          update();
+        }
+        function up(ev) {
+          wrap.releasePointerCapture(ev.pointerId);
+          wrap.removeEventListener('pointermove', move);
+          wrap.removeEventListener('pointerup', up);
+          wrap.removeEventListener('pointercancel', up);
+          if (pts.length < 2) { poly.remove(); return; }
+          var stroke = {
+            color: colorEl.value,
+            width: 2.5,
+            points: pts.map(function (p) { return st.viewport.convertToPdfPoint(p[0], p[1]); })
+          };
+          st.strokes.push(stroke);
+          drawHistory.push({ st: st, stroke: stroke, el: poly });
+          setStatus('Tratto disegnato. «↩ Tratto» per annullare. Ricorda di salvare.');
+        }
+        wrap.addEventListener('pointermove', move);
+        wrap.addEventListener('pointerup', up);
+        wrap.addEventListener('pointercancel', up);
+      });
+
       st.texts.forEach(function (t) { addOverlay(wrap, num, t); });
       st.edits.forEach(function (ed) { addEditOverlay(wrap, num, ed); });
+      st.highlights.forEach(function (h) { addHlOverlay(wrap, num, h); });
+      st.strokes.forEach(function (s) { renderStroke(st, s); });
 
       // ENABLE_FORMS: il canvas NON disegna i campi modulo, che vengono
       // sostituiti dalle nostre caselle HTML compilabili
@@ -288,6 +353,76 @@
     }).catch(function () { st.fieldCount = 0; return 0; });
   }
 
+  // ---------- evidenziatore e penna ----------
+  function addHlOverlay(wrap, pageNum, h) {
+    var st = pageState[pageNum - 1];
+    var p0 = st.viewport.convertToViewportPoint(h.x, h.y);
+    var p1 = st.viewport.convertToViewportPoint(h.x + h.w, h.y + h.h);
+    var div = document.createElement('div');
+    div.className = 'pdf-hl';
+    div.style.left = Math.min(p0[0], p1[0]) + 'px';
+    div.style.top = Math.min(p0[1], p1[1]) + 'px';
+    div.style.width = Math.abs(p1[0] - p0[0]) + 'px';
+    div.style.height = Math.abs(p1[1] - p0[1]) + 'px';
+    div.title = 'Tocca per togliere l’evidenziazione';
+    div.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var i = st.highlights.indexOf(h);
+      if (i >= 0) st.highlights.splice(i, 1);
+      div.remove();
+      setStatus('Evidenziazione rimossa.');
+    });
+    wrap.appendChild(div);
+  }
+
+  function renderStroke(st, stroke) {
+    var poly = document.createElementNS(SVGNS, 'polyline');
+    poly.setAttribute('fill', 'none');
+    poly.setAttribute('stroke', stroke.color);
+    poly.setAttribute('stroke-width', stroke.width * st.scale);
+    poly.setAttribute('stroke-linecap', 'round');
+    poly.setAttribute('stroke-linejoin', 'round');
+    poly.setAttribute('points', stroke.points.map(function (p) {
+      var v = st.viewport.convertToViewportPoint(p[0], p[1]);
+      return v[0] + ',' + v[1];
+    }).join(' '));
+    st.svg.appendChild(poly);
+    return poly;
+  }
+
+  function setWrapModes() {
+    document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) {
+      w.classList.toggle('drawing', drawMode);
+      w.classList.toggle('hl-mode', hlMode);
+    });
+  }
+  btnHl.addEventListener('click', function () {
+    hlMode = !hlMode;
+    if (hlMode) drawMode = false;
+    btnHl.classList.toggle('on', hlMode);
+    btnDraw.classList.remove('on');
+    setWrapModes();
+    setStatus(hlMode ? '🖍 Evidenziatore attivo: tocca le scritte da evidenziare.' : '');
+  });
+  btnDraw.addEventListener('click', function () {
+    drawMode = !drawMode;
+    if (drawMode) hlMode = false;
+    btnDraw.classList.toggle('on', drawMode);
+    btnHl.classList.remove('on');
+    setWrapModes();
+    setStatus(drawMode
+      ? '✍️ Penna attiva: disegna o firma col dito (colore in alto). Ripremere per finire.'
+      : '');
+  });
+  btnUndoStroke.addEventListener('click', function () {
+    var last = drawHistory.pop();
+    if (!last) { setStatus('Nessun tratto da annullare.'); return; }
+    var i = last.st.strokes.indexOf(last.stroke);
+    if (i >= 0) last.st.strokes.splice(i, 1);
+    if (last.el) last.el.remove();
+    setStatus('Ultimo tratto annullato.');
+  });
+
   // ---------- zoom ----------
   function applyZoom(z, statusMsg) {
     z = Math.min(3, Math.max(0.5, z));
@@ -310,7 +445,7 @@
     return Math.hypot(dx, dy);
   }
   pagesEl.addEventListener('touchstart', function (e) {
-    if (e.touches.length === 2) {
+    if (e.touches.length === 2 && !drawMode) {
       pinch = { d0: touchDist(e.touches), z0: userZoom, ratio: 1 };
     }
   }, { passive: true });
@@ -384,6 +519,16 @@
         boxEl.title = 'Tocca per modificare: ' + item.str;
         boxEl.addEventListener('click', function (e) {
           e.stopPropagation();
+          if (drawMode) return;
+          if (hlMode) {
+            var tx = item.transform;
+            var fontH = r.fontH;
+            var h = { x: tx[4], y: tx[5] - fontH * 0.3, w: item.width, h: fontH * 1.25 };
+            st.highlights.push(h);
+            addHlOverlay(wrap, num, h);
+            setStatus('Evidenziato. Tocca l’evidenziazione per toglierla. Ricorda di salvare.');
+            return;
+          }
           openEditInput(wrap, num, item, r, boxEl);
         });
         wrap.appendChild(boxEl);
@@ -676,6 +821,34 @@
               drawTextSafe(page, ed.text,
                 { x: ed.x, y: ed.y, size: ed.size, font: font, color: PDFLib.rgb(0, 0, 0) }, PDFLib);
             }
+          });
+
+          // evidenziazioni: rettangolo giallo in trasparenza sul testo
+          st.highlights.forEach(function (h) {
+            page.drawRectangle({
+              x: h.x - 1, y: h.y, width: h.w + 2, height: h.h,
+              color: PDFLib.rgb(1, 0.9, 0.2),
+              opacity: 0.45,
+              blendMode: PDFLib.BlendMode ? PDFLib.BlendMode.Multiply : undefined
+            });
+          });
+
+          // tratti di penna: percorso SVG (l'asse Y dell'SVG è invertito)
+          var pageH = page.getHeight();
+          st.strokes.forEach(function (s) {
+            if (s.points.length < 2) return;
+            var col = hexToRgb(s.color);
+            var path = s.points.map(function (p, i) {
+              return (i === 0 ? 'M ' : 'L ') + p[0].toFixed(2) + ' ' + (pageH - p[1]).toFixed(2);
+            }).join(' ');
+            try {
+              page.drawSvgPath(path, {
+                x: 0, y: pageH,
+                borderColor: PDFLib.rgb(col.r, col.g, col.b),
+                borderWidth: s.width,
+                borderLineCap: PDFLib.LineCapStyle ? PDFLib.LineCapStyle.Round : undefined
+              });
+            } catch (e3) { console.warn('Tratto non salvato:', e3); }
           });
 
           // testi aggiunti (coordinate PDF già pronte)
