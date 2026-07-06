@@ -1,5 +1,5 @@
 /* Service worker di Ryuk Docs: rende l'app installabile e utilizzabile offline */
-var CACHE = 'ryuk-docs-v3';
+var CACHE = 'ryuk-docs-v4';
 var FILES = [
   './',
   './index.html',

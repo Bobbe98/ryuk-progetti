@@ -1,11 +1,13 @@
 /* ===== Ryuk Docs — Editor PDF =====
- * Visualizzazione con PDF.js, modifiche (testo, elimina/ruota pagine)
- * applicate al salvataggio con pdf-lib.
+ * Visualizzazione con PDF.js. Modifica diretta senza modalità:
+ *  - tocca una scritta esistente per cambiarla (copri e riscrivi)
+ *  - tocca un punto vuoto della pagina per aggiungere testo
+ * Le modifiche vengono applicate al salvataggio con pdf-lib.
+ * Tutte le posizioni sono salvate in coordinate PDF, quindi restano
+ * corrette a qualsiasi zoom, rotazione o dimensione dello schermo.
  */
 (function () {
   'use strict';
-
-  var RENDER_SCALE = 1.4;
 
   pdfjsLib.GlobalWorkerOptions.workerSrc = 'vendor/pdf.worker.min.js';
 
@@ -13,7 +15,6 @@
   var statusEl = document.getElementById('pdf-status');
   var fileNameEl = document.getElementById('pdf-filename');
   var btnSave = document.getElementById('pdf-save');
-  var btnAddText = document.getElementById('pdf-add-text');
   var btnExtract = document.getElementById('pdf-extract');
   var fontSizeEl = document.getElementById('pdf-font-size');
   var colorEl = document.getElementById('pdf-text-color');
@@ -23,14 +24,12 @@
   var originalBytes = null;   // ArrayBuffer del PDF originale
   var pdfDoc = null;          // documento PDF.js
   var fileName = '';
-  var addTextMode = false;
-  var editTextMode = false;
-  // Stato delle modifiche per pagina (indice 0-based sul documento originale)
-  // { deleted, extraRotation, texts: [{x,y,size,color,text}],
-  //   edits: [{x,y,w,h,size,text}] (coordinate PDF: sostituzioni di testo esistente),
-  //   viewport, widthPts, heightPts }
+  // Stato per pagina (indice 0-based):
+  // { deleted, extraRotation, pageRotate,
+  //   texts: [{px,py,size,color,text}]   — testo aggiunto (coordinate PDF)
+  //   edits: [{x,y,w,h,size,text}]       — sostituzioni di testo esistente
+  //   viewport (CSS), scale, textCount }
   var pageState = [];
-  var btnEditText = document.getElementById('pdf-edit-text');
 
   function setStatus(msg) { statusEl.textContent = msg || ''; }
 
@@ -47,11 +46,12 @@
           pdfDoc = doc;
           pageState = [];
           for (var i = 0; i < doc.numPages; i++) {
-            pageState.push({ deleted: false, extraRotation: 0, texts: [], edits: [], widthPts: 0, heightPts: 0 });
+            pageState.push({
+              deleted: false, extraRotation: 0, pageRotate: 0,
+              texts: [], edits: [], viewport: null, scale: 1, textCount: 0
+            });
           }
           btnSave.disabled = false;
-          btnAddText.disabled = false;
-          btnEditText.disabled = false;
           btnExtract.disabled = false;
           renderAllPages();
         })
@@ -70,25 +70,40 @@
     var chain = Promise.resolve();
     for (var i = 1; i <= pdfDoc.numPages; i++) {
       (function (num) {
-        chain = chain.then(function () { return renderPage(num); });
+        chain = chain.then(function () {
+          if (pageState[num - 1].deleted) return;
+          return renderPage(num);
+        });
       })(i);
     }
     chain.then(function () {
-      setStatus(fileName + ' — ' + pdfDoc.numPages + ' pagine.');
-      // modifica diretta: appena il PDF è aperto, il testo è già toccabile
-      editTextMode = false;
-      enterEditMode();
+      var totalText = pageState.reduce(function (a, st) { return a + (st.textCount || 0); }, 0);
+      if (totalText === 0) {
+        setStatus('⚠️ In questo PDF non c’è testo modificabile (probabilmente è una scansione). ' +
+          'Puoi comunque toccare la pagina per scriverci sopra.');
+      } else {
+        setStatus(fileName + ' — ' + pdfDoc.numPages + ' pagine. ' +
+          '✏️ Tocca una scritta per modificarla, tocca un punto vuoto per aggiungere testo.');
+      }
     });
   }
 
   function renderPage(num, container) {
     return pdfDoc.getPage(num).then(function (page) {
       var st = pageState[num - 1];
-      var viewport = page.getViewport({ scale: RENDER_SCALE, rotation: (page.rotate + st.extraRotation) % 360 });
       st.pageRotate = page.rotate || 0;
-      // dimensioni della pagina NON ruotata, in punti PDF
-      st.widthPts = page.view[2] - page.view[0];
-      st.heightPts = page.view[3] - page.view[1];
+      var rot = (st.pageRotate + st.extraRotation) % 360;
+
+      // La pagina si adatta alla larghezza disponibile: niente zoom CSS,
+      // così le coordinate di tocco e i riquadri combaciano sempre.
+      var base = page.getViewport({ scale: 1, rotation: rot });
+      var avail = Math.max(280, (pagesEl.clientWidth || 800) - 36);
+      var scale = Math.min(1.6, Math.max(0.4, avail / base.width));
+      var dpr = Math.min(2, window.devicePixelRatio || 1);
+      var renderViewport = page.getViewport({ scale: scale * dpr, rotation: rot });
+      var cssViewport = page.getViewport({ scale: scale, rotation: rot });
+      st.viewport = cssViewport;
+      st.scale = scale;
 
       var box = document.createElement('div');
       box.className = 'pdf-page-box';
@@ -133,33 +148,44 @@
       box.appendChild(head);
 
       var wrap = document.createElement('div');
-      wrap.className = 'pdf-canvas-wrap' + (addTextMode ? ' addtext-mode' : '');
+      wrap.className = 'pdf-canvas-wrap';
       wrap.dataset.page = num;
       var canvas = document.createElement('canvas');
-      canvas.width = viewport.width;
-      canvas.height = viewport.height;
+      canvas.width = renderViewport.width;
+      canvas.height = renderViewport.height;
+      canvas.style.width = cssViewport.width + 'px';
+      canvas.style.height = cssViewport.height + 'px';
       wrap.appendChild(canvas);
       box.appendChild(wrap);
       (container || pagesEl).appendChild(box);
-      st.viewport = viewport;
 
+      // tocco su un punto vuoto della pagina = scrivi qui
       wrap.addEventListener('click', function (e) {
-        if (!addTextMode) return;
-        if (e.target.closest('.pdf-overlay-text') || e.target.closest('.pdf-text-input')) return;
+        if (e.target.closest('.pdf-overlay-text') || e.target.closest('.pdf-text-input') ||
+            e.target.closest('.pdf-textbox') || e.target.closest('.pdf-edit-overlay')) return;
         var rect = wrap.getBoundingClientRect();
         placeTextInput(wrap, num, e.clientX - rect.left, e.clientY - rect.top);
       });
 
       st.texts.forEach(function (t) { addOverlay(wrap, num, t); });
       st.edits.forEach(function (ed) { addEditOverlay(wrap, num, ed); });
-      if (editTextMode) buildTextBoxes(wrap, num);
 
-      return page.render({ canvasContext: canvas.getContext('2d'), viewport: viewport }).promise;
+      return Promise.all([
+        page.render({ canvasContext: canvas.getContext('2d'), viewport: renderViewport, transform: null }).promise,
+        buildTextBoxes(wrap, num)
+      ]);
     });
   }
 
+  // riadatta le pagine quando cambia la larghezza (es. rotazione del telefono)
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    if (!pdfDoc) return;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { renderAllPages(); }, 350);
+  });
+
   // ---------- modifica del testo esistente ----------
-  // Riquadro (in pixel del canvas) di un elemento di testo della pagina
   function itemRect(st, item) {
     var tx = item.transform; // [a,b,c,d,e,f]: e,f = origine della riga (baseline)
     var fontH = Math.hypot(tx[2], tx[3]) || item.height || 10;
@@ -195,38 +221,13 @@
         });
         wrap.appendChild(boxEl);
       });
+      st.textCount = count;
       return count;
     });
   }
 
-  function enterEditMode() {
-    if (editTextMode) return;
-    editTextMode = true;
-    btnEditText.classList.add('on');
-    if (addTextMode) {
-      addTextMode = false;
-      btnAddText.classList.remove('on');
-      document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) { w.classList.remove('addtext-mode'); });
-    }
-    var jobs = [];
-    document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) {
-      jobs.push(buildTextBoxes(w, +w.dataset.page));
-    });
-    Promise.all(jobs).then(function (counts) {
-      var total = counts.reduce(function (a, b) { return a + b; }, 0);
-      if (total === 0) {
-        setStatus('⚠️ In questo PDF non c’è testo modificabile: probabilmente è una scansione (immagine). Usa «Aggiungi testo» per scriverci sopra.');
-      } else {
-        setStatus('Modifica attiva: tocca una scritta evidenziata per cambiarla. ' + total + ' testi trovati.');
-      }
-    });
-  }
-
-  function removeTextBoxes() {
-    document.querySelectorAll('.pdf-textbox').forEach(function (b) { b.remove(); });
-  }
-
   function openEditInput(wrap, pageNum, item, r, boxEl) {
+    var st = pageState[pageNum - 1];
     var input = document.createElement('input');
     input.type = 'text';
     input.className = 'pdf-text-input pdf-edit-input';
@@ -238,7 +239,7 @@
     wrap.appendChild(input);
     input.focus();
     input.select();
-    setStatus('Modifica il testo e premi Invio (lascia vuoto per cancellarlo). Esc per annullare.');
+    setStatus('Modifica il testo e premi Invio (vuoto = cancella). Esc per annullare.');
 
     var committed = false;
     function commit() {
@@ -246,7 +247,7 @@
       committed = true;
       var text = input.value;
       input.remove();
-      if (text === item.str) return; // nessuna modifica
+      if (text === item.str) { setStatus(''); return; } // nessuna modifica
       var tx = item.transform;
       var ed = {
         x: tx[4], y: tx[5],            // baseline in coordinate PDF
@@ -254,14 +255,14 @@
         size: Math.round(r.fontH),
         text: text
       };
-      pageState[pageNum - 1].edits.push(ed);
+      st.edits.push(ed);
       if (boxEl) boxEl.remove();
       addEditOverlay(wrap, pageNum, ed);
       setStatus('Testo modificato a pagina ' + pageNum + '. Ricorda di salvare.');
     }
     input.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') { e.preventDefault(); commit(); }
-      if (e.key === 'Escape') { committed = true; input.remove(); }
+      if (e.key === 'Escape') { committed = true; input.remove(); setStatus(''); }
       e.stopPropagation();
     });
     input.addEventListener('blur', function () { commit(); });
@@ -280,7 +281,7 @@
     div.style.top = top + 'px';
     div.style.minWidth = w + 'px';
     div.style.height = h + 'px';
-    div.style.fontSize = (ed.h * RENDER_SCALE * 0.95) + 'px';
+    div.style.fontSize = (ed.h * st.scale * 0.95) + 'px';
     div.textContent = ed.text;
     div.title = 'Testo modificato — ✕ per ripristinare l’originale';
     var del = document.createElement('span');
@@ -298,36 +299,9 @@
     wrap.appendChild(div);
   }
 
-  // ---------- modalità ----------
-  btnEditText.addEventListener('click', function () {
-    if (!editTextMode) {
-      enterEditMode();
-    } else {
-      editTextMode = false;
-      btnEditText.classList.remove('on');
-      removeTextBoxes();
-      setStatus('');
-    }
-  });
-
-  // ---------- aggiunta testo ----------
-  btnAddText.addEventListener('click', function () {
-    addTextMode = !addTextMode;
-    btnAddText.classList.toggle('on', addTextMode);
-    if (addTextMode && editTextMode) {
-      editTextMode = false;
-      btnEditText.classList.remove('on');
-      removeTextBoxes();
-    }
-    document.querySelectorAll('.pdf-canvas-wrap').forEach(function (w) {
-      w.classList.toggle('addtext-mode', addTextMode);
-    });
-    setStatus(addTextMode
-      ? 'Modalità testo attiva: clicca sul punto della pagina dove vuoi scrivere.'
-      : '');
-  });
-
+  // ---------- aggiunta di testo nuovo ----------
   function placeTextInput(wrap, pageNum, x, y) {
+    var st = pageState[pageNum - 1];
     var input = document.createElement('input');
     input.type = 'text';
     input.className = 'pdf-text-input';
@@ -335,10 +309,11 @@
     var size = parseInt(fontSizeEl.value, 10) || 14;
     input.style.left = x + 'px';
     input.style.top = y + 'px';
-    input.style.fontSize = (size * RENDER_SCALE) + 'px';
+    input.style.fontSize = (size * st.scale) + 'px';
     input.style.color = colorEl.value;
     wrap.appendChild(input);
     input.focus();
+    setStatus('Scrivi il testo e premi Invio. Esc per annullare.');
 
     var committed = false;
     function commit() {
@@ -346,31 +321,35 @@
       committed = true;
       var text = input.value.trim();
       input.remove();
-      if (!text) return;
+      if (!text) { setStatus(''); return; }
+      var pdfPt = st.viewport.convertToPdfPoint(x, y);
       var t = {
-        x: x, y: y, // coordinate in pixel del canvas renderizzato
+        px: pdfPt[0], py: pdfPt[1],   // coordinate PDF: valide a ogni zoom
         size: size,
         color: colorEl.value,
         text: text
       };
-      pageState[pageNum - 1].texts.push(t);
+      st.texts.push(t);
       addOverlay(wrap, pageNum, t);
       setStatus('Testo aggiunto alla pagina ' + pageNum + '. Ricorda di salvare.');
     }
     input.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') { e.preventDefault(); commit(); }
-      if (e.key === 'Escape') { committed = true; input.remove(); }
+      if (e.key === 'Escape') { committed = true; input.remove(); setStatus(''); }
+      e.stopPropagation();
     });
     input.addEventListener('blur', function () { commit(); });
   }
 
   function addOverlay(wrap, pageNum, t) {
+    var st = pageState[pageNum - 1];
+    var vp = st.viewport.convertToViewportPoint(t.px, t.py);
     var div = document.createElement('div');
     div.className = 'pdf-overlay-text';
     div.textContent = t.text;
-    div.style.left = t.x + 'px';
-    div.style.top = t.y + 'px';
-    div.style.fontSize = (t.size * RENDER_SCALE) + 'px';
+    div.style.left = vp[0] + 'px';
+    div.style.top = vp[1] + 'px';
+    div.style.fontSize = (t.size * st.scale) + 'px';
     div.style.color = t.color;
     div.title = 'Trascina per spostare';
     var del = document.createElement('span');
@@ -379,7 +358,7 @@
     del.title = 'Rimuovi questo testo';
     del.addEventListener('click', function (e) {
       e.stopPropagation();
-      var arr = pageState[pageNum - 1].texts;
+      var arr = st.texts;
       var i = arr.indexOf(t);
       if (i >= 0) arr.splice(i, 1);
       div.remove();
@@ -387,17 +366,20 @@
     div.appendChild(del);
     wrap.appendChild(div);
 
-    // trascinamento per riposizionare (pointer events: funziona con mouse e touch)
+    // trascinamento per riposizionare (pointer events: mouse e dito)
     div.addEventListener('pointerdown', function (e) {
       if (e.target === del) return;
       e.preventDefault();
       div.setPointerCapture(e.pointerId);
-      var startX = e.clientX, startY = e.clientY, origX = t.x, origY = t.y;
+      var start = st.viewport.convertToViewportPoint(t.px, t.py);
+      var startX = e.clientX, startY = e.clientY;
       function move(ev) {
-        t.x = origX + (ev.clientX - startX);
-        t.y = origY + (ev.clientY - startY);
-        div.style.left = t.x + 'px';
-        div.style.top = t.y + 'px';
+        var nx = start[0] + (ev.clientX - startX);
+        var ny = start[1] + (ev.clientY - startY);
+        div.style.left = nx + 'px';
+        div.style.top = ny + 'px';
+        var p = st.viewport.convertToPdfPoint(nx, ny);
+        t.px = p[0]; t.py = p[1];
       }
       function up(ev) {
         div.releasePointerCapture(ev.pointerId);
@@ -452,6 +434,16 @@
     return { r: parseInt(m[1], 16) / 255, g: parseInt(m[2], 16) / 255, b: parseInt(m[3], 16) / 255 };
   }
 
+  function drawTextSafe(page, text, opts, PDFLib) {
+    try {
+      page.drawText(text, opts);
+    } catch (encErr) {
+      // caratteri non supportati dal font standard: sostituiscili
+      var safe = text.replace(/[^\x20-\x7EàèéìòùÀÈÉÌÒÙçÇ°€£'’"«»\-]/g, '?');
+      page.drawText(safe, opts);
+    }
+  }
+
   btnSave.addEventListener('click', function () {
     setStatus('Creazione del PDF…');
     var PDFLib = window.PDFLib;
@@ -468,11 +460,14 @@
         pageState.forEach(function (st, idx) {
           if (st.deleted || idx >= pages.length) return;
           var page = pages[idx];
+          var rot = (st.pageRotate + st.extraRotation) % 360;
+
           // rotazione extra richiesta dall'utente
           if (st.extraRotation) {
             var current = page.getRotation().angle || 0;
             page.setRotation(PDFLib.degrees((current + st.extraRotation) % 360));
           }
+
           // sostituzioni di testo esistente: toppa bianca + nuovo testo
           st.edits.forEach(function (ed) {
             page.drawRectangle({
@@ -483,39 +478,23 @@
               color: PDFLib.rgb(1, 1, 1)
             });
             if (ed.text && ed.text.trim()) {
-              var safe = ed.text;
-              try {
-                page.drawText(safe, { x: ed.x, y: ed.y, size: ed.size, font: font, color: PDFLib.rgb(0, 0, 0) });
-              } catch (encErr) {
-                // caratteri non supportati dal font: sostituiscili
-                safe = safe.replace(/[^\x20-\x7EàèéìòùÀÈÉÌÒÙçÇ°€£'’"«»\-]/g, '?');
-                page.drawText(safe, { x: ed.x, y: ed.y, size: ed.size, font: font, color: PDFLib.rgb(0, 0, 0) });
-              }
+              drawTextSafe(page, ed.text,
+                { x: ed.x, y: ed.y, size: ed.size, font: font, color: PDFLib.rgb(0, 0, 0) }, PDFLib);
             }
           });
-          // testi aggiunti: converti i pixel del canvas in punti PDF.
-          // Nota: il canvas è renderizzato già ruotato, quindi il click va
-          // riportato nel sistema di coordinate non ruotato della pagina.
+
+          // testi aggiunti (coordinate PDF già pronte)
           st.texts.forEach(function (t) {
             var col = hexToRgb(t.color);
-            var pxX = t.x / RENDER_SCALE;   // in punti, nel sistema del canvas ruotato
-            var pxY = t.y / RENDER_SCALE;
-            var W = st.widthPts, H = st.heightPts;
-            var rot = (st.pageRotate + st.extraRotation) % 360;
-            var x, y;
-            if (rot === 90)      { x = pxY;         y = pxX; }
-            else if (rot === 180){ x = W - pxX;     y = pxY; }
-            else if (rot === 270){ x = W - pxY;     y = H - pxX; }
-            else                 { x = pxX;         y = H - pxY; }
-            page.drawText(t.text, {
-              x: x,
-              y: y - t.size * 0.35, // il click indica il centro verticale del testo
+            drawTextSafe(page, t.text, {
+              x: t.px,
+              y: t.py - t.size * 0.35, // il punto toccato è il centro verticale del testo
               size: t.size,
               font: font,
               color: PDFLib.rgb(col.r, col.g, col.b),
               // compensa la rotazione di visualizzazione: il testo resta orizzontale
               rotate: PDFLib.degrees(rot)
-            });
+            }, PDFLib);
           });
         });
 
