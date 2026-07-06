@@ -195,6 +195,24 @@ table.grid td input.cell-editor {
 }
 .pdf-textbox:hover { background: rgba(59, 130, 246, .22); outline-color: #2563eb; }
 
+/* campi dei moduli compilabili (AcroForm) */
+.pdf-field {
+  position: absolute; z-index: 6; box-sizing: border-box;
+  background: rgba(96, 165, 250, .18);
+  border: 1.5px solid rgba(37, 99, 235, .55); border-radius: 3px;
+  font-family: Helvetica, Arial, sans-serif; color: #111;
+  padding: 0 4px; cursor: text;
+}
+.pdf-field:focus {
+  outline: none; background: #fff;
+  border-color: #2563eb; box-shadow: 0 0 0 2px rgba(37, 99, 235, .3);
+}
+textarea.pdf-field { resize: none; padding-top: 2px; }
+input[type="checkbox"].pdf-field, input[type="radio"].pdf-field {
+  cursor: pointer; accent-color: #2563eb; padding: 0;
+}
+select.pdf-field { cursor: pointer; background: rgba(96, 165, 250, .18); }
+
 /* testo sostituito: toppa bianca con il nuovo testo */
 .pdf-edit-overlay {
   position: absolute; z-index: 5; background: #fff; color: #000;

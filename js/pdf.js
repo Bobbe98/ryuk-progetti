@@ -24,6 +24,9 @@
   var originalBytes = null;   // ArrayBuffer del PDF originale
   var pdfDoc = null;          // documento PDF.js
   var fileName = '';
+  // Moduli compilabili (AcroForm): valori inseriti dall'utente, per nome campo
+  var formValues = {};        // nome campo → valore
+  var formMeta = {};          // nome campo → { type: 'text'|'check'|'radio'|'choice' }
   // Stato per pagina (indice 0-based):
   // { deleted, extraRotation, pageRotate,
   //   texts: [{px,py,size,color,text}]   — testo aggiunto (coordinate PDF)
@@ -45,10 +48,13 @@
         .then(function (doc) {
           pdfDoc = doc;
           pageState = [];
+          formValues = {};
+          formMeta = {};
           for (var i = 0; i < doc.numPages; i++) {
             pageState.push({
               deleted: false, extraRotation: 0, pageRotate: 0,
-              texts: [], edits: [], viewport: null, scale: 1, textCount: 0
+              texts: [], edits: [], viewport: null, scale: 1,
+              textCount: 0, fieldCount: 0
             });
           }
           btnSave.disabled = false;
@@ -78,7 +84,11 @@
     }
     chain.then(function () {
       var totalText = pageState.reduce(function (a, st) { return a + (st.textCount || 0); }, 0);
-      if (totalText === 0) {
+      var totalFields = pageState.reduce(function (a, st) { return a + (st.fieldCount || 0); }, 0);
+      if (totalFields > 0) {
+        setStatus('📋 Modulo compilabile: ' + totalFields + ' campi. Tocca un campo e scrivi; ' +
+          'puoi anche modificare le altre scritte o aggiungere testo. Poi salva.');
+      } else if (totalText === 0) {
         setStatus('⚠️ In questo PDF non c’è testo modificabile (probabilmente è una scansione). ' +
           'Puoi comunque toccare la pagina per scriverci sopra.');
       } else {
@@ -162,7 +172,8 @@
       // tocco su un punto vuoto della pagina = scrivi qui
       wrap.addEventListener('click', function (e) {
         if (e.target.closest('.pdf-overlay-text') || e.target.closest('.pdf-text-input') ||
-            e.target.closest('.pdf-textbox') || e.target.closest('.pdf-edit-overlay')) return;
+            e.target.closest('.pdf-textbox') || e.target.closest('.pdf-edit-overlay') ||
+            e.target.closest('.pdf-field') || e.target.closest('.pdf-field-wrap')) return;
         var rect = wrap.getBoundingClientRect();
         placeTextInput(wrap, num, e.clientX - rect.left, e.clientY - rect.top);
       });
@@ -170,11 +181,98 @@
       st.texts.forEach(function (t) { addOverlay(wrap, num, t); });
       st.edits.forEach(function (ed) { addEditOverlay(wrap, num, ed); });
 
+      // ENABLE_FORMS: il canvas NON disegna i campi modulo, che vengono
+      // sostituiti dalle nostre caselle HTML compilabili
+      var annotationMode = (pdfjsLib.AnnotationMode && pdfjsLib.AnnotationMode.ENABLE_FORMS) || 2;
       return Promise.all([
-        page.render({ canvasContext: canvas.getContext('2d'), viewport: renderViewport, transform: null }).promise,
-        buildTextBoxes(wrap, num)
+        page.render({ canvasContext: canvas.getContext('2d'), viewport: renderViewport, annotationMode: annotationMode }).promise,
+        buildTextBoxes(wrap, num),
+        buildFormFields(page, wrap, num)
       ]);
     });
+  }
+
+  // ---------- moduli compilabili (AcroForm) ----------
+  function buildFormFields(page, wrap, num) {
+    var st = pageState[num - 1];
+    return page.getAnnotations().then(function (annots) {
+      var count = 0;
+      annots.forEach(function (a) {
+        if (a.subtype !== 'Widget' || !a.fieldName) return;
+        var p0 = st.viewport.convertToViewportPoint(a.rect[0], a.rect[1]);
+        var p1 = st.viewport.convertToViewportPoint(a.rect[2], a.rect[3]);
+        var left = Math.min(p0[0], p1[0]), top = Math.min(p0[1], p1[1]);
+        var w = Math.abs(p1[0] - p0[0]), h = Math.abs(p1[1] - p0[1]);
+        var el = null;
+
+        if (a.fieldType === 'Tx') {
+          el = document.createElement(a.multiLine ? 'textarea' : 'input');
+          if (!a.multiLine) el.type = 'text';
+          el.value = (a.fieldName in formValues) ? formValues[a.fieldName] : (a.fieldValue || '');
+          el.style.fontSize = Math.max(10, Math.min(h * 0.62, 22)) + 'px';
+          formMeta[a.fieldName] = { type: 'text' };
+          el.addEventListener('input', function () {
+            formValues[a.fieldName] = el.value;
+            setStatus('Campo «' + a.fieldName + '» compilato. Ricorda di salvare.');
+          });
+        } else if (a.fieldType === 'Btn' && a.checkBox) {
+          el = document.createElement('input');
+          el.type = 'checkbox';
+          var cur = (a.fieldName in formValues) ? formValues[a.fieldName]
+                    : (a.fieldValue && a.fieldValue !== 'Off');
+          el.checked = !!cur;
+          formMeta[a.fieldName] = { type: 'check' };
+          el.addEventListener('change', function () {
+            formValues[a.fieldName] = el.checked;
+            setStatus('Casella «' + a.fieldName + '» ' + (el.checked ? 'spuntata' : 'tolta') + '. Ricorda di salvare.');
+          });
+        } else if (a.fieldType === 'Btn' && a.radioButton) {
+          el = document.createElement('input');
+          el.type = 'radio';
+          el.name = 'pdf-radio-' + a.fieldName;
+          var val = a.buttonValue || a.exportValue || '';
+          el.checked = (a.fieldName in formValues)
+            ? formValues[a.fieldName] === val
+            : a.fieldValue === val;
+          formMeta[a.fieldName] = { type: 'radio' };
+          el.addEventListener('change', function () {
+            if (el.checked) {
+              formValues[a.fieldName] = val;
+              setStatus('Opzione selezionata. Ricorda di salvare.');
+            }
+          });
+        } else if (a.fieldType === 'Ch') {
+          el = document.createElement('select');
+          (a.options || []).forEach(function (o) {
+            var opt = document.createElement('option');
+            opt.value = o.exportValue !== undefined ? o.exportValue : o.displayValue;
+            opt.textContent = o.displayValue !== undefined ? o.displayValue : o.exportValue;
+            el.appendChild(opt);
+          });
+          var chosen = (a.fieldName in formValues) ? formValues[a.fieldName]
+                       : (Array.isArray(a.fieldValue) ? a.fieldValue[0] : a.fieldValue);
+          if (chosen !== undefined && chosen !== null) el.value = chosen;
+          el.style.fontSize = Math.max(10, Math.min(h * 0.55, 18)) + 'px';
+          formMeta[a.fieldName] = { type: 'choice' };
+          el.addEventListener('change', function () {
+            formValues[a.fieldName] = el.value;
+            setStatus('Campo «' + a.fieldName + '» impostato. Ricorda di salvare.');
+          });
+        }
+
+        if (!el) return;
+        count++;
+        el.className = 'pdf-field';
+        el.style.left = left + 'px';
+        el.style.top = top + 'px';
+        el.style.width = w + 'px';
+        el.style.height = h + 'px';
+        el.title = 'Campo del modulo: ' + a.fieldName;
+        wrap.appendChild(el);
+      });
+      st.fieldCount = count;
+      return count;
+    }).catch(function () { st.fieldCount = 0; return 0; });
   }
 
   // Riadatta le pagine SOLO quando cambia la larghezza (rotazione del
@@ -466,6 +564,34 @@
       .then(function (ctx) {
         var doc = ctx.doc, font = ctx.font;
         var pages = doc.getPages();
+
+        // scrivi i valori dei campi del modulo (AcroForm)
+        if (Object.keys(formValues).length) {
+          try {
+            var form = doc.getForm();
+            Object.keys(formValues).forEach(function (name) {
+              var v = formValues[name];
+              var meta = formMeta[name] || {};
+              try {
+                if (meta.type === 'text') {
+                  form.getTextField(name).setText(String(v == null ? '' : v));
+                } else if (meta.type === 'check') {
+                  var cb = form.getCheckBox(name);
+                  if (v) cb.check(); else cb.uncheck();
+                } else if (meta.type === 'radio') {
+                  form.getRadioGroup(name).select(String(v));
+                } else if (meta.type === 'choice') {
+                  form.getDropdown(name).select(String(v));
+                }
+              } catch (fieldErr) {
+                console.warn('Campo modulo non aggiornato:', name, fieldErr);
+              }
+            });
+            try { form.updateFieldAppearances(font); } catch (e2) {}
+          } catch (formErr) {
+            console.warn('Modulo non aggiornabile:', formErr);
+          }
+        }
 
         pageState.forEach(function (st, idx) {
           if (st.deleted || idx >= pages.length) return;
