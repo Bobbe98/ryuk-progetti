@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineAnime Gratis — Scopri film e anime, guardali gratis legalmente</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">🎬</span>
+      <h1>CineAnime <span class="accent">Gratis</span></h1>
+    </div>
+    <nav class="tabs">
+      <button class="tab active" data-tab="anime">Anime</button>
+      <button class="tab" data-tab="film">Film</button>
+      <button class="tab" data-tab="piattaforme">Dove guardare gratis</button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ SEZIONE ANIME ============ -->
+    <section id="anime" class="tab-panel active">
+      <div class="search-row">
+        <input type="search" id="anime-search" placeholder="Cerca un anime… (es. One Piece)" />
+        <button id="anime-search-btn" class="btn primary">Cerca</button>
+      </div>
+      <div class="filter-row" id="anime-filters">
+        <button class="chip active" data-list="top">Top di sempre</button>
+        <button class="chip" data-list="airing">In corso</button>
+        <button class="chip" data-list="upcoming">In arrivo</button>
+        <button class="chip" data-list="movie">Film anime</button>
+      </div>
+      <p class="hint">Dati forniti gratuitamente da <a href="https://jikan.moe" target="_blank" rel="noopener">Jikan API</a> (MyAnimeList). Nessuna chiave richiesta.</p>
+      <div id="anime-grid" class="grid"><p class="loading">Caricamento…</p></div>
+    </section>
+
+    <!-- ============ SEZIONE FILM ============ -->
+    <section id="film" class="tab-panel">
+      <div id="tmdb-setup" class="setup-box hidden">
+        <h2>Configura l'accesso ai film (gratis, 2 minuti)</h2>
+        <ol>
+          <li>Registrati gratis su <a href="https://www.themoviedb.org/signup" target="_blank" rel="noopener">themoviedb.org</a></li>
+          <li>Vai su <a href="https://www.themoviedb.org/settings/api" target="_blank" rel="noopener">Impostazioni → API</a> e richiedi una chiave (uso personale)</li>
+          <li>Incolla qui sotto la <strong>chiave API (v3)</strong></li>
+        </ol>
+        <div class="search-row">
+          <input type="password" id="tmdb-key-input" placeholder="La tua chiave API TMDB…" />
+          <button id="tmdb-key-save" class="btn primary">Salva</button>
+        </div>
+        <p class="hint">La chiave viene salvata solo nel tuo browser (localStorage), non viene inviata a nessun altro server.</p>
+      </div>
+
+      <div id="film-content" class="hidden">
+        <div class="search-row">
+          <input type="search" id="film-search" placeholder="Cerca un film… (es. Interstellar)" />
+          <button id="film-search-btn" class="btn primary">Cerca</button>
+          <button id="tmdb-key-reset" class="btn ghost" title="Cambia chiave API">🔑</button>
+        </div>
+        <div class="filter-row" id="film-filters">
+          <button class="chip active" data-list="popular">Popolari</button>
+          <button class="chip" data-list="now_playing">Al cinema ora</button>
+          <button class="chip" data-list="top_rated">Più votati</button>
+          <button class="chip" data-list="upcoming">In arrivo</button>
+        </div>
+        <p class="hint">Dati forniti da <a href="https://www.themoviedb.org" target="_blank" rel="noopener">TMDB</a>. Per ogni film trovi i trailer e il link per scoprire dove vederlo legalmente.</p>
+        <div id="film-grid" class="grid"><p class="loading">Caricamento…</p></div>
+      </div>
+    </section>
+
+    <!-- ============ SEZIONE PIATTAFORME LEGALI ============ -->
+    <section id="piattaforme" class="tab-panel">
+      <h2>Piattaforme legali e gratuite in Italia</h2>
+      <p class="hint">Tutte queste piattaforme offrono film, serie o anime in modo <strong>gratuito e legale</strong> (di solito con pubblicità).</p>
+      <div class="platform-grid">
+        <a class="platform-card" href="https://www.raiplay.it/genere/Film" target="_blank" rel="noopener">
+          <h3>📺 RaiPlay</h3>
+          <p>Film, serie e anche anime (es. quelli trasmessi da Rai 4). Gratis con account Rai.</p>
+        </a>
+        <a class="platform-card" href="https://pluto.tv/it" target="_blank" rel="noopener">
+          <h3>🪐 Pluto TV</h3>
+          <p>Canali e on-demand gratuiti con pubblicità, inclusi canali anime e cinema.</p>
+        </a>
+        <a class="platform-card" href="https://www.crunchyroll.com/it" target="_blank" rel="noopener">
+          <h3>🍥 Crunchyroll</h3>
+          <p>Il più grande catalogo anime: molti episodi visibili gratis con pubblicità.</p>
+        </a>
+        <a class="platform-card" href="https://www.youtube.com/channel/UClgRkhTL3_hImCAmdLfDE4g" target="_blank" rel="noopener">
+          <h3>▶️ YouTube (film gratuiti)</h3>
+          <p>Canali ufficiali e film completi caricati legalmente dai distributori.</p>
+        </a>
+        <a class="platform-card" href="https://www.mediasetinfinity.mediaset.it/film" target="_blank" rel="noopener">
+          <h3>🎞️ Mediaset Infinity</h3>
+          <p>Sezione gratuita con film e serie on-demand, con pubblicità.</p>
+        </a>
+        <a class="platform-card" href="https://www.plex.tv/it/watch-free/" target="_blank" rel="noopener">
+          <h3>🟡 Plex</h3>
+          <p>Migliaia di film gratuiti con pubblicità, senza abbonamento.</p>
+        </a>
+        <a class="platform-card" href="https://tv.rakuten.it/free" target="_blank" rel="noopener">
+          <h3>🌊 Rakuten TV Free</h3>
+          <p>Sezione "Free" con film gratuiti supportati da pubblicità.</p>
+        </a>
+        <a class="platform-card" href="https://www.justwatch.com/it" target="_blank" rel="noopener">
+          <h3>🔎 JustWatch</h3>
+          <p>Motore di ricerca: ti dice su quale piattaforma (anche gratuita) è disponibile ogni titolo.</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ MODALE DETTAGLIO ============ -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Chiudi">✕</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>CineAnime Gratis — solo contenuti da fonti legali. Dati: Jikan/MyAnimeList e TMDB. Questo prodotto usa l'API TMDB ma non è approvato o certificato da TMDB.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
