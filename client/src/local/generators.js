@@ -1,7 +1,12 @@
 // Client-side ports of server/src/routes/encounters.js and shops.js, run
 // over in-memory arrays instead of SQL queries for the fully-offline build.
 import { xpForCr, partyXpBudget, monsterCountMultiplier } from './encounterBudget';
+import { rewardPlan, narrativeSeed, shuffleArray } from './encounterExtras';
 import { PROFESSIONS } from './professions';
+
+function isLegendary(c) {
+  return (c.legendary_actions || []).length > 0;
+}
 
 function shuffle(arr) {
   const a = [...arr];
@@ -18,10 +23,15 @@ function shuffle(arr) {
 // medium band. It tries many random compositions (boss, pair, small group,
 // horde — duplicates allowed, like 4 goblins) and keeps the one whose
 // adjusted XP is closest to the budget, never exceeding it by more than 10%.
-function buildBalancedEncounter(pool, budget, desiredCount) {
-  const candidates = pool.filter((c) => (c.xp || 0) > 0 && c.xp <= budget * 1.05);
+function buildBalancedEncounter(pool, budget, desiredCount, opts = {}) {
+  const { legendary = 'any' } = opts;
+  let candidates = pool.filter((c) => (c.xp || 0) > 0 && c.xp <= budget * 1.05);
+  if (legendary === 'exclude') candidates = candidates.filter((c) => !isLegendary(c));
+  const legendaries = legendary === 'boss' ? candidates.filter((c) => isLegendary(c)) : [];
+
   if (candidates.length === 0) {
-    const weakest = [...pool].sort((a, b) => (a.xp || 0) - (b.xp || 0))[0];
+    const fallbackPool = legendary === 'exclude' ? pool.filter((c) => !isLegendary(c)) : pool;
+    const weakest = [...fallbackPool].sort((a, b) => (a.xp || 0) - (b.xp || 0))[0];
     return weakest ? { selected: [weakest], totalXp: weakest.xp || 0 } : null;
   }
 
@@ -39,16 +49,34 @@ function buildBalancedEncounter(pool, budget, desiredCount) {
         .sort((a, b) => Math.abs(Math.log(a.xp / idealXp)) - Math.abs(Math.log(b.xp / idealXp)))
         .slice(0, 8);
     }
-    const homogeneous = n > 1 && Math.random() < 0.55;
-    const fixed = band[Math.floor(Math.random() * band.length)];
     const selected = [];
     let totalXp = 0;
-    for (let i = 0; i < n; i++) {
-      const c = homogeneous ? fixed : band[Math.floor(Math.random() * band.length)];
-      selected.push(c);
-      totalXp += c.xp;
+
+    if (legendaries.length > 0) {
+      // Boss mode: the legendary takes the biggest share of the budget, the
+      // remaining slots (if any) are filled with minions from the band.
+      const bossBand = legendaries.filter((c) => c.xp >= idealXp * 0.5);
+      const pickFrom = bossBand.length ? bossBand : legendaries;
+      const boss = pickFrom[Math.floor(Math.random() * pickFrom.length)];
+      selected.push(boss);
+      totalXp += boss.xp;
+      const minionBand = band.filter((c) => c.xp <= boss.xp);
+      for (let i = 1; i < n && minionBand.length; i++) {
+        const c = minionBand[Math.floor(Math.random() * minionBand.length)];
+        selected.push(c);
+        totalXp += c.xp;
+      }
+    } else {
+      const homogeneous = n > 1 && Math.random() < 0.55;
+      const fixed = band[Math.floor(Math.random() * band.length)];
+      for (let i = 0; i < n; i++) {
+        const c = homogeneous ? fixed : band[Math.floor(Math.random() * band.length)];
+        selected.push(c);
+        totalXp += c.xp;
+      }
     }
-    const adjusted = totalXp * monsterCountMultiplier(n);
+
+    const adjusted = totalXp * monsterCountMultiplier(selected.length);
     const ratio = adjusted / budget;
     let score = Math.abs(Math.log(ratio));
     if (ratio > 1.1) score += (ratio - 1.1) * 5;
@@ -58,8 +86,11 @@ function buildBalancedEncounter(pool, budget, desiredCount) {
   return { selected: best.selected, totalXp: best.totalXp };
 }
 
-export function generateEncounter(allCreatures, payload = {}) {
-  const { mode = 'cr', cr, environment, partyLevel, partySize, difficulty = 'medium', creatureCount } = payload;
+export function generateEncounter(allCreatures, allItems, payload = {}) {
+  const {
+    mode = 'cr', cr, environment, creatureType, legendary = 'any',
+    partyLevel, partySize, difficulty = 'medium', creatureCount,
+  } = payload;
 
   let budget;
   if (mode === 'party') {
@@ -71,23 +102,32 @@ export function generateEncounter(allCreatures, payload = {}) {
     budget = xpForCr(targetCr);
   }
 
-  const pool = allCreatures.filter((c) => (c.xp || 0) > 0 && (!environment || (c.environments || []).includes(environment)));
+  const pool = allCreatures.filter((c) =>
+    (c.xp || 0) > 0
+    && (!environment || (c.environments || []).includes(environment))
+    && (!creatureType || c.type === creatureType));
   if (pool.length === 0) {
-    throw new Error('Nessuna creatura trovata per i filtri selezionati (ambiente/GS).');
+    throw new Error('Nessuna creatura trovata per i filtri selezionati (tipo/ambiente).');
   }
 
-  const built = buildBalancedEncounter(pool, budget, creatureCount ? Number(creatureCount) : null);
+  const built = buildBalancedEncounter(pool, budget, creatureCount ? Number(creatureCount) : null, { legendary });
   const { selected, totalXp } = built;
   const adjustedXp = totalXp * monsterCountMultiplier(selected.length);
+
+  const plan = rewardPlan(selected, budget);
+  const rewardItems = shuffleArray(allItems.filter((it) => plan.band.includes(it.rarity))).slice(0, plan.itemCount);
 
   return {
     mode,
     difficulty: mode === 'party' ? difficulty : null,
     environment: environment || null,
+    creatureType: creatureType || null,
     budgetXp: Math.round(budget),
     totalXp: Math.round(totalXp),
     adjustedXp: Math.round(adjustedXp),
     creatures: selected,
+    narrative: narrativeSeed(),
+    rewards: { gold_gp: plan.gold, items: rewardItems },
   };
 }
 

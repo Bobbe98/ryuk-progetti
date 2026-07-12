@@ -83,7 +83,7 @@ export const localApi = {
   },
 
   async generateEncounter(data) {
-    return generateEncounter(allCreatures(), data);
+    return generateEncounter(allCreatures(), allItems(), data);
   },
   async generateShop(data) {
     return generateShop(allItems(), data);

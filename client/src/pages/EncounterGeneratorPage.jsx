@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../api';
 import EntityImage from '../components/EntityImage';
-import { applyOverride } from '../local/overridesStore';
-import { TYPE_LABELS, ENVIRONMENT_LABELS, cr } from '../i18n';
+import { applyOverride, applyOverrides } from '../local/overridesStore';
+import { TYPE_LABELS, ENVIRONMENT_LABELS, RARITY_LABELS, RARITY_COLORS, cr } from '../i18n';
 
 const DIFFICULTY_LABELS = { easy: 'Facile', medium: 'Media', hard: 'Difficile', deadly: 'Mortale' };
 
@@ -21,7 +21,7 @@ export default function EncounterGeneratorPage() {
   const [meta, setMeta] = useState(null);
   const [mode, setMode] = useState('cr');
   const [form, setForm] = useState({
-    cr: 3, environment: '', creatureCount: '',
+    cr: 3, environment: '', creatureCount: '', creatureType: '', legendary: 'any',
     partyLevel: 4, partySize: 4, difficulty: 'medium',
   });
   const [result, setResult] = useState(null);
@@ -38,11 +38,16 @@ export default function EncounterGeneratorPage() {
     setLoading(true);
     setError(null);
     try {
+      const common = {
+        environment: form.environment || null,
+        creatureType: form.creatureType || null,
+        legendary: form.legendary,
+      };
       const payload = mode === 'cr'
-        ? { mode, cr: Number(form.cr), environment: form.environment || null, creatureCount: form.creatureCount ? Number(form.creatureCount) : null }
-        : { mode, environment: form.environment || null, partyLevel: Number(form.partyLevel), partySize: Number(form.partySize), difficulty: form.difficulty };
+        ? { mode, ...common, cr: Number(form.cr), creatureCount: form.creatureCount ? Number(form.creatureCount) : null }
+        : { mode, ...common, partyLevel: Number(form.partyLevel), partySize: Number(form.partySize), difficulty: form.difficulty };
       const data = await api.generateEncounter(payload);
-      setResult(data);
+      setResult({ ...data, rewards: data.rewards && { ...data.rewards, items: applyOverrides('item', data.rewards.items) } });
     } catch (e) {
       setError(e.message);
     } finally {
@@ -89,6 +94,19 @@ export default function EncounterGeneratorPage() {
             {meta?.environments.map((e) => <option key={e} value={e}>{ENVIRONMENT_LABELS[e] || e}</option>)}
           </select>
         </Field>
+        <Field label="Tipo di creatura">
+          <select className="input" value={form.creatureType} onChange={(e) => set('creatureType', e.target.value)}>
+            <option value="">Qualsiasi</option>
+            {meta?.creatureTypes.map((t) => <option key={t} value={t}>{TYPE_LABELS[t] || t}</option>)}
+          </select>
+        </Field>
+        <Field label="Creature leggendarie">
+          <select className="input" value={form.legendary} onChange={(e) => set('legendary', e.target.value)}>
+            <option value="any">Indifferente</option>
+            <option value="boss">Con boss leggendario</option>
+            <option value="exclude">Escludile</option>
+          </select>
+        </Field>
       </div>
 
       <button onClick={generate} disabled={loading} className="mt-4 rounded bg-amber-600 px-5 py-2 font-semibold hover:bg-amber-500 disabled:opacity-50">
@@ -119,6 +137,36 @@ export default function EncounterGeneratorPage() {
               </Link>
             ))}
           </div>
+
+          {result.narrative && (
+            <div className="card mt-4 border-l-2 border-l-amber-600/60 p-4">
+              <h3 className="font-display text-sm font-semibold uppercase tracking-wide text-amber-300">Spunto di scena</h3>
+              <p className="mt-1 text-sm italic leading-relaxed text-zinc-300">{result.narrative}</p>
+            </div>
+          )}
+
+          {result.rewards && (
+            <div className="card mt-4 p-4">
+              <h3 className="font-display text-sm font-semibold uppercase tracking-wide text-amber-300">Ricompense</h3>
+              <p className="mt-1 text-sm text-zinc-300">
+                <span className="font-semibold text-amber-200">{result.rewards.gold_gp} mo</span> in monete e preziosi
+                {result.rewards.items.length > 0 ? ', più:' : '.'}
+              </p>
+              {result.rewards.items.length > 0 && (
+                <div className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                  {result.rewards.items.map((it) => (
+                    <Link key={it.id} to={`/oggetti/${it.id}`} className="flex items-center gap-2 rounded-lg border border-white/5 bg-black/20 px-2 py-1.5 hover:border-amber-500/40">
+                      <EntityImage src={it.image_url} name={it.name} kind={it.category} className="h-9 w-9 flex-shrink-0 rounded object-cover" />
+                      <span className="min-w-0 flex-1 truncate text-sm text-zinc-200">{it.name}</span>
+                      <span className={`shrink-0 rounded px-1.5 py-0.5 text-[10px] text-white ${RARITY_COLORS[it.rarity] || 'bg-zinc-600'}`}>
+                        {RARITY_LABELS[it.rarity] || it.rarity}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>
