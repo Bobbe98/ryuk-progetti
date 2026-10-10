@@ -1,0 +1,30 @@
+name: pdf_studio
+description: "PDF Studio - lettore ed editor PDF ispirato a Xodo."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.5.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  syncfusion_flutter_pdfviewer: ^27.2.5
+  syncfusion_flutter_pdf: ^27.2.5
+  file_picker: ^8.1.2
+  share_plus: ^10.1.4
+  path_provider: ^2.1.5
+  shared_preferences: ^2.3.3
+  image_picker: ^1.1.2
+  provider: ^6.1.2
+  signature: ^5.5.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
