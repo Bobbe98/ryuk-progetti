@@ -1,0 +1,71 @@
+workflows:
+  android-apk:
+    name: Android APK (Release)
+    max_build_duration: 60
+    working_directory: pdf-studio
+    environment:
+      flutter: stable
+    cache:
+      cache_paths:
+        - $HOME/.pub-cache
+    scripts:
+      - name: Flutter pub get
+        script: flutter pub get
+
+      - name: Build APK
+        script: flutter build apk --release --split-per-abi
+
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
+
+    publishing:
+      email:
+        recipients:
+          - robertovaleo@gmail.com
+        notify:
+          success: true
+          failure: true
+
+  ios-sideload:
+    name: iOS Sideload (Unsigned IPA)
+    max_build_duration: 60
+    working_directory: pdf-studio
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    cache:
+      cache_paths:
+        - $HOME/.pub-cache
+        - ios/Pods
+    scripts:
+      - name: Flutter pub get
+        script: flutter pub get
+
+      - name: Pod install
+        script: |
+          cd ios
+          pod install
+
+      - name: Build iOS (no codesign)
+        script: |
+          flutter build ios --release --no-codesign
+
+      - name: Package IPA
+        script: |
+          cd build/ios/iphoneos
+          mkdir -p Payload
+          cp -r Runner.app Payload/
+          zip -r ../../../pdf_studio_unsigned.ipa Payload
+          rm -rf Payload
+
+    artifacts:
+      - pdf_studio_unsigned.ipa
+
+    publishing:
+      email:
+        recipients:
+          - robertovaleo@gmail.com
+        notify:
+          success: true
+          failure: true
