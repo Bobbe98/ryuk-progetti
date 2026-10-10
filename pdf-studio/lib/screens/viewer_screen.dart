@@ -99,7 +99,11 @@ class _ViewerScreenState extends State<ViewerScreen> {
     0, 0, 0, 1, 0, //
   ]);
 
-  late PdfFile _file = widget.file;
+  late PdfFile _file = PdfFile(
+    name: widget.file.name,
+    path: widget.file.path,
+    bytes: _fitFonts(widget.file.bytes, widget.password),
+  );
   late String? _password = widget.password;
   PdfViewerController _controller = PdfViewerController();
   GlobalKey<SfPdfViewerState> _viewerKey = GlobalKey();
@@ -119,6 +123,19 @@ class _ViewerScreenState extends State<ViewerScreen> {
   Annotation? _selected;
   List<PdfFormField> _formFields = [];
   bool _formHintShown = false;
+  bool _hasForm = false;
+
+  /// Vista lettura: mostra una copia con i campi stampati sulla pagina.
+  bool _readingView = false;
+  Uint8List? _readingBytes;
+
+  static Uint8List _fitFonts(Uint8List bytes, String? password) {
+    try {
+      return PdfTools.fitFormFonts(bytes, password) ?? bytes;
+    } catch (_) {
+      return bytes;
+    }
+  }
 
   bool _searching = false;
   final _searchCtrl = TextEditingController();
@@ -137,11 +154,15 @@ class _ViewerScreenState extends State<ViewerScreen> {
     setState(() => _pageCount = d.document.pages.count);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      setState(() => _formFields = _controller.getFormFields());
+      setState(() {
+        _formFields = _controller.getFormFields();
+        if (_formFields.isNotEmpty) _hasForm = true;
+      });
       if (_formFields.isNotEmpty && !_formHintShown) {
         _formHintShown = true;
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Questo PDF è un modulo con ${_formFields.length} campi'),
+          content: Text('Modulo con ${_formFields.length} campi. '
+              'Per leggerlo meglio usa la vista lettura (icona libro).'),
           action: SnackBarAction(label: 'Compila', onPressed: _openFormPanel),
           duration: const Duration(seconds: 6),
         ));
@@ -153,7 +174,46 @@ class _ViewerScreenState extends State<ViewerScreen> {
     }
   }
 
-  Future<Uint8List> _currentBytes() async => Uint8List.fromList(await _controller.saveDocument());
+  Future<Uint8List> _currentBytes() async {
+    if (_readingView) return _file.bytes;
+    return Uint8List.fromList(await _controller.saveDocument());
+  }
+
+  void _resetViewer(int page) {
+    _search.removeListener(_onSearchChanged);
+    _restorePage = page;
+    _controller = PdfViewerController();
+    _viewerKey = GlobalKey();
+    _search = PdfTextSearchResult();
+    _searching = false;
+    _selected = null;
+    _formFields = [];
+  }
+
+  Future<void> _toggleReadingView() async {
+    final page = _controller.pageNumber;
+    if (_readingView) {
+      setState(() {
+        _readingView = false;
+        _readingBytes = null;
+        _resetViewer(page);
+        _setToolState(Tool.read);
+      });
+      return;
+    }
+    final current = await _currentBytes();
+    if (!mounted) return;
+    final flat = await runBusy(context, () async => PdfTools.flattenForm(current, _password),
+        message: 'Preparazione vista lettura...');
+    if (flat == null || !mounted) return;
+    setState(() {
+      _file = _file.copyWith(bytes: current);
+      _readingBytes = flat;
+      _readingView = true;
+      _resetViewer(page);
+      _setToolState(Tool.read);
+    });
+  }
 
   /// Applica una modifica al PDF e ricarica il visualizzatore sulla stessa pagina.
   Future<void> _modify(Uint8List Function(Uint8List bytes) op, {String message = 'Elaborazione...'}) async {
@@ -165,19 +225,14 @@ class _ViewerScreenState extends State<ViewerScreen> {
   }
 
   void _reload(Uint8List bytes, {int? page, bool dirty = true, String? password}) {
-    _search.removeListener(_onSearchChanged);
     setState(() {
       _file = _file.copyWith(bytes: bytes);
       if (password != null) _password = password.isEmpty ? null : password;
-      _restorePage = page ?? _page;
-      _controller = PdfViewerController();
-      _viewerKey = GlobalKey();
-      _search = PdfTextSearchResult();
-      _searching = false;
-      _selected = null;
+      _readingView = false;
+      _readingBytes = null;
+      _resetViewer(page ?? _page);
       _dirty = _dirty || dirty;
       _setToolState(_tool.isFill ? _tool : Tool.read);
-      _formFields = [];
     });
   }
 
@@ -636,6 +691,8 @@ class _ViewerScreenState extends State<ViewerScreen> {
 
   Future<void> _onMenu(String v) async {
     switch (v) {
+      case 'bookmarks':
+        _viewerKey.currentState?.openBookmarkView();
       case 'goto':
         await _goToPage();
       case 'layout':
@@ -743,6 +800,14 @@ class _ViewerScreenState extends State<ViewerScreen> {
               });
             },
           ),
+        if (_hasForm)
+          IconButton(
+            tooltip: _readingView ? 'Modifica campi' : 'Vista lettura',
+            isSelected: _readingView,
+            icon: const Icon(Icons.menu_book_outlined),
+            selectedIcon: const Icon(Icons.edit_note),
+            onPressed: _toggleReadingView,
+          ),
         if (_formFields.isNotEmpty)
           IconButton(
             tooltip: 'Compila modulo',
@@ -750,11 +815,6 @@ class _ViewerScreenState extends State<ViewerScreen> {
             onPressed: _openFormPanel,
           ),
         IconButton(tooltip: 'Cerca', icon: const Icon(Icons.search), onPressed: () => setState(() => _searching = true)),
-        IconButton(
-          tooltip: 'Segnalibri',
-          icon: const Icon(Icons.bookmark_border),
-          onPressed: () => _viewerKey.currentState?.openBookmarkView(),
-        ),
         IconButton(
           tooltip: 'Modalità notte',
           icon: Icon(_night ? Icons.light_mode_outlined : Icons.dark_mode_outlined),
@@ -766,6 +826,7 @@ class _ViewerScreenState extends State<ViewerScreen> {
           onSelected: _onMenu,
           itemBuilder: (_) => [
             _item('goto', Icons.numbers, 'Vai a pagina'),
+            _item('bookmarks', Icons.bookmark_border, 'Segnalibri'),
             _item('layout', _continuous ? Icons.view_carousel_outlined : Icons.view_day_outlined,
                 _continuous ? 'Pagina singola' : 'Scorrimento continuo'),
             _item('direction', Icons.swap_horiz, _horizontal ? 'Scorrimento verticale' : 'Scorrimento orizzontale'),
@@ -881,7 +942,7 @@ class _ViewerScreenState extends State<ViewerScreen> {
   @override
   Widget build(BuildContext context) {
     Widget viewer = SfPdfViewer.memory(
-      _file.bytes,
+      _readingView ? _readingBytes! : _file.bytes,
       key: _viewerKey,
       controller: _controller,
       password: _password,
@@ -936,7 +997,7 @@ class _ViewerScreenState extends State<ViewerScreen> {
               ),
             ),
         ]),
-        bottomNavigationBar: _fullscreen || _searching ? null : _toolbar(),
+        bottomNavigationBar: _fullscreen || _searching || _readingView ? null : _toolbar(),
       ),
     );
   }

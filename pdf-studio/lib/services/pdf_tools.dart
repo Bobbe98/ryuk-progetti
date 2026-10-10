@@ -316,6 +316,48 @@ class PdfTools {
     return _save(doc);
   }
 
+  /// Adatta la dimensione del testo dei campi modulo all'altezza (e larghezza)
+  /// della loro casella, così il testo non esce né viene tagliato.
+  /// Ritorna null se il documento non ha campi da sistemare.
+  static Uint8List? fitFormFonts(Uint8List bytes, [String? password]) {
+    final doc = _open(bytes, password);
+    var changed = false;
+    final fields = doc.form.fields;
+    for (var i = 0; i < fields.count; i++) {
+      final f = fields[i];
+      if (f is! PdfTextBoxField || f.multiline) continue;
+      final box = f.bounds;
+      if (box.height <= 0 || box.width <= 0) continue;
+      final current = f.font.size;
+      final family = f.font is PdfStandardFont
+          ? (f.font as PdfStandardFont).fontFamily
+          : PdfFontFamily.helvetica;
+      var target = math.min(current, box.height * 0.7);
+      if (f.text.isNotEmpty) {
+        final width = PdfStandardFont(family, target).measureString(f.text).width;
+        final room = box.width - 8; // il viewer aggiunge spaziatura interna
+        if (width > room && room > 0) target *= room / width;
+      }
+      target = math.max(4, target);
+      if ((current - target).abs() > 0.3) {
+        f.font = PdfStandardFont(family, target);
+        changed = true;
+      }
+    }
+    if (!changed) {
+      doc.dispose();
+      return null;
+    }
+    return _save(doc);
+  }
+
+  /// Copia con i campi "stampati" sulla pagina (per la vista lettura o l'invio).
+  static Uint8List flattenForm(Uint8List bytes, [String? password]) {
+    final doc = _open(bytes, password);
+    doc.form.flattenAllFields();
+    return _save(doc);
+  }
+
   /// Disegna una spunta (✓) o una croce (✗) centrata in [c].
   static Uint8List stampMark(
     Uint8List bytes,
