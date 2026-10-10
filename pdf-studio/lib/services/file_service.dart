@@ -24,34 +24,19 @@ class FileService {
   }
 
   static Future<PdfFile?> pickPdf() async {
-    final res = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: const ['pdf'],
-      withData: true,
-    );
-    if (res == null || res.files.isEmpty) return null;
-    return _toPdf(res.files.single);
+    final f = await FilePicker.pickFile(type: FileType.custom, allowedExtensions: const ['pdf']);
+    if (f == null) return null;
+    return PdfFile(name: f.name, bytes: await f.readAsBytes());
   }
 
   static Future<List<PdfFile>> pickPdfs() async {
-    final res = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: const ['pdf'],
-      allowMultiple: true,
-      withData: true,
-    );
-    if (res == null) return [];
-    return [for (final f in res.files) await _toPdf(f)];
+    final files = await FilePicker.pickFiles(type: FileType.custom, allowedExtensions: const ['pdf']);
+    return [for (final f in files) PdfFile(name: f.name, bytes: await f.readAsBytes())];
   }
 
   static Future<List<Uint8List>> pickImages() async {
-    final res = await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      allowMultiple: true,
-      withData: true,
-    );
-    if (res == null) return [];
-    return [for (final f in res.files) await _readBytes(f)];
+    final files = await FilePicker.pickFiles(type: FileType.image);
+    return [for (final f in files) await f.readAsBytes()];
   }
 
   /// Scatta una foto con la fotocamera (scansione documento).
@@ -62,15 +47,6 @@ class FileService {
       maxWidth: 2400,
     );
     return photo?.readAsBytes();
-  }
-
-  static Future<PdfFile> _toPdf(PlatformFile f) async =>
-      PdfFile(name: f.name, bytes: await _readBytes(f));
-
-  static Future<Uint8List> _readBytes(PlatformFile f) async {
-    if (f.bytes != null) return f.bytes!;
-    if (!kIsWeb && f.path != null) return File(f.path!).readAsBytes();
-    throw Exception('Impossibile leggere ${f.name}');
   }
 
   static Future<Uint8List?> readPath(String path) async {
@@ -154,41 +130,37 @@ class FileService {
 
   /// "Salva come..." tramite il selettore di sistema.
   static Future<bool> saveAs(String name, Uint8List bytes) async {
-    final result = await FilePicker.platform.saveFile(
+    final result = await FilePicker.saveFile(
       dialogTitle: 'Salva PDF',
       fileName: ensurePdfName(name),
+      bytes: bytes,
+      mimeType: 'application/pdf',
       type: FileType.custom,
       allowedExtensions: const ['pdf'],
-      bytes: bytes,
     );
-    if (kIsWeb) return true;
-    if (result == null) return false;
-    if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-      await File(result).writeAsBytes(bytes, flush: true);
-    }
-    return true;
+    return kIsWeb || result != null;
   }
 
   /// Seleziona un file di dati (es. JSON/XFDF). Ritorna (nome, byte).
   static Future<(String, Uint8List)?> pickData(List<String> extensions) async {
-    final res = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: extensions,
-      withData: true,
-    );
-    if (res == null || res.files.isEmpty) return null;
-    final f = res.files.single;
-    return (f.name, await _readBytes(f));
+    final f = await FilePicker.pickFile(type: FileType.custom, allowedExtensions: extensions);
+    if (f == null) return null;
+    return (f.name, await f.readAsBytes());
   }
 
   static Future<void> shareData(String name, Uint8List bytes, String mimeType) async {
-    await Share.shareXFiles([XFile.fromData(bytes, name: name, mimeType: mimeType)], subject: name);
+    await SharePlus.instance.share(ShareParams(
+      files: [XFile.fromData(bytes, name: name, mimeType: mimeType)],
+      fileNameOverrides: [name],
+      subject: name,
+    ));
   }
 
   static Future<void> share(String name, Uint8List bytes) async {
-    await Share.shareXFiles(
-      [XFile.fromData(bytes, name: ensurePdfName(name), mimeType: 'application/pdf')],
+    await SharePlus.instance.share(ShareParams(
+      files: [XFile.fromData(bytes, name: ensurePdfName(name), mimeType: 'application/pdf')],
+      fileNameOverrides: [ensurePdfName(name)],
       subject: name,
-    );
+    ));
   }
 }
