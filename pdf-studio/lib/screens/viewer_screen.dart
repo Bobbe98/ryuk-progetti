@@ -1,17 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart' show DataFormat;
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 import '../app_state.dart';
 import '../models/pdf_file.dart';
 import '../services/file_service.dart';
+import '../services/form_autofill.dart';
 import '../services/pdf_tools.dart';
 import '../widgets/dialogs.dart';
+import '../widgets/form_panel.dart';
 import 'organizer_screen.dart';
+import 'profile_screen.dart';
 import 'signature_screen.dart';
 
-enum Tool { read, highlight, underline, strikethrough, squiggly, note, text, signature, image }
+enum Tool { read, highlight, underline, strikethrough, squiggly, note, text, check, cross, date, signature, image }
 
 extension on Tool {
   String get label => switch (this) {
@@ -22,6 +26,9 @@ extension on Tool {
         Tool.squiggly => 'Ondulato',
         Tool.note => 'Nota',
         Tool.text => 'Testo',
+        Tool.check => 'Spunta',
+        Tool.cross => 'Croce',
+        Tool.date => 'Data',
         Tool.signature => 'Firma',
         Tool.image => 'Immagine',
       };
@@ -34,6 +41,9 @@ extension on Tool {
         Tool.squiggly => Icons.waves,
         Tool.note => Icons.sticky_note_2_outlined,
         Tool.text => Icons.title,
+        Tool.check => Icons.check,
+        Tool.cross => Icons.close,
+        Tool.date => Icons.today,
         Tool.signature => Icons.draw_outlined,
         Tool.image => Icons.image_outlined,
       };
@@ -46,6 +56,9 @@ extension on Tool {
         Tool.note => PdfAnnotationMode.stickyNote,
         _ => PdfAnnotationMode.none,
       };
+
+  /// Strumenti "Compila e firma": restano attivi dopo ogni inserimento.
+  bool get isFill => this == Tool.text || this == Tool.check || this == Tool.cross || this == Tool.date;
 
   bool get usesColor => this != Tool.read && this != Tool.signature && this != Tool.image;
 }
@@ -104,6 +117,8 @@ class _ViewerScreenState extends State<ViewerScreen> {
   double _textSize = 14;
   _Stamp? _stamp;
   Annotation? _selected;
+  List<PdfFormField> _formFields = [];
+  bool _formHintShown = false;
 
   bool _searching = false;
   final _searchCtrl = TextEditingController();
@@ -120,6 +135,18 @@ class _ViewerScreenState extends State<ViewerScreen> {
 
   void _onLoaded(PdfDocumentLoadedDetails d) {
     setState(() => _pageCount = d.document.pages.count);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      setState(() => _formFields = _controller.getFormFields());
+      if (_formFields.isNotEmpty && !_formHintShown) {
+        _formHintShown = true;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Questo PDF è un modulo con ${_formFields.length} campi'),
+          action: SnackBarAction(label: 'Compila', onPressed: _openFormPanel),
+          duration: const Duration(seconds: 6),
+        ));
+      }
+    });
     final target = _restorePage.clamp(1, _pageCount);
     if (target > 1) {
       WidgetsBinding.instance.addPostFrameCallback((_) => _controller.jumpToPage(target));
@@ -149,7 +176,8 @@ class _ViewerScreenState extends State<ViewerScreen> {
       _searching = false;
       _selected = null;
       _dirty = _dirty || dirty;
-      _setToolState(Tool.read);
+      _setToolState(_tool.isFill ? _tool : Tool.read);
+      _formFields = [];
     });
   }
 
@@ -262,7 +290,7 @@ class _ViewerScreenState extends State<ViewerScreen> {
       if (t == Tool.highlight) _color = Colors.yellow;
       if (t == Tool.underline || t == Tool.squiggly) _color = Colors.green;
       if (t == Tool.strikethrough) _color = Colors.red;
-      if (t == Tool.text) _color = Colors.black;
+      if (t.isFill) _color = Colors.black;
       if (t == Tool.note) _color = Colors.yellow;
       _setToolState(t);
     });
@@ -271,6 +299,9 @@ class _ViewerScreenState extends State<ViewerScreen> {
         'Seleziona il testo da marcare',
       Tool.note => 'Tocca la pagina per aggiungere una nota',
       Tool.text => 'Tocca la pagina dove scrivere',
+      Tool.check => 'Tocca le caselle da spuntare',
+      Tool.cross => 'Tocca le caselle da barrare',
+      Tool.date => 'Tocca dove inserire la data di oggi',
       Tool.signature => 'Tocca la pagina dove inserire la firma',
       Tool.image => "Tocca la pagina dove inserire l'immagine",
       Tool.read => null,
@@ -354,6 +385,13 @@ class _ViewerScreenState extends State<ViewerScreen> {
         final text = await _askText();
         if (text == null || text.trim().isEmpty) return;
         await _modify((b) => PdfTools.stampText(b, pageIndex, pos, text, _textSize, _color, _password));
+      case Tool.check:
+      case Tool.cross:
+        final cross = _tool == Tool.cross;
+        await _modify((b) => PdfTools.stampMark(b, pageIndex, pos,
+            cross: cross, size: _textSize, color: _color, password: _password));
+      case Tool.date:
+        await _modify((b) => PdfTools.stampText(b, pageIndex, pos, today(), _textSize, _color, _password));
       case Tool.signature:
       case Tool.image:
         final stamp = _stamp;
@@ -368,6 +406,14 @@ class _ViewerScreenState extends State<ViewerScreen> {
 
   Future<String?> _askText() {
     final ctrl = TextEditingController();
+    final profile = context.read<AppState>().profile;
+    final quick = <String>{
+      today(),
+      if ((profile['nome'] ?? '').isNotEmpty || (profile['cognome'] ?? '').isNotEmpty)
+        '${profile['nome'] ?? ''} ${profile['cognome'] ?? ''}'.trim(),
+      for (final f in profileFields)
+        if (f.key != 'nome' && f.key != 'cognome' && (profile[f.key] ?? '').isNotEmpty) profile[f.key]!,
+    }.toList();
     return showDialog<String>(
       context: context,
       builder: (ctx) => StatefulBuilder(
@@ -381,6 +427,19 @@ class _ViewerScreenState extends State<ViewerScreen> {
               minLines: 1,
               decoration: const InputDecoration(hintText: 'Scrivi qui...'),
             ),
+            if (quick.isNotEmpty) ...[
+              const SizedBox(height: 8),
+              Wrap(spacing: 6, runSpacing: 4, children: [
+                for (final q in quick)
+                  ActionChip(
+                    label: Text(q, overflow: TextOverflow.ellipsis),
+                    onPressed: () {
+                      ctrl.text = ctrl.text.isEmpty ? q : '${ctrl.text} $q';
+                      ctrl.selection = TextSelection.collapsed(offset: ctrl.text.length);
+                    },
+                  ),
+              ]),
+            ],
             const SizedBox(height: 12),
             Row(children: [
               const Text('Dimensione'),
@@ -426,6 +485,86 @@ class _ViewerScreenState extends State<ViewerScreen> {
     _search.clear();
     _searchCtrl.clear();
     setState(() => _searching = false);
+  }
+
+  // ---------- Moduli ----------
+
+  Future<void> _openFormPanel() async {
+    if (_formFields.isEmpty) {
+      showSnack(context, 'Nessun campo modulo: usa Testo, Spunta, Croce e Data per compilarlo');
+      return;
+    }
+    await showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      showDragHandle: true,
+      useSafeArea: true,
+      builder: (ctx) => FormPanel(
+        fields: _formFields,
+        onChanged: () => setState(() => _dirty = true),
+        onJump: (page) {
+          Navigator.pop(ctx);
+          _controller.jumpToPage(page);
+        },
+        onSign: _signField,
+        onAutofill: _autofill,
+      ),
+    );
+  }
+
+  Future<void> _signField(PdfSignatureFormField field) async {
+    final stamp = await _pickSignature();
+    if (stamp == null) return;
+    field.signature = stamp.png;
+    setState(() => _dirty = true);
+  }
+
+  int _autofill() {
+    final n = autofill(_formFields, context.read<AppState>().profile);
+    if (n > 0) setState(() => _dirty = true);
+    return n;
+  }
+
+  Future<void> _openProfile() => Navigator.of(context).push(
+        MaterialPageRoute<void>(builder: (_) => const ProfileScreen()),
+      );
+
+  Future<void> _flattenForm() async {
+    final ok = await confirmDialog(
+      context,
+      'Appiattisci modulo',
+      'I valori diventano testo fisso e i campi non saranno più modificabili. '
+          'Utile prima di inviare il modulo compilato.',
+      confirm: 'Appiattisci',
+    );
+    if (!ok) return;
+    final bytes = await _controller.saveDocument(flattenOption: PdfFlattenOption.formFields);
+    if (mounted) _reload(Uint8List.fromList(bytes));
+  }
+
+  String get _baseName => _file.name.replaceAll(RegExp(r'\.pdf$', caseSensitive: false), '');
+
+  Future<void> _exportFormData() async {
+    final data = Uint8List.fromList(_controller.exportFormData(dataFormat: DataFormat.json));
+    await FileService.shareData('$_baseName - dati.json', data, 'application/json');
+  }
+
+  Future<void> _importFormData() async {
+    final file = await FileService.pickData(const ['json', 'xfdf', 'fdf', 'xml']);
+    if (file == null) return;
+    final format = switch (file.$1.split('.').last.toLowerCase()) {
+      'xfdf' => DataFormat.xfdf,
+      'fdf' => DataFormat.fdf,
+      'xml' => DataFormat.xml,
+      _ => DataFormat.json,
+    };
+    try {
+      _controller.importFormData(file.$2, format);
+      setState(() => _dirty = true);
+      if (mounted) showSnack(context, 'Dati importati');
+    } catch (e) {
+      if (mounted) showSnack(context, 'Importazione non riuscita: $e');
+    }
   }
 
   // ---------- Menu ----------
@@ -522,6 +661,24 @@ class _ViewerScreenState extends State<ViewerScreen> {
         }
       case 'protect':
         await _protect();
+      case 'formpanel':
+        await _openFormPanel();
+      case 'autofill':
+        final n = _autofill();
+        showSnack(context, n == 0 ? 'Nessun campo riconosciuto: completa il profilo' : '$n campi compilati');
+      case 'clearform':
+        if (await confirmDialog(context, 'Svuota modulo', 'Cancellare tutti i valori inseriti?', confirm: 'Svuota')) {
+          _controller.clearFormData();
+          setState(() => _dirty = true);
+        }
+      case 'flatten':
+        await _flattenForm();
+      case 'exportform':
+        await _exportFormData();
+      case 'importform':
+        await _importFormData();
+      case 'profile':
+        await _openProfile();
       case 'clear':
         if (await confirmDialog(context, 'Rimuovi annotazioni', 'Eliminare tutte le annotazioni?',
             confirm: 'Elimina')) {
@@ -586,6 +743,12 @@ class _ViewerScreenState extends State<ViewerScreen> {
               });
             },
           ),
+        if (_formFields.isNotEmpty)
+          IconButton(
+            tooltip: 'Compila modulo',
+            icon: Badge(label: Text('${_formFields.length}'), child: const Icon(Icons.assignment_outlined)),
+            onPressed: _openFormPanel,
+          ),
         IconButton(tooltip: 'Cerca', icon: const Icon(Icons.search), onPressed: () => setState(() => _searching = true)),
         IconButton(
           tooltip: 'Segnalibri',
@@ -607,6 +770,16 @@ class _ViewerScreenState extends State<ViewerScreen> {
                 _continuous ? 'Pagina singola' : 'Scorrimento continuo'),
             _item('direction', Icons.swap_horiz, _horizontal ? 'Scorrimento verticale' : 'Scorrimento orizzontale'),
             _item('fullscreen', Icons.fullscreen, 'Lettura a schermo intero'),
+            const PopupMenuDivider(),
+            if (_formFields.isNotEmpty) ...[
+              _item('formpanel', Icons.assignment_outlined, 'Compila modulo'),
+              _item('autofill', Icons.auto_fix_high, 'Compilazione automatica'),
+              _item('clearform', Icons.backspace_outlined, 'Svuota modulo'),
+              _item('flatten', Icons.layers_outlined, 'Appiattisci modulo'),
+              _item('exportform', Icons.upload_file, 'Esporta dati modulo'),
+              _item('importform', Icons.download_for_offline_outlined, 'Importa dati modulo'),
+            ],
+            _item('profile', Icons.badge_outlined, 'Profilo di compilazione'),
             const PopupMenuDivider(),
             _item('organize', Icons.dashboard_customize_outlined, 'Organizza pagine'),
             _item('rotate', Icons.rotate_right, 'Ruota tutte le pagine'),
@@ -719,6 +892,7 @@ class _ViewerScreenState extends State<ViewerScreen> {
       onDocumentLoadFailed: (d) => showSnack(context, '${d.error}: ${d.description}'),
       onPageChanged: _onPageChanged,
       onTap: _onTap,
+      onFormFieldValueChanged: (_) => setState(() => _dirty = true),
       onAnnotationAdded: (_) => setState(() => _dirty = true),
       onAnnotationEdited: (_) => setState(() => _dirty = true),
       onAnnotationRemoved: (_) => setState(() => _dirty = true),

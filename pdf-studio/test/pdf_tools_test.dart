@@ -64,4 +64,11 @@ void main() {
     expect(PdfTools.pageCount(b), 1);
     expect(PdfTools.info(b)['Pagine'], '1');
   });
+
+  test('spunta e croce', () {
+    var b = PdfTools.blankDocument();
+    b = PdfTools.stampMark(b, 0, const Offset(100, 100), cross: false, size: 14, color: const Color(0xFF000000));
+    b = PdfTools.stampMark(b, 0, const Offset(150, 100), cross: true, size: 14, color: const Color(0xFF1565C0));
+    expect(PdfTools.pageCount(b), 1);
+  });
 }

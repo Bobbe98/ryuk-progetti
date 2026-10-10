@@ -169,6 +169,22 @@ class FileService {
     return true;
   }
 
+  /// Seleziona un file di dati (es. JSON/XFDF). Ritorna (nome, byte).
+  static Future<(String, Uint8List)?> pickData(List<String> extensions) async {
+    final res = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: extensions,
+      withData: true,
+    );
+    if (res == null || res.files.isEmpty) return null;
+    final f = res.files.single;
+    return (f.name, await _readBytes(f));
+  }
+
+  static Future<void> shareData(String name, Uint8List bytes, String mimeType) async {
+    await Share.shareXFiles([XFile.fromData(bytes, name: name, mimeType: mimeType)], subject: name);
+  }
+
   static Future<void> share(String name, Uint8List bytes) async {
     await Share.shareXFiles(
       [XFile.fromData(bytes, name: ensurePdfName(name), mimeType: 'application/pdf')],

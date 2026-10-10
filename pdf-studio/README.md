@@ -18,6 +18,13 @@ App Flutter (Android, iOS, Web) per leggere e modificare PDF, ispirata a Xodo.
 - Firma a mano (salvabile e riutilizzabile) e inserimento di immagini
 - Selezione ed eliminazione di un'annotazione, o rimozione di tutte
 
+**Compilazione moduli**
+- Riconosce i moduli PDF e permette di compilarli direttamente sulla pagina: testo, caselle, menu a tendina, scelte multiple, firma
+- Pannello "Compila modulo" con tutti i campi in elenco, avanzamento, filtro "solo campi vuoti" e salto alla pagina del campo
+- Compilazione automatica dal tuo profilo (nome, cognome, codice fiscale, nascita, indirizzo, CAP, città, telefono, email, azienda, P.IVA), salvato solo sul dispositivo
+- Svuota modulo, appiattisci (i valori diventano testo fisso prima dell'invio), esporta e importa i dati (JSON, XFDF, FDF, XML)
+- Per i PDF senza campi: strumenti Testo, Spunta ✓, Croce ✗ e Data di oggi, che restano attivi per compilare più punti di fila, con suggerimenti rapidi dal profilo
+
 **Strumenti**
 - Unisci PDF (scegli l'ordine), dividi (un file per pagina), estrai pagine (`1-3, 5, 8-`)
 - Organizza pagine: riordina, ruota, elimina, aggiungi pagine vuote, estrai la selezione

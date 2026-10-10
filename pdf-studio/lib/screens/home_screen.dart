@@ -11,6 +11,7 @@ import '../services/pdf_tools.dart';
 import '../widgets/dialogs.dart';
 import 'open_pdf.dart';
 import 'organizer_screen.dart';
+import 'profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -38,6 +39,13 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: const Text('PDF Studio'),
         actions: [
+          IconButton(
+            tooltip: 'Profilo di compilazione',
+            icon: const Icon(Icons.badge_outlined),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute<void>(builder: (_) => const ProfileScreen()),
+            ),
+          ),
           PopupMenuButton<ThemeMode>(
             tooltip: 'Tema',
             icon: const Icon(Icons.palette_outlined),
@@ -302,6 +310,11 @@ class _ToolsTab extends StatelessWidget {
     return (pdf, pwd);
   }
 
+  Future<void> _fill(BuildContext context) async {
+    final pdf = await FileService.pickPdf();
+    if (pdf != null && context.mounted) await openPdf(context, pdf);
+  }
+
   Future<void> _merge(BuildContext context) async {
     final files = await FileService.pickPdfs();
     if (!context.mounted) return;
@@ -454,6 +467,7 @@ class _ToolsTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tools = <(IconData, String, String, Color, Future<void> Function(BuildContext))>[
+      (Icons.assignment_outlined, 'Compila modulo', 'Riempi e firma un PDF', Colors.deepOrange, _fill),
       (Icons.merge_type, 'Unisci PDF', 'Combina più file in uno', Colors.indigo, _merge),
       (Icons.call_split, 'Dividi PDF', 'Un file per ogni pagina', Colors.teal, _split),
       (Icons.content_cut, 'Estrai pagine', 'Scegli un intervallo', Colors.cyan, _extract),

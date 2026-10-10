@@ -316,6 +316,33 @@ class PdfTools {
     return _save(doc);
   }
 
+  /// Disegna una spunta (✓) o una croce (✗) centrata in [c].
+  static Uint8List stampMark(
+    Uint8List bytes,
+    int pageIndex,
+    Offset c, {
+    required bool cross,
+    required double size,
+    required Color color,
+    String? password,
+  }) {
+    final doc = _open(bytes, password);
+    final g = doc.pages[pageIndex].graphics;
+    final pen = PdfPen(_pdfColor(color), width: math.max(1.2, size / 7))
+      ..lineCap = PdfLineCap.round
+      ..lineJoin = PdfLineJoin.round;
+    final h = size / 2;
+    if (cross) {
+      g.drawLine(pen, Offset(c.dx - h, c.dy - h), Offset(c.dx + h, c.dy + h));
+      g.drawLine(pen, Offset(c.dx + h, c.dy - h), Offset(c.dx - h, c.dy + h));
+    } else {
+      final mid = Offset(c.dx - h * 0.2, c.dy + h * 0.7);
+      g.drawLine(pen, Offset(c.dx - h, c.dy), mid);
+      g.drawLine(pen, mid, Offset(c.dx + h, c.dy - h * 0.9));
+    }
+    return _save(doc);
+  }
+
   /// Inserisce un'immagine (firma, timbro, foto) nel rettangolo indicato.
   static Uint8List stampImage(
     Uint8List bytes,

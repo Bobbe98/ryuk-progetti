@@ -11,6 +11,7 @@ class AppState extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system;
   List<RecentEntry> recents = [];
   Uint8List? savedSignature;
+  Map<String, String> profile = {};
   SharedPreferences? _prefs;
 
   Future<void> load() async {
@@ -34,6 +35,12 @@ class AppState extends ChangeNotifier {
         })
         .whereType<RecentEntry>()
         .toList();
+    final prof = p.getString('profile');
+    if (prof != null) {
+      try {
+        profile = Map<String, String>.from(jsonDecode(prof) as Map);
+      } catch (_) {}
+    }
     final sig = p.getString('signature');
     if (sig != null) savedSignature = base64Decode(sig);
   }
@@ -101,6 +108,12 @@ class AppState extends ChangeNotifier {
     } else {
       await _prefs?.setString('signature', base64Encode(png));
     }
+    notifyListeners();
+  }
+
+  Future<void> setProfile(Map<String, String> value) async {
+    profile = {for (final e in value.entries) if (e.value.trim().isNotEmpty) e.key: e.value.trim()};
+    await _prefs?.setString('profile', jsonEncode(profile));
     notifyListeners();
   }
 
