@@ -1,5 +1,8 @@
 # Ryuk Automation
 
+> Altri progetti in questo repository: [`pdf-studio/`](pdf-studio/) (lettore/editor PDF) e
+> [`notes-studio/`](notes-studio/) (note a blocchi in stile Notion).
+
 App Android (Kotlin + Jetpack Compose) per creare automazioni generiche del tipo
 **trigger → condizioni → azioni**, sullo stile di Tasker/MacroDroid.
 
