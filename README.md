@@ -95,3 +95,10 @@ scudo nella toolbar) che mostra lo stato e apre la schermata giusta per ciascuno
 - Il rilevamento dell'SSID Wi-Fi al cambio di rete richiede permessi di
   localizzazione su Android 8+; in questa versione il trigger Wi-Fi funziona per
   "connesso/disconnesso" generico, il filtro SSID è opzionale e non sempre risolto.
+
+---
+
+## Altri progetti in questo repo
+
+- [`pdf-studio/`](pdf-studio/) — lettore ed editor PDF in Flutter
+- [`discord-bot/`](discord-bot/) — **Aiutante**, bot Discord gratuito per ricerca info, AI, creazione/sistemazione server e moderazione
