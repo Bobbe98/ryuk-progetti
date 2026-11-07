@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Monitor -->
+    <path
+        android:fillColor="#B3261E"
+        android:pathData="M30,34 L78,34 Q82,34 82,38 L82,66 Q82,70 78,70 L30,70 Q26,70 26,66 L26,38 Q26,34 30,34 Z" />
+    <path
+        android:fillColor="#1B1B1B"
+        android:pathData="M31,39 L77,39 L77,65 L31,65 Z" />
+    <!-- Finestra dentro lo schermo -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M37,44 L63,44 L63,59 L37,59 Z" />
+    <path
+        android:fillColor="#B3261E"
+        android:pathData="M37,44 L63,44 L63,48 L37,48 Z" />
+    <!-- Base -->
+    <path
+        android:fillColor="#B3261E"
+        android:pathData="M48,70 L60,70 L62,78 L46,78 Z" />
+    <path
+        android:fillColor="#B3261E"
+        android:pathData="M40,78 L68,78 L68,82 L40,82 Z" />
+</vector>
