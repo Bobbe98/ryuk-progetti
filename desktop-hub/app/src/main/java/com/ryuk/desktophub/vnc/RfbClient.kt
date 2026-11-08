@@ -7,6 +7,7 @@ import java.io.DataOutputStream
 import java.io.IOException
 import java.net.InetSocketAddress
 import java.net.Socket
+import java.net.SocketTimeoutException
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
 
@@ -23,6 +24,12 @@ class RfbClient(
     private val password: String,
     private val listener: Listener,
 ) {
+
+    /** Il server accetta la connessione ma non risponde (es. processi di Termux sospesi da Android). */
+    class NotRespondingException : IOException("Il desktop non risponde")
+
+    /** Password rifiutata dal server. */
+    class AuthException(message: String) : IOException(message)
 
     interface Listener {
         fun onConnected(width: Int, height: Int, name: String)
@@ -51,7 +58,11 @@ class RfbClient(
         thread(name = "rfb-client", isDaemon = true) {
             var error: Throwable? = null
             try {
-                handshake()
+                try {
+                    handshake()
+                } catch (e: SocketTimeoutException) {
+                    throw NotRespondingException()
+                }
                 messageLoop()
             } catch (t: Throwable) {
                 if (running) error = t
@@ -75,6 +86,8 @@ class RfbClient(
         val s = Socket()
         s.tcpNoDelay = true
         s.connect(InetSocketAddress(host, port), 3000)
+        // durante l'handshake il server deve rispondere subito: mai attese infinite
+        s.soTimeout = HANDSHAKE_TIMEOUT_MS
         socket = s
         input = DataInputStream(BufferedInputStream(s.getInputStream(), 1 shl 16))
         output = DataOutputStream(BufferedOutputStream(s.getOutputStream(), 1 shl 14))
@@ -118,7 +131,7 @@ class RfbClient(
             val result = input.readInt()
             if (result != 0) {
                 val reason = if (useMinor >= 8) readReason() else ""
-                throw IOException("Autenticazione VNC fallita. $reason".trim())
+                throw AuthException("Autenticazione VNC fallita. $reason".trim())
             }
         }
 
@@ -133,6 +146,8 @@ class RfbClient(
         val nameLen = input.readInt()
         val name = ByteArray(nameLen).also { input.readFully(it) }.toString(Charsets.UTF_8)
 
+        // da qui in poi il server può restare in silenzio a lungo se lo schermo non cambia
+        s.soTimeout = 0
         resize(w, h)
         sendPixelFormat()
         sendEncodings()
@@ -332,7 +347,21 @@ class RfbClient(
         }
     }
 
+    /** True se nell'immagine c'è qualcosa oltre al nero (desktop caricato). */
+    fun hasVisibleContent(): Boolean = synchronized(frameLock) {
+        val fb = framebuffer
+        if (fb.isEmpty()) return false
+        val step = maxOf(1, fb.size / 4096)
+        var i = 0
+        while (i < fb.size) {
+            if (fb[i] and 0xFFFFFF != 0) return true
+            i += step
+        }
+        false
+    }
+
     companion object {
+        private const val HANDSHAKE_TIMEOUT_MS = 6000
         const val ENC_RAW = 0
         const val ENC_COPY_RECT = 1
         const val ENC_DESKTOP_SIZE = -223

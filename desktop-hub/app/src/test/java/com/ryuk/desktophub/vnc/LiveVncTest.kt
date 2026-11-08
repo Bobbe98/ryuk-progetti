@@ -46,4 +46,23 @@ class LiveVncTest {
         println("updates=$updates resized=$r")
         c.disconnect()
     }
+
+    /** Server "congelato" (come fa Android con Termux in background): niente attese infinite. */
+    @Test
+    fun frozenServerFailsFast() {
+        Assume.assumeTrue(System.getenv("LIVE_VNC_FROZEN") == "1")
+        val done = CountDownLatch(1)
+        var err: Throwable? = null
+        val start = System.currentTimeMillis()
+        RfbClient("127.0.0.1", 5901, "x", object : RfbClient.Listener {
+            override fun onConnected(width: Int, height: Int, name: String) = Unit
+            override fun onResize(width: Int, height: Int) = Unit
+            override fun onUpdate(x: Int, y: Int, w: Int, h: Int) = Unit
+            override fun onClipboard(text: String) = Unit
+            override fun onDisconnected(error: Throwable?) { err = error; done.countDown() }
+        }).connect()
+        check(done.await(15, TimeUnit.SECONDS)) { "client bloccato" }
+        println("frozen -> ${err?.javaClass?.simpleName} dopo ${System.currentTimeMillis() - start} ms")
+        check(err is RfbClient.NotRespondingException) { "errore inatteso: $err" }
+    }
 }

@@ -75,6 +75,8 @@ class ViewerActivity : ComponentActivity() {
     private var toolbarVisible by mutableStateOf(true)
     private var inputMode by mutableStateOf(InputMode.TOUCH)
     private var sticky by mutableStateOf(setOf<Int>())
+    private var showLoadingHint by mutableStateOf(false)
+    private var suggestOpenTermux by mutableStateOf(false)
 
     private val password by lazy { intent.getStringExtra(EXTRA_PASSWORD).orEmpty() }
 
@@ -137,13 +139,33 @@ class ViewerActivity : ComponentActivity() {
                                 color = Color.White,
                                 style = MaterialTheme.typography.titleMedium,
                             )
-                            errorText?.let { Text(it, color = Color.LightGray, style = MaterialTheme.typography.bodySmall) }
+                            errorText?.let {
+                                Text(it, color = Color.LightGray, style = MaterialTheme.typography.bodyMedium)
+                            }
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                                Button(onClick = { attempts = 0; connect() }) { Text("Riconnetti") }
+                                if (suggestOpenTermux) {
+                                    Button(onClick = { openTermux() }) { Text("Apri Termux") }
+                                    OutlinedButton(onClick = { attempts = 0; connect() }) { Text("Riconnetti") }
+                                } else {
+                                    Button(onClick = { attempts = 0; connect() }) { Text("Riconnetti") }
+                                }
                                 OutlinedButton(onClick = { finish() }) { Text("Esci") }
                             }
                         }
-                        Status.CONNECTED -> Unit
+                        Status.CONNECTED -> if (showLoadingHint) {
+                            Column(
+                                Modifier.align(Alignment.Center).padding(24.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.spacedBy(12.dp),
+                            ) {
+                                CircularProgressIndicator()
+                                Text(
+                                    "Caricamento del desktop…\nLa prima volta può richiedere fino a un minuto.",
+                                    color = Color.White,
+                                    textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -232,6 +254,7 @@ class ViewerActivity : ComponentActivity() {
                     everConnected = true
                     attempts = 0
                     status = Status.CONNECTED
+                    watchForContent(c = client, startedAt = System.currentTimeMillis())
                 }
             }
 
@@ -249,13 +272,28 @@ class ViewerActivity : ComponentActivity() {
             override fun onDisconnected(error: Throwable?) {
                 runOnUiThread {
                     if (destroyed) return@runOnUiThread
+                    showLoadingHint = false
+                    val notResponding = error is RfbClient.NotRespondingException
+                    val authFailed = error is RfbClient.AuthException
                     // il server può impiegare qualche secondo ad avviarsi: riprova in silenzio
-                    val authFailed = error?.message?.startsWith("Autenticazione") == true
-                    if (!everConnected && attempts < MAX_ATTEMPTS && !authFailed) {
+                    val maxAttempts = if (notResponding) 2 else MAX_ATTEMPTS
+                    if (!everConnected && attempts < maxAttempts && !authFailed) {
                         desktopView.postDelayed({ if (!destroyed) connect() }, RETRY_DELAY_MS)
-                    } else {
-                        status = Status.DISCONNECTED
-                        errorText = error?.message
+                        return@runOnUiThread
+                    }
+                    status = Status.DISCONNECTED
+                    suggestOpenTermux = notResponding || error is java.net.ConnectException
+                    errorText = when {
+                        notResponding ->
+                            "Android ha messo in pausa Termux, e con lui il desktop. Apri Termux un " +
+                                "momento, torna qui e premi Riconnetti. Per evitarlo: nelle impostazioni " +
+                                "di Android togli Termux dall'ottimizzazione della batteria."
+                        authFailed ->
+                            "Password del desktop non valida. Torna indietro e premi di nuovo Avvia desktop."
+                        error is java.net.ConnectException ->
+                            "Il desktop non è in esecuzione (forse Android lo ha chiuso). Torna indietro e " +
+                                "premi Avvia desktop."
+                        else -> error?.message
                     }
                 }
             }
@@ -263,6 +301,23 @@ class ViewerActivity : ComponentActivity() {
         client = c
         desktopView.client = c
         c.connect()
+    }
+
+    /** Mostra "Caricamento…" finché lo schermo è tutto nero (al massimo 90 secondi). */
+    private fun watchForContent(c: RfbClient?, startedAt: Long) {
+        if (destroyed || c == null || c !== client || status != Status.CONNECTED) return
+        val hasContent = c.hasVisibleContent()
+        val elapsed = System.currentTimeMillis() - startedAt
+        // breve attesa iniziale: evita il lampeggio se il desktop è già pronto
+        showLoadingHint = !hasContent && elapsed in 1500..90_000
+        if (!hasContent && elapsed < 90_000) {
+            desktopView.postDelayed({ watchForContent(c, startedAt) }, 500)
+        }
+    }
+
+    private fun openTermux() {
+        packageManager.getLaunchIntentForPackage(com.ryuk.desktophub.termux.TermuxBridge.PACKAGE)
+            ?.let { startActivity(it) }
     }
 
     private fun toggleKeyboard() {
@@ -293,6 +348,15 @@ class ViewerActivity : ComponentActivity() {
         inputMode = if (inputMode == InputMode.TOUCH) InputMode.TOUCHPAD else InputMode.TOUCH
         desktopView.inputMode = inputMode
         Settings(this).inputMode = inputMode
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // di ritorno da Termux (che così si "risveglia"): riprova da solo
+        if (status == Status.DISCONNECTED && suggestOpenTermux) {
+            attempts = 0
+            connect()
+        }
     }
 
     override fun onDestroy() {

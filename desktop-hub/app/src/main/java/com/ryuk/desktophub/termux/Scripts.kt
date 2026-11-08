@@ -94,13 +94,17 @@ object Scripts {
         export DISPLAY=:$DISPLAY_NUM
         mkdir -p "$STATE_DIR" ~/.vnc
         if ! command -v Xvnc >/dev/null 2>&1; then echo "Xvnc non trovato: completa la configurazione." >&2; exit 3; fi
+        # Senza wake lock, finito questo script Termux chiude il suo servizio e Android
+        # "congela" tutti i suoi processi (desktop compreso): il visualizzatore resterebbe bloccato.
+        command -v termux-wake-lock >/dev/null 2>&1 && termux-wake-lock >/dev/null 2>&1
+        # la password viene riscritta sempre: Xvnc rilegge il file a ogni connessione
+        printf '%s\n' ${Shell.quote(password)} | vncpasswd -f > ~/.vnc/passwd
+        chmod 600 ~/.vnc/passwd
         X_SOCKET="${'$'}PREFIX/tmp/.X11-unix/X$DISPLAY_NUM"
         if ! { pgrep -x Xvnc >/dev/null 2>&1 && [ -S "${'$'}X_SOCKET" ]; }; then
           # nessun server valido: ripulisce eventuali resti e lo avvia
           pkill -x Xvnc 2>/dev/null
           rm -f "${'$'}PREFIX/tmp/.X$DISPLAY_NUM-lock" "${'$'}X_SOCKET"
-          printf '%s\n' ${Shell.quote(password)} | vncpasswd -f > ~/.vnc/passwd
-          chmod 600 ~/.vnc/passwd
           setsid nohup Xvnc :$DISPLAY_NUM -geometry ${width}x$height -depth 24 -localhost \
             -rfbport $VNC_PORT -rfbauth ~/.vnc/passwd -AlwaysShared -ac \
             > "$STATE_DIR/xvnc.log" 2>&1 < /dev/null &
@@ -136,6 +140,7 @@ object Scripts {
         for i in $(seq 1 20); do pgrep -x Xvnc >/dev/null 2>&1 || break; sleep 0.2; done
         pkill -9 -x Xvnc 2>/dev/null
         rm -f "${'$'}PREFIX/tmp/.X$DISPLAY_NUM-lock" "${'$'}PREFIX/tmp/.X11-unix/X$DISPLAY_NUM"
+        command -v termux-wake-unlock >/dev/null 2>&1 && termux-wake-unlock >/dev/null 2>&1
         echo STOPPED
     """.trimIndent()
 
