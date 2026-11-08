@@ -31,6 +31,16 @@ Desktop Hub ──RUN_COMMAND──▶ Termux (Linux)
 4. Premi *Installa* per l'ambiente desktop (XFCE completo o Fluxbox leggero).
 5. Scheda *App*: installa i programmi che vuoi e premi **Apri**.
 
+### File del telefono
+
+- Dopo aver consentito l'accesso ai file (passaggio 5), sul desktop compaiono le cartelle
+  **Telefono** (memoria interna) e **Download**, anche tra i segnalibri del file manager;
+  in Wine la memoria del telefono è l'unità **D:**.
+- **Apri file dal telefono** (schermata principale o barra del desktop): scegli un file con il
+  selettore di Android; viene copiato in `Download/DesktopHub/` e aperto nel desktop.
+  `.exe`, `.msi`, `.bat` si aprono con Wine (es. per installare un programma Windows), gli
+  altri file con il programma predefinito.
+
 Con il pulsante *Aggiungi* si può installare qualsiasi altro pacchetto Termux
 (`pkg search nome` per cercarlo) indicando il comando di avvio.
 

@@ -24,6 +24,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.ContentPaste
+import androidx.compose.material.icons.filled.FolderOpen
 import androidx.compose.material.icons.filled.Keyboard
 import androidx.compose.material.icons.filled.Mouse
 import androidx.compose.material.icons.filled.TouchApp
@@ -58,6 +59,8 @@ import com.ryuk.desktophub.ui.DesktopHubTheme
 import com.ryuk.desktophub.vnc.KeySyms
 import com.ryuk.desktophub.vnc.RemoteDesktopView
 import com.ryuk.desktophub.vnc.RfbClient
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 /** Visualizzatore a schermo intero del desktop (client VNC su 127.0.0.1). */
 class ViewerActivity : ComponentActivity() {
@@ -79,6 +82,26 @@ class ViewerActivity : ComponentActivity() {
     private var suggestOpenTermux by mutableStateOf(false)
 
     private val password by lazy { intent.getStringExtra(EXTRA_PASSWORD).orEmpty() }
+
+    private val filePicker = registerForActivityResult(
+        androidx.activity.result.contract.ActivityResultContracts.OpenDocument()
+    ) { uri -> if (uri != null) openPhoneFile(uri) }
+
+    private fun openPhoneFile(uri: android.net.Uri) {
+        android.widget.Toast.makeText(this, "Preparazione del file…", android.widget.Toast.LENGTH_SHORT).show()
+        lifecycleScope.launch {
+            val result = PhoneFileOpener(this@ViewerActivity).open(uri)
+            android.widget.Toast.makeText(
+                this@ViewerActivity, PhoneFileOpener.describe(result), android.widget.Toast.LENGTH_LONG
+            ).show()
+            if (result == PhoneFileOpener.Result.NeedsStorage) {
+                runCatching {
+                    com.ryuk.desktophub.termux.TermuxBridge(this@ViewerActivity)
+                        .runInTerminal(Scripts.storageSetup, "Desktop Hub: accesso ai file")
+                }
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -207,6 +230,16 @@ class ViewerActivity : ComponentActivity() {
             BarKey("→") { desktopView.typeKeysym(KeySyms.RIGHT) }
             BarKey("Canc") { desktopView.typeKeysym(KeySyms.DELETE) }
             BarKey("F11") { desktopView.typeKeysym(KeySyms.F1 + 10) }
+            BarIcon(Icons.Default.FolderOpen, "Apri file dal telefono") {
+                if (PhoneFileOpener(this@ViewerActivity).needsLegacyWritePermission()) {
+                    android.widget.Toast.makeText(
+                        this@ViewerActivity, "Usa \"Apri file dal telefono\" nella schermata principale",
+                        android.widget.Toast.LENGTH_LONG,
+                    ).show()
+                } else {
+                    runCatching { filePicker.launch(arrayOf("*/*")) }
+                }
+            }
             BarIcon(Icons.Default.ContentPaste, "Incolla dal telefono") { pasteFromPhone() }
             BarIcon(
                 if (inputMode == InputMode.TOUCH) Icons.Default.TouchApp else Icons.Default.Mouse,

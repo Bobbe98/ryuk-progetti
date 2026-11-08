@@ -18,6 +18,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import android.net.Uri
 
 data class UiState(
     val termuxInstalled: Boolean = false,
@@ -28,6 +29,8 @@ data class UiState(
     val xvncInstalled: Boolean = false,
     val environmentsInstalled: Set<DesktopEnvironment> = emptySet(),
     val desktopRunning: Boolean = false,
+    /** Termux vede la memoria del telefono (~/storage/shared). */
+    val storageReady: Boolean = false,
     val installed: Set<String> = emptySet(),
     val busyMessage: String? = null,
     val environment: DesktopEnvironment = DesktopEnvironment.XFCE,
@@ -106,6 +109,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                     termuxReachable = true,
                     xvncInstalled = "XVNC_OK" in lines,
                     desktopRunning = "DESKTOP_RUNNING" in lines,
+                    storageReady = "STORAGE_OK" in lines,
                     environmentsInstalled = envs,
                     installed = installedIds,
                     apps = apps,
@@ -139,7 +143,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     fun runSetup() = runInTerminal(Scripts.setup(settings.environment), "Desktop Hub: configurazione")
 
-    fun setupStorage() = runInTerminal(Scripts.STORAGE_SETUP, "Desktop Hub: accesso ai file")
+    fun setupStorage() = runInTerminal(Scripts.storageSetup, "Desktop Hub: accesso ai file")
 
     fun install(app: DesktopApp) = runInTerminal(Scripts.installApp(app), "Installa ${app.name}")
 
@@ -169,6 +173,37 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                     _state.update { it.copy(desktopRunning = true) }
                     _events.tryEmit(UiEvent.OpenViewer)
                 }
+            }
+        }
+    }
+
+    /** Apre nel desktop un file scelto dal telefono (copiato dove Termux lo vede). */
+    fun openPhoneFile(uri: Uri) {
+        val s = _state.value
+        if (s.busyMessage != null) return
+        if (!s.desktopReady) {
+            message("Completa prima la configurazione nella scheda Inizia.")
+            return
+        }
+        if (s.termuxReachable == true && !s.storageReady) {
+            message("Prima consenti a Termux di vedere i file del telefono, poi riprova.")
+            setupStorage()
+            return
+        }
+        viewModelScope.launch {
+            _state.update { it.copy(busyMessage = "Preparazione del file…") }
+            val result = PhoneFileOpener(getApplication()).open(uri)
+            _state.update { it.copy(busyMessage = null) }
+            when (result) {
+                is PhoneFileOpener.Result.Opened -> {
+                    _state.update { it.copy(desktopRunning = true) }
+                    _events.tryEmit(UiEvent.OpenViewer)
+                }
+                PhoneFileOpener.Result.NeedsStorage -> {
+                    message(PhoneFileOpener.describe(result))
+                    setupStorage()
+                }
+                else -> message(PhoneFileOpener.describe(result))
             }
         }
     }

@@ -5,6 +5,10 @@
     <!-- Necessario per qualsiasi socket, anche verso 127.0.0.1 (il desktop locale). -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Solo Android 8-9: copia dei file scelti in Download/DesktopHub (dal 10 non serve). -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
 
     <queries>
         <package android:name="com.termux" />

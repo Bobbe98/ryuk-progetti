@@ -63,6 +63,22 @@ class MainActivity : ComponentActivity() {
         viewModel.refresh()
     }
 
+    private val filePicker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+        if (uri != null) viewModel.openPhoneFile(uri)
+    }
+
+    private val legacyWritePermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+        if (granted) filePicker.launch(arrayOf("*/*"))
+    }
+
+    private fun pickPhoneFile() {
+        if (PhoneFileOpener(this).needsLegacyWritePermission()) {
+            legacyWritePermission.launch(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        } else {
+            runCatching { filePicker.launch(arrayOf("*/*")) }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -130,6 +146,7 @@ class MainActivity : ComponentActivity() {
                             state = state,
                             onLaunchDesktop = { viewModel.launch() },
                             onStopDesktop = viewModel::stopDesktop,
+                            onOpenPhoneFile = ::pickPhoneFile,
                             onOpenUrl = ::openUrl,
                             onCopy = ::copyToClipboard,
                             onOpenTermux = viewModel::openTermux,

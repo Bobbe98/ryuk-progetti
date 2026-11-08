@@ -54,7 +54,7 @@ object Scripts {
             apt-get update
             apt-get -y -o Dpkg::Options::=--force-confnew -o Dpkg::Options::=--force-confdef full-upgrade
             ensure_x11_repo
-            inst tigervnc procps dbus ${env.packages}
+            inst tigervnc procps dbus xdg-utils ${env.packages}
             mkdir -p "$STATE_DIR" ~/.vnc
             date > "$STATE_DIR/ready"
         """.trimIndent(),
@@ -76,6 +76,7 @@ object Scripts {
     /** Verifica in background quali app sono installate e lo stato del desktop. */
     fun status(apps: List<DesktopApp>): String = buildString {
         appendLine("command -v Xvnc >/dev/null 2>&1 && echo XVNC_OK")
+        appendLine("ls \"\$HOME/storage/shared/\" >/dev/null 2>&1 && echo STORAGE_OK")
         appendLine("pgrep -x Xvnc >/dev/null 2>&1 && [ -S \"\$PREFIX/tmp/.X11-unix/X$DISPLAY_NUM\" ] && echo DESKTOP_RUNNING")
         for (env in DesktopEnvironment.entries) {
             appendLine("command -v ${env.binary} >/dev/null 2>&1 && echo ENV:${env.name}")
@@ -118,6 +119,7 @@ object Scripts {
             exit 4
           fi
         fi
+        $PHONE_LINKS
         # -x confronta il nome esatto del processo (con -f lo script troverebbe se stesso)
         if ! pgrep -x ${env.processName} >/dev/null 2>&1; then
           if command -v ${env.binary} >/dev/null 2>&1; then
@@ -151,6 +153,76 @@ object Scripts {
             "|| echo 'allow-external-apps=true' >> ~/.termux/termux.properties) && termux-reload-settings " +
             "&& echo 'Fatto! Torna su Desktop Hub.'"
 
-    /** Accesso alla memoria interna (per aprire i propri file dalle app desktop). */
-    const val STORAGE_SETUP = "termux-setup-storage"
+    /**
+     * Collegamenti ai file del telefono, visibili nel desktop: icone "Telefono" e "Download"
+     * sulla scrivania, segnalibri nel file manager e unità D: per Wine.
+     */
+    private val PHONE_LINKS = """
+        if ls "${'$'}HOME/storage/shared/" >/dev/null 2>&1; then
+          mkdir -p "${'$'}HOME/Desktop" "${'$'}HOME/.config/gtk-3.0"
+          ln -sfn "${'$'}HOME/storage/shared" "${'$'}HOME/Desktop/Telefono"
+          ln -sfn "${'$'}HOME/storage/shared/Download" "${'$'}HOME/Desktop/Download"
+          BM="${'$'}HOME/.config/gtk-3.0/bookmarks"
+          grep -q "storage/shared " "${'$'}BM" 2>/dev/null || echo "file://${'$'}HOME/storage/shared Telefono" >> "${'$'}BM"
+          grep -q "storage/shared/Download " "${'$'}BM" 2>/dev/null || echo "file://${'$'}HOME/storage/shared/Download Download" >> "${'$'}BM"
+          if [ -d "${'$'}HOME/.wine/dosdevices" ]; then ln -sfn "${'$'}HOME/storage/shared" "${'$'}HOME/.wine/dosdevices/d:"; fi
+        fi
+    """.trimIndent()
+
+    /** Chiede a Termux l'accesso alla memoria del telefono e prepara i collegamenti nel desktop. */
+    val storageSetup: String = terminalWrapper(
+        title = "accesso ai file del telefono",
+        body = """
+            if ! ls "${'$'}HOME/storage/shared/" >/dev/null 2>&1; then
+              echo "Android ti chiederà di consentire a Termux l'accesso ai file: tocca Consenti."
+              termux-setup-storage
+              for i in $(seq 1 120); do
+                ls "${'$'}HOME/storage/shared/" >/dev/null 2>&1 && break
+                sleep 1
+              done
+            fi
+            if ! ls "${'$'}HOME/storage/shared/" >/dev/null 2>&1; then
+              echo "Accesso ai file non concesso."
+              false
+            fi
+            $PHONE_LINKS
+        """.trimIndent(),
+        done = "Ora sul desktop trovi le cartelle Telefono e Download.",
+    )
+
+    /** Esito di [openFile] segnalato con codici di uscita dedicati. */
+    const val EXIT_NO_STORAGE = 6
+    const val EXIT_NEED_WINE = 5
+    const val EXIT_NO_OPENER = 7
+
+    /**
+     * Apre nel desktop un file del telefono ([phonePath] relativo alla memoria interna):
+     * .exe/.msi/.bat con Wine, tutto il resto con il programma predefinito.
+     */
+    fun openFile(phonePath: String): String = """
+        export DISPLAY=:$DISPLAY_NUM
+        F=/sdcard/${Shell.quote(phonePath)}
+        for i in $(seq 1 25); do [ -r "${'$'}F" ] && break; sleep 0.2; done
+        if [ ! -r "${'$'}F" ]; then echo "Termux non può leggere il file" >&2; exit $EXIT_NO_STORAGE; fi
+        $PHONE_LINKS
+        cd "$(dirname "${'$'}F")"
+        LOG="$STATE_DIR/open-file.log"
+        LOWER="$(printf '%s' "${'$'}F" | tr 'A-Z' 'a-z')"
+        case "${'$'}LOWER" in
+          *.exe|*.msi|*.bat)
+            command -v wine >/dev/null 2>&1 || { echo "Wine non installato" >&2; exit $EXIT_NEED_WINE; }
+            case "${'$'}LOWER" in
+              *.msi) setsid nohup wine msiexec /i "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null & ;;
+              *) setsid nohup wine start /unix "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null & ;;
+            esac
+            ;;
+          *)
+            if command -v xdg-open >/dev/null 2>&1; then OPENER=xdg-open
+            elif command -v exo-open >/dev/null 2>&1; then OPENER=exo-open
+            else echo "Nessun programma per aprire il file" >&2; exit $EXIT_NO_OPENER; fi
+            setsid nohup "${'$'}OPENER" "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null &
+            ;;
+        esac
+        echo OPENED
+    """.trimIndent()
 }

@@ -19,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.ContentCopy
 import androidx.compose.material.icons.filled.DesktopWindows
+import androidx.compose.material.icons.filled.FolderOpen
 import androidx.compose.material.icons.filled.RadioButtonUnchecked
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.Button
@@ -44,6 +45,7 @@ fun SetupScreen(
     state: UiState,
     onLaunchDesktop: () -> Unit,
     onStopDesktop: () -> Unit,
+    onOpenPhoneFile: () -> Unit,
     onOpenUrl: (String) -> Unit,
     onCopy: (String) -> Unit,
     onOpenTermux: () -> Unit,
@@ -59,7 +61,7 @@ fun SetupScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        DesktopCard(state, onLaunchDesktop, onStopDesktop)
+        DesktopCard(state, onLaunchDesktop, onStopDesktop, onOpenPhoneFile, onSetupStorage)
 
         Text("Configurazione", style = MaterialTheme.typography.titleMedium, modifier = Modifier.padding(top = 8.dp))
 
@@ -123,14 +125,13 @@ fun SetupScreen(
 
         StepCard(
             number = 5,
-            title = "Accesso ai tuoi file (facoltativo)",
-            done = false,
-            optional = true,
-            text = "Permette alle app desktop di aprire e salvare file nella memoria del telefono " +
-                "(cartella ~/storage/shared).",
+            title = "Vedi i file del telefono nel desktop",
+            done = state.storageReady,
+            text = "Consenti a Termux l'accesso ai file: sul desktop compariranno le cartelle Telefono " +
+                "e Download, e potrai aprire e installare i file che hai sul telefono.",
         ) {
-            OutlinedButton(onClick = onSetupStorage, enabled = state.termuxInstalled && state.permissionGranted) {
-                Text("Abilita accesso ai file")
+            Button(onClick = onSetupStorage, enabled = state.termuxInstalled && state.permissionGranted) {
+                Text(if (state.storageReady) "Ricrea le cartelle" else "Consenti accesso ai file")
             }
         }
 
@@ -140,7 +141,13 @@ fun SetupScreen(
 }
 
 @Composable
-private fun DesktopCard(state: UiState, onLaunch: () -> Unit, onStop: () -> Unit) {
+private fun DesktopCard(
+    state: UiState,
+    onLaunch: () -> Unit,
+    onStop: () -> Unit,
+    onOpenPhoneFile: () -> Unit,
+    onSetupStorage: () -> Unit,
+) {
     Card(
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer),
         modifier = Modifier.fillMaxWidth(),
@@ -175,6 +182,18 @@ private fun DesktopCard(state: UiState, onLaunch: () -> Unit, onStop: () -> Unit
                 if (state.busyMessage != null) {
                     CircularProgressIndicator(Modifier.size(24.dp), strokeWidth = 2.dp)
                 }
+            }
+            FilledTonalButton(onClick = onOpenPhoneFile, enabled = state.desktopReady && state.busyMessage == null) {
+                Icon(Icons.Default.FolderOpen, null, Modifier.size(18.dp))
+                Spacer(Modifier.width(6.dp))
+                Text("Apri file dal telefono")
+            }
+            if (state.desktopReady && state.termuxReachable == true && !state.storageReady) {
+                Text(
+                    "Il desktop non vede ancora i file del telefono.",
+                    style = MaterialTheme.typography.bodySmall,
+                )
+                OutlinedButton(onClick = onSetupStorage) { Text("Consenti accesso ai file") }
             }
             state.busyMessage?.let { Text(it, style = MaterialTheme.typography.bodySmall) }
         }
