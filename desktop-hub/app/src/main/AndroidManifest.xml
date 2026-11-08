@@ -2,6 +2,8 @@
 
     <!-- Permesso di Termux per eseguire comandi (installare e avviare le app desktop). -->
     <uses-permission android:name="com.termux.permission.RUN_COMMAND" />
+    <!-- Necessario per qualsiasi socket, anche verso 127.0.0.1 (il desktop locale). -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <queries>
