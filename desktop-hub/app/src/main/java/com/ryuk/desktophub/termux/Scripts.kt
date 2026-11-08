@@ -24,7 +24,22 @@ object Scripts {
     /** Funzioni comuni: installazione non interattiva e repository x11 attivo. */
     private val COMMON = """
         export DEBIAN_FRONTEND=noninteractive
-        inst() { apt-get install -y -o Dpkg::Options::=--force-confnew -o Dpkg::Options::=--force-confdef "${'$'}@"; }
+        APT_OPTS="-o Acquire::Retries=5 -o Dpkg::Options::=--force-confnew -o Dpkg::Options::=--force-confdef"
+        inst() { apt-get install -y ${'$'}APT_OPTS "${'$'}@"; }
+        # un'installazione interrotta (schermo spento, rete persa) blocca tutte le successive: si ripara
+        repair_dpkg() {
+          dpkg --configure -a || true
+          apt-get install -f -y ${'$'}APT_OPTS || true
+        }
+        need_space_mb() {
+          local free_mb
+          free_mb=${'$'}(( ${'$'}(df -Pk "${'$'}PREFIX" | awk 'NR==2 {print ${'$'}4}') / 1024 ))
+          if [ "${'$'}free_mb" -lt "${'$'}1" ]; then
+            echo "Spazio insufficiente: servono almeno ${'$'}1 MB liberi, ce ne sono ${'$'}free_mb."
+            echo "Libera spazio sul telefono e riprova."
+            return 1
+          fi
+        }
         ensure_x11_repo() {
           if ! dpkg -s x11-repo >/dev/null 2>&1; then
             apt-get update && inst x11-repo
@@ -33,10 +48,16 @@ object Scripts {
         }
     """.trimIndent()
 
+    /** Rilascia il wake lock preso per l'installazione, ma non se il desktop è in uso. */
+    private const val RELEASE_WAKE_LOCK_IF_IDLE =
+        "pgrep -x Xvnc >/dev/null 2>&1 || termux-wake-unlock >/dev/null 2>&1 || true"
+
     private fun terminalWrapper(title: String, body: String, done: String) = listOf(
         "set -e",
+        // tiene sveglio Termux durante download lunghi (anche a schermo spento)
+        "command -v termux-wake-lock >/dev/null 2>&1 && termux-wake-lock >/dev/null 2>&1 || true",
         "trap 'echo; echo \"[X] Operazione non riuscita: controlla i messaggi qui sopra.\"; " +
-            "echo \"    Puoi riprovare da Desktop Hub.\"' ERR",
+            "echo \"    Puoi riprovare da Desktop Hub.\"; $RELEASE_WAKE_LOCK_IF_IDLE' ERR",
         COMMON,
         "echo \"==================================================\"",
         "echo \" Desktop Hub - $title\"",
@@ -45,14 +66,16 @@ object Scripts {
         "echo",
         "echo \"[OK] $done\"",
         "echo \"Torna su Desktop Hub e premi Aggiorna.\"",
+        RELEASE_WAKE_LOCK_IF_IDLE,
     ).joinToString("\n")
 
     /** Prima configurazione: server X/VNC e ambiente desktop. */
     fun setup(env: DesktopEnvironment): String = terminalWrapper(
         title = "preparazione ambiente desktop",
         body = """
+            repair_dpkg
             apt-get update
-            apt-get -y -o Dpkg::Options::=--force-confnew -o Dpkg::Options::=--force-confdef full-upgrade
+            apt-get -y ${'$'}APT_OPTS full-upgrade
             ensure_x11_repo
             inst tigervnc procps dbus xdg-utils ${env.packages}
             mkdir -p "$STATE_DIR" ~/.vnc
@@ -63,7 +86,12 @@ object Scripts {
 
     fun installApp(app: DesktopApp): String = terminalWrapper(
         title = "installazione di ${app.name.replace("\"", "")}",
-        body = "ensure_x11_repo\n${app.install}",
+        body = listOfNotNull(
+            "repair_dpkg",
+            "ensure_x11_repo",
+            if (app.minFreeMb > 0) "need_space_mb ${app.minFreeMb}" else null,
+            app.install,
+        ).joinToString("\n"),
         done = "${app.name.replace("\"", "")} installato.",
     )
 
@@ -210,17 +238,24 @@ object Scripts {
         LOWER="$(printf '%s' "${'$'}F" | tr 'A-Z' 'a-z')"
         case "${'$'}LOWER" in
           *.exe|*.msi|*.bat)
-            command -v wine >/dev/null 2>&1 || { echo "Wine non installato" >&2; exit $EXIT_NEED_WINE; }
+            # il pacchetto Hangover installa il comando "hangover-wine" (non "wine")
+            if command -v hangover-wine >/dev/null 2>&1; then WINE=hangover-wine
+            elif command -v wine >/dev/null 2>&1; then WINE=wine
+            else echo "Wine non installato" >&2; exit $EXIT_NEED_WINE; fi
             case "${'$'}LOWER" in
-              *.msi) setsid nohup wine msiexec /i "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null & ;;
-              *) setsid nohup wine start /unix "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null & ;;
+              *.msi) setsid nohup "${'$'}WINE" msiexec /i "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null & ;;
+              *) setsid nohup "${'$'}WINE" start /unix "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null & ;;
             esac
             ;;
           *)
-            if command -v xdg-open >/dev/null 2>&1; then OPENER=xdg-open
-            elif command -v exo-open >/dev/null 2>&1; then OPENER=exo-open
-            else echo "Nessun programma per aprire il file" >&2; exit $EXIT_NO_OPENER; fi
-            setsid nohup "${'$'}OPENER" "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null &
+            # NB: in Termux "xdg-open" apre il file nelle app Android: servono gli opener del desktop
+            OPENER=""
+            for o in exo-open xdg-utils-xdg-open; do
+              if command -v "${'$'}o" >/dev/null 2>&1; then OPENER="${'$'}o"; break; fi
+            done
+            if [ -z "${'$'}OPENER" ] && command -v gio >/dev/null 2>&1; then OPENER="gio open"; fi
+            if [ -z "${'$'}OPENER" ]; then echo "Nessun programma per aprire il file" >&2; exit $EXIT_NO_OPENER; fi
+            setsid nohup ${'$'}OPENER "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null &
             ;;
         esac
         echo OPENED

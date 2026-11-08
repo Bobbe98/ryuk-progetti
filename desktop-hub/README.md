@@ -10,7 +10,6 @@ senza PC, e si vedono a tutto schermo dentro l'app.
 ```
 Desktop Hub ──RUN_COMMAND──▶ Termux (Linux)
    │                          ├─ pkg / apt          → installa le app
-   │                          ├─ proot-distro Debian → LibreOffice
    │                          ├─ Hangover/Wine      → programmi .exe
    │                          └─ Xvnc :1 + XFCE/Fluxbox → schermo virtuale
    └── visualizzatore VNC integrato ◀── 127.0.0.1:5901 (solo locale, con password)
@@ -38,7 +37,7 @@ Desktop Hub ──RUN_COMMAND──▶ Termux (Linux)
   in Wine la memoria del telefono è l'unità **D:**.
 - **Apri file dal telefono** (schermata principale o barra del desktop): scegli un file con il
   selettore di Android; viene copiato in `Download/DesktopHub/` e aperto nel desktop.
-  `.exe`, `.msi`, `.bat` si aprono con Wine (es. per installare un programma Windows), gli
+  `.exe`, `.msi`, `.bat` si aprono con Wine (comando `hangover-wine`) (es. per installare un programma Windows), gli
   altri file con il programma predefinito.
 
 Con il pulsante *Aggiungi* si può installare qualsiasi altro pacchetto Termux
@@ -65,9 +64,16 @@ finisce negli appunti del telefono.
 - Servono spazio (da ~500 MB a qualche GB) e connessione per scaricare i programmi.
 - Le prestazioni dipendono dal telefono; senza accelerazione 3D i programmi pesanti e i
   giochi vanno lenti.
-- Wine/Hangover (programmi Windows) è sperimentale e solo per processori ARM64.
+- Wine/Hangover (programmi Windows) è sperimentale, solo per Termux a 64 bit (aarch64), e
+  occupa circa 2,4 GB una volta installato.
 - Android 12+ può chiudere i processi di Termux ("phantom process killer"): vedi i consigli
   nella scheda *Inizia*.
+
+## Nomi dei pacchetti
+
+I nomi dei pacchetti e dei comandi del catalogo sono verificati sugli indici reali dei
+repository di Termux (`Packages` e `Contents-aarch64`). Attenzione: in Termux `xdg-open`
+apre i file nelle app Android; nel desktop si usano `exo-open` o `xdg-utils-xdg-open`.
 
 ## Struttura
 

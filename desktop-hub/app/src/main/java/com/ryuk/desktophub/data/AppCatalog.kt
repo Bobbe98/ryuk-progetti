@@ -33,11 +33,11 @@ data class DesktopApp(
     val size: String = "",
     val experimental: Boolean = false,
     val custom: Boolean = false,
+    /** Spazio libero minimo (MB) controllato prima di installare: messaggio chiaro invece di un errore a metà. */
+    val minFreeMb: Int = 0,
 )
 
 object AppCatalog {
-
-    private const val DEBIAN_ROOT = "\$PREFIX/var/lib/proot-distro/installed-rootfs/debian"
 
     /** App distribuita come pacchetto nativo di Termux (repository x11). */
     private fun termuxPkg(
@@ -50,6 +50,7 @@ object AppCatalog {
         size: String,
         checkPackage: String = packages.first(),
         experimental: Boolean = false,
+        minFreeMb: Int = 0,
     ) = DesktopApp(
         id = id,
         name = name,
@@ -61,6 +62,7 @@ object AppCatalog {
         uninstall = "apt-get remove -y ${packages.joinToString(" ")} && apt-get autoremove -y",
         size = size,
         experimental = experimental,
+        minFreeMb = minFreeMb,
     )
 
     /** Crea un'app personalizzata a partire da pacchetti Termux scelti dall'utente. */
@@ -84,29 +86,15 @@ object AppCatalog {
         termuxPkg(
             "firefox", "Firefox",
             "Il browser web completo per computer, con estensioni e siti in versione desktop.",
-            Category.INTERNET, listOf("firefox"), "firefox", "≈ 250 MB",
+            Category.INTERNET, listOf("firefox"), "firefox", "≈ 300 MB",
+            minFreeMb = 700,
         ),
         termuxPkg(
-            "hexchat", "HexChat",
-            "Client di chat IRC.",
-            Category.INTERNET, listOf("hexchat"), "hexchat", "≈ 20 MB",
-        ),
-        DesktopApp(
-            id = "libreoffice",
-            name = "LibreOffice",
-            description = "Suite per ufficio: Writer (documenti), Calc (fogli di calcolo), Impress " +
-                "(presentazioni). Apre e salva file Word, Excel e PowerPoint. Gira dentro un " +
-                "Debian leggero (proot-distro).",
-            category = Category.OFFICE,
-            install = """
-                inst proot-distro
-                if [ ! -d "$DEBIAN_ROOT" ]; then proot-distro install debian; fi
-                proot-distro login debian -- bash -c 'apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-gtk3 fonts-dejavu fonts-liberation'
-            """.trimIndent(),
-            check = "[ -x \"$DEBIAN_ROOT/usr/bin/libreoffice\" ]",
-            launch = "proot-distro login debian --shared-tmp -- env DISPLAY=:1 libreoffice",
-            uninstall = "proot-distro login debian -- bash -c 'apt-get remove -y \"libreoffice*\" && apt-get autoremove -y'",
-            size = "≈ 1 GB",
+            "libreoffice", "LibreOffice",
+            "Suite per ufficio: Writer (documenti), Calc (fogli di calcolo), Impress " +
+                "(presentazioni). Apre e salva file Word, Excel e PowerPoint.",
+            Category.OFFICE, listOf("libreoffice"), "libreoffice", "≈ 125 MB da scaricare, 600 MB installato",
+            minFreeMb = 1200,
         ),
         termuxPkg(
             "mousepad", "Mousepad",
@@ -127,6 +115,7 @@ object AppCatalog {
             "code-oss", "Code - OSS",
             "La versione open source di Visual Studio Code.",
             Category.DEV, listOf("code-oss"), "code-oss --no-sandbox", "≈ 350 MB",
+            minFreeMb = 800,
         ),
         termuxPkg(
             "geany", "Geany",
@@ -166,17 +155,27 @@ object AppCatalog {
         DesktopApp(
             id = "wine",
             name = "Wine (programmi Windows .exe)",
-            description = "Esegue programmi Windows semplici (.exe) tramite Hangover/Wine. " +
-                "Si apre l'Esplora file di Wine: il telefono è in Z:\\ e la memoria interna in " +
-                "Z:\\data\\data\\com.termux\\files\\home\\storage\\shared. Solo processori ARM64; " +
-                "giochi e programmi pesanti in genere non funzionano.",
+            description = "Esegue programmi Windows semplici (.exe, .msi) tramite Hangover: Wine con " +
+                "gli emulatori x86 Box64 e FEX. Per installare un programma usa \"Apri file dal " +
+                "telefono\" e scegli il suo .exe. La memoria del telefono è l'unità D:. Solo " +
+                "processori a 64 bit (ARM64); giochi e programmi pesanti in genere non funzionano.",
             category = Category.WINDOWS,
-            install = "inst hangover-wine || inst hangover",
-            check = "command -v wine >/dev/null 2>&1",
-            launch = "wine explorer",
-            uninstall = "apt-get remove -y 'hangover*' && apt-get autoremove -y",
-            size = "≈ 500 MB",
+            install = """
+                if [ "${'$'}(dpkg --print-architecture)" != "aarch64" ]; then
+                  echo "Wine/Hangover esiste solo per Termux a 64 bit (aarch64)."
+                  echo "Il tuo Termux è: ${'$'}(dpkg --print-architecture)"
+                  false
+                fi
+                inst hangover
+            """.trimIndent(),
+            // il meta-pacchetto garantisce anche gli emulatori x86 (Box64/FEX)
+            check = "dpkg -s hangover >/dev/null 2>&1 && command -v hangover-wine >/dev/null 2>&1",
+            launch = "hangover-wine explorer",
+            uninstall = "apt-get remove -y hangover hangover-wine hangover-wowbox64 " +
+                "hangover-libwow64fex hangover-libarm64ecfex && apt-get autoremove -y",
+            size = "≈ 270 MB da scaricare, 2,4 GB installato",
             experimental = true,
+            minFreeMb = 3500,
         ),
     )
 }

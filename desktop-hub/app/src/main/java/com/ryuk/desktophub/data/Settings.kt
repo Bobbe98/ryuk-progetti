@@ -32,7 +32,7 @@ enum class DesktopEnvironment(
         "Fluxbox (leggero)",
         "Gestore finestre minimale con barra e menu (tasto destro sul desktop). " +
             "Ideale per telefoni poco potenti. ≈ 20 MB.",
-        "fluxbox xterm",
+        "fluxbox aterm",
         "fluxbox",
         "fluxbox",
         "fluxbox",
