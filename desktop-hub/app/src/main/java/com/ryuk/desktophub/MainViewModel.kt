@@ -67,7 +67,10 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     private val _events = MutableSharedFlow<UiEvent>(extraBufferCapacity = 8)
     val events: SharedFlow<UiEvent> = _events
 
-    private fun allApps() = AppCatalog.builtIn + settings.customApps
+    /** Programmi Windows trovati nell'ultima verifica (dentro Wine). */
+    private var windowsProgramsFound: List<DesktopApp> = emptyList()
+
+    private fun allApps() = AppCatalog.builtIn + settings.customApps + windowsProgramsFound
 
     private fun message(text: String) {
         _events.tryEmit(UiEvent.Message(text))
@@ -102,10 +105,17 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             }
             val lines = r.stdout.lines().map { it.trim() }
             val installedIds = lines.filter { it.startsWith("APP:") }.map { it.removePrefix("APP:") }.toSet()
+            // programmi Windows: un solo elemento per nome (menu Start e desktop possono ripetersi)
+            val windowsPrograms = lines.filter { it.startsWith("WINLNK:") }
+                .map { AppCatalog.windowsProgram(it.removePrefix("WINLNK:")) }
+                .distinctBy { it.name.lowercase() }
+                .sortedBy { it.name.lowercase() }
             val envs = lines.filter { it.startsWith("ENV:") }
                 .mapNotNull { l -> DesktopEnvironment.entries.firstOrNull { it.name == l.removePrefix("ENV:") } }
                 .toSet()
             settings.installedCache = installedIds
+            windowsProgramsFound = windowsPrograms
+            val allInstalled = installedIds + windowsPrograms.map { it.id }
             _state.update {
                 it.copy(
                     termuxReachable = true,
@@ -113,8 +123,8 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                     desktopRunning = "DESKTOP_RUNNING" in lines,
                     storageReady = "STORAGE_OK" in lines,
                     environmentsInstalled = envs,
-                    installed = installedIds,
-                    apps = apps,
+                    installed = allInstalled,
+                    apps = allApps(),
                 )
             }
         }

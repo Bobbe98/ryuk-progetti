@@ -11,7 +11,8 @@ import java.io.File
 class ScriptsTest {
 
     private fun allScripts(): Map<String, String> {
-        val apps = AppCatalog.builtIn + AppCatalog.customApp("custom-1", "Prova 'x'", "xpdf, xterm", "xpdf")
+        val apps = AppCatalog.builtIn + AppCatalog.customApp("custom-1", "Prova 'x'", "xpdf, xterm", "xpdf") +
+            AppCatalog.windowsProgram("/home/u/.wine/drive_c/users/u/Desktop/L'App \"Pro\" (x86).lnk")
         val out = linkedMapOf<String, String>()
         DesktopEnvironment.entries.forEach {
             out["setup-${it.name}"] = Scripts.setup(it)

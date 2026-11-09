@@ -109,9 +109,10 @@ object Scripts {
         for (env in DesktopEnvironment.entries) {
             appendLine("command -v ${env.binary} >/dev/null 2>&1 && echo ENV:${env.name}")
         }
-        for (app in apps) {
+        for (app in apps.filterNot { it.windowsProgram }) {
             appendLine("if ${app.check}; then echo ${Shell.quote("APP:" + app.id)}; fi")
         }
+        appendLine(WINDOWS_PROGRAMS)
         appendLine("echo DONE")
     }
 
@@ -155,6 +156,25 @@ object Scripts {
           fi
         fi
         echo STARTED
+    """.trimIndent()
+
+    /**
+     * Elenca (`WINLNK:<percorso>`) i collegamenti dei programmi Windows installati: menu Start
+     * comune e dell'utente, desktop di Wine. Esclusi disinstallatori, guide e siti web.
+     * `find -H` segue i link solo alle cartelle di partenza: il desktop di Wine può puntare a
+     * ~/Desktop, che a sua volta contiene il link "Telefono" da non esplorare.
+     */
+    private val WINDOWS_PROGRAMS = """
+        C="${'$'}HOME/.wine/drive_c"
+        if [ -d "${'$'}C" ]; then
+          {
+            find -H "${'$'}C/ProgramData/Microsoft/Windows/Start Menu/Programs" \
+              "${'$'}C"/users/*/"AppData/Roaming/Microsoft/Windows/Start Menu/Programs" \
+              -iname '*.lnk' 2>/dev/null
+            find -H "${'$'}C"/users/*/Desktop -maxdepth 1 -iname '*.lnk' 2>/dev/null
+          } | grep -viE '(uninst|disinstall|readme|leggimi|help|guida|manual|website|sito web|license|licenza)' \
+            | sort -u | head -n 60 | sed 's/^/WINLNK:/'
+        fi
     """.trimIndent()
 
     /** Uscita di [launchApp] quando il programma si chiude subito con un errore. */

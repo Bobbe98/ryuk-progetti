@@ -190,7 +190,9 @@ private fun AppCard(
                         Spacer(Modifier.width(6.dp))
                         Text("Apri")
                     }
-                    TextButton(onClick = onUninstall, enabled = canAct) { Text("Disinstalla") }
+                    if (!app.windowsProgram) {
+                        TextButton(onClick = onUninstall, enabled = canAct) { Text("Disinstalla") }
+                    }
                 } else {
                     FilledTonalButton(onClick = onInstall, enabled = canAct) { Text("Installa") }
                 }

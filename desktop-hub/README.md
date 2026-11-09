@@ -40,6 +40,15 @@ Desktop Hub ──RUN_COMMAND──▶ Termux (Linux)
   `.exe`, `.msi`, `.bat` si aprono con Wine (comando `hangover-wine`) (es. per installare un programma Windows), gli
   altri file con il programma predefinito.
 
+### Programmi Windows installati
+
+Dopo aver installato un programma Windows (aprendo il suo `.exe` con *Apri file dal
+telefono*), l'app trova i suoi collegamenti nel menu Start e sul desktop di Wine e lo mostra
+nella scheda *App* (categoria Windows) con il pulsante **Apri**.
+
+Se un programma si chiude subito dopo l'avvio, l'app mostra il motivo (ultime righe del
+suo log); i log completi sono in `~/.desktophub/` dentro Termux.
+
 Con il pulsante *Aggiungi* si può installare qualsiasi altro pacchetto Termux
 (`pkg search nome` per cercarlo) indicando il comando di avvio.
 

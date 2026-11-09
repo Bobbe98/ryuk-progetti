@@ -35,6 +35,8 @@ data class DesktopApp(
     val custom: Boolean = false,
     /** Spazio libero minimo (MB) controllato prima di installare: messaggio chiaro invece di un errore a metà. */
     val minFreeMb: Int = 0,
+    /** Programma Windows installato dentro Wine (trovato dai suoi collegamenti .lnk). */
+    val windowsProgram: Boolean = false,
 )
 
 object AppCatalog {
@@ -63,6 +65,20 @@ object AppCatalog {
         size = size,
         experimental = experimental,
         minFreeMb = minFreeMb,
+    )
+
+    /** Programma Windows installato, da un collegamento .lnk del menu Start o del desktop di Wine. */
+    fun windowsProgram(lnkPath: String): DesktopApp = DesktopApp(
+        id = "win-" + Integer.toHexString(lnkPath.hashCode()),
+        name = lnkPath.substringAfterLast('/').removeSuffix(".lnk").removeSuffix(".LNK"),
+        description = "Programma Windows installato (si apre con Wine).",
+        category = Category.WINDOWS,
+        install = "",
+        check = "true",
+        // /wait: così se il programma si chiude subito con un errore l'app lo segnala
+        launch = "hangover-wine start /wait /unix ${Shell.quote(lnkPath)}",
+        uninstall = "",
+        windowsProgram = true,
     )
 
     /** Crea un'app personalizzata a partire da pacchetti Termux scelti dall'utente. */
