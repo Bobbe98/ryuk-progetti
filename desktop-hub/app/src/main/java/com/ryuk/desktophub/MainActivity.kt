@@ -92,8 +92,14 @@ class MainActivity : ComponentActivity() {
                 LaunchedEffect(Unit) {
                     viewModel.events.collect { event ->
                         when (event) {
-                            is UiEvent.Message -> snackbar.showSnackbar(event.text)
+                            is UiEvent.Message -> snackbar.showSnackbar(
+                                event.text,
+                                withDismissAction = true,
+                                duration = androidx.compose.material3.SnackbarDuration.Long,
+                            )
                             UiEvent.OpenViewer -> openViewer()
+                            is UiEvent.Notice ->
+                                Toast.makeText(this@MainActivity, event.text, Toast.LENGTH_LONG).show()
                         }
                     }
                 }

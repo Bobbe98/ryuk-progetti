@@ -157,12 +157,37 @@ object Scripts {
         echo STARTED
     """.trimIndent()
 
-    fun launchApp(app: DesktopApp): String = """
+    /** Uscita di [launchApp] quando il programma si chiude subito con un errore. */
+    const val EXIT_APP_FAILED = 8
+
+    /**
+     * Avvia un programma e controlla per qualche secondo che non si chiuda con un errore:
+     * in quel caso stampa `APP_FAILED:<codice>` e le ultime righe del suo log (stderr).
+     * Il codice 137 significa che Android ha chiuso il processo (SIGKILL).
+     */
+    fun launchApp(app: DesktopApp): String {
+        val id = app.id.filter { it.isLetterOrDigit() || it == '-' }.ifEmpty { "app" }
+        return """
         export DISPLAY=:$DISPLAY_NUM
         mkdir -p "$STATE_DIR"
-        setsid nohup bash -lc ${Shell.quote(app.launch)} > "$STATE_DIR/app-${app.id.filter { it.isLetterOrDigit() || it == '-' }}.log" 2>&1 < /dev/null &
+        LOG="$STATE_DIR/app-$id.log"
+        EXITF="$STATE_DIR/app-$id.exit"
+        rm -f "${'$'}EXITF"
+        ${if (app.launch.contains("wine")) "[ -d \"\$HOME/.wine\" ] || echo FIRST_WINE_RUN" else ""}
+        setsid nohup bash -c 'bash -lc "${'$'}1"; echo ${'$'}? > "${'$'}2"' _ ${Shell.quote(app.launch)} "${'$'}EXITF" \
+          > "${'$'}LOG" 2>&1 < /dev/null &
+        for i in $(seq 1 30); do [ -f "${'$'}EXITF" ] && break; sleep 0.2; done
+        if [ -f "${'$'}EXITF" ]; then
+          CODE="$(cat "${'$'}EXITF")"
+          if [ "${'$'}CODE" != "0" ]; then
+            echo "APP_FAILED:${'$'}CODE"
+            tail -n 12 "${'$'}LOG" >&2
+            exit $EXIT_APP_FAILED
+          fi
+        fi
         echo LAUNCHED
-    """.trimIndent()
+        """.trimIndent()
+    }
 
     fun stopDesktop(): String = """
         for p in ${DesktopEnvironment.entries.joinToString(" ") { it.processName }}; do pkill -x "${'$'}p" 2>/dev/null; done

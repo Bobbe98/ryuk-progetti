@@ -44,6 +44,8 @@ data class UiState(
 sealed interface UiEvent {
     data class Message(val text: String) : UiEvent
     data object OpenViewer : UiEvent
+    /** Avviso breve che deve restare visibile anche mentre si apre il desktop (Toast). */
+    data class Notice(val text: String) : UiEvent
 }
 
 class MainViewModel(app: Application) : AndroidViewModel(app) {
@@ -118,6 +120,20 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    /** Messaggio per un programma che si è chiuso subito dopo l'avvio. */
+    private fun explainAppFailure(app: DesktopApp, r: TermuxBridge.CommandResult): String {
+        val code = Regex("APP_FAILED:(\\d+)").find(r.stdout)?.groupValues?.get(1)?.toIntOrNull()
+        val log = r.stderr.trim().lines().filter { it.isNotBlank() }.takeLast(4).joinToString("\n")
+        return when (code) {
+            137 -> "${app.name} è stato chiuso da Android (troppi processi in background). " +
+                "Attiva in Opzioni sviluppatore \"Disattiva restrizioni processi secondari\" " +
+                "e riprova (vedi Consigli nella scheda Inizia)."
+            127 -> "${app.name}: comando non trovato. Prova a reinstallarlo dalla scheda App."
+            else -> "${app.name} si è chiuso subito (codice $code)." +
+                if (log.isNotEmpty()) "\n$log" else ""
+        }
+    }
+
     private fun explainTermuxError(r: TermuxBridge.CommandResult): String {
         val msg = r.describeError()
         return if (msg.contains("allow-external-apps", ignoreCase = true)) {
@@ -168,9 +184,21 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             _state.update { it.copy(busyMessage = null) }
             when {
                 r == null -> message("Termux non ha risposto. Apri Termux una volta e riprova.")
+                app != null && r.exitCode == Scripts.EXIT_APP_FAILED -> {
+                    _state.update { it.copy(desktopRunning = true) }
+                    message(explainAppFailure(app, r))
+                }
                 !r.ok || !r.stdout.contains("STARTED") -> message(explainTermuxError(r))
                 else -> {
                     _state.update { it.copy(desktopRunning = true) }
+                    if ("FIRST_WINE_RUN" in r.stdout) {
+                        _events.tryEmit(
+                            UiEvent.Notice(
+                                "Prima apertura di Wine: la preparazione può richiedere 1-3 minuti. " +
+                                    "Attendi nel desktop senza chiudere."
+                            )
+                        )
+                    }
                     _events.tryEmit(UiEvent.OpenViewer)
                 }
             }
