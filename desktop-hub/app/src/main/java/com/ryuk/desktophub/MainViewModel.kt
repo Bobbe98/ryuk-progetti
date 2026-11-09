@@ -53,6 +53,13 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     val settings = Settings(app)
     private val bridge = TermuxBridge(app)
 
+    /**
+     * Programmi Windows trovati nell'ultima verifica (dentro Wine).
+     * NB: deve stare PRIMA di [_state], che chiama [allApps] durante la costruzione:
+     * dichiarata dopo, all'avvio varrebbe ancora null e l'app andrebbe in crash.
+     */
+    private var windowsProgramsFound: List<DesktopApp> = emptyList()
+
     private val _state = MutableStateFlow(
         UiState(
             installed = settings.installedCache,
@@ -66,9 +73,6 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     private val _events = MutableSharedFlow<UiEvent>(extraBufferCapacity = 8)
     val events: SharedFlow<UiEvent> = _events
-
-    /** Programmi Windows trovati nell'ultima verifica (dentro Wine). */
-    private var windowsProgramsFound: List<DesktopApp> = emptyList()
 
     private fun allApps() = AppCatalog.builtIn + settings.customApps + windowsProgramsFound
 
