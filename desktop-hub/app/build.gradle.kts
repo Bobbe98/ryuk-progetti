@@ -44,6 +44,13 @@ android {
         kotlinCompilerExtensionVersion = "1.5.14"
     }
 
+    testOptions {
+        unitTests {
+            // Robolectric: le activity vengono avviate davvero nei test
+            isIncludeAndroidResources = true
+        }
+    }
+
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
@@ -69,5 +76,25 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
 
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.robolectric:robolectric:4.13")
+    testImplementation("androidx.test:core-ktx:1.6.1")
+    testImplementation("androidx.test.ext:junit:1.2.1")
     debugImplementation("androidx.compose.ui:ui-tooling")
+}
+
+// Robolectric scarica da sé l'immagine di Android e non usa le impostazioni di rete di Gradle:
+// la scarica Gradle e Robolectric la usa offline.
+val robolectricAndroid: Configuration by configurations.creating
+dependencies {
+    robolectricAndroid("org.robolectric:android-all-instrumented:14-robolectric-10818077-i6")
+}
+tasks.withType<Test>().configureEach {
+    val jarsDir = layout.buildDirectory.dir("robolectric-jars").get().asFile
+    inputs.files(robolectricAndroid)
+    doFirst {
+        jarsDir.mkdirs()
+        robolectricAndroid.files.forEach { it.copyTo(jarsDir.resolve(it.name), overwrite = true) }
+    }
+    systemProperty("robolectric.offline", "true")
+    systemProperty("robolectric.dependency.dir", jarsDir.absolutePath)
 }
