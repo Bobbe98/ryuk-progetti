@@ -84,13 +84,13 @@ class ViewerActivity : ComponentActivity() {
     private val password by lazy { intent.getStringExtra(EXTRA_PASSWORD).orEmpty() }
 
     private val filePicker = registerForActivityResult(
-        androidx.activity.result.contract.ActivityResultContracts.OpenDocument()
-    ) { uri -> if (uri != null) openPhoneFile(uri) }
+        androidx.activity.result.contract.ActivityResultContracts.OpenMultipleDocuments()
+    ) { uris -> if (uris.isNotEmpty()) openPhoneFiles(uris) }
 
-    private fun openPhoneFile(uri: android.net.Uri) {
+    private fun openPhoneFiles(uris: List<android.net.Uri>) {
         android.widget.Toast.makeText(this, "Preparazione del file…", android.widget.Toast.LENGTH_SHORT).show()
         lifecycleScope.launch {
-            val result = PhoneFileOpener(this@ViewerActivity).open(uri)
+            val result = PhoneFileOpener(this@ViewerActivity).open(uris)
             android.widget.Toast.makeText(
                 this@ViewerActivity, PhoneFileOpener.describe(result), android.widget.Toast.LENGTH_LONG
             ).show()

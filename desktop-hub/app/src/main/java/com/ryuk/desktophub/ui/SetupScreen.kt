@@ -188,6 +188,11 @@ private fun DesktopCard(
                 Spacer(Modifier.width(6.dp))
                 Text("Apri file dal telefono")
             }
+            Text(
+                "Per un programma Windows con altri file accanto (.cab, .bin, cartelle), " +
+                    "selezionali tutti insieme: tieni premuto sul primo e tocca gli altri.",
+                style = MaterialTheme.typography.bodySmall,
+            )
             if (state.desktopReady && state.termuxReachable == true && !state.storageReady) {
                 Text(
                     "Il desktop non vede ancora i file del telefono.",

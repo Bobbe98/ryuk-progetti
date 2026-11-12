@@ -193,7 +193,7 @@ object Scripts {
         LOG="$STATE_DIR/app-$id.log"
         EXITF="$STATE_DIR/app-$id.exit"
         rm -f "${'$'}EXITF"
-        ${if (app.launch.contains("wine")) "[ -d \"\$HOME/.wine\" ] || echo FIRST_WINE_RUN" else ""}
+        ${if (app.launch.contains("wine")) "[ -f \"\$HOME/.wine/system.reg\" ] || echo FIRST_WINE_RUN\n$PROCESS_WARNING" else ""}
         setsid nohup bash -c 'bash -lc "${'$'}1"; echo ${'$'}? > "${'$'}2"' _ ${Shell.quote(app.launch)} "${'$'}EXITF" \
           > "${'$'}LOG" 2>&1 < /dev/null &
         for i in $(seq 1 30); do [ -f "${'$'}EXITF" ] && break; sleep 0.2; done
@@ -263,6 +263,16 @@ object Scripts {
         done = "Ora sul desktop trovi le cartelle Telefono e Download.",
     )
 
+    /**
+     * Da Android 12 il sistema chiude i processi delle app oltre una soglia (32 in tutto).
+     * Desktop completo + Wine la superano facilmente: si avvisa prima che succeda.
+     */
+    private val PROCESS_WARNING = """
+        SDK_INT="$(getprop ro.build.version.sdk 2>/dev/null)"
+        NPROC="$(ps -A -o pid= 2>/dev/null | wc -l)"
+        if [ "${'$'}{SDK_INT:-0}" -ge 31 ] && [ "${'$'}{NPROC:-0}" -gt 22 ]; then echo "WARN_PROCESSES:${'$'}NPROC"; fi
+    """.trimIndent()
+
     /** Esito di [openFile] segnalato con codici di uscita dedicati. */
     const val EXIT_NO_STORAGE = 6
     const val EXIT_NEED_WINE = 5
@@ -287,10 +297,33 @@ object Scripts {
             if command -v hangover-wine >/dev/null 2>&1; then WINE=hangover-wine
             elif command -v wine >/dev/null 2>&1; then WINE=wine
             else echo "Wine non installato" >&2; exit $EXIT_NEED_WINE; fi
+            [ -f "${'$'}HOME/.wine/system.reg" ] || echo FIRST_WINE_RUN
+            $PROCESS_WARNING
+            # La memoria del telefono è montata "noexec" e gli installer hanno spesso bisogno
+            # dei file vicini (.cab, .bin, data...): si copia l'intera cartella scelta dentro
+            # il disco C: di Wine e si esegue da lì.
+            SRC_DIR="$(dirname "${'$'}F")"
+            DEST="${'$'}HOME/.wine/drive_c/DesktopHub/$(basename "${'$'}SRC_DIR")"
+            mkdir -p "${'$'}DEST"
+            cp -rf "${'$'}SRC_DIR"/. "${'$'}DEST"/
+            TARGET="${'$'}DEST/$(basename "${'$'}F")"
+            cd "${'$'}DEST"
+            export EXITF="$STATE_DIR/open-file.exit"
+            rm -f "${'$'}EXITF"
             case "${'$'}LOWER" in
-              *.msi) setsid nohup "${'$'}WINE" msiexec /i "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null & ;;
-              *) setsid nohup "${'$'}WINE" start /unix "${'$'}F" > "${'$'}LOG" 2>&1 < /dev/null & ;;
+              *.msi) RUN="msiexec /i" ;;
+              *) RUN="start /wait /unix" ;;
             esac
+            # ${'$'}RUN va diviso in parole di proposito
+            setsid nohup bash -c '"${'$'}@"; echo ${'$'}? > "${'$'}EXITF"' _ "${'$'}WINE" ${'$'}RUN "${'$'}TARGET" \
+              > "${'$'}LOG" 2>&1 < /dev/null &
+            # si aspetta poco: la prima volta Wine si prepara per minuti e va lasciato lavorare
+            for i in $(seq 1 40); do [ -f "${'$'}EXITF" ] && break; sleep 0.2; done
+            if [ -f "${'$'}EXITF" ] && [ "$(cat "${'$'}EXITF")" != "0" ]; then
+              echo "APP_FAILED:$(cat "${'$'}EXITF")"
+              grep -vE '^[0-9a-f]+:fixme:|^$' "${'$'}LOG" | tail -n 12 >&2
+              exit $EXIT_APP_FAILED
+            fi
             ;;
           *)
             # NB: in Termux "xdg-open" apre il file nelle app Android: servono gli opener del desktop

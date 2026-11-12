@@ -27,7 +27,7 @@ class ScriptsTest {
         out["stop"] = Scripts.stopDesktop()
         out["enable"] = Scripts.ENABLE_EXTERNAL_APPS
         out["storage"] = Scripts.storageSetup
-        out["open-exe"] = Scripts.openFile("Download/DesktopHub/Setup Gioco (1).EXE")
+        out["open-exe"] = Scripts.openFile("Download/DesktopHub/scelta-1/Setup Gioco (1).EXE")
         out["open-msi"] = Scripts.openFile("Download/DesktopHub/app.msi")
         out["open-txt"] = Scripts.openFile("Download/DesktopHub/l'elenco \"spesa\".txt")
         return out

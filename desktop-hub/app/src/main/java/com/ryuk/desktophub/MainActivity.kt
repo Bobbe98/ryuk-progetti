@@ -63,8 +63,9 @@ class MainActivity : ComponentActivity() {
         viewModel.refresh()
     }
 
-    private val filePicker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
-        if (uri != null) viewModel.openPhoneFile(uri)
+    // più file insieme: gli installer spesso hanno bisogno dei file che stanno accanto
+    private val filePicker = registerForActivityResult(ActivityResultContracts.OpenMultipleDocuments()) { uris ->
+        viewModel.openPhoneFiles(uris)
     }
 
     private val legacyWritePermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->

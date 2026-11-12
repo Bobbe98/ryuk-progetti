@@ -219,8 +219,9 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
-    /** Apre nel desktop un file scelto dal telefono (copiato dove Termux lo vede). */
-    fun openPhoneFile(uri: Uri) {
+    /** Apre nel desktop i file scelti dal telefono (copiati dove Termux li vede). */
+    fun openPhoneFiles(uris: List<Uri>) {
+        if (uris.isEmpty()) return
         val s = _state.value
         if (s.busyMessage != null) return
         if (!s.desktopReady) {
@@ -233,13 +234,21 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
             return
         }
         viewModelScope.launch {
-            _state.update { it.copy(busyMessage = "Preparazione del file…") }
-            val result = PhoneFileOpener(getApplication()).open(uri)
+            _state.update {
+                it.copy(busyMessage = if (uris.size > 1) "Preparazione di ${uris.size} file…" else "Preparazione del file…")
+            }
+            val result = PhoneFileOpener(getApplication()).open(uris)
             _state.update { it.copy(busyMessage = null) }
             when (result) {
                 is PhoneFileOpener.Result.Opened -> {
                     _state.update { it.copy(desktopRunning = true) }
+                    // Toast: resta visibile anche sopra il desktop che si sta aprendo
+                    _events.tryEmit(UiEvent.Notice(PhoneFileOpener.describe(result)))
                     _events.tryEmit(UiEvent.OpenViewer)
+                }
+                is PhoneFileOpener.Result.ProgramFailed -> {
+                    _state.update { it.copy(desktopRunning = true) }
+                    message(PhoneFileOpener.describe(result))
                 }
                 PhoneFileOpener.Result.NeedsStorage -> {
                     message(PhoneFileOpener.describe(result))
