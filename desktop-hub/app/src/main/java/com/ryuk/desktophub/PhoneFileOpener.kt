@@ -177,12 +177,19 @@ class PhoneFileOpener(private val context: Context) {
             is Result.Failed -> result.message
         }
 
-        private fun explainProgramFailure(r: Result.ProgramFailed): String {
+        internal fun explainProgramFailure(r: Result.ProgramFailed): String {
             val log = r.log.lines().filter { it.isNotBlank() }.takeLast(5).joinToString("\n")
             val hint = when {
                 r.code == 137 ->
                     "Android ha chiuso Wine (troppi processi). Usa il desktop Fluxbox o disattiva " +
                         "le restrizioni dei processi secondari (scheda Inizia, Consigli)."
+                Regex("(msvcp|vcruntime|msvcr)\\d+", RegexOption.IGNORE_CASE).containsMatchIn(log) ->
+                    "Manca il Microsoft Visual C++ Redistributable: scarica vc_redist.x86.exe e " +
+                        "vc_redist.x64.exe dal sito Microsoft, aprili con \"Apri file dal telefono\" " +
+                        "per installarli, poi riprova."
+                log.contains("mscoree", ignoreCase = true) || log.contains(".NET", ignoreCase = false) ->
+                    "Il programma richiede .NET Framework: quando Wine propone di installare " +
+                        "\"Wine Mono\" tocca Installa, poi riprova."
                 log.contains("Bad EXE format", ignoreCase = true) ||
                     log.contains("not a valid", ignoreCase = true) ->
                     "Il file non è un programma Windows valido o è danneggiato: riscaricalo."
