@@ -307,7 +307,9 @@ object Scripts {
         ps -A -o pid=,comm= 2>/dev/null | awk 'tolower(${'$'}2) ~ /\.exe${'$'}|^wineserver|^wine/ {print ${'$'}1}' | while read -r p; do
           kill -9 "${'$'}p" 2>/dev/null
         done
-        echo "KILLED:$(ps -A -o comm= 2>/dev/null | grep -ciE '\.exe${'$'}|^wine')"
+        sleep 0.5
+        # i processi appena terminati possono restare un attimo "zombie" (stato Z): non contano
+        echo "KILLED:$(ps -A -o stat=,comm= 2>/dev/null | awk '${'$'}1 !~ /^Z/ && tolower(${'$'}2) ~ /\.exe${'$'}|^wine/' | wc -l)"
     """.trimIndent()
 
     /** Raccoglie le informazioni utili per capire perché un programma non funziona. */
