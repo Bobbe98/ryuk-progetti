@@ -67,6 +67,19 @@ object AppCatalog {
         minFreeMb = minFreeMb,
     )
 
+    /** Prova di Wine: se anche il Blocco note è bianco il problema è generale, non del programma. */
+    val wineNotepadTest = DesktopApp(
+        id = "wine-notepad-test",
+        name = "Blocco note di Wine",
+        description = "Prova di Wine",
+        category = Category.WINDOWS,
+        install = "",
+        check = "true",
+        launch = "hangover-wine notepad",
+        uninstall = "",
+        windowsProgram = true,
+    )
+
     /** Programma Windows installato, da un collegamento .lnk del menu Start o del desktop di Wine. */
     fun windowsProgram(lnkPath: String): DesktopApp = DesktopApp(
         id = "win-" + Integer.toHexString(lnkPath.hashCode()),

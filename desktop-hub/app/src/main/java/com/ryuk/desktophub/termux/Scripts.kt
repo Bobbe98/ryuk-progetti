@@ -310,6 +310,31 @@ object Scripts {
           grep -vE ':fixme:|^$' "${'$'}f" | tail -n 25
           echo
         done
+        echo "== Processi Windows attivi"
+        ps -A -o comm= 2>/dev/null | grep -iE '\.exe|wine' | sort | uniq -c | head -n 20
+        echo
+        echo "== Programmi Windows installati (tecnologia)"
+        C="${'$'}HOME/.wine/drive_c"
+        for d in "${'$'}C/Program Files"/* "${'$'}C/Program Files (x86)"/* "${'$'}C"/users/*/AppData/Local/Programs/* "${'$'}C/DesktopHub"/*; do
+          [ -d "${'$'}d" ] || continue
+          case "$(basename "${'$'}d")" in "Common Files"|"Internet Explorer"|"Windows Media Player"|"Windows NT"|"wine"|"Windows Photo Viewer") continue;; esac
+          KIND=""
+          [ -n "$(find "${'$'}d" -maxdepth 3 -iname flutter_windows.dll 2>/dev/null | head -n 1)" ] && KIND="${'$'}KIND Flutter"
+          [ -n "$(find "${'$'}d" -maxdepth 3 -iname '*.asar' 2>/dev/null | head -n 1)" ] && KIND="${'$'}KIND Electron"
+          [ -n "$(find "${'$'}d" -maxdepth 3 -iname libcef.dll 2>/dev/null | head -n 1)" ] && KIND="${'$'}KIND CEF"
+          [ -n "$(find "${'$'}d" -maxdepth 3 \( -iname 'Qt5Core.dll' -o -iname 'Qt6Core.dll' \) 2>/dev/null | head -n 1)" ] && KIND="${'$'}KIND Qt"
+          [ -n "$(find "${'$'}d" -maxdepth 3 \( -iname jvm.dll -o -iname '*.jar' \) 2>/dev/null | head -n 1)" ] && KIND="${'$'}KIND Java"
+          [ -n "$(find "${'$'}d" -maxdepth 3 \( -iname 'PresentationFramework*.dll' -o -iname '*.deps.json' -o -iname '*.runtimeconfig.json' \) 2>/dev/null | head -n 1)" ] && KIND="${'$'}KIND .NET"
+          EXES="$(find "${'$'}d" -maxdepth 2 -iname '*.exe' 2>/dev/null | grep -viE 'unins|setup|update|crash' | head -n 3)"
+          # i percorsi contengono spazi ("Program Files"): una riga per file
+          if [ -n "${'$'}EXES" ] && printf '%s\n' "${'$'}EXES" | while IFS= read -r e; do
+               grep -aqi 'mscoree.dll' "${'$'}e" 2>/dev/null && exit 0
+             done; then KIND="${'$'}KIND .NET"; fi
+          echo "- $(basename "${'$'}d"):${'$'}{KIND:- (non riconosciuta)}"
+          printf '%s\n' "${'$'}EXES" | sed -n '1,3s|^.*/|    |p'
+        done 2>/dev/null | awk '!seen[${'$'}0]++' | head -n 40
+        [ -d "${'$'}C/windows/mono" ] && echo "Wine Mono (.NET): installato" || echo "Wine Mono (.NET): non installato"
+        echo
         echo "== Server grafico"
         tail -n 5 "${'$'}HOME/.desktophub/xvnc.log" 2>/dev/null
     """.trimIndent()

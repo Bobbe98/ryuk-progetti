@@ -208,7 +208,13 @@ class MainActivity : ComponentActivity() {
                             }
                         },
                         dismissButton = {
-                            androidx.compose.material3.TextButton(onClick = viewModel::closeDiagnostics) { Text("Chiudi") }
+                            androidx.compose.foundation.layout.Row {
+                                androidx.compose.material3.TextButton(onClick = {
+                                    viewModel.closeDiagnostics()
+                                    viewModel.launch(com.ryuk.desktophub.data.AppCatalog.wineNotepadTest)
+                                }) { Text("Prova Blocco note") }
+                                androidx.compose.material3.TextButton(onClick = viewModel::closeDiagnostics) { Text("Chiudi") }
+                            }
                         },
                     )
                 }
