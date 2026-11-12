@@ -24,6 +24,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.ContentPaste
+import androidx.compose.material.icons.filled.Dangerous
 import androidx.compose.material.icons.filled.FolderOpen
 import androidx.compose.material.icons.filled.Keyboard
 import androidx.compose.material.icons.filled.Mouse
@@ -80,6 +81,7 @@ class ViewerActivity : ComponentActivity() {
     private var sticky by mutableStateOf(setOf<Int>())
     private var showLoadingHint by mutableStateOf(false)
     private var suggestOpenTermux by mutableStateOf(false)
+    private var confirmKillWindows by mutableStateOf(false)
 
     private val password by lazy { intent.getStringExtra(EXTRA_PASSWORD).orEmpty() }
 
@@ -151,6 +153,8 @@ class ViewerActivity : ComponentActivity() {
                         )
                     }
 
+                    KillWindowsDialog()
+
                     when (status) {
                         Status.CONNECTING -> Overlay {
                             CircularProgressIndicator()
@@ -197,6 +201,47 @@ class ViewerActivity : ComponentActivity() {
     }
 
     @Composable
+    private fun KillWindowsDialog() {
+        if (!confirmKillWindows) return
+        androidx.compose.material3.AlertDialog(
+            onDismissRequest = { confirmKillWindows = false },
+            title = { Text("Chiudere i programmi Windows?") },
+            text = {
+                Text(
+                    "Tutti i programmi aperti con Wine vengono chiusi subito, anche quelli bloccati. " +
+                        "Le modifiche non salvate andranno perse."
+                )
+            },
+            confirmButton = {
+                androidx.compose.material3.TextButton(onClick = {
+                    confirmKillWindows = false
+                    killWindowsPrograms()
+                }) { Text("Chiudi tutto") }
+            },
+            dismissButton = {
+                androidx.compose.material3.TextButton(onClick = { confirmKillWindows = false }) { Text("Annulla") }
+            },
+        )
+    }
+
+    private fun killWindowsPrograms() {
+        lifecycleScope.launch {
+            val r = runCatching {
+                com.ryuk.desktophub.termux.TermuxBridge(this@ViewerActivity)
+                    .runBackground(Scripts.killWindowsPrograms, timeoutMs = 30_000)
+            }.getOrNull()
+            val left = r?.stdout?.let { Regex("KILLED:(\\d+)").find(it)?.groupValues?.get(1)?.toIntOrNull() }
+            val text = when {
+                r == null -> "Termux non ha risposto: aprilo un momento e riprova."
+                left == 0 -> "Programmi Windows chiusi."
+                left != null -> "Chiusi, ma $left processi Windows sono ancora attivi: riprova."
+                else -> "Impossibile chiudere i programmi: ${r.describeError()}"
+            }
+            android.widget.Toast.makeText(this@ViewerActivity, text, android.widget.Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @Composable
     private fun Overlay(content: @Composable () -> Unit) {
         Box(Modifier.fillMaxSize().background(Color(0xCC000000)), contentAlignment = Alignment.Center) {
             Column(
@@ -230,6 +275,14 @@ class ViewerActivity : ComponentActivity() {
             BarKey("→") { desktopView.typeKeysym(KeySyms.RIGHT) }
             BarKey("Canc") { desktopView.typeKeysym(KeySyms.DELETE) }
             BarKey("F11") { desktopView.typeKeysym(KeySyms.F1 + 10) }
+            // chiude la finestra in primo piano (i pulsanti delle finestre sono piccoli da toccare)
+            BarKey("Alt+F4") {
+                client?.let { c ->
+                    c.sendKey(KeySyms.ALT_L, true)
+                    c.tapKey(KeySyms.F1 + 3)
+                    c.sendKey(KeySyms.ALT_L, false)
+                }
+            }
             BarIcon(Icons.Default.FolderOpen, "Apri file dal telefono") {
                 if (PhoneFileOpener(this@ViewerActivity).needsLegacyWritePermission()) {
                     android.widget.Toast.makeText(
@@ -246,6 +299,7 @@ class ViewerActivity : ComponentActivity() {
                 if (inputMode == InputMode.TOUCH) "Modalità: tocco" else "Modalità: touchpad",
             ) { switchInputMode() }
             BarIcon(Icons.Default.ZoomOutMap, "Adatta allo schermo") { desktopView.resetZoom() }
+            BarIcon(Icons.Default.Dangerous, "Forza chiusura programmi Windows") { confirmKillWindows = true }
             BarIcon(Icons.AutoMirrored.Filled.ExitToApp, "Esci") { finish() }
         }
     }

@@ -294,6 +294,22 @@ object Scripts {
         if [ "${'$'}{SDK_INT:-0}" -ge 31 ] && [ "${'$'}{NPROC:-0}" -gt 22 ]; then echo "WARN_PROCESSES:${'$'}NPROC"; fi
     """.trimIndent()
 
+    /**
+     * Chiude tutti i programmi Windows, anche quelli bloccati: `wineserver -k` termina ogni
+     * processo del prefisso; poi si eliminano gli eventuali superstiti cercandoli per nome
+     * del processo (comm), mai con `pkill -f`, che troverebbe questo stesso script.
+     */
+    val killWindowsPrograms: String = """
+        WS="${'$'}PREFIX/opt/hangover-wine/bin/wineserver"
+        command -v wineserver >/dev/null 2>&1 && [ ! -x "${'$'}WS" ] && WS="$(command -v wineserver)"
+        [ -x "${'$'}WS" ] && timeout 10 "${'$'}WS" -k 2>/dev/null
+        sleep 1
+        ps -A -o pid=,comm= 2>/dev/null | awk 'tolower(${'$'}2) ~ /\.exe${'$'}|^wineserver|^wine/ {print ${'$'}1}' | while read -r p; do
+          kill -9 "${'$'}p" 2>/dev/null
+        done
+        echo "KILLED:$(ps -A -o comm= 2>/dev/null | grep -ciE '\.exe${'$'}|^wine')"
+    """.trimIndent()
+
     /** Raccoglie le informazioni utili per capire perché un programma non funziona. */
     val diagnostics: String = """
         echo "== Sistema"
