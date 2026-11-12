@@ -38,6 +38,7 @@ fun SettingsScreen(
     onInputMode: (InputMode) -> Unit,
     onStopDesktop: () -> Unit,
     onInstallEnvironment: () -> Unit,
+    onDiagnostics: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -99,6 +100,17 @@ fun SettingsScreen(
         Section("Desktop in esecuzione") {
             OutlinedButton(onClick = onStopDesktop, enabled = state.busyMessage == null) {
                 Text("Chiudi desktop e tutte le app")
+            }
+        }
+
+        Section("Diagnostica") {
+            Text(
+                "Se un programma non funziona (si chiude, resta bianco, non parte), qui trovi il " +
+                    "registro di Wine e del desktop. Puoi copiarlo e inviarlo a chi ti aiuta.",
+                style = MaterialTheme.typography.bodySmall,
+            )
+            OutlinedButton(onClick = onDiagnostics, enabled = state.busyMessage == null) {
+                Text("Mostra registro")
             }
         }
 

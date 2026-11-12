@@ -259,6 +259,31 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
         }
     }
 
+    private val _diagnostics = MutableStateFlow<String?>(null)
+    /** Testo della diagnostica da mostrare, o null se il riquadro è chiuso. */
+    val diagnostics: StateFlow<String?> = _diagnostics.asStateFlow()
+
+    fun runDiagnostics() {
+        if (!_state.value.termuxInstalled || !_state.value.permissionGranted) {
+            message("Completa prima la configurazione nella scheda Inizia.")
+            return
+        }
+        viewModelScope.launch {
+            _state.update { it.copy(busyMessage = "Raccolta delle informazioni…") }
+            val r = runCatching { bridge.runBackground(Scripts.diagnostics, timeoutMs = 30_000) }.getOrNull()
+            _state.update { it.copy(busyMessage = null) }
+            _diagnostics.value = when {
+                r == null -> "Termux non ha risposto. Apri Termux una volta e riprova."
+                r.stdout.isBlank() -> explainTermuxError(r)
+                else -> "Desktop Hub ${BuildConfig.VERSION_NAME}\n\n" + r.stdout.trim()
+            }
+        }
+    }
+
+    fun closeDiagnostics() {
+        _diagnostics.value = null
+    }
+
     fun stopDesktop() {
         viewModelScope.launch {
             _state.update { it.copy(busyMessage = "Chiusura del desktop…") }

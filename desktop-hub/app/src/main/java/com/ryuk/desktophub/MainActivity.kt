@@ -13,6 +13,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Apps
@@ -180,9 +181,36 @@ class MainActivity : ComponentActivity() {
                             onInputMode = viewModel::setInputMode,
                             onStopDesktop = viewModel::stopDesktop,
                             onInstallEnvironment = viewModel::runSetup,
+                            onDiagnostics = viewModel::runDiagnostics,
                             modifier = modifier,
                         )
                     }
+                }
+
+                val diagnostics by viewModel.diagnostics.collectAsStateWithLifecycle()
+                diagnostics?.let { text ->
+                    androidx.compose.material3.AlertDialog(
+                        onDismissRequest = viewModel::closeDiagnostics,
+                        title = { Text("Diagnostica") },
+                        text = {
+                            androidx.compose.foundation.text.selection.SelectionContainer {
+                                Text(
+                                    text,
+                                    fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace,
+                                    style = androidx.compose.material3.MaterialTheme.typography.bodySmall,
+                                    modifier = Modifier.verticalScroll(androidx.compose.foundation.rememberScrollState()),
+                                )
+                            }
+                        },
+                        confirmButton = {
+                            androidx.compose.material3.TextButton(onClick = { copyToClipboard(text, "Diagnostica copiata") }) {
+                                Text("Copia")
+                            }
+                        },
+                        dismissButton = {
+                            androidx.compose.material3.TextButton(onClick = viewModel::closeDiagnostics) { Text("Chiudi") }
+                        },
+                    )
                 }
 
                 if (showAddDialog) {
@@ -216,9 +244,11 @@ class MainActivity : ComponentActivity() {
         runCatching { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url))) }
     }
 
-    private fun copyToClipboard(text: String) {
+    private fun copyToClipboard(text: String) = copyToClipboard(text, "Comando copiato")
+
+    private fun copyToClipboard(text: String, toast: String) {
         val cm = getSystemService(ClipboardManager::class.java)
-        cm.setPrimaryClip(ClipData.newPlainText("Comando Termux", text))
-        Toast.makeText(this, "Comando copiato", Toast.LENGTH_SHORT).show()
+        cm.setPrimaryClip(ClipData.newPlainText("Desktop Hub", text))
+        Toast.makeText(this, toast, Toast.LENGTH_SHORT).show()
     }
 }

@@ -193,7 +193,7 @@ object Scripts {
         LOG="$STATE_DIR/app-$id.log"
         EXITF="$STATE_DIR/app-$id.exit"
         rm -f "${'$'}EXITF"
-        ${if (app.launch.contains("wine")) "[ -f \"\$HOME/.wine/system.reg\" ] || echo FIRST_WINE_RUN\n$PROCESS_WARNING" else ""}
+        ${if (app.launch.contains("wine")) "[ -f \"\$HOME/.wine/system.reg\" ] || echo FIRST_WINE_RUN\n$PROCESS_WARNING\n${wineCompat("hangover-wine")}" else ""}
         setsid nohup bash -c 'bash -lc "${'$'}1"; echo ${'$'}? > "${'$'}2"' _ ${Shell.quote(app.launch)} "${'$'}EXITF" \
           > "${'$'}LOG" 2>&1 < /dev/null &
         for i in $(seq 1 30); do [ -f "${'$'}EXITF" ] && break; sleep 0.2; done
@@ -264,6 +264,27 @@ object Scripts {
     )
 
     /**
+     * Compatibilità grafica di Wine, applicata una volta sola per prefisso:
+     * - WPF (.NET) in rendering software: senza, molti programmi mostrano una finestra bianca;
+     * - OpenGL software (Mesa llvmpipe): sul desktop virtuale non c'è accelerazione 3D.
+     * Si applica solo se il prefisso esiste già: crearlo richiede minuti e il comando
+     * in background ha un tempo limite.
+     */
+    private const val WINE_COMPAT_VERSION = 1
+
+    private fun wineCompat(wine: String): String = """
+        export GALLIUM_DRIVER=llvmpipe
+        COMPAT_MARK="$STATE_DIR/wine-compat-v$WINE_COMPAT_VERSION"
+        if [ -f "${'$'}HOME/.wine/system.reg" ] && [ ! -f "${'$'}COMPAT_MARK" ]; then
+          if timeout 45 $wine reg add 'HKCU\Software\Microsoft\Avalon.Graphics' \
+               /v DisableHWAcceleration /t REG_DWORD /d 1 /f >> "$STATE_DIR/wine-compat.log" 2>&1; then
+            date > "${'$'}COMPAT_MARK"
+            echo WINE_COMPAT_APPLIED
+          fi
+        fi
+    """.trimIndent()
+
+    /**
      * Da Android 12 il sistema chiude i processi delle app oltre una soglia (32 in tutto).
      * Desktop completo + Wine la superano facilmente: si avvisa prima che succeda.
      */
@@ -271,6 +292,26 @@ object Scripts {
         SDK_INT="$(getprop ro.build.version.sdk 2>/dev/null)"
         NPROC="$(ps -A -o pid= 2>/dev/null | wc -l)"
         if [ "${'$'}{SDK_INT:-0}" -ge 31 ] && [ "${'$'}{NPROC:-0}" -gt 22 ]; then echo "WARN_PROCESSES:${'$'}NPROC"; fi
+    """.trimIndent()
+
+    /** Raccoglie le informazioni utili per capire perché un programma non funziona. */
+    val diagnostics: String = """
+        echo "== Sistema"
+        echo "Android SDK: $(getprop ro.build.version.sdk 2>/dev/null)  modello: $(getprop ro.product.model 2>/dev/null)"
+        echo "Architettura Termux: $(dpkg --print-architecture 2>/dev/null)"
+        echo "Spazio libero: $(( $(df -Pk "${'$'}PREFIX" | awk 'NR==2 {print ${'$'}4}') / 1024 )) MB"
+        echo "Processi attivi: $(ps -A -o pid= 2>/dev/null | wc -l)"
+        echo "Desktop: $(pgrep -x Xvnc >/dev/null && echo attivo || echo spento)   Wine: $(command -v hangover-wine >/dev/null && echo installato || echo assente)"
+        echo "Processi Wine: $(ps -A -o comm= 2>/dev/null | grep -ciE 'wine|\.exe')"
+        echo
+        for f in "${'$'}HOME/.desktophub/open-file.log" $(ls -t "${'$'}HOME"/.desktophub/app-*.log 2>/dev/null | head -n 2) "${'$'}HOME/.desktophub/wine-compat.log"; do
+          [ -s "${'$'}f" ] || continue
+          echo "== $(basename "${'$'}f") ($(date -r "${'$'}f" '+%d/%m %H:%M' 2>/dev/null))"
+          grep -vE ':fixme:|^$' "${'$'}f" | tail -n 25
+          echo
+        done
+        echo "== Server grafico"
+        tail -n 5 "${'$'}HOME/.desktophub/xvnc.log" 2>/dev/null
     """.trimIndent()
 
     /** Esito di [openFile] segnalato con codici di uscita dedicati. */
@@ -299,6 +340,7 @@ object Scripts {
             else echo "Wine non installato" >&2; exit $EXIT_NEED_WINE; fi
             [ -f "${'$'}HOME/.wine/system.reg" ] || echo FIRST_WINE_RUN
             $PROCESS_WARNING
+            ${wineCompat("\"\$WINE\"")}
             # La memoria del telefono è montata "noexec" e gli installer hanno spesso bisogno
             # dei file vicini (.cab, .bin, data...): si copia l'intera cartella scelta dentro
             # il disco C: di Wine e si esegue da lì.
