@@ -65,25 +65,25 @@ Su Windows la stessa idea si realizza con gli strumenti integrati nel sistema:
 
 Apri PowerShell o il Prompt dei comandi nella cartella `virtual-ram\windows` e:
 
-```bat
-.\vram.bat auto                              :: paging da RAM a 2xRAM (max 32 GB) + compressione, poi riavvia
+```powershell
+.\vram.bat auto                              # paging da RAM a 2xRAM (max 32 GB) + compressione, poi riavvia
 .\vram.bat stato
-.\vram.bat paging 16 32 C                    :: file di paging manuale: minimo 16 GB, massimo 32 GB su C:
-.\vram.bat paging-automatico                 :: torna alle impostazioni di Windows
+.\vram.bat paging 16 32 C                    # file di paging manuale: minimo 16 GB, massimo 32 GB su C:
+.\vram.bat paging-automatico                 # torna alle impostazioni di Windows
 .\vram.bat compressione on
-.\vram.bat ramdisk R 4                       :: unità R: da 4 GB in RAM
+.\vram.bat ramdisk R 4                       # unità R: da 4 GB in RAM
 .\vram.bat ramdisk-rimuovi R
-.\vram.bat wsl 8 16                          :: WSL2: 8 GB di RAM e 16 GB di swap
-.\vram.bat esegui 4 "gradlew assembleDebug"  :: al massimo 4 GB di RAM fisica per processo
+.\vram.bat wsl 8 16                          # WSL2: 8 GB di RAM e 16 GB di swap
+.\vram.bat esegui 4 "gradlew assembleDebug"  # al massimo 4 GB di RAM fisica per processo
 ```
 
 I comandi che cambiano il sistema chiedono da soli i permessi di amministratore (finestra UAC).
 Le modifiche al file di paging valgono **dopo il riavvio**.
 
 Per le build Gradle/Android conviene anche:
-```bat
+```powershell
 .\vram.bat ramdisk R 4
-set GRADLE_USER_HOME=R:\gradle
+$env:GRADLE_USER_HOME = "R:\gradle"
 .\vram.bat esegui 6 "gradlew assembleDebug"
 ```
 
