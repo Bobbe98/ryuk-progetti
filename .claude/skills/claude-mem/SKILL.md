@@ -1,7 +1,7 @@
 ---
 name: claude-mem
 description: Memoria persistente tra le sessioni di Claude Code tramite il plugin claude-mem (osservazioni automatiche, riassunti di sessione, ricerca testuale FTS5, etichette <private>). Usa questa skill quando l'utente chiede di installare o configurare claude-mem, di cercare cosa è stato fatto nelle sessioni precedenti ("cosa abbiamo sistemato la settimana scorsa?"), di ridurre i token del contesto iniettato o di escludere dati sensibili dalla memoria.
-version: 1.1.0
+version: 1.2.0
 source: https://github.com/enuno/claude-command-and-control/blob/main/skills-templates/claude-mem/SKILL.md
 upstream: https://github.com/thedotmack/claude-mem
 tags: [claude-code, memoria, contesto, persistenza, mcp, plugin, sqlite]
@@ -94,7 +94,7 @@ script interattivo `./claude-mem-settings.sh`):
 ```json
 {
   "CLAUDE_MEM_MODEL": "sonnet",
-  "CLAUDE_MEM_MODE": "code",
+  "CLAUDE_MEM_MODE": "code--it",
   "CLAUDE_MEM_CONTEXT_OBSERVATIONS": 50,
   "CLAUDE_MEM_FOLDER_CLAUDEMD_ENABLED": false
 }
@@ -126,9 +126,30 @@ le etichette di concetto e la lingua in cui vengono scritte le osservazioni.
 | `code` | predefinita, sviluppo software |
 | `code--chill` | registra solo ciò che sarebbe faticoso riscoprire (meno token) |
 | `email-investigation` | analisi di archivi email |
+| **`code--it`** | **sviluppo, osservazioni e riassunti scritti in italiano (consigliata)** |
 | `code--es`, `code--fr`, `code--de`, `code--ja`, `code--zh`… | osservazioni in altre lingue (oltre 28) |
+| `law-study`, `meme-tokens` | modalità speciali incluse nel plugin |
 
-Per avere le osservazioni in italiano prova `code--it`: controlla prima che esista nella tua versione.
+### Osservazioni in italiano (`code--it`)
+
+La modalità esiste nel plugin (`plugin/modes/code--it.json`): eredita tutto da `code` e chiede
+all'agente di memoria di scrivere in italiano titoli, sottotitoli, fatti, racconti e riassunti
+(richiesta, cosa è stato esaminato, cosa si è imparato, cosa è stato fatto, prossimi passi, note).
+
+Per attivarla, in `~/.claude-mem/settings.json`:
+```json
+{ "CLAUDE_MEM_MODE": "code--it" }
+```
+oppure come variabile d'ambiente (es. in `~/.bashrc` o `~/.zshrc`):
+```bash
+export CLAUDE_MEM_MODE="code--it"
+```
+Poi `npm run worker:restart` (o riavvia Claude Code). Le osservazioni già salvate restano nella
+lingua in cui erano state scritte; le nuove saranno in italiano.
+
+Nota: `code--it` e `code--chill` non si combinano. Per contenere i token restando in italiano,
+abbassa `CLAUDE_MEM_CONTEXT_OBSERVATIONS` (es. 25) invece di passare a `code--chill`.
+Con le osservazioni in italiano, fai anche le ricerche FTS5 con parole italiane.
 
 Ereditarietà con `--`: `code--es` carica prima `code` e poi sovrascrive solo ciò che cambia.
 
@@ -179,7 +200,8 @@ npm run worker:logs      # registro
   `CLAUDE_MEM_WORKER_PORT=38000` e poi `npm run worker:restart`.
 - **Nessun contesto all'avvio**: controlla `plugin/hooks/hooks.json`, conta i dati con
   `sqlite3 ~/.claude-mem/claude-mem.db "SELECT COUNT(*) FROM observations;"` e leggi il registro.
-- **Troppi token**: `CLAUDE_MEM_CONTEXT_OBSERVATIONS=25` e/o `CLAUDE_MEM_MODE=code--chill`.
+- **Troppi token**: `CLAUDE_MEM_CONTEXT_OBSERVATIONS=25`; se non ti serve l'italiano, anche `CLAUDE_MEM_MODE=code--chill`.
+- **Osservazioni ancora in inglese**: controlla che `CLAUDE_MEM_MODE` sia `code--it` e riavvia il servizio.
 - **Database rovinato**: fai una copia (`cp ~/.claude-mem/claude-mem.db ~/.claude-mem/claude-mem.db.bak`),
   cancella il database e `npm run worker:restart`.
 
@@ -187,7 +209,7 @@ npm run worker:logs      # registro
 1. Parti con le impostazioni predefinite, poi regola `CLAUDE_MEM_CONTEXT_OBSERVATIONS` in base a quanto è grande il progetto.
 2. Prima di chiedere "come avevamo fatto X?", **cerca nella memoria** con la procedura in 3 passi.
 3. Proteggi sempre i dati sensibili con `<private>`.
-4. Ricontrolla ogni tanto le osservazioni salvate; usa `code--chill` sui progetti molto attivi.
+4. Usa `code--it` per avere la memoria in italiano; ricontrolla ogni tanto le osservazioni salvate.
 5. Le decisioni importanti vanno anche in CLAUDE.md / Obsidian: claude-mem resta solo sul tuo PC.
 
 ## Novità per versione (del plugin)
