@@ -1,7 +1,7 @@
 ---
 name: claude-mem
-description: Memoria persistente tra sessioni di Claude Code tramite il plugin claude-mem (osservazioni automatiche, riassunti di sessione, ricerca FTS5, tag <private>). Usa questa skill quando l'utente chiede di installare/configurare claude-mem, di cercare cosa è stato fatto in sessioni precedenti ("cosa abbiamo sistemato la settimana scorsa?"), di ridurre i token del contesto iniettato o di escludere dati sensibili dalla memoria.
-version: 1.0.0
+description: Memoria persistente tra le sessioni di Claude Code tramite il plugin claude-mem (osservazioni automatiche, riassunti di sessione, ricerca testuale FTS5, etichette <private>). Usa questa skill quando l'utente chiede di installare o configurare claude-mem, di cercare cosa è stato fatto nelle sessioni precedenti ("cosa abbiamo sistemato la settimana scorsa?"), di ridurre i token del contesto iniettato o di escludere dati sensibili dalla memoria.
+version: 1.1.0
 source: https://github.com/enuno/claude-command-and-control/blob/main/skills-templates/claude-mem/SKILL.md
 upstream: https://github.com/thedotmack/claude-mem
 tags: [claude-code, memoria, contesto, persistenza, mcp, plugin, sqlite]
@@ -9,73 +9,88 @@ tags: [claude-code, memoria, contesto, persistenza, mcp, plugin, sqlite]
 
 # Claude-Mem — memoria persistente per Claude Code
 
-Claude-Mem registra in automatico cosa succede durante le sessioni (letture, scritture, comandi),
-lo comprime in osservazioni con titolo/narrazione/concetti e lo reinietta nelle sessioni successive.
-Docs: https://docs.claude-mem.ai
+Claude-Mem registra in automatico ciò che succede durante le sessioni (letture, scritture, comandi),
+lo comprime in osservazioni con titolo, racconto e concetti, e lo reinserisce nelle sessioni successive.
+Documentazione ufficiale (in inglese): https://docs.claude-mem.ai
 
-> ⚠️ **Sessioni cloud (claude.ai/code)**: il container è effimero, `~/.claude-mem/` sparisce a fine
-> sessione. Claude-Mem va installato sul **PC locale**. In cloud, per la memoria duratura usa
-> CLAUDE.md nel repo o il vault Obsidian (skill `mappa-obsidian` / `secondo-cervello`).
+> ⚠️ **Sessioni nel cloud (claude.ai/code)**: il contenitore è temporaneo e `~/.claude-mem/` viene
+> cancellata a fine sessione. Claude-Mem va installato sul **PC locale**. Nel cloud, per una memoria
+> che duri usa il file CLAUDE.md nel repository o il vault Obsidian (skill `mappa-obsidian` / `secondo-cervello`).
 
 ## Requisiti
-- Node.js ≥ 18, Claude Code con supporto plugin
-- Bun (installato in automatico se manca), SQLite 3 (incluso)
+- Node.js 18 o superiore, Claude Code con supporto ai plugin
+- Bun (si installa da solo se manca) e SQLite 3 (già incluso)
 
 ## Installazione
 
-**Rapida (consigliata)** — nel terminale di Claude Code:
+**Rapida (consigliata)** — dentro Claude Code:
 ```
 /plugin marketplace add thedotmack/claude-mem
 /plugin install claude-mem
 ```
 Poi riavvia Claude Code.
 
-**Da sorgente**:
+**Dal codice sorgente**:
 ```bash
 git clone https://github.com/thedotmack/claude-mem.git
 cd claude-mem && npm install && npm run build
-npm run worker:start && npm run worker:status
+npm run worker:start && npm run worker:status   # avvia il servizio e ne controlla lo stato
 ```
 
-**Verifica**: `cat plugin/hooks/hooks.json`, `npm run worker:logs`, `npm run test:context`.
+**Controllo**:
+```bash
+cat plugin/hooks/hooks.json   # gli agganci sono installati?
+npm run worker:logs           # registro del servizio
+npm run test:context          # prova l'iniezione del contesto
+```
 
 ## Come funziona
 
-| Hook | Timeout | Cosa fa |
-|------|---------|---------|
-| SessionStart | 120s | Inietta il contesto delle ultime sessioni |
-| UserPromptSubmit | 60s | Crea la sessione, salva il prompt |
-| PostToolUse | 120s | Cattura un'osservazione per ogni tool usato |
-| Stop | 60s | Genera il riassunto di sessione |
+| Aggancio (hook) | Tempo massimo | Cosa fa |
+|-----------------|---------------|---------|
+| SessionStart (inizio sessione) | 120 s | Inserisce il contesto delle ultime sessioni |
+| UserPromptSubmit (invio messaggio) | 60 s | Crea la sessione e salva il messaggio |
+| PostToolUse (dopo ogni strumento) | 120 s | Registra un'osservazione per ogni strumento usato |
+| Stop (fine risposta) | 60 s | Genera il riassunto della sessione |
 
-Un worker in background (porta `37777`, UI web su http://localhost:37777) elabora le osservazioni
-con il Claude Agent SDK e produce: titolo, sottotitolo, narrazione, learning, tag di concetto,
-tipo (bugfix, feature, decision, discovery, refactor, change) e file coinvolti.
-Le sessioni attraversano più prompt; `/clear` non chiude la sessione.
+Un servizio in sottofondo (porta `37777`, interfaccia web su http://localhost:37777) elabora le
+osservazioni con il Claude Agent SDK e per ognuna produce: titolo, sottotitolo, racconto dettagliato,
+cose imparate, etichette di concetto, tipo di lavoro e file coinvolti.
 
-## Ricerca nella memoria (tool MCP)
+Tipi di lavoro (i valori da usare nei filtri restano in inglese):
+`bugfix` = correzione errore · `feature` = nuova funzione · `decision` = decisione ·
+`discovery` = scoperta · `refactor` = riorganizzazione codice · `change` = modifica.
 
-Flusso a 3 livelli (~10x di risparmio token) — **non saltare direttamente al livello 3**:
+Una sessione comprende più messaggi; `/clear` non la chiude (riparte col messaggio successivo).
 
-1. `search` — indice leggero (~50-100 token/risultato).
-   Parametri: `query` (sintassi FTS5), `limit` (20), `offset`, `type`, `project`, `dateStart`, `dateEnd`, `orderBy`.
-2. `timeline` — contesto attorno a un'osservazione (`anchor` o `query`, `depth_before`/`depth_after`, default 3).
-3. `get_observations` — dettagli completi solo per gli `ids` che servono davvero.
+## Ricerca nella memoria (strumenti MCP)
 
-Sintassi FTS5:
+Procedura in 3 passi (circa 10 volte meno token) — **non saltare subito al passo 3**:
+
+1. `search` — indice leggero (circa 50-100 token per risultato).
+   Parametri: `query` (sintassi FTS5), `limit` (risultati per pagina, predefinito 20), `offset` (scostamento),
+   `type` (tipo di lavoro), `project` (progetto), `dateStart` / `dateEnd` (intervallo di date), `orderBy` (ordinamento).
+2. `timeline` — cosa è successo prima e dopo un'osservazione: `anchor` (ID di riferimento) oppure `query`,
+   `depth_before` / `depth_after` (quante osservazioni prima/dopo, predefinito 3).
+3. `get_observations` — dettagli completi, solo per gli `ids` che servono davvero.
+
+Sintassi di ricerca FTS5 (gli operatori `AND`, `OR`, `NOT` e i nomi dei campi restano in inglese):
 ```
-"user auth" AND (JWT OR session) NOT deprecated
-title:authentication   content:database   concepts:gotcha
-"connection failed"
+"autenticazione utente" AND (JWT OR sessione) NOT deprecato
+title:pagamento       # cerca solo nel titolo
+content:database      # cerca solo nel contenuto
+concepts:trappola     # cerca tra le etichette di concetto
+"connessione fallita" # frase esatta
 ```
 
-Esempio — "Che bug abbiamo sistemato la settimana scorsa?":
+Esempio — "Che errori abbiamo sistemato la settimana scorsa?":
 `search(type:"bugfix", dateStart:<7 giorni fa>)` → `timeline(anchor:<id>)` se serve contesto →
-`get_observations(ids:[...])` solo per i dettagli. Cita le osservazioni per ID.
+`get_observations(ids:[...])` solo per i dettagli. Cita sempre le osservazioni con il loro ID.
 
 ## Configurazione
 
-File `~/.claude-mem/settings.json` (o variabili d'ambiente omonime, o `./claude-mem-settings.sh`):
+File `~/.claude-mem/settings.json` (oppure variabili d'ambiente con lo stesso nome, oppure lo
+script interattivo `./claude-mem-settings.sh`):
 ```json
 {
   "CLAUDE_MEM_MODEL": "sonnet",
@@ -85,72 +100,98 @@ File `~/.claude-mem/settings.json` (o variabili d'ambiente omonime, o `./claude-
 }
 ```
 
-| Variabile | Default | Note |
-|-----------|---------|------|
-| `CLAUDE_MEM_MODEL` | sonnet | haiku / sonnet / opus |
-| `CLAUDE_MEM_PROVIDER` | claude | claude / gemini / openrouter (+ `_GEMINI_API_KEY`, `_OPENROUTER_API_KEY`, `_..._MODEL`) |
-| `CLAUDE_MEM_DATA_DIR` | ~/.claude-mem | posizione DB |
-| `CLAUDE_MEM_WORKER_PORT` / `_HOST` | 37777 / 127.0.0.1 | |
-| `CLAUDE_MEM_LOG_LEVEL` | INFO | DEBUG, INFO, WARN, ERROR, SILENT |
-| `CLAUDE_MEM_CONTEXT_SESSION_COUNT` | 10 | sessioni recenti lette |
-| `CLAUDE_MEM_CONTEXT_OBSERVATIONS` | 50 | osservazioni iniettate |
-| `CLAUDE_MEM_CONTEXT_FULL_COUNT` / `_FULL_FIELD` | 5 / narrative | espanse; narrative o facts |
-| `CLAUDE_MEM_CONTEXT_SHOW_*` | — | READ_TOKENS, WORK_TOKENS, SAVINGS_AMOUNT, LAST_SUMMARY, LAST_MESSAGE |
-| `CLAUDE_MEM_SKIP_TOOLS` | — | es. `ListMcpResourcesTool,SlashCommand,Skill,TodoWrite,AskUserQuestion` |
+| Variabile | Valore predefinito | Note |
+|-----------|--------------------|------|
+| `CLAUDE_MEM_MODEL` | sonnet | modello che elabora: haiku / sonnet / opus |
+| `CLAUDE_MEM_PROVIDER` | claude | fornitore: claude / gemini / openrouter (con `_GEMINI_API_KEY`, `_OPENROUTER_API_KEY` e i relativi `_MODEL`) |
+| `CLAUDE_MEM_DATA_DIR` | ~/.claude-mem | cartella del database |
+| `CLAUDE_MEM_WORKER_PORT` / `_HOST` | 37777 / 127.0.0.1 | porta e indirizzo del servizio |
+| `CLAUDE_MEM_LOG_LEVEL` | INFO | dettaglio del registro: DEBUG, INFO, WARN, ERROR, SILENT |
+| `CLAUDE_MEM_CONTEXT_SESSION_COUNT` | 10 | quante sessioni recenti leggere |
+| `CLAUDE_MEM_CONTEXT_OBSERVATIONS` | 50 | quante osservazioni inserire nel contesto |
+| `CLAUDE_MEM_CONTEXT_FULL_COUNT` / `_FULL_FIELD` | 5 / narrative | quante mostrare per intero; `narrative` (racconto) o `facts` (solo fatti) |
+| `CLAUDE_MEM_CONTEXT_SHOW_*` | — | cosa mostrare: token letti, token di lavoro, risparmio, ultimo riassunto, ultimo messaggio |
+| `CLAUDE_MEM_FOLDER_CLAUDEMD_ENABLED` | false | genera un CLAUDE.md per cartella con la cronologia |
+| `CLAUDE_MEM_SKIP_TOOLS` | — | strumenti da ignorare, es. `ListMcpResourcesTool,SlashCommand,Skill,TodoWrite,AskUserQuestion` |
 
-Le API key vanno in variabili d'ambiente locali, **mai** committate.
+Le chiavi API vanno solo in variabili d'ambiente locali, **mai** nel repository.
 
 ## Modalità
 
-Una modalità definisce ruolo dell'osservatore, tipi di osservazione, concetti e lingua.
+Una modalità stabilisce: il ruolo di chi osserva (es. "sviluppatore"), i tipi di osservazione,
+le etichette di concetto e la lingua in cui vengono scritte le osservazioni.
 
 | Modalità | Uso |
 |----------|-----|
-| `code` | default sviluppo |
-| `code--chill` | registra solo ciò che è doloroso da riscoprire (meno token) |
-| `email-investigation` | analisi archivi email |
-| `code--es/fr/de/ja/zh/...` | output in altre lingue (28+ supportate; verifica che `code--it` esista nella tua versione) |
+| `code` | predefinita, sviluppo software |
+| `code--chill` | registra solo ciò che sarebbe faticoso riscoprire (meno token) |
+| `email-investigation` | analisi di archivi email |
+| `code--es`, `code--fr`, `code--de`, `code--ja`, `code--zh`… | osservazioni in altre lingue (oltre 28) |
 
-Ereditarietà con `--`: `code--es` carica `code` e poi applica gli override.
+Per avere le osservazioni in italiano prova `code--it`: controlla prima che esista nella tua versione.
 
-## Privacy: tag `<private>`
+Ereditarietà con `--`: `code--es` carica prima `code` e poi sovrascrive solo ciò che cambia.
+
+## Riservatezza: etichetta `<private>`
 
 ```
 <private>
-Host: db-interno.azienda.it  User: admin
+Host: db-interno.azienda.it  Utente: admin  Password: ...
 </private>
 ```
-Claude lo vede nella sessione corrente, ma viene rimosso prima del salvataggio. Funziona in prompt e
-output dei tool, multiriga, più tag per messaggio. Usalo per credenziali, dati clienti (es. preventivi),
-stack trace verbosi.
+Claude vede il contenuto nella sessione corrente, ma viene tolto prima del salvataggio nel database.
+Funziona nei messaggi e nei risultati degli strumenti, anche su più righe e con più etichette nello
+stesso messaggio. Usala per credenziali, dati dei clienti (es. preventivi) e log di errore molto lunghi.
 
-Verifica:
+Controllo che il filtro funzioni:
 ```bash
 sqlite3 ~/.claude-mem/claude-mem.db "SELECT prompt_text FROM user_prompts LIMIT 5;"
 sqlite3 ~/.claude-mem/claude-mem.db "SELECT narrative FROM observations LIMIT 5;"
 ```
 
-## Dati e worker
+## Dati e servizio
 
-`~/.claude-mem/`: `claude-mem.db`, `.worker.pid`, `logs/worker-YYYY-MM-DD.log`, `settings.json`.
+Contenuto di `~/.claude-mem/`:
+- `claude-mem.db` — database SQLite
+- `.worker.pid` — numero del processo del servizio
+- `logs/worker-AAAA-MM-GG.log` — registri giornalieri
+- `settings.json` — configurazione
 
 ```sql
+-- Ultime sessioni
 SELECT session_id, project, created_at, status FROM sdk_sessions ORDER BY created_at DESC LIMIT 10;
+-- Osservazioni di un progetto
 SELECT title, type, created_at FROM observations WHERE project = 'ryuk-progetti';
 ```
 
-`npm run worker:start | stop | restart | status | logs`
+Gestione del servizio:
+```bash
+npm run worker:start     # avvia
+npm run worker:stop      # ferma
+npm run worker:restart   # riavvia
+npm run worker:status    # stato
+npm run worker:logs      # registro
+```
 
-## Troubleshooting
+## Risoluzione dei problemi
 
-- **Worker non parte**: `lsof -i :37777` → cambia porta con `CLAUDE_MEM_WORKER_PORT=38000` e `worker:restart`.
-- **Nessun contesto**: controlla `plugin/hooks/hooks.json`, `SELECT COUNT(*) FROM observations;`, i log.
+- **Il servizio non parte**: `lsof -i :37777` per vedere chi occupa la porta → cambiala con
+  `CLAUDE_MEM_WORKER_PORT=38000` e poi `npm run worker:restart`.
+- **Nessun contesto all'avvio**: controlla `plugin/hooks/hooks.json`, conta i dati con
+  `sqlite3 ~/.claude-mem/claude-mem.db "SELECT COUNT(*) FROM observations;"` e leggi il registro.
 - **Troppi token**: `CLAUDE_MEM_CONTEXT_OBSERVATIONS=25` e/o `CLAUDE_MEM_MODE=code--chill`.
-- **DB corrotto**: backup `cp claude-mem.db claude-mem.db.bak`, elimina il DB, `worker:restart`.
+- **Database rovinato**: fai una copia (`cp ~/.claude-mem/claude-mem.db ~/.claude-mem/claude-mem.db.bak`),
+  cancella il database e `npm run worker:restart`.
 
 ## Buone pratiche
-1. Parti con i default, poi regola `CONTEXT_OBSERVATIONS` sulla dimensione del progetto.
-2. Prima di chiedere "come avevamo fatto X?", **cerca in memoria** con il flusso a 3 livelli.
+1. Parti con le impostazioni predefinite, poi regola `CLAUDE_MEM_CONTEXT_OBSERVATIONS` in base a quanto è grande il progetto.
+2. Prima di chiedere "come avevamo fatto X?", **cerca nella memoria** con la procedura in 3 passi.
 3. Proteggi sempre i dati sensibili con `<private>`.
-4. Rivedi periodicamente le osservazioni salvate; usa `code--chill` su progetti molto attivi.
-5. Le decisioni durevoli vanno anche in CLAUDE.md / Obsidian: claude-mem è locale al PC.
+4. Ricontrolla ogni tanto le osservazioni salvate; usa `code--chill` sui progetti molto attivi.
+5. Le decisioni importanti vanno anche in CLAUDE.md / Obsidian: claude-mem resta solo sul tuo PC.
+
+## Novità per versione (del plugin)
+- **v9.0.0** — CLAUDE.md per cartella, supporto ai git worktree, limiti configurabili
+- **v7.1.0** — Bun al posto di PM2, bun:sqlite al posto di better-sqlite3
+- **v7.0.0** — 11 impostazioni configurabili, doppia etichetta di riservatezza
+- **v5.4.0** — ricerca tramite skill (circa 2.250 token risparmiati a sessione)
